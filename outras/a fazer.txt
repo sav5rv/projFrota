@@ -1,0 +1,27 @@
+depois de criar a conta mudar para a tela de login
+
+tela cadastrar CONTATO
+
+incluir combo box 
+incluir campo memorando
+depois de clicar no botão salvar mudar a tela
+
+
+
+msg apos o cadastro conferir
+
+
+
+
+CONTATO
+email = campo email
+
+celular = campo fone
+
+tipo de usuario = Administrador / Auxiliar / Usuario / Leitor
+
+categoria CNH = A / B / C / D / E
+
+validade CNH = campo data
+
+observações = campo memorando   -   	NÃO SALVOU NO MONGODB

@@ -1,0 +1,59 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c6d128;">
+    <a href="/">
+      <img src="/public/assets/marca-de-verificacao.png" width="30" height="30" alt="">
+      CONTROLE DE FROTA
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Usuários</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/contato/index">Cadastrar</a>
+            <a class="dropdown-item" href="/contato/index_contato">Listar</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Veículos</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/veiculo/index">Cadastrar</a>
+            <a class="dropdown-item" href="/veiculo/index_veiculo">Listar</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Despesas</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/despesa/index">Cadastrar</a>
+            <a class="dropdown-item" href="/despesa/index_despesa">Listar</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Utilização</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/uso/index">Cadastrar</a>
+            <a class="dropdown-item" href="/uso/index_uso">Listar</a>
+          </div>
+        </li>
+
+        <% if(user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/logout">SAIR</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/index">ENTRAR</a>
+          </li>
+          <% } %>
+
+      </ul>
+    </div>
+  </nav>
+</div>

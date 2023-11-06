@@ -1,0 +1,63 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Veículos</h1>
+      <p class="text-center lead">Preencha os campos abaixo para cadastrar um veículo.</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(veiculo._id) { %>
+      <form action="/veiculo/edit/<%= veiculo._id %>" method="POST">
+      <% } else { %>
+      <form action="/veiculo/register" method="POST">
+      <% } %>
+        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+        <div class="form-group">
+          <label>Placa</label>
+          <input value="<%= veiculo.placa %>" type="text" class="form-control" name="placa">
+        </div>
+        <div class="form-group">
+          <label>Renavan</label>
+          <input value="<%= veiculo.renavan %>" type="text" class="form-control" name="renavan">
+        </div>
+        <div class="form-group">
+          <label>Chassi</label>
+          <input value="<%= veiculo.chassi %>" type="text" class="form-control" name="chassi">
+        </div>
+        <div class="form-group">
+          <label>Prefixo (cód identificação)</label>
+          <input value="<%= veiculo.prefixo %>" type="text" class="form-control" name="prefixo">
+        </div>
+        <div class="form-group">
+          <label>Hodômetro</label>
+          <input value="<%= veiculo.hodometro %>" type="text" class="form-control" name="hodometro">
+        </div>
+        <div class="form-group">
+          <label>Combustível</label>
+          <input value="<%= veiculo.combustivel %>" type="text" class="form-control" name="combustivel">
+        </div>
+        <div class="form-group">
+          <label>Quantidade de Rodas</label>
+          <input value="<%= veiculo.rodas %>" type="text" class="form-control" name="rodas">
+        </div>
+        <div class="form-group">
+          <label>Cor</label>
+          <input value="<%= veiculo.cor %>" type="text" class="form-control" name="cor">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+
+
+    </div>
+    
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>

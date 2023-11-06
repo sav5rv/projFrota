@@ -1,0 +1,74 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Despesas</h1>
+      <p class="text-center lead">Preencha os campos para cadastrar uma despesa.</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(despesa._id) { %>
+      <form action="/despesa/edit/<%= despesa._id %>" method="POST">
+      <% } else { %>
+      <form action="/despesa/register" method="POST">
+      <% } %>
+        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+        <div class="form-group">
+          <label>E-Mail do usuário</label>
+          <input value="<%= despesa.email %>" type="text" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+          <label>Placa</label>
+          <input value="<%= despesa.placa %>" type="text" class="form-control" name="placa">
+        </div>
+        <div class="form-group">
+          <label>Tipo de Despesa</label>
+          <input value="<%= despesa.tipoDespesa %>" type="text" class="form-control" name="tipoDespesa">
+        </div>
+        <div class="form-group">
+          <label>Hodômetro</label>
+          <input value="<%= despesa.hodometro %>" type="text" class="form-control" name="hodometro">
+        </div>
+        <div class="form-group">
+          <label>Data da realização</label>
+          <input value="<%= despesa.data %>" type="text" class="form-control" name="data">
+        </div>
+        <div class="form-group">
+          <label>Hora da realização</label>
+          <input value="<%= despesa.hora %>" type="text" class="form-control" name="hora">
+        </div>
+        <div class="form-group">
+          <label>Local da realização</label>
+          <input value="<%= despesa.local %>" type="text" class="form-control" name="local">
+        </div>
+        <div class="form-group">
+          <label>Unidade dos itens comprados</label>
+          <input value="<%= despesa.unidade %>" type="text" class="form-control" name="unidade">
+        </div>
+        <div class="form-group">
+          <label>Quantidade de itens</label>
+          <input value="<%= despesa.quantidade %>" type="text" class="form-control" name="quantidade">
+        </div>
+        <div class="form-group">
+          <label>Valor Total Gasto</label>
+          <input value="<%= despesa.valor %>" type="text" class="form-control" name="valor">
+        </div>
+        <div class="form-group">
+          <label>Observações</label>
+          <input value="<%= despesa.obs %>" type="text" class="form-control" name="obs">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+
+
+    </div>
+    
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>

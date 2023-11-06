@@ -1,0 +1,55 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-12 my-3">
+      <h1 class="text-center">Veículos</h1>
+      <p class="text-center lead">Veículos cadastrados</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(veiculos.length > 0) { %>
+      <div class="responsive-table">
+        <table class="table my-3">
+          <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Renavan</th>
+                <th>Chassi</th>
+                <th>Prefixo</th>
+                <th>Hodômetro</th>
+                <th>Comb</th>
+                <th>Rodas</th>
+                <th>Cor</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+          <% veiculos.forEach(veiculo => { %>
+          <tr>
+            <td><%= veiculo.placa %></td>
+            <td><%= veiculo.renavan %></td>
+            <td><%= veiculo.chassi %></td>
+            <td><%= veiculo.prefixo %></td>
+            <td><%= veiculo.hodometro %></td>
+            <td><%= veiculo.combustivel %></td>
+            <td><%= veiculo.rodas %></td>
+            <td><%= veiculo.cor %></td>
+            <td><a href="/veiculo/index_veiculo/<%= veiculo._id %>">Editar</a></td>
+            <td><a class="text-danger" href="/veiculo/delete/<%= veiculo._id %>">Excluir</a></td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+      <% } else { %>
+        <p class="text-center lead">Não existem veículos cadastrados.</p>
+      <% } %>
+
+    </div>
+    
+  </div>
+</div>
+
+<%- include('includes/footer') %>

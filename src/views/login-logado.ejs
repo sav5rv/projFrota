@@ -1,0 +1,20 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+      <h4 class="text-center">Seu usuário é: <%= user.email %></h4>
+      <p class="text-center lead">e o seu id é: <%= user._id %></p>
+
+      <%- include('includes/messages') %> <!--  manter esse include nesse lugar, se colocar mais acima, pode alterar o alinhamento -->
+
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>

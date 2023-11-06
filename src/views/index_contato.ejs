@@ -1,0 +1,57 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-12 my-3">
+      <h1 class="text-center">Usuários</h1>
+      <p class="text-center lead">Usuários cadastrados</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(contatos.length > 0) { %>
+      <div class="responsive-table">
+        <table class="table my-3">
+          <thead>
+            <tr>
+                <th>Nome</th>
+                <th>EMail</th>
+                <th>Celular</th>
+                <th>RE</th>
+                <th>Tipo Usuário</th>
+                <th>Registro CNH</th>
+                <th>Categoria CNH</th>
+                <th>Validade CNH</th>
+                <th>Observações</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+          <% contatos.forEach(contato => { %>
+          <tr>
+            <td><%= contato.nome %></td>
+            <td><%= contato.email %></td>
+            <td><%= contato.celular %></td>
+            <td><%= contato.re %></td>
+            <td><%= contato.tipoUsuario %></td>
+            <td><%= contato.cnhRegistro %></td>
+            <td><%= contato.categoria %></td>
+            <td><%= contato.validade %></td>
+            <td><%= contato.obs %></td>
+            <td><a href="/contato/index_contato/<%= contato._id %>">Editar</a></td>
+            <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+      <% } else { %>
+        <p class="text-center lead">Não existem usuários cadastrados.</p>
+      <% } %>
+
+    </div>
+    
+  </div>
+</div>
+
+<%- include('includes/footer') %>

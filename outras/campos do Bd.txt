@@ -1,0 +1,71 @@
+CONTATO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+const ContatoSchema = new mongoose.Schema({
+  nome:        { type: String, required: true },
+  email:       { type: String, required: true },
+  celular:     { type: String, required: false, default: '' },
+  re:          { type: String, required: false, default: '' },  
+  tipoUsuario: { type: String, required: false, default: '' },
+  cnhRegistro: { type: String, required: false, default: '' },
+  categoria:   { type: String, required: false, default: '' },
+  validade:    { type: String, required: false, default: '' },
+  obs:         { type: String, required: false, default: '' },
+  criadoEm:    { type: Date, default: Date.now }
+});
+
+
+
+DESPESA * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+const DespesaSchema = new mongoose.Schema({
+  email:       { type: String, required: true },
+  placa:       { type: String, required: true },
+  tipoDespesa: { type: String, required: false, default: '' },
+  hodometro:   { type: String, required: false, default: '' },
+  data:        { type: String, required: false, default: '' },
+  hora:        { type: String, required: false, default: '' },
+  local:       { type: String, required: false, default: '' },
+  unidade:     { type: String, required: false, default: '' },
+  quantidade:  { type: String, required: false, default: '' },
+  valor:       { type: String, required: false, default: '' },
+  obs:         { type: String, required: false, default: '' },
+  criadoEm:    { type: Date, default: Date.now },
+});
+
+
+
+LOGIN * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+const LoginSchema = new mongoose.Schema({
+  email:    { type: String, required: true },
+  password: { type: String, required: true },
+  criadoEm: { type: Date, default: Date.now },
+});
+
+
+
+USO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+const UsoSchema = new mongoose.Schema({
+  email:           { type: String, required: true },
+  placa:           { type: String, required: false, default: '' },
+  hodometroInicio: { type: String, required: false, default: '' },
+  dataInicio:      { type: String, required: false, default: '' },
+  horaInicio:      { type: String, required: false, default: '' },
+  rso:             { type: String, required: false, default: '' },
+  hodometroFim:    { type: String, required: false, default: '' },
+  dataFim:         { type: String, required: false, default: '' },
+  horaFim:         { type: String, required: false, default: '' },
+  criadoEm:        { type: Date, default: Date.now },
+});
+
+
+
+VEICULO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+const VeiculoSchema = new mongoose.Schema({
+  placa:       { type: String, required: true },
+  renavan:     { type: String, required: false, default: '' },
+  chassi:      { type: String, required: false, default: '' },
+  prefixo:     { type: String, required: false, default: '' },  
+  hodometro:   { type: String, required: false, default: '' },  
+  combustível: { type: String, required: false, default: '' },
+  rodas:       { type: String, required: false, default: '' },
+  cor:         { type: String, required: false, default: '' },
+  criadoEm:    { type: Date, default: Date.now },
+});

@@ -1,0 +1,57 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-lg-12 my-3">
+      <h1 class="text-center">Utilização</h1>
+      <p class="text-center lead">Registros de uso cadastrados</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(usos.length > 0) { %>
+      <div class="responsive-table">
+        <table class="table my-3">
+          <thead>
+            <tr>
+                <th>EMail</th>
+                <th>Placa</th>
+                <th>Hodômetro Inicial</th>
+                <th>Data Inicial</th>
+                <th>Hora Inicial</th>
+                <th>RSO número</th>
+                <th>Hodômetro Final</th>
+                <th>Data Final</th>
+                <th>Hora Final</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+          <% usos.forEach(uso => { %>
+          <tr>
+            <td><%= uso.email %></td>
+            <td><%= uso.placa %></td>
+            <td><%= uso.hodometroInicio %></td>
+            <td><%= uso.dataInicio %></td>
+            <td><%= uso.horaInicio %></td>
+            <td><%= uso.rso %></td>
+            <td><%= uso.hodometroFim %></td>
+            <td><%= uso.dataFim %></td>
+            <td><%= uso.horaFim %></td>
+            <td><a href="/uso/index_uso/<%= uso._id %>">Editar</a></td>
+            <td><a class="text-danger" href="/uso/delete/<%= uso._id %>">Excluir</a></td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+      <% } else { %>
+        <p class="text-center lead">Não existem registros de uso cadastrados.</p>
+      <% } %>
+
+    </div>
+    
+  </div>
+</div>
+
+<%- include('includes/footer') %>
