@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3030
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.CONNECTIONSTRING,
@@ -56,9 +57,9 @@ app.use(csrfMiddleware);
 app.use(routes);
 
 app.on('pronto', () => {
-  app.listen(3030, () => {
-    console.log('Acessar http://localhost:3030');
-    console.log('Servidor executando na porta 3030');
+  app.listen(port, () => {
+    console.log(`Acessar http://localhost:${port}`);
+    console.log(`Servidor executando na porta ${port}`);
     console.log('***');
     console.log('******');
   });
