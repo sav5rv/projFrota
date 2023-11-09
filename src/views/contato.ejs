@@ -31,34 +31,48 @@
         </div>
         <div class="form-group">
           <label>RE</label>
-          <input value="<%= contato.re %>" type="text" class="form-control" name="re">
+          <input value="<%= contato.re %>" type="text" class="form-control" name="re" placeholder="modelo: 123456 (seis números)" pattern="[0-9]{6}">
         </div>
-<!--         <div class="form-group">
+        
+        <!-- <div class="form-group">
           <label>Tipo de Usuário</label>
           <input value="<%= contato.tipoUsuario %>" type="text" class="form-control" name="tipoUsuario">
         </div> -->
         <div class="form-group">
           <label for="tipoUsuario">Tipo de Usuario</label>
           <select id="tipoUsuario" name="tipoUsuario" class="form-control" value="<%= contato.tipoUsuario %>">
-            <option selected>Escolher...</option>
+
+            <% if (contato.tipoUsuario) { %>
+              <option selected> <%= contato.tipoUsuario %> </option>
+              <% } else { %>
+                <option selected> Escolher... </option>
+              <% } %>
+
             <option>Administrador</option>
             <option>Encarregado</option>
             <option>Usuario</option>
-            <option>Leitor</option>
+
           </select>
-        </div>        
+        </div> 
+
         <div class="form-group">
           <label>Registro da CNH</label>
-          <input value="<%= contato.cnhRegistro %>" type="text" class="form-control" name="cnhRegistro">
+          <input value="<%= contato.cnhRegistro %>" type="text" class="form-control" name="cnhRegistro" placeholder="modelo: 000123456 (nove números)" pattern="[0-9]{9}">
         </div>
-<!--         <div class="form-group">
+        
+        <!-- <div class="form-group">
           <label>Categoria da CNH</label>
           <input value="<%= contato.categoria %>" type="text" class="form-control" name="categoria">
         </div> -->
         <div class="form-group">
           <label for="categoria">Categoria da CNH</label>
           <select id="categoria" name="categoria" class="form-control" value="<%= contato.categoria %>">
-            <option selected>Escolher...</option>
+            <% if (contato.categoria) { %>
+              <option selected> <%= contato.categoria %> </option>
+              <% } else { %>
+                <option selected> Escolher... </option>
+            <% } %>
+            
             <option>A</option>
             <option>B</option>
             <option>C</option>
@@ -67,41 +81,18 @@
           </select>
         </div>
 
-<!--         <div class="form-group">
-          <p>Categoria da CNH:</p>
-          <input type="radio" id="categoriaA" name="categoria" value="A">
-          <label for="categoriaA">A</label><br>
-          <input type="radio" id="categoriaB" name="categoria" value="B">
-          <label for="categoriaB">B</label><br>
-          <input type="radio" id="categoriaC" name="categoria" value="C">
-          <label for="categoriaC">C</label><br>
-          <input type="radio" id="categoriaD" name="categoria" value="D">
-          <label for="categoriaD">D</label><br>
-          <input type="radio" id="categoriaE" name="categoria" value="E">
-          <label for="categoriaE">E</label><br>
-        </div> -->
-<!--         <label class="form-check-label">Categoria CNH</label>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="categoria" id="inlineRadio1" value="A">
-          <label class="form-check-label" for="inlineRadio1">A</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="categoria" id="inlineRadio2" value="B">
-          <label class="form-check-label" for="inlineRadio2">B</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="categoria" id="inlineRadio3" value="C">
-          <label class="form-check-label" for="inlineRadio3">C</label>
-        </div> -->
         <div class="form-group">
           <label>Validade da CNH</label>
           <input value="<%= contato.validade %>" type="date" class="form-control" name="validade">
         </div>
+
         <div class="form-group">
           <label>Observações</label>
           <input value="<%= contato.obs %>" type="text" class="form-control" name="obs">
         </div>
+
         <button type="submit" class="btn btn-primary">Salvar</button>
+
       </form>
 
 

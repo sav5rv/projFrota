@@ -85,8 +85,9 @@ class Login {
   async buscaLogins() {
     this.users = await LoginModel.find()
       .sort({ criadoEm: -1 });
-      console.log(this.users);
-    return;
+      
+      // na classe temos que colocar oq será retornado
+    return this.users
   };
 }
 

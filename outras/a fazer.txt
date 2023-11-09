@@ -10,7 +10,7 @@ depois de clicar no botão salvar mudar a tela
 
 msg apos o cadastro conferir
 
-
+----------------------------------------------------------------
 
 
 CONTATO
@@ -18,10 +18,36 @@ email = campo email
 
 celular = campo fone
 
-tipo de usuario = Administrador / Auxiliar / Usuario / Leitor
+tipo de usuario = Administrador / Auxiliar / Usuario
 
 categoria CNH = A / B / C / D / E
 
 validade CNH = campo data
 
+
+
 observações = campo memorando   -   	NÃO SALVOU NO MONGODB
+
+--------------------------------------------------------------
+
+           index_contato.js
+
+depois que salva um registro novo, ele fica na tela, ao clicar no btn salvar novamente, dá msg que editou e ai sai
+
+-----------------------------------------------------------
+
+
+           a lógica do Middleware
+
+// a lógica é esse fazer o msm que o anterior mais alguma coisa
+// na rota irei usar apenas um nos menus que necessitam que o 
+// usuario seja ADM
+// dúvida como definir essa session?
+// vouu cadastrar o usuário e definir seu privilegio
+// o acesso aom menu login, home, rodape é liberado de login
+// o acesso ao menu despesa e uso tendo senha já pode acessar
+// o acesso ao menu contato e veículo somente ADM ou AUX(?)
+
+teremos utilizadores (classificados como do tipo usuario) que não irão usar nenhuma função do sistema, 
+exceto para lançar despesas e usos (utilização) esses terão apenas cadastro de login, talvez não seja necessário
+ter o cadastro completo (em contato)
