@@ -31,6 +31,8 @@ exports.register = async(req, res) => {
     }
 
     req.flash('success', 'Contato registrado com sucesso.');
+    req.session.tipoUsuario = req.body.tipoUsuario;
+    console.log("LINHA 35 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
     req.session.save(() => res.redirect(`/contato/index_contato/${contato.contato._id}`));
     return;
 

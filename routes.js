@@ -11,7 +11,7 @@ const usoController =     require('./src/controllers/usoController');
 const rodapeController =  require('./src/controllers/rodapeController');
 
 
-const { loginRequired } = require('./src/middlewares/middleware');
+const { loginRequired, loginRequiredADM } = require('./src/middlewares/middleware');
 
 
 
@@ -21,33 +21,33 @@ route.get('/', homeController.index);
 
 
 // Rotas de login
-route.get('/login/index', loginController.index);
-route.get('/login/criar', loginController.criar);
+route.get('/login/index',     loginController.index);
+route.get('/login/criar',     loginController.criar);
 route.post('/login/register', loginController.register);
-route.post('/login/login', loginController.login);
-route.get('/login/logout', loginController.logout);
+route.post('/login/login',    loginController.login);
+route.get('/login/logout',    loginController.logout);
 
 
 
 // Rotas de usuários (contato)
 
-route.get('/contato/index',             loginRequired, contatoController.index); //inserir
-route.post('/contato/register',         loginRequired, contatoController.register); //inserir
-route.get('/contato/delete/:id',        loginRequired, contatoController.delete); //deletar
-route.get('/contato/index_contato',     loginRequired, contatoController.index_contato); //1º listei
-route.get('/contato/index_contato/:id', loginRequired, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
-route.post('/contato/edit/:id',         loginRequired, contatoController.edit); //3º salvei o form alterado
+route.get('/contato/index',             loginRequiredADM, contatoController.index); //inserir
+route.post('/contato/register',         loginRequiredADM, contatoController.register); //adicionar novo
+route.get('/contato/delete/:id',        loginRequiredADM, contatoController.delete); //deletar
+route.get('/contato/index_contato',     loginRequiredADM, contatoController.index_contato); //1º listei
+route.get('/contato/index_contato/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
+route.post('/contato/edit/:id',         loginRequiredADM, contatoController.edit); //3º salvei o form alterado
 
 
 
 // Rotas de veiculo
 
-route.get('/veiculo/index',              loginRequired, veiculoController.index);
-route.post('/veiculo/register',          loginRequired, veiculoController.register);
-route.get('/veiculo/delete/:id',         loginRequired, veiculoController.delete);
-route.get('/veiculo/index_veiculo',      loginRequired, veiculoController.index_veiculo);
-route.get('/veiculo/index_veiculo/:id',  loginRequired, veiculoController.editIndex);
-route.post('/veiculo/edit/:id',          loginRequired, veiculoController.edit);
+route.get('/veiculo/index',              loginRequiredADM, veiculoController.index);
+route.post('/veiculo/register',          loginRequiredADM, veiculoController.register);
+route.get('/veiculo/delete/:id',         loginRequiredADM, veiculoController.delete);
+route.get('/veiculo/index_veiculo',      loginRequiredADM, veiculoController.index_veiculo);
+route.get('/veiculo/index_veiculo/:id',  loginRequiredADM, veiculoController.editIndex);
+route.post('/veiculo/edit/:id',          loginRequiredADM, veiculoController.edit);
 
 
 

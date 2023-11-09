@@ -13,6 +13,7 @@
 
       <form class="form-login" action="/login/register" method="POST">
         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+        <input type="hidden" name="tipoUsuario" value="Usuario">
         <div class="form-group">
           <label>Seu e-mail</label>
           <input type="email" class="form-control" name="email">

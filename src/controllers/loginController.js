@@ -25,9 +25,12 @@ exports.register = async function(req, res) {
     }
 
     req.flash('success', 'Seu usuário foi criado com sucesso.');
+    req.session.tipoUsuario = req.body.tipoUsuario;
+    //console.log('LINHA 30 LOGIN CONTROLLER ' + req.session.tipoUsuario);
     req.session.save(function() {
       return res.redirect('back');
     });
+
   } catch(e) {
     console.log(e);
     return res.render('404');
