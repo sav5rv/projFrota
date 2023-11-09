@@ -22,8 +22,10 @@ class Login {
     if(this.errors.length > 0) return;
     this.user = await LoginModel.findOne({ email: this.body.email });
 
+
     if(!this.user) {
       this.errors.push('Usuário não existe.');
+
       return;
     }
 
@@ -78,6 +80,14 @@ class Login {
       password: this.body.password
     };
   }
+
+  //métodos estátiscos
+  async buscaLogins() {
+    this.users = await LoginModel.find()
+      .sort({ criadoEm: -1 });
+      console.log(this.users);
+    return;
+  };
 }
 
 module.exports = Login;

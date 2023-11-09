@@ -1,13 +1,13 @@
-/* const Contato = require('../models/ContatoModel');
-
-exports.index = async(req, res) => {
-  const contatos = await Contato.buscaContatos();
-  res.render('index', { contatos });
-}; */
-
+const Contato = require('../models/ContatoModel');
 const Veiculo = require('../models/VeiculoModel');
+const Login = require('../models/LoginModel');
+
 
 exports.index = async(req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();
-  res.render('index', { veiculos });
+  const contatos = await Contato.buscaContatos();
+  const login = new Login(req.body);
+    const login2 = await login.buscaLogins();
+  
+  res.render('index', { veiculos, contatos, login2 });
 };
