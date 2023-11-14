@@ -26,7 +26,7 @@ route.get('/teste01/index',     teste01Controller.index);
 //route.get('/teste01/criar',     teste01Controller.criar);
 //route.post('/teste01/register', teste01Controller.register);
 route.get('/teste01/dtTable',      teste01Controller.index_veiculo);
-//route.get('/teste01/logout',    teste01Controller.logout);
+route.get('/teste01/index2',     teste01Controller.index2);
 
 
 
