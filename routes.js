@@ -9,6 +9,7 @@ const veiculoController = require('./src/controllers/veiculoController');
 const despesaController = require('./src/controllers/despesaController');
 const usoController =     require('./src/controllers/usoController');
 const rodapeController =  require('./src/controllers/rodapeController');
+const teste01Controller =  require('./src/controllers/teste01Controller');
 
 
 const { loginRequired, loginRequiredADM } = require('./src/middlewares/middleware');
@@ -17,6 +18,15 @@ const { loginRequired, loginRequiredADM } = require('./src/middlewares/middlewar
 
 // Rotas da home
 route.get('/', homeController.index);
+
+
+
+// Rotas para o menu TESTE
+route.get('/teste01/index',     teste01Controller.index);
+//route.get('/teste01/criar',     teste01Controller.criar);
+//route.post('/teste01/register', teste01Controller.register);
+route.get('/teste01/dtTable',      teste01Controller.index_veiculo);
+//route.get('/teste01/logout',    teste01Controller.logout);
 
 
 

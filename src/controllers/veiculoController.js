@@ -11,8 +11,8 @@ exports.index_veiculo = async(req, res) => {
 
   try {
     if(!veiculos) return res.render('404');
-    res.render('index_veiculo', { veiculos }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
-                                               //não preciso fazer { contatos:contatos }
+    res.render('index_veiculo', { veiculos }); //como a chave chama veiculos e a variavel que esta vindo é veiculos tambem
+                                               //não preciso fazer { veiculos:veiculos }
   } catch(e) {
       console.log(e);
       return res.render('404');

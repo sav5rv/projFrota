@@ -50,3 +50,9 @@ depois que salva um registro novo, ele fica na tela, ao clicar no btn salvar nov
 teremos utilizadores (classificados como do tipo usuario) que não irão usar nenhuma função do sistema, 
 exceto para lançar despesas e usos (utilização) esses terão apenas cadastro de login, talvez não seja necessário
 ter o cadastro completo (em contato)
+
+------------------------------------------------------------------------
+
+Danilo
+uso o dataTable com nodeJs
+posso passar um Objeto
