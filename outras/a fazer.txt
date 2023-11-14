@@ -43,16 +43,24 @@ depois que salva um registro novo, ele fica na tela, ao clicar no btn salvar nov
 // na rota irei usar apenas um nos menus que necessita que o usuario seja ADM
 == dúvida como definir essa session?   DEIXEI FIXO O TIPO DE USUARIO NA TABELA LOGINS
 // vou cadastrar o usuário e definir seu privilegio, alterar o campo na tabela LOGINS e na session para o middleware
-// o acesso ao menu login, home, rodape não precisa estar logado para acessar
-// o acesso ao menu despesa e uso tendo o perfil USUARIO pode acessar
+== o acesso ao menu login, home, rodape não precisa estar logado para acessar
+== o acesso ao menu despesa e uso tendo o perfil USUARIO pode acessar
 // o acesso ao menu contato e veículo somente com o perfil ADM ou AUX(?)
 
 teremos utilizadores (classificados como do tipo usuario) que não irão usar nenhuma função do sistema, 
 exceto para lançar despesas e usos (utilização) esses terão apenas cadastro de login, talvez não seja necessário
 ter o cadastro completo (em contato)
 
+<<<<<<< HEAD
 ------------------------------------------------------------------------
 
 Danilo
 uso o dataTable com nodeJs
 posso passar um Objeto
+=======
+----------------------------------------------------------
+
+favicon
+ja salvo na pasta img
+
+>>>>>>> ddabf28a307d5acc743dc9b0218db7e6bcbc3e0d
