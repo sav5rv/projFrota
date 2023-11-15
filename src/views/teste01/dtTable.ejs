@@ -21,35 +21,36 @@
   <table id="example-1" class="display" style="width:100%">
       <thead>
           <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+              <th>renavan</th>
+              <th>chassi</th>
+              <th>prefixo</th>
+              <th>hodometro</th>
+              <th>combustivel</th>
+              <th>rodas</th>
+              <th>cor</th>
+              <th>_id</th>
+              <th>placa</th>
+              <th>criadoEm</th>
           </tr>
       </thead>
       <tbody>
-          <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011-04-25</td>
-              <td>$320,800</td>
-          </tr>
 
       </tbody>
-      <tfoot>
-          <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
-          </tr>
-      </tfoot>
+      <tfooter>
+        <tr>
+            <th>renavan</th>
+            <th>chassi</th>
+            <th>prefixo</th>
+            <th>hodometro</th>
+            <th>combustivel</th>
+            <th>rodas</th>
+            <th>cor</th>
+            <th>_id</th>
+            <th>placa</th>
+            <th>criadoEm</th>
+        </tr>
+    </tfooter>
+
   </table>
 
     <!-- Optional JavaScript -->
@@ -62,8 +63,14 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
     <script>
+        // Carregar o JQuery
+        import $ from "jquery";
+
+        // Carregar o JQuery DataTables
+        import DataTable from "datatables.net";
+
         $(document).ready(function () {
-            $('#example-1').DataTable({
+            var table = $('#example-1').DataTable({
                 // Opções da tabela
                 ajax: {
                     url: "/teste01/dtTable",
