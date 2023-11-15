@@ -13,10 +13,14 @@ exports.index_veiculo = async(req, res) => {
   try {
     if(!veiculos) return res.render('404');
     const x = JSON.stringify( veiculos );
+    //const y = JSON.stringify( x );
     // console.log ( veiculos );
     // console.log ( x );
-    res.render('./teste01/dtTable', { x } ); //como a chave chama veiculos e a variavel que esta vindo é veiculos tambem
-                                               //não preciso fazer { veiculos:veiculos }
+    
+    res.render('./teste01/dtTable', { x } ); //como a chave é veiculos e a variavel que esta vindo é veiculos tb não preciso fazer { veiculos:veiculos }
+    //res.render('./teste01/dtTable', { veiculos } );
+    //res.render('./teste01/dtTable', { y } );
+    
     //res.send({ veiculos });
     //res.send(x);
     //res.json(veiculos);

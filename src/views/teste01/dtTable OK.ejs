@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <title>Frota</title>
+  </head>
+
+  <body>
+    <%- console.log( x ); %>  <!-- vai exibir no console do servidor -->
+
+
+
+    <p>2. Datatables Example - JSon Binding</p>
+    <table id="table3">
+        <thead>
+            <tr>
+              <th>renavan</th>
+              <th>chassi</th>
+              <th>prefixo</th>
+              <th>hodometro</th>
+              <th>combustivel</th>
+              <th>rodas</th>
+              <th>cor</th>
+              <th>_id</th>
+              <th>placa</th>
+              <th>criadoEm</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      
+    </table>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script>
+
+      console.log ( <%- x %> );  //vai exibir no console do navegador
+           $('#table3').DataTable({
+                data: <%- x %>,
+                columns: [
+                    { data: 'renavan' },
+                    { data: 'chassi' },
+                    { data: 'prefixo' },
+                    { data: 'hodometro' },
+                    { data: 'combustivel' },
+                    { data: 'rodas' },
+                    { data: 'cor' },
+                    { data: '_id' },
+                    { data: 'placa' },
+                    { data: 'criadoEm' }
+                ],
+                "pageLength": 3
+            });
+
+    </script>
+  </body>
+</html>
