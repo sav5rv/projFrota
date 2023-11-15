@@ -40,12 +40,12 @@ exports.loginRequiredADM = (req, res, next) => {
     return;
   }
 
-  if(req.session.tipoUsuario != "Administrador") {
-    //console.log("LINHA 51 MIDDLEWARE = = " + req.session.tipoUsuario);
-    req.flash('errors', 'Você não tem privilégio de administrador.');
+  if(req.session.user.tipoUsuario != "Administrador") {
+    //console.log("LINHA 44 MIDDLEWARE = = " + req.session.user.tipoUsuario);
+    req.flash('errors', 'Perfil não permitido.');
     req.session.save(() => res.redirect('/'));
     return;
   }
-
+  //console.log("LINHA 49 MIDDLEWARE = = " + req.session.user.tipoUsuario);
   next();
 };

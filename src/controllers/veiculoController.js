@@ -19,6 +19,22 @@ exports.index_veiculo = async(req, res) => {
   }
 };
 
+
+exports.lista_veiculo = async(req, res) => {
+  const veiculos = await Veiculo.buscaVeiculos();
+
+  try {
+    if(!veiculos) return res.render('404');
+    const str_veiculos = JSON.stringify( veiculos );
+    res.render('dtTable_veiculo', { str_veiculos }); 
+
+  } catch(e) {
+      console.log(e);
+      return res.render('404');
+  }
+};
+
+
 exports.register = async(req, res) => {
   try {
     const veiculo = new Veiculo(req.body);

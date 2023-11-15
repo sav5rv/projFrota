@@ -7,7 +7,8 @@
 
     <div class="col-lg-8 my-3">
       <h4 class="text-center">Seu usuário é: <%= user.email %></h4>
-      <p class="text-center lead">e o seu id é: <%= user._id %></p>
+      <p class="text-center lead">seu id é: <%= user._id %></p>
+      <p class="text-center lead">seu perfil é: <%= user.tipoUsuario %></p>
 
       <%- include('includes/messages') %> <!--  manter esse include nesse lugar, se colocar mais acima, pode alterar o alinhamento -->
 

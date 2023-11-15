@@ -19,6 +19,24 @@ exports.index_contato = async(req, res) => {
   }
 };
 
+
+
+exports.lista_contato = async(req, res) => {
+  const contatos = await Contato.buscaContatos();
+
+  try {
+    if(!contatos) return res.render('404');
+    const str_contatos = JSON.stringify( contatos );
+    res.render('dtTable_contato', { str_contatos }); 
+
+  } catch(e) {
+      console.log(e);
+      return res.render('404');
+  }
+};
+
+
+
 exports.register = async(req, res) => {
   try {
     const contato = new Contato(req.body);

@@ -47,6 +47,7 @@ route.get('/contato/delete/:id',        loginRequiredADM, contatoController.dele
 route.get('/contato/index_contato',     loginRequiredADM, contatoController.index_contato); //1º listei
 route.get('/contato/index_contato/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/contato/edit/:id',         loginRequiredADM, contatoController.edit); //3º salvei o form alterado
+route.get('/contato/lista_contato',     loginRequiredADM, contatoController.lista_contato);
 
 
 
@@ -58,6 +59,7 @@ route.get('/veiculo/delete/:id',         loginRequiredADM, veiculoController.del
 route.get('/veiculo/index_veiculo',      loginRequiredADM, veiculoController.index_veiculo);
 route.get('/veiculo/index_veiculo/:id',  loginRequiredADM, veiculoController.editIndex);
 route.post('/veiculo/edit/:id',          loginRequiredADM, veiculoController.edit);
+route.get('/veiculo/lista_veiculo',      loginRequiredADM, veiculoController.lista_veiculo);
 
 
 

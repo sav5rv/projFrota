@@ -26,7 +26,6 @@ class Login {
 
     if(!this.user) {
       this.errors.push('Usuário não existe.');
-
       return;
     }
 
@@ -35,6 +34,7 @@ class Login {
       this.user = null;
       return;
     }
+
   }
 
   async register() {
