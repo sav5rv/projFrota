@@ -77,10 +77,10 @@ route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
 
 // Rotas de uso - utilização
-route.get('/uso/index',         loginRequired, usoController.index);
+route.get('/uso/index',         loginRequired, usoController.index); //Abrir
 route.post('/uso/register',     loginRequired, usoController.register);
 route.get('/uso/delete/:id',    loginRequired, usoController.delete);
-route.get('/uso/index_uso',     loginRequired, usoController.index_uso);
+route.get('/uso/index_uso',     loginRequired, usoController.index_uso); //Listar
 route.get('/uso/index_uso/:id', loginRequired, usoController.editIndex);
 route.post('/uso/edit/:id',     loginRequired, usoController.edit);
 

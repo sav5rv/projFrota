@@ -54,8 +54,9 @@ ORIENTAÇÃO
 
     <script>
 vai exibir no console do navegador o valor de X - ATENÇÃO QUE X É UMA VARIAVEL DO SERVIDOR
-A sintaxe <%- %> renderiza o valor de uma variável no template, pagina, arquivo EJS
-https://ejs.co/#promo    explicação da TAG <%- . . . %>
+A sintaxe <%- %> do TEMPLATE ENJINE EJS renderiza o valor de uma variável do servido NodeJs para a pagina.EJS.
+Outra template engine pode ser a PUG ou a HANDLEBARS
+https://ejs.co/#promo    explicação da Template Engine <%- . . . %>
       console.log ( <%- x %> ); 
 
 

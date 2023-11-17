@@ -1,35 +1,65 @@
-<%- include('includes/head') %>
-<%- include('includes/nav') %>
+    <%- include('includes/head') %>
+    <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-2"></div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-2"></div>
 
-    <div>
-      <h1 class="text-center">Criar conta</h1>
-      <p class="text-center lead">Preencha os campos para criar sua conta.</p>
+        <div>
+          <h1 class="text-center">Criar conta</h1>
+          <p class="text-center lead">Preencha os campos para criar sua conta.</p>
 
-      <%- include('includes/messages'); %>
+          <%- include('includes/messages'); %>
 
-      <form class="form-login" action="/login/register" method="POST">
-        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
-        <input type="hidden" name="tipoUsuario" value="Usuario">
-        <div class="form-group">
-          <label>Seu e-mail</label>
-          <input type="email" class="form-control" name="email">
+          <form class="form-login" action="/login/register" method="POST">
+
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+            <input type="hidden" name="tipoUsuario" value="Usuario">
+            
+            <div class="form-group">
+              <label>Seu e-mail</label>
+              <input type="email" class="form-control" name="email" id="email">
+            </div>
+            
+            <div class="form-group">
+              <label>Sua senha</label>
+              <input type="password" class="form-control" name="password" id="password">
+            </div>
+
+            <div class="form-group">
+              <label>Confirme a senha digitada</label>
+              <input type="password" class="form-control" name="confirma" id="confirma">
+            </div>
+            
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="btnCriar">Criar minha conta</button>
+
+              <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->
+            
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <label>Sua senha</label>
-          <input type="password" class="form-control" name="password">
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Criar minha conta</button>
-        </div>
-      </form>
+
+        <div class="col-lg-2"></div>
+      </div>
     </div>
 
-    <div class="col-lg-2"></div>
-  </div>
-</div>
+    <%- include('includes/footer') %>
 
-<%- include('includes/footer') %>
+    <script>
+      document.getElementById("confirma").addEventListener("focusout", function() {
+        let senha1 = document.getElementById("password");
+        let senha2 = document.getElementById("confirma");
+
+        if (senha1.value != senha2.value) {
+          alert("Senha não confirmada!");
+          senha1.value = "";
+          senha2.value = "";
+          senha1.focus();
+        } 
+      });
+    </script>
+
+        
+  </body>
+</html>
