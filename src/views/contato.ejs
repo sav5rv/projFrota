@@ -1,106 +1,124 @@
-<%- include('includes/head') %>
-<%- include('includes/nav') %>
+    <%- include('includes/head') %>
+    <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2"></div>
 
-    <div class="col-lg-8 my-3">
-      <h1 class="text-center">Usuários</h1>
-      <p class="text-center lead">Preencha os campos abaixo para cadastrar um usuário.</p>
+        <div class="col-lg-8 my-3">
+          <h1 class="text-center">Usuários</h1>
+          <p class="text-center lead">Preencha os campos abaixo para cadastrar um usuário.</p>
 
-      <%- include('includes/messages') %>
+          <%- include('includes/messages') %>
 
-      <% if(contato._id) { %>
-        <form action="/contato/edit/<%= contato._id %>" method="POST">
-      <% } else { %>
-        <form action="/contato/register" method="POST">
-      <% } %>
-      
-        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
-        <div class="form-group">
-          <label>Nome</label>
-          <input value="<%= contato.nome %>" type="text" class="form-control" name="nome" required>
-        </div>
-        <div class="form-group">
-          <label>EMail</label>
-          <input value="<%= contato.email %>" type="email" class="form-control" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="celular">Celular</label>
-          <input value="<%= contato.celular %>" type="tel" class="form-control" name="celular" placeholder="modelo: 12-4512-1678" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}">
-        </div>
-        <div class="form-group">
-          <label>RE</label>
-          <input value="<%= contato.re %>" type="text" class="form-control" name="re" placeholder="modelo: 123456 (seis números)" pattern="[0-9]{6}">
-        </div>
-        
-        <!-- <div class="form-group">
-          <label>Tipo de Usuário</label>
-          <input value="<%= contato.tipoUsuario %>" type="text" class="form-control" name="tipoUsuario">
-        </div> -->
-        <div class="form-group">
-          <label for="tipoUsuario">Tipo de Usuario</label>
-          <select id="tipoUsuario" name="tipoUsuario" class="form-control" value="<%= contato.tipoUsuario %>">
+          <% if(contato._id) { %>
+            <form action="/contato/edit/<%= contato._id %>" method="POST">
+          <% } else { %>
+            <form action="/contato/register" method="POST">
+          <% } %>
 
-            <% if (contato.tipoUsuario) { %>
-              <option selected> <%= contato.tipoUsuario %> </option>
-              <% } else { %>
-                <option selected> Escolher... </option>
-              <% } %>
+          <%- console.log( contato );%>
+          <%- console.log( sessionOptions );%>
 
-            <option>Administrador</option>
-            <option>Encarregado</option>
-            <option>Usuario</option>
-
-          </select>
-        </div> 
-
-        <div class="form-group">
-          <label>Registro da CNH</label>
-          <input value="<%= contato.cnhRegistro %>" type="text" class="form-control" name="cnhRegistro" placeholder="modelo: 000123456 (nove números)" pattern="[0-9]{9}">
-        </div>
-        
-        <!-- <div class="form-group">
-          <label>Categoria da CNH</label>
-          <input value="<%= contato.categoria %>" type="text" class="form-control" name="categoria">
-        </div> -->
-        <div class="form-group">
-          <label for="categoria">Categoria da CNH</label>
-          <select id="categoria" name="categoria" class="form-control" value="<%= contato.categoria %>">
-            <% if (contato.categoria) { %>
-              <option selected> <%= contato.categoria %> </option>
-              <% } else { %>
-                <option selected> Escolher... </option>
-            <% } %>
+          
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+            <div class="form-group">
+              <label>Nome</label>
+              <input value="<%= contato.nome %>" type="text" class="form-control" name="nome" required>
+            </div>
+            <div class="form-group">
+              <label>EMail</label>
+              <input value="<%= contato.email %>" type="email" class="form-control" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="celular">Celular</label>
+              <input value="<%= contato.celular %>" type="tel" class="form-control" name="celular" placeholder="modelo: 12-4512-1678" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}">
+            </div>
+            <div class="form-group">
+              <label>RE</label>
+              <input value="<%= contato.re %>" type="text" class="form-control" name="re" placeholder="modelo: 123456 (seis números)" pattern="[0-9]{6}">
+            </div>
             
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-            <option>D</option>
-            <option>E</option>
-          </select>
+            <!-- <div class="form-group">
+              <label>Tipo de Usuário</label>
+              <input value="<%= contato.tipoUsuario %>" type="text" class="form-control" name="tipoUsuario">
+            </div> -->
+            <div class="form-group">
+              <label for="tipoUsuario">Tipo de Usuario</label>
+              <select id="tipoUsuario" name="tipoUsuario" class="form-control" value="<%= contato.tipoUsuario %>">
+
+                <% if (contato.tipoUsuario) { %>
+                  <option selected> <%= contato.tipoUsuario %> </option>
+                  <% } else { %>
+                    <option selected> Escolher... </option>
+                  <% } %>
+
+                <option>Administrador</option>
+                <option>Encarregado</option>
+                <option>Usuario</option>
+
+              </select>
+            </div> 
+
+            <div class="form-group">
+              <label>Registro da CNH</label>
+              <input value="<%= contato.cnhRegistro %>" type="text" class="form-control" name="cnhRegistro" placeholder="modelo: 000123456 (nove números)" pattern="[0-9]{9}">
+            </div>
+            
+            <!-- <div class="form-group">
+              <label>Categoria da CNH</label>
+              <input value="<%= contato.categoria %>" type="text" class="form-control" name="categoria">
+            </div> -->
+            <div class="form-group">
+              <label for="categoria">Categoria da CNH</label>
+              <select id="categoria" name="categoria" class="form-control" value="<%= contato.categoria %>">
+                <% if (contato.categoria) { %>
+                  <option selected> <%= contato.categoria %> </option>
+                  <% } else { %>
+                    <option selected> Escolher... </option>
+                <% } %>
+                
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Validade da CNH</label>
+              <input value="<%= contato.validade %>" type="date" class="form-control" name="validade">
+            </div>
+
+            <div class="form-group">
+              <label>Observações</label>
+              <input value="<%= contato.obs %>" type="text" class="form-control" name="obs">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+          </form>
+
+
         </div>
-
-        <div class="form-group">
-          <label>Validade da CNH</label>
-          <input value="<%= contato.validade %>" type="date" class="form-control" name="validade">
-        </div>
-
-        <div class="form-group">
-          <label>Observações</label>
-          <input value="<%= contato.obs %>" type="text" class="form-control" name="obs">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Salvar</button>
-
-      </form>
-
-
+        
+        <div class="col-lg-2"></div>
+      </div>
     </div>
-    
-    <div class="col-lg-2"></div>
-  </div>
-</div>
 
-<%- include('includes/footer') %>
+    <%- include('includes/footer') %>
+
+    <script>
+      document.getElementById("email").addEventListener("focusout", function() {
+        let email = document.getElementById("email");
+        alert("oi");
+        // const xx = session.user.tipoUsuario;
+
+        console.log();
+      });
+    </script>
+
+        
+  </body>
+</html>

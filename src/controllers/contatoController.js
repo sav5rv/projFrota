@@ -1,9 +1,26 @@
 const Contato = require('../models/ContatoModel');
+const Login = require('../models/LoginModel');
 
 exports.index = (req, res) => {
-  res.render('contato', {
-    contato: {}
+  res.render('contato', { 
+    contato :  {},
+    login: {}
   });
+};
+
+
+exports.usuarioExiste = async (req, res) => {
+  const login = new Login();
+    const login2 = await login.userExists();
+
+  try {
+    res.render('contato', { contato, login2 });
+
+  } catch (e) {
+      console.log(e);
+      return res.render('404');
+  }
+
 };
 
 exports.index_contato = async(req, res) => {
