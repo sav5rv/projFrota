@@ -26,6 +26,7 @@ exports.register = async function(req, res) {
 
     req.flash('success', 'Seu usuário foi criado com sucesso.');
     req.session.tipoUsuario = req.body.tipoUsuario;
+    req.session.email = req.body.email;
     //console.log('LINHA 30 LOGIN CONTROLLER ' + req.session.tipoUsuario);
     req.session.save(function() {
       return res.render('login');
@@ -58,6 +59,8 @@ exports.login = async function(req, res) {
     //console.log("LINHA 58 LOGINCONTROLLER = = " + login.user.tipoUsuario);
 
     //console.log("LINHA 60 LOGINCONTROLLER = = " + req.session.user.tipoUsuario);
+    req.session.tipoUsuario = req.body.tipoUsuario;
+    req.session.email = req.body.email;
     req.session.save(function() {
       return res.redirect('back');
     });

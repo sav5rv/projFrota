@@ -5,6 +5,8 @@ const bcryptjs = require('bcryptjs');
 const LoginSchema = new mongoose.Schema({
   email:       { type: String, required: true },
   password:    { type: String, required: true },
+  nome:        { type: String, required: false, default: ''},
+  re:          { type: String, required: false, default: ''},
   tipoUsuario: { type: String, required: true },
   criadoEm:    { type: Date, default: Date.now },
 });
@@ -83,11 +85,13 @@ class Login {
     this.body = {
       email:       this.body.email,
       password:    this.body.password,
+      nome:        this.body.nome,
+      re:          this.body.re,
       tipoUsuario: this.body.tipoUsuario
     };
   }
 
-  //métodos estátiscos
+  // sendo chamada em homeController
   async buscaLogins() {
     this.users = await LoginModel.find()
       .sort({ criadoEm: -1 });
@@ -95,6 +99,17 @@ class Login {
       // na classe temos que colocar oq será retornado
     return this.users
   };
+
+  // sendo chamada em uso Controller
+  // o buscar_o_email está vindo do USOcontrolle
+  async buscaEmail(buscar_o_email) { 
+    this.user = await LoginModel.findOne({ email: buscar_o_email });
+    console.log('LINHA 106 LOGIN MODEL ' + buscar_o_email);
+    
+    return this.user
+  };
+
+
 }
 
 module.exports = Login;

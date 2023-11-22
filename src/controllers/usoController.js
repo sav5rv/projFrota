@@ -1,8 +1,21 @@
-const Uso = require('../models/UsoModel');
+const Uso     = require('../models/UsoModel');
+const Contato = require('../models/ContatoModel');
+const Login   = require('../models/LoginModel');
 
-exports.index = (req, res) => {
+exports.index = async(req, res) => {
+
+    const x = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
+                                    //  porque o método session.get() retorna um objeto 
+    console.log('LINHA 7 USO CONTROLLER ' + x);
+
+    const login = new Login();
+    const login_email = await login.buscaEmail(x);
+    
+    console.log('LINHA 10 USO CONTROLLER ' + login_email);
+
   res.render('uso', {
-    uso: {}
+    uso : {},
+    login_email : login_email,
   });
 };
 
