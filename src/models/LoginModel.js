@@ -39,16 +39,16 @@ class Login {
 
   }
 
+  
   async register() {
     this.valida();
-    if(this.errors.length > 0) return;
+      if(this.errors.length > 0) return;
 
     await this.userExists();
-
-    if(this.errors.length > 0) return;
+      if(this.errors.length > 0) return;
 
     const salt = bcryptjs.genSaltSync();
-    this.body.password = bcryptjs.hashSync(this.body.password, salt);
+      this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
     this.user = await LoginModel.create(this.body);
   }

@@ -30,7 +30,8 @@ const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/midd
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, 'public')));
+
+app.use(express.static(path.resolve(__dirname, 'public', 'img' )));
 
 // app.use(express.favicon('public/img/favicon.ico'));
 

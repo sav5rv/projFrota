@@ -8,7 +8,7 @@ exports.index = async(req, res) => {
                                     //  porque o método session.get() retorna um objeto 
     console.log('LINHA 7 USO CONTROLLER ' + x);
 
-    const login = new Login();
+    const login       = new Login();
     const login_email = await login.buscaEmail(x);
     
     console.log('LINHA 10 USO CONTROLLER ' + login_email);

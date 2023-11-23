@@ -4,7 +4,8 @@
 <div class="container">
 
   <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="../../public/img/corrigir.png" alt="" width="72" height="72">
+    <img src="/public/img/banco.jpg">
+
     <h2>Relatório de USO</h2>
     
   </div>
@@ -16,7 +17,7 @@
 
       <%- include('includes/messages') %>
 
-      <% if(uso._id) { %>
+      <% if( uso._id || login_email.email ){ %>
       <form class="needs-validation" novalidate action="/uso/edit/<%= uso._id %>" method="POST">
       <% } else { %>
       <form class="needs-validation" novalidate action="/uso/register" method="POST">
@@ -28,7 +29,7 @@
         <div class="row">
           <div class="col-md-10 mb-3">
             <label for="email">Email do usuário</label>
-            <input type="email" class="form-control" id="email" name="email" value="<%= uso.email %>" required>
+            <input type="email" class="form-control" id="email" name="email" value="<%= login_email.email %>" required>
             <div class="invalid-feedback"> É obrigatório inserir um email válido.</div>
           </div>
 
@@ -42,11 +43,11 @@
         <div class="row">
           <div class="col-md-10 mb-3">
             <label>Nome do usuário</label>
-            <input value="<%= uso.nome %>" type="text" class="form-control" id="nome">
+            <input value="<%= login_email.nome %>" type="text" class="form-control" id="nome">
           </div>
           <div class="col-md-2 mb-3">
             <label for="re">Reg Estatístico</label>
-            <input type="text" class="form-control" id="re" value="<%= uso.re %>" pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456" required>
+            <input type="text" class="form-control" id="re" value="<%= login_email.re %>" pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456" required>
             <div class="invalid-feedback"> RE inválido.</div>
           </div>
         </div>

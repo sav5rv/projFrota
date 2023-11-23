@@ -25,11 +25,16 @@ exports.register = async function(req, res) {
     }
 
     req.flash('success', 'Seu usuário foi criado com sucesso.');
+    const login2 = login.user;
+    console.log("LINHA 29 LOGINCONTROLLER = = " + login2);    
+
+    req.session.user        = login.user;
     req.session.tipoUsuario = req.body.tipoUsuario;
-    req.session.email = req.body.email;
-    //console.log('LINHA 30 LOGIN CONTROLLER ' + req.session.tipoUsuario);
+    req.session.email       = req.body.email;
     req.session.save(function() {
-      return res.render('login');
+      // return res.redirect('login-logado', { login2 });
+      return res.redirect('back');
+      
     });
 
   } catch(e) {
@@ -37,6 +42,7 @@ exports.register = async function(req, res) {
     return res.render('404');
   }
 };
+
 
 exports.login = async function(req, res) {
   try {
@@ -54,21 +60,24 @@ exports.login = async function(req, res) {
     req.flash('success', 'Você entrou no sistema.');
 
     req.session.user = login.user;
-    //console.log("LINHA 56 LOGINCONTROLLER = = " + login.user);        
+    
+    const login2 = login.user;
+    console.log("LINHA 56 LOGINCONTROLLER = = " + login.user);        
 
     //console.log("LINHA 58 LOGINCONTROLLER = = " + login.user.tipoUsuario);
 
     //console.log("LINHA 60 LOGINCONTROLLER = = " + req.session.user.tipoUsuario);
     req.session.tipoUsuario = req.body.tipoUsuario;
-    req.session.email = req.body.email;
+    req.session.email       = req.body.email;
     req.session.save(function() {
-      return res.redirect('back');
+      return res.render('login-logado', { login2 });  //---------------< back
     });
   } catch(e) {
     console.log(e);
     return res.render('404');
   }
 };
+
 
 exports.logout = function(req, res) {
   req.session.destroy();
