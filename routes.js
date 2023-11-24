@@ -32,9 +32,10 @@ route.get('/teste01/index2',     teste01Controller.index2);
 
 // Rotas de login
 route.get('/login/index',     loginController.index);
-route.get('/login/criar',     loginController.criar);
-route.post('/login/register', loginController.register);
+route.get('/login/criar',     loginController.criar); //chama a tela
+route.post('/login/register', loginController.register); // salva as informações no bc
 route.post('/login/login',    loginController.login);
+route.get('/login/logado',    loginController.logado);
 route.get('/login/logout',    loginController.logout);
 
 

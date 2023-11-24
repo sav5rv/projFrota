@@ -17,23 +17,24 @@ class Login {
   constructor(body) {
     this.body = body;
     this.errors = [];
-    this.user = null;
+    this.login = null;
   }
 
-  async login() {
+  async log() {
     this.valida();
     if(this.errors.length > 0) return;
-    this.user = await LoginModel.findOne({ email: this.body.email });
+    this.login = await LoginModel.findOne({ email: this.body.email });
 
 
-    if(!this.user) {
+
+    if(!this.login) {
       this.errors.push('Usuário não existe.');
       return;
     }
 
-    if(!bcryptjs.compareSync(this.body.password, this.user.password)) {
+    if(!bcryptjs.compareSync(this.body.password, this.login.password)) {
       this.errors.push('Senha inválida');
-      this.user = null;
+      this.login = null;
       return;
     }
 
@@ -44,20 +45,20 @@ class Login {
     this.valida();
       if(this.errors.length > 0) return;
 
-    await this.userExists();
+    await this.loginExists();
       if(this.errors.length > 0) return;
 
     const salt = bcryptjs.genSaltSync();
       this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
-    this.user = await LoginModel.create(this.body);
+    this.login = await LoginModel.create(this.body);
   }
 
   
 
-  async userExists() {
-    this.user = await LoginModel.findOne({ email: this.body.email });
-    if(this.user) this.errors.push('Usuário já existe.');
+  async loginExists() {
+    this.login = await LoginModel.findOne({ email: this.body.email });
+    if(this.login) this.errors.push('Usuário já cadastrado com esse email.');
   }
 
 
@@ -93,20 +94,20 @@ class Login {
 
   // sendo chamada em homeController
   async buscaLogins() {
-    this.users = await LoginModel.find()
+    this.login = await LoginModel.find()
       .sort({ criadoEm: -1 });
       
       // na classe temos que colocar oq será retornado
-    return this.users
+    return this.login
   };
 
   // sendo chamada em uso Controller
   // o buscar_o_email está vindo do USOcontrolle
   async buscaEmail(buscar_o_email) { 
-    this.user = await LoginModel.findOne({ email: buscar_o_email });
+    this.login = await LoginModel.findOne({ email: buscar_o_email });
     console.log('LINHA 106 LOGIN MODEL ' + buscar_o_email);
     
-    return this.user
+    return this.login
   };
 
 

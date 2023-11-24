@@ -4,12 +4,12 @@ const Login   = require('../models/LoginModel');
 
 exports.index = async(req, res) => {
 
-    const x = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
+    const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
                                     //  porque o método session.get() retorna um objeto 
-    console.log('LINHA 7 USO CONTROLLER ' + x);
+    console.log('LINHA 7 USO CONTROLLER ' + email);
 
     const login       = new Login();
-    const login_email = await login.buscaEmail(x);
+    const login_email = await login.buscaEmail(email);
     
     console.log('LINHA 10 USO CONTROLLER ' + login_email);
 
