@@ -62,7 +62,7 @@ exports.login = async function(req, res) {
     req.session.user = login.user;
     
     const login2 = login.user;
-    console.log("LINHA 56 LOGINCONTROLLER = = " + login.user);        
+    //console.log("LINHA 56 LOGINCONTROLLER = = " + login.user);        
 
     //console.log("LINHA 58 LOGINCONTROLLER = = " + login.user.tipoUsuario);
 
