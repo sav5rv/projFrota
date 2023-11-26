@@ -2,7 +2,7 @@ const Uso     = require('../models/UsoModel');
 const Contato = require('../models/ContatoModel');
 const Login   = require('../models/LoginModel');
 
-exports.index = async(req, res) => {
+exports.uso_abrir = async(req, res) => {
 
     const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
                                     //  porque o método session.get() retorna um objeto 
@@ -13,18 +13,18 @@ exports.index = async(req, res) => {
     
     console.log('LINHA 10 USO CONTROLLER ' + login_email);
 
-  res.render('uso', {
+  res.render('uso_abrir', {
     uso : {},
     login_email : login_email,
   });
 };
 
-exports.index_uso = async(req, res) => {
+exports.uso_lista = async(req, res) => {
   const usos = await Uso.buscaUsos();
 
   try {
     if(!usos) return res.render('404');
-    res.render('index_uso', { usos }); //como a chave chama usos e a variavel que esta vindo é usos tambem
+    res.render('uso_lista', { usos }); //como a chave chama usos e a variavel que esta vindo é usos tambem
                                                //não preciso fazer { usos:usos }
   } catch(e) {
       console.log(e);

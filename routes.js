@@ -78,19 +78,19 @@ route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
 
 // Rotas de uso - utilização
-route.get('/uso/index',         loginRequired, usoController.index); //Abrir
+route.get('/uso/uso_abrir',     loginRequired, usoController.uso_abrir); //Abrir
 route.post('/uso/register',     loginRequired, usoController.register);
 route.get('/uso/delete/:id',    loginRequired, usoController.delete);
-route.get('/uso/index_uso',     loginRequired, usoController.index_uso); //Listar
+route.get('/uso/uso_lista',     loginRequired, usoController.uso_lista); //Listar
 route.get('/uso/index_uso/:id', loginRequired, usoController.editIndex);
 route.post('/uso/edit/:id',     loginRequired, usoController.edit);
 
 
 // Rotas rodapé
-route.get('/faleConosco', rodapeController.index_faleConosco);
-route.get('/credito',     rodapeController.index_credito);
-route.get('/mapaSite',    rodapeController.index_mapaSite);
-route.get('/sobre',       rodapeController.index_sobre);
+route.get('/faleConosco', rodapeController.faleConosco);
+route.get('/credito',     rodapeController.credito);
+route.get('/mapaSite',    rodapeController.mapaSite);
+route.get('/sobre',       rodapeController.sobre);
 
 
 module.exports = route;

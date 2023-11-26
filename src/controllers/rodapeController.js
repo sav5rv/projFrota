@@ -1,22 +1,22 @@
 
 
-exports.index_faleConosco = (req, res) => {
-    res.render('faleConosco', {
+exports.faleConosco = (req, res) => {
+    res.render('rodape_faleConosco', {
       contato: {}
     });
   };
 
 
-  exports.index_credito = (req, res) => {
-    res.render('credito');
+  exports.credito = (req, res) => {
+    res.render('rodape_credito');
   };  
 
 
-  exports.index_mapaSite = (req, res) => {
-    res.render('mapaSite');
+  exports.mapaSite = (req, res) => {
+    res.render('rodape_mapaSite');
   };
   
   
-  exports.index_sobre = (req, res) => {
-    res.render('sobre');
+  exports.sobre = (req, res) => {
+    res.render('rodape_sobre');
   };  
