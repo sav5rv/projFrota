@@ -53,7 +53,8 @@ ORIENTAÇÃO
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
     <script>
-vai exibir no console do navegador o valor de X - ATENÇÃO QUE X É UMA VARIAVEL DO SERVIDOR
+   - - vai exibir no console do navegador o valor de X - ATENÇÃO QUE X É UMA VARIAVEL DO SERVIDOR - os valores dessa
+   variavel antes de passar para o arquivo EJS foi convertida para string com a função << const str_contatos = JSON.stringify( contatos ); >>
 A sintaxe <%- %> do TEMPLATE ENJINE EJS renderiza o valor de uma variável do servido NodeJs para a pagina.EJS.
 Outra template engine pode ser a PUG ou a HANDLEBARS
 https://ejs.co/#promo    explicação da Template Engine <%- . . . %>
@@ -63,7 +64,7 @@ https://ejs.co/#promo    explicação da Template Engine <%- . . . %>
            $('#table3').DataTable({              #table3 é o nome da tabela html
 
 
-                data: <%- x %>,              data é a variavel que vai receber o valor do servidor
+                data: <%- x %>,              data é a variavel que vai receber o valor, convertido em string, do servidor
 
                 
                 columns: [

@@ -101,7 +101,7 @@ class Login {
     return this.login
   };
 
-  // sendo chamada em uso Controller
+
   // o buscar_o_email está vindo do USOcontrolle
   async buscaEmail(buscar_o_email) { 
     this.login = await LoginModel.findOne({ email: buscar_o_email });

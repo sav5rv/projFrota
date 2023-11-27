@@ -1,27 +1,41 @@
 const Contato = require('../models/ContatoModel');
 const Login = require('../models/LoginModel');
 
-exports.index = (req, res) => {
-  res.render('contato', { 
-    contato :  {},
-    login: {}
-  });
-};
 
-
-exports.usuarioExiste = async (req, res) => {
+exports.index = async (req, res) => {
   const login = new Login();
-    const login2 = await login.userExists();
+    const login2 = await login.buscaLogins();
 
-  try {
-    res.render('contato', { contato, login2 });
+    try {
+      if(!login2) res.render('contato', {});
+      
+      const str_login = JSON.stringify( login2 );
+      res.render('contato', { contato : {}, str_login });
 
-  } catch (e) {
-      console.log(e);
-      return res.render('404');
-  }
+      console.log("LINHA 15 CONTATO CONTROLLER " + login2);
+      console.log("LINHA 16 CONTATO CONTROLLER " + str_login);
+
+    } catch (e) {
+        console.log(e);
+        return res.render('404');
+    }
 
 };
+
+
+// exports.usuarioExiste = async (req, res) => {
+//   const login = new Login();
+//     const login2 = await login.userExists();
+
+//   try {
+//     res.render('contato', { contato, login2 });
+
+//   } catch (e) {
+//       console.log(e);
+//       return res.render('404');
+//   }
+
+// };
 
 exports.index_contato = async(req, res) => {
   const contatos = await Contato.buscaContatos();
