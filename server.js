@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3030
+const express  = require('express');
+const app      = express();
+const port     = process.env.PORT || 3030;
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.CONNECTIONSTRING,
@@ -16,22 +16,33 @@ mongoose.connect(process.env.CONNECTIONSTRING,
   })
   .catch(e => console.log(e));
 
-const session = require('express-session');
+const session    = require('express-session');
 const MongoStore = require('connect-mongo');
-const flash = require('connect-flash');
-const routes = require('./routes');
-const path = require('path');
+const flash      = require('connect-flash');
+const routes     = require('./routes');
+const path       = require('path');
 // const helmet = require('helmet'); // helmet começou a causar problemas no localhost por conta da falta de SSL
-const csrf = require('csurf');
+const csrf       = require('csurf');
 
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
 // app.use(helmet()); // helmet começou a causar problemas no localhost por conta da falta de SSL
 
+// Enable CORS
+// A habilitação do CORS é necessária para o nosso teste local pois tanto o frontend como o backend estarão rodando 
+  // na mesma máquina, com o mesmo IP. Dessa forma, é necessário desabilitar essa segurança para testar a nossa aplicação.
+  // No ambiente produtivo, se as aplicações precisassem ficar na mesma máquina (incomum) seria adicionado o IP da máquina
+  // ao invés do * no header Access-Control-Allow-Origin.
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static(path.resolve(__dirname, 'public', 'img' )));
+app.use(express.static(path.resolve(__dirname, 'public')));
 
 // app.use(express.favicon('public/img/favicon.ico'));
 

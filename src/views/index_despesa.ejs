@@ -1,14 +1,18 @@
 <%- include('includes/head') %>
 <%- include('includes/nav') %>
 
-<div class="container">
+<!-- <div class="container"> -->
   <div class="row">
 
-    <div class="col-lg-12 my-3">
-      <h1 class="text-center">Despesas</h1>
-      <p class="text-center lead">Despesas cadastradas</p>
+    <div class="col-lg-12">
+      <div class="text-center">
+        <img src="/img/despesa.jpg" style="width:80px;height:80px;">
+        <h4>Despesas</h4>
+        <p>Despesas cadastradas no sistema</p>
+      </div>
 
       <%- include('includes/messages') %>
+
 
       <% if(despesas.length > 0) { %>
       <div class="responsive-table">
@@ -56,6 +60,6 @@
     </div>
     
   </div>
-</div>
+<!-- </div> -->
 
 <%- include('includes/footer') %>
