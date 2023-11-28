@@ -12,8 +12,8 @@ exports.index = async (req, res) => {
       const str_login = JSON.stringify( login2 );
       res.render('contato', { contato : {}, str_login });
 
-      console.log("LINHA 15 CONTATO CONTROLLER " + login2);
-      console.log("LINHA 16 CONTATO CONTROLLER " + str_login);
+      // console.log("LINHA 15 CONTATO CONTROLLER " + login2);
+      // console.log("LINHA 16 CONTATO CONTROLLER " + str_login);
 
     } catch (e) {
         console.log(e);
@@ -36,6 +36,7 @@ exports.index = async (req, res) => {
 //   }
 
 // };
+
 
 exports.index_contato = async(req, res) => {
   const contatos = await Contato.buscaContatos();
@@ -81,8 +82,9 @@ exports.register = async(req, res) => {
 
     req.flash('success', 'Contato registrado com sucesso.');
     req.session.tipoUsuario = req.body.tipoUsuario;
-    console.log("LINHA 35 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
-    req.session.save(() => res.redirect(`/contato/index_contato/${contato.contato._id}`));
+    console.log("LINHA 84 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
+    //req.session.save(() => res.redirect(`/contato/index_contato/${contato.contato._id}`));
+    req.session.save(() => res.redirect(`/contato/index_contato/`));
     return;
 
   } catch(e) {
@@ -91,14 +93,29 @@ exports.register = async(req, res) => {
   }
 };
 
+
+
 exports.editIndex = async function(req, res) {
-  if(!req.params.id) return res.render('404');
+  
+  try {
+    if(!req.params.id) return res.render('404');
 
-  const contato = await Contato.buscaPorId(req.params.id);
-  if(!contato) return res.render('404');
+    const contato = await Contato.buscaPorId(req.params.id);
+      if(!contato) return res.render('404');
 
-  res.render('contato', { contato });
+    const login = new Login();
+    const login2 = await login.buscaLogins();
+    
+    const str_login = JSON.stringify( login2 );
+    res.render('contato', { contato, str_login });
+
+  } catch (e) {
+      console.log(e);
+      return res.render('404');
+  }
 };
+
+
 
 exports.edit = async function(req, res) {
   try {
@@ -122,6 +139,8 @@ exports.edit = async function(req, res) {
       res.render('404');
   }
 };
+
+
 
 exports.delete = async function(req, res) {
   if(!req.params.id) return res.render('404');
