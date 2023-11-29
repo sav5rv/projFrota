@@ -1,28 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>dtTable</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/>
 
-    <style>
-        /* This style sets the width of all images to 100%: */
-        img {
-          width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <p>Teste 1</p>
-    <span><img src="../../../img/corrigir.png" alt="Imagem teste" style="width:500px;height:600px;">Teste</span>
-    <h2>HTML Image 2</h2>
-    <img src="pic_trulli.jpg" alt="Trulli" width="500" height="333">
-    <p>Teste 3</p>
-    <span><img src="../../../img/corrigir.png" alt="Imagem teste" style="width:500px;height:600px;">Teste</span>
-    <p>Teste 4</p>
-    <span><img src="/img/imagem-jpg.jpg" alt="Imagem teste" style="width:500px;height:600px;">Teste</span>
-    <p>Teste 5</p>
-    <span><img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com" style="width:50px;height:60px;">Teste</span>
-</body>
+    <title>Frota</title>
+  </head>
+
+  <body>
+
+    <h1>página de teste</h1>
+    <p>teste</p>
+    <button id="btUm" onclick="listaVeiculo()">Listar Veiculos</button>
+    <p id="veiculo">local da lista</p>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+function listaVeiculo() {
+  alert("linha 37");
+  // Faz uma solicitação HTTP para o servidor
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/veiculo/teste_lista_veiculo");
+  xhr.onload = function() {
+    alert("linha 42");
+    // Processa a resposta do servidor
+    var veiculo = JSON.parse(xhr.responseText);
+    console.log(veiculo);
+    // Atualiza o preço na página
+    document.getElementById("veiculo").innerHTML = veiculo;
+  };
+  xhr.send();
+}
+
+
+    </script>
+  </body>
 </html>

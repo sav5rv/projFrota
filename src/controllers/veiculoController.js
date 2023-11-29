@@ -6,12 +6,12 @@ exports.index = (req, res) => {
   });
 };
 
-exports.index_veiculo = async(req, res) => {
+exports.veiculo_lista = async(req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();
 
   try {
     if(!veiculos) return res.render('404');
-    res.render('index_veiculo', { veiculos }); //como a chave chama veiculos e a variavel que esta vindo é veiculos tambem
+    res.render('veiculo_lista', { veiculos }); //como a chave chama veiculos e a variavel que esta vindo é veiculos tambem
                                                //não preciso fazer { veiculos:veiculos }
   } catch(e) {
       console.log(e);
@@ -26,7 +26,23 @@ exports.lista_veiculo = async(req, res) => {
   try {
     if(!veiculos) return res.render('404');
     const str_veiculos = JSON.stringify( veiculos );
-    res.render('dtTable_veiculo', { str_veiculos }); 
+    res.render('veiculo_dtTable', { str_veiculos }); 
+
+  } catch(e) {
+      console.log(e);
+      return res.render('404');
+  }
+};
+
+
+
+exports.teste_lista_veiculo = async(req, res) => {
+  const veiculos = await Veiculo.buscaVeiculos();
+  console.log('LINHA 41 VEICULO CONTROLLER ' + veiculos);
+  try {
+    if(!veiculos) return res.render('404');
+    // const str_veiculos = JSON.stringify( veiculos );
+    res.json.stringify(veiculos); 
 
   } catch(e) {
       console.log(e);
@@ -47,7 +63,7 @@ exports.register = async(req, res) => {
     }
 
     req.flash('success', 'Veiculo registrado com sucesso.');
-    req.session.save(() => res.redirect(`/veiculo/index_veiculo/${veiculo.veiculo._id}`));
+    req.session.save(() => res.redirect(`/veiculo/veiculo_lista/${veiculo.veiculo._id}`));
     return;
   } catch(e) {
     console.log(e);
@@ -77,7 +93,7 @@ exports.edit = async function(req, res) {
     }
 
     req.flash('success', 'Veiculo editado com sucesso.');
-    req.session.save(() => res.redirect(`/veiculo/index_veiculo/`));
+    req.session.save(() => res.redirect(`/veiculo/veiculo_lista/`));
     return;
   } catch(e) {
     console.log(e);

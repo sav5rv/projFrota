@@ -38,12 +38,12 @@ exports.index = async (req, res) => {
 // };
 
 
-exports.index_contato = async(req, res) => {
+exports.contato_lista = async(req, res) => {
   const contatos = await Contato.buscaContatos();
 
   try {
     if(!contatos) return res.render('404');
-    res.render('index_contato', { contatos }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
+    res.render('contato_lista', { contatos }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
                                                //não preciso fazer { contatos:contatos }
   } catch(e) {
       console.log(e);
@@ -59,7 +59,7 @@ exports.lista_contato = async(req, res) => {
   try {
     if(!contatos) return res.render('404');
     const str_contatos = JSON.stringify( contatos );
-    res.render('dtTable_contato', { str_contatos }); 
+    res.render('contato_dtTable', { str_contatos }); 
 
   } catch(e) {
       console.log(e);
@@ -83,8 +83,8 @@ exports.register = async(req, res) => {
     req.flash('success', 'Contato registrado com sucesso.');
     req.session.tipoUsuario = req.body.tipoUsuario;
     console.log("LINHA 84 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
-    //req.session.save(() => res.redirect(`/contato/index_contato/${contato.contato._id}`));
-    req.session.save(() => res.redirect(`/contato/index_contato/`));
+    //req.session.save(() => res.redirect(`/contato/contato_lista/${contato.contato._id}`));
+    req.session.save(() => res.redirect(`/contato/contato_lista/`));
     return;
 
   } catch(e) {
@@ -130,8 +130,8 @@ exports.edit = async function(req, res) {
     }
 
     req.flash('success', 'Contato editado com sucesso.');
-    /* req.session.save(() => res.redirect(`/contato/index_contato/${contato.contato._id}`)); para chama id ESPECIFICO*/
-    req.session.save(() => res.redirect('/contato/index_contato/'));
+    /* req.session.save(() => res.redirect(`/contato/contato_lista/${contato.contato._id}`)); para chama id ESPECIFICO*/
+    req.session.save(() => res.redirect('/contato/contato_lista/'));
     return;
 
   } catch(e) {

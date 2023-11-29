@@ -92,7 +92,7 @@ https://ejs.co/#promo    explicação da Template Engine <%- . . . %>
 const Veiculo = require('../models/VeiculoModel');
 
 
-exports.index_veiculo = async(req, res) => {
+exports.veiculo_lista = async(req, res) => {
 
 
 vai fazer a consulta no VEICULOMODEL

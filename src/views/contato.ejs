@@ -130,13 +130,13 @@
 <script>
 
 
-  if(str_login){
+  if(<%- str_login %>){
     document.getElementById("email").addEventListener("focusout", function() {
       let userLog = <%- str_login %>;
       let fLen = userLog.length;
       let x = 0;
       let email = document.getElementById("email").value;
-      //alert("oi " + email);
+      alert("oi " + email);
       //console.log(userLog);
 
 

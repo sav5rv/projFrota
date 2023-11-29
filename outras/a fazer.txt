@@ -23,7 +23,7 @@ observações = campo memorando   -   	NÃO SALVOU NO MONGODB
 
 --------------------------------------------------------------
 
-           index_contato.js cadastro de usuario (login/criar)
+           contato_lista.js cadastro de usuario (login/criar)
 
 depois que salva um registro novo, ele fica na tela, ao clicar no btn salvar novamente, dá msg que editou e ai sai
 

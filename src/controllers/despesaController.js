@@ -6,12 +6,12 @@ exports.index = (req, res) => {
   });
 };
 
-exports.index_despesa = async(req, res) => {
+exports.despesa_lista = async(req, res) => {
   const despesas = await Despesa.buscaDespesas();
 
   try {
     if(!despesas) return res.render('404');
-    res.render('index_despesa', { despesas }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
+    res.render('despesa_lista', { despesas }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
                                                //não preciso fazer { contatos:contatos }
   } catch(e) {
       console.log(e);
@@ -31,7 +31,7 @@ exports.register = async(req, res) => {
     }
 
     req.flash('success', 'Despesa registrada com sucesso.');
-    req.session.save(() => res.redirect(`/despesa/index_despesa/${despesa.despesa._id}`));
+    req.session.save(() => res.redirect(`/despesa/despesa_lista/${despesa.despesa._id}`));
     return;
   } catch(e) {
     console.log(e);
@@ -61,7 +61,7 @@ exports.edit = async function(req, res) {
     }
 
     req.flash('success', 'Despesa editado com sucesso.');
-    req.session.save(() => res.redirect(`/despesa/index_despesa/`));
+    req.session.save(() => res.redirect(`/despesa/despesa_lista/`));
     return;
   } catch(e) {
     console.log(e);

@@ -7,7 +7,7 @@ exports.index = (req, res) => {
   });
 };
 
-exports.index_veiculo = async(req, res) => {
+exports.veiculo_lista = async(req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();
 
   try {
@@ -45,7 +45,7 @@ exports.index2 = async(req, res) => {
 };
 
 
-/* exports.index_veiculo = async( req, res) => {
+/* exports.veiculo_lista = async( req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();
 
   try {

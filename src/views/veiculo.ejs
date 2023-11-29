@@ -61,3 +61,47 @@
 </div>
 
 <%- include('includes/footer') %>
+
+
+<!-- if(<%- str_login %>){ -->
+  document.getElementById("email").addEventListener("focusout", function() {
+    let userLog = <%- str_login %>;
+    let fLen = userLog.length;
+    let x = 0;
+    let email = document.getElementById("email").value;
+    alert("oi " + email);
+    //console.log(userLog);
+
+
+    for (let i = 0; i < fLen; i++) {
+      if(userLog[i].email == email) {
+        console.log(userLog[i].email);
+        x = i;
+        // console.log(x);
+        // console.log(i);
+      }
+    }
+    let nome        = document.getElementById("nome");
+    let re          = document.getElementById("re");
+    let tipoUsuario = document.getElementById("tipoUsuario");
+
+    nome.value   = userLog[x].nome;
+    nome.addEventListener('keydown', (event) => {
+      event.preventDefault();
+    });
+    re.value = userLog[x].re;
+    re.disable = true;
+    tipoUsuario.value = userLog[x].tipoUsuario;
+    tipoUsuario.disable = true;
+
+    console.log(userLog[x]);
+
+  });
+};
+
+
+</script>
+
+  
+</body>
+</html>

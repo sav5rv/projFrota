@@ -25,7 +25,7 @@ route.get('/', homeController.index);
 route.get('/teste01/index',     teste01Controller.index);
 //route.get('/teste01/criar',     teste01Controller.criar);
 //route.post('/teste01/register', teste01Controller.register);
-route.get('/teste01/dtTable',      teste01Controller.index_veiculo);
+route.get('/teste01/dtTable',      teste01Controller.veiculo_lista);
 route.get('/teste01/index2',     teste01Controller.index2);
 
 
@@ -45,8 +45,8 @@ route.get('/login/logout',    loginController.logout);
 route.get('/contato/index',             loginRequiredADM, contatoController.index); //inserir
 route.post('/contato/register',         loginRequiredADM, contatoController.register); //adicionar novo
 route.get('/contato/delete/:id',        loginRequiredADM, contatoController.delete); //deletar
-route.get('/contato/index_contato',     loginRequiredADM, contatoController.index_contato); //1º listei
-route.get('/contato/index_contato/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
+route.get('/contato/contato_lista',     loginRequiredADM, contatoController.contato_lista); //1º listei
+route.get('/contato/contato_lista/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/contato/edit/:id',         loginRequiredADM, contatoController.edit); //3º salvei o form alterado
 route.get('/contato/lista_contato',     loginRequiredADM, contatoController.lista_contato);
 
@@ -57,10 +57,11 @@ route.get('/contato/lista_contato',     loginRequiredADM, contatoController.list
 route.get('/veiculo/index',              loginRequiredADM, veiculoController.index);
 route.post('/veiculo/register',          loginRequiredADM, veiculoController.register);
 route.get('/veiculo/delete/:id',         loginRequiredADM, veiculoController.delete);
-route.get('/veiculo/index_veiculo',      loginRequiredADM, veiculoController.index_veiculo);
-route.get('/veiculo/index_veiculo/:id',  loginRequiredADM, veiculoController.editIndex);
+route.get('/veiculo/veiculo_lista',      loginRequiredADM, veiculoController.veiculo_lista);
+route.get('/veiculo/veiculo_lista/:id',  loginRequiredADM, veiculoController.editIndex);
 route.post('/veiculo/edit/:id',          loginRequiredADM, veiculoController.edit);
 route.get('/veiculo/lista_veiculo',      loginRequiredADM, veiculoController.lista_veiculo);
+route.get('/veiculo/teste_lista_veiculo',      loginRequiredADM, veiculoController.teste_lista_veiculo);
 
 
 
@@ -69,8 +70,8 @@ route.get('/veiculo/lista_veiculo',      loginRequiredADM, veiculoController.lis
 route.get('/despesa/index',             loginRequired, despesaController.index);
 route.post('/despesa/register',         loginRequired, despesaController.register);
 route.get('/despesa/delete/:id',        loginRequired, despesaController.delete);
-route.get('/despesa/index_despesa',     loginRequired, despesaController.index_despesa);
-route.get('/despesa/index_despesa/:id', loginRequired, despesaController.editIndex);
+route.get('/despesa/despesa_lista',     loginRequired, despesaController.despesa_lista);
+route.get('/despesa/despesa_lista/:id', loginRequired, despesaController.editIndex);
 route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
 

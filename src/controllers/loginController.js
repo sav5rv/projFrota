@@ -33,7 +33,7 @@ exports.register = async function(req, res) {
     req.session.save(() => res.redirect(`/login/index/`));
     return;
     // req.session.save(function() {
-      //return res.redirect('login-logado', { login2 });
+      //return res.redirect('login_logado', { login2 });
       // return res.redirect('back');
       
     // });
@@ -48,7 +48,7 @@ exports.register = async function(req, res) {
 
 exports.logado = async function(req,res) {
   const login2 = req.session.user;
-  return res.render('login-logado', { login2 });
+  return res.render('login_logado', { login2 });
 }
 
 
