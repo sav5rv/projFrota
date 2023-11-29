@@ -2,10 +2,9 @@ const Veiculo = require('../models/VeiculoModel');
 const Contato = require('../models/ContatoModel');
 
 exports.index = (req, res) => {
-  res.render('./teste01/index', {
-    veiculo: {}
-  });
-};
+  res.render('./teste01/index');
+  };
+
 
 exports.veiculo_lista = async(req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();

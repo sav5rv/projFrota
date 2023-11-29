@@ -61,7 +61,7 @@ route.get('/veiculo/veiculo_lista',      loginRequiredADM, veiculoController.vei
 route.get('/veiculo/veiculo_lista/:id',  loginRequiredADM, veiculoController.editIndex);
 route.post('/veiculo/edit/:id',          loginRequiredADM, veiculoController.edit);
 route.get('/veiculo/lista_veiculo',      loginRequiredADM, veiculoController.lista_veiculo);
-route.get('/veiculo/teste_lista_veiculo',      loginRequiredADM, veiculoController.teste_lista_veiculo);
+route.get('/veiculo/teste_lista_veiculo/:rodas',      veiculoController.teste_lista_veiculo);
 
 
 

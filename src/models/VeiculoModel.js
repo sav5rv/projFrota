@@ -69,6 +69,12 @@ Veiculo.buscaPorId = async function(id) {
   return veiculo;
 };
 
+Veiculo.buscaPorRodas = async function(rodas) {
+  // if(typeof rodas !== 'string') return;
+  const veiculo = await VeiculoModel.find( { rodas: rodas }, { renavan:1, rodas:1 } );
+  return veiculo;
+};
+
 Veiculo.buscaVeiculos = async function() {
   const veiculos = await VeiculoModel.find()
     .sort({ criadoEm: -1 });

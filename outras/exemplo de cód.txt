@@ -8,6 +8,7 @@
     </script>
 
 
+
 + + + ao passar o mouse exibe uma mensagem
 
 <label><abbr title="Modelo: 01234">RSO número</abbr></label>
@@ -22,3 +23,39 @@
           $('[data-toggle="tooltip"]').tooltip()
         })
       </script>
+
+
+      exemplo de API's
+      https://github.com/public-apis/public-apis 
+
+
+
+            EXEMPLO DE API javaScript fetch
+
+            CRIAR:
+            1º = o script fetch que fará a consulta
+            2º = a rota que o fetch vai usar na sua URL
+            3º = no Controller, qual a função que vai acessar o Model
+            4º = no Model a função que vai acessar o Banco Dados
+            
+    <script>
+      function listaVeiculo(rodas) {
+      
+        alert("linha 37: " + rodas);
+        const inputCep = document.getElementById('veiculo');
+
+        const getVeiculo = async () => {
+          const response = await fetch(' /veiculo/teste_lista_veiculo/' + rodas);
+          const data = await response.json();
+          return data;
+        };
+
+        getVeiculo().then(data => {
+          inputCep.innerHTML = data.renavan;
+          console.log("linha 42: " + data.renavan);
+        });
+      };
+
+    </script>
+
+<!-- A flecha ( => ) representa a função anônima que será executada quando a solicitação HTTP for concluída -->      

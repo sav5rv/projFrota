@@ -17,9 +17,8 @@
 
     <h1>página de teste</h1>
     <p>teste</p>
-    <button id="btUm" onclick="listaVeiculo(3)">Listar Veiculos</button>
+    <button id="btUm" onclick="listaVeiculo()">Listar Veiculos</button>
     <p id="veiculo">local da lista</p>
-    <p id="cep">local do CEP</p>
 
 
 
@@ -34,24 +33,24 @@
 
 
     <script>
-
-      function listaVeiculo(rodas) {
+  let x = " ";
+      function listaVeiculo() {
       
-        alert("linha 37: " + rodas);
-        const linhaVeic= document.getElementById('veiculo');
+        alert("linha 37");
+        fetch('/veiculo/teste_lista_veiculo/4')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          x = data.renavan;
+          // Atualiza o preço na página
+          document.getElementById("veiculo").innerHTML = x;
+          return x;
+        })
+        .catch(error => console.error('Erro na requisição:', error));
+      }
 
-        const getVeiculo = async () => {
-          const response = await fetch(' /veiculo/teste_lista_veiculo/' + rodas);
-          const data = await response.text();
-          console.log('LINHA 46: ' + data);
-          return data;
-        };
+      console.log("linha 42" + x);  //não funcionou para eu pegar o valor de x
 
-        getVeiculo().then(data => {
-          linhaVeic.innerHTML = data.renavan;
-          console.log("linha 52: " + renavan);
-        });
-      };
 
     </script>
 

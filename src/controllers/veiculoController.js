@@ -35,14 +35,17 @@ exports.lista_veiculo = async(req, res) => {
 };
 
 
-
+                  //solicitado em um AJAX ou FETCH
 exports.teste_lista_veiculo = async(req, res) => {
-  const veiculos = await Veiculo.buscaVeiculos();
+
+  const veiculos = await Veiculo.buscaPorRodas(req.params.rodas);
   console.log('LINHA 41 VEICULO CONTROLLER ' + veiculos);
   try {
     if(!veiculos) return res.render('404');
-    // const str_veiculos = JSON.stringify( veiculos );
-    res.json.stringify(veiculos); 
+    // let x = res.json(veiculos); //retornando um Objeto json = [{"renavan":"987654321","rodas":"3","_id":"65234dd25b1d0b36dcfc2afc"}]
+
+    console.log('LINHA 46 VEICULO CONTROLLER ' + veiculos);
+    return;
 
   } catch(e) {
       console.log(e);
