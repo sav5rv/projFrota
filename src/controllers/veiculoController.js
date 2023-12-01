@@ -39,13 +39,15 @@ exports.lista_veiculo = async(req, res) => {
 exports.teste_lista_veiculo = async(req, res) => {
 
   const veiculos = await Veiculo.buscaPorRodas(req.params.rodas);
-  console.log('LINHA 41 VEICULO CONTROLLER ' + veiculos);
+  //console.log('LINHA 41 VEICULO CONTROLLER ' + veiculos);
   try {
     if(!veiculos) return res.render('404');
-    // let x = res.json(veiculos); //retornando um Objeto json = [{"renavan":"987654321","rodas":"3","_id":"65234dd25b1d0b36dcfc2afc"}]
+    //res.json(veiculos); 
+    res.send(veiculos);// não é um obj json = { renavan: '123456789', rodas: '4', _id: 652348bf0e056336b4e81bfa },{ renavan: '123006789', rodas: '4', _id: 65676e9864aa66fbd77ffa78 }
 
-    console.log('LINHA 46 VEICULO CONTROLLER ' + veiculos);
-    return;
+    console.log('LINHA 48 VEICULO CONTROLLER ' + veiculos);
+
+    
 
   } catch(e) {
       console.log(e);

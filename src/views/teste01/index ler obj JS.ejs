@@ -17,9 +17,9 @@
 
     <h1>página de teste</h1>
     <p>teste</p>
-    <button id="btUm" onclick="listaVeiculo(3)">Listar Veiculos</button>
+    <button id="btUm" onclick="listaVeiculo(4)">Listar Veiculos</button>
     <p id="veiculo">local da lista</p>
-    <p id="cep">local do CEP</p>
+
 
 
 
@@ -37,19 +37,30 @@
 
       function listaVeiculo(rodas) {
       
-        alert("linha 37: " + rodas);
+        //alert("linha 37: " + rodas);
         const linhaVeic= document.getElementById('veiculo');
 
         const getVeiculo = async () => {
           const response = await fetch(' /veiculo/teste_lista_veiculo/' + rodas);
-          const data = await response.text();
+          const data = await response.json();  // Retorna em = [object Object],[object Object]
+          //const data = await response.text();  // Retorna em = [{"renavan":"123456789","rodas":"4","_id":"652348bf0e056336b4e81bfa"},{"renavan":"123006789","rodas":"4","_id":"65676e9864aa66fbd77ffa78"}]
+
           console.log('LINHA 46: ' + data);
+
           return data;
         };
 
         getVeiculo().then(data => {
-          linhaVeic.innerHTML = data.renavan;
-          console.log("linha 52: " + renavan);
+          data.forEach((x) => {
+      // Imprime os dados de cada documento
+     // linhaVeic.innerHTML = x.renavan;
+      console.log(x.renavan, x.rodas);
+    });
+          
+          // console.log('LINHA 51: ' + convertString);
+          let k = data[0];
+          linhaVeic.innerHTML = k.renavan;
+          console.log("linha 52: " + k.renavan);
         });
       };
 
