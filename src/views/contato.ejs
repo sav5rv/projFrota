@@ -24,11 +24,11 @@
         <div class="form-group">
           <label>EMail</label>
           <input value="<%= contato.email %>" 
-          type="email" 
-          class="form-control" 
-          name="email" 
-          id="email" 
-          required >
+                  type="email" 
+                  class="form-control" 
+                  name="email" 
+                  id="email" 
+                  required >
         </div>
 
         <div class="form-group">
@@ -44,33 +44,33 @@
         <div class="form-group">
           <label>RE</label>
           <input value="<%= contato.re %>" 
-          type="text" 
-          class="form-control" 
-          name="re" 
-          id="re" 
-          required
-          placeholder="modelo: 123456 (seis números)"
-          pattern="[0-9]{6}">
+                type="text" 
+                class="form-control" 
+                name="re" 
+                id="re" 
+                required
+                placeholder="modelo: 123456 (seis números)"
+                pattern="[0-9]{6}">
         </div>
         
         <div class="form-group">
           <label for="tipoUsuario">Tipo de Usuario</label>
           <select value="<%= contato.tipoUsuario %>" 
-            type="" 
-            class="form-control" 
-            name="tipoUsuario" 
-            id="tipoUsuario" 
-            required >
+                  type="" 
+                  class="form-control" 
+                  name="tipoUsuario" 
+                  id="tipoUsuario" 
+                  required >
 
-            <% if (contato.tipoUsuario) { %>
-              <option selected> <%= contato.tipoUsuario %> </option>
-              <% } else { %>
-                <option selected> Escolher... </option>
-              <% } %>
+                  <% if (contato.tipoUsuario) { %>
+                    <option selected> <%= contato.tipoUsuario %> </option>
+                    <% } else { %>
+                      <option selected> Escolher... </option>
+                    <% } %>
 
-            <option>Administrador</option>
-            <option>Encarregado</option>
-            <option>Usuario</option>
+                  <option>Administrador</option>
+                  <option>Encarregado</option>
+                  <option>Usuario</option>
 
           </select>
         </div> 
