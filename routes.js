@@ -54,7 +54,7 @@ route.get('/contato/lista_contato',     loginRequiredADM, contatoController.list
 
 // Rotas de veiculo
 
-route.get('/veiculo/index',              loginRequiredADM, veiculoController.index);
+route.get('/veiculo/veiculo_cad',              loginRequiredADM, veiculoController.index);
 route.post('/veiculo/register',          loginRequiredADM, veiculoController.register);
 route.get('/veiculo/delete/:id',         loginRequiredADM, veiculoController.delete);
 route.get('/veiculo/veiculo_lista',      loginRequiredADM, veiculoController.veiculo_lista);

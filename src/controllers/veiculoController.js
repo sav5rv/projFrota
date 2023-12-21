@@ -1,7 +1,7 @@
 const Veiculo = require('../models/VeiculoModel');
 
 exports.index = (req, res) => {
-  res.render('veiculo', {
+  res.render('veiculo_cad', {
     veiculo: {}
   });
 };
@@ -82,7 +82,7 @@ exports.editIndex = async function(req, res) {
   const veiculo = await Veiculo.buscaPorId(req.params.id);
   if(!veiculo) return res.render('404');
 
-  res.render('veiculo', { veiculo });
+  res.render('veiculo_cad', { veiculo });
 };
 
 exports.edit = async function(req, res) {
