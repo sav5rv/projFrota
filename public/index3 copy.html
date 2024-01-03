@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-4.1.3-dist/bootstrap.min.css">
+
+    <!-- Jquery js -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Popper js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- jQuery Validation JS -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>        
+
+</head>
+
+<body>
+    <!-- jQuery Validation For Input Groups -->
+    <div class="card pmd-card">
+        <div class="card-body">
+            <form id="input-group-form" method="post" action="" class="col-sm-8">
+                <div class="input-group pmd-input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Name</span>
+                    </div>
+                    <div class="pmd-textfield" style="flex: auto;">
+                        <input type="text" class="form-control" aria-label="inputgroupname"
+                            aria-describedby="basic-addon1" id="inputgroupname" name="inputgroupname">
+                    </div>
+                </div>
+                <div class="input-group pmd-input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2">Email</span>
+                    </div>
+                    <div class="pmd-textfield" style="flex: auto;">
+                        <input type="email" class="form-control" aria-label="inputgroupemail"
+                            aria-describedby="basic-addon2" id="inputgroupemail" name="inputgroupemail">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary pmd-ripple-effect" name="input-form-submit"
+                        value="Subscribe">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- jQuery Validation For Input Groups end-->
+
+    <script>
+
+        $.validator.setDefaults({
+            submitHandler: function () {
+                alert("submitted!");
+            }
+        });
+        $(document).ready(function () {
+            $("#input-group-form").validate({
+                rules: {
+                    inputgroupname: "required",
+                    inputgroupemail: "required"
+                },
+                messages: {
+                    inputgroupname: "Please enter your Name",
+                    inputgroupemail: "Please enter a valid Email Address"
+                },
+                errorElement: "em",
+
+                errorPlacement: function (error, element) {
+                    // Add the `invalid-feedback` class to the error element
+                    error.addClass("invalid-feedback");
+                    error.insertAfter(element.next(".pmd-textfield-focused"));
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass("is-invalid").removeClass("is-valid");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).addClass("is-valid").removeClass("is-invalid");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

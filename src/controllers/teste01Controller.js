@@ -30,18 +30,23 @@ exports.veiculo_lista = async(req, res) => {
 };
 
 
-exports.index2 = async(req, res) => {
-  const contatos = await Contato.buscaContatos();
+exports.index2 = (req, res) => {
+  res.render('./teste01/index2.html');
+  };
 
-  try {
-    if(!contatos) return res.render('404');
-    res.render('./teste01/index2', { contatos }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
-                                               //não preciso fazer { contatos:contatos }
-  } catch(e) {
-      console.log(e);
-      return res.render('404');
-  }
-};
+
+// exports.index2 = async(req, res) => {
+//   const contatos = await Contato.buscaContatos();
+
+//   try {
+//     if(!contatos) return res.render('404');
+//     res.render('./teste01/index2', { contatos }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
+//                                                //não preciso fazer { contatos:contatos }
+//   } catch(e) {
+//       console.log(e);
+//       return res.render('404');
+//   }
+// };
 
 
 /* exports.veiculo_lista = async( req, res) => {
