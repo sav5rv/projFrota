@@ -3,6 +3,7 @@ utilizado:
 		 npm  9.8.1
 		 mongoDB 6.0.5
 		 mongosh 1.8.0
+         bootStrap  V3.4
 
  * - * - * - * - * - * - * - * - * - * - * - * - *		 
 
@@ -53,7 +54,8 @@ ter o cadastro completo (em contato)
 
 ----------------------------------------------------------
 
-favicon
-ja salvo na pasta img
+barra de navegação sombra do ativado
+
+barra do rodapé centralizar os elementos
 
 >>>>>>> ddabf28a307d5acc743dc9b0218db7e6bcbc3e0d

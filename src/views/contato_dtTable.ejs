@@ -31,46 +31,59 @@
       <!-- </div> -->
     <!-- </div> -->
 
-<%- include('includes/footer-dtTable') %>
+<!-- o rodapé foi tirado devido estar sobrepondo a tabela -->
 
-<script>
+    <!-- Foi colocado no final para a página carregar mais rápido -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.4.min.js"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    
+        <script src="https://getbootstrap.com.br/docs/4.1/assets/js/vendor/holder.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-  console.log ( <%- str_contatos %> );  //vai exibir no console do navegador
 
-      // $('#dt-table').DataTable({
-        new DataTable('#dt-table', {
-            data: <%- str_contatos %>,
-            columns: [
-                { data: 'nome' },
-                { data: 'email' },
-                { data: 'celular' },
-                { data: 're' },
-                { data: 'tipoUsuario' },
-                { data: 'cnhRegistro' },
-                { data: 'categoria' },
-                { data: 'validade' },
-                { data: 'obs' },
-            ],
-            
-            // "pageLength": 3,
-            // "stateSave" : true
-            paging: false,
-            scrollCollapse: true,
-            scrollY: '210px',
-            scrollX: true,
-            language: {
-              decimal: ',',
-              thousands: '.'
-            },
-            columnDefs: [
-                {
-                    targets: 7,
-                    render: DataTable.render.date()
-                }
-            ]
-        });
+    <script>
 
-</script> 
+      console.log ( <%- str_contatos %> );  //vai exibir no console do navegador
+
+          // $('#dt-table').DataTable({
+            new DataTable('#dt-table', {
+                data: <%- str_contatos %>,
+                columns: [
+                    { data: 'nome' },
+                    { data: 'email' },
+                    { data: 'celular' },
+                    { data: 're' },
+                    { data: 'tipoUsuario' },
+                    { data: 'cnhRegistro' },
+                    { data: 'categoria' },
+                    { data: 'validade' },
+                    { data: 'obs' },
+                ],
+                
+                // "pageLength": 3,
+                // "stateSave" : true
+                paging: false,
+                scrollCollapse: true,
+                scrollY: '210px',
+                scrollX: true,
+                language: {
+                  decimal: ',',
+                  thousands: '.'
+                },
+                columnDefs: [
+                    {
+                        targets: 7,
+                        render: DataTable.render.date()
+                    }
+                ]
+            });
+
+    </script> 
+
+
 
 </body>
 </html>
