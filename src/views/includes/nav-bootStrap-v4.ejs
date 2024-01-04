@@ -1,0 +1,73 @@
+<!-- <div class="container"> -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c6d128;">
+
+    <a href="/"><i class="fa d-inline fa-home" style="color: #fc0303;"></i>&nbsp; Início  </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;TeSTaR</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="../teste01/dtTable">DataTable</a>
+            <a class="dropdown-item" href="../teste01/index">Index</a>
+            <a class="dropdown-item" href="../teste01/index2.html">Index=2</a>
+            <a class="dropdown-item" href="../index3.html">Index=3</a>
+			<a class="dropdown-item" href="../index4.html">Index=4</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user-o" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;Usuários</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/contato/index">Cadastrar</a>
+            <a class="dropdown-item" href="/contato/contato_lista">Listar</a>
+            <a class="dropdown-item" href="/contato/lista_contato">Lista 2</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-car" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;Veículos</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/veiculo/veiculo_cad">Cadastrar</a>
+            <a class="dropdown-item" href="/veiculo/veiculo_lista">Listar</a>
+            <a class="dropdown-item" href="/veiculo/lista_veiculo">Lista 2</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-usd" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;Despesas</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/despesa/index">Cadastrar</a>
+            <a class="dropdown-item" href="/despesa/despesa_lista">Listar</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag" aria-hidden="true" style="color: #fc0303;"></i> &nbsp;Ficha de Uso</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/uso/uso_abrir">Abrir</a>
+            <a class="dropdown-item" href="/uso/uso_finalizar">Finalizar</a>
+            <a class="dropdown-item" href="/uso/uso_aberto">Consultar abertos</a>
+            <a class="dropdown-item" href="/uso/uso_lista">Listar</a>
+          </div>
+        </li>
+
+        <% if(user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/logout"><i class="fa fa-sign-out" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;SAIR</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/index"><i class="fa fa-sign-in" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;ENTRAR</a>
+          </li>
+          <% } %>
+
+      </ul>
+    </div>
+  </nav>
+<!-- </div> -->

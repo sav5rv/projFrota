@@ -28,6 +28,7 @@ route.get('/teste01/index',     teste01Controller.index);
 route.get('/teste01/dtTable',      teste01Controller.veiculo_lista);
 route.get('/teste01/index2.html',     teste01Controller.index2);
 route.get('/index3.html');
+route.get('/index4.html');
 
 
 

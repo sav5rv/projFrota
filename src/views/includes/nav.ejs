@@ -1,5 +1,58 @@
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #c6d128;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;TeSTaR <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="../teste01/dtTable"    >DataTable</a></li>
+                <li><a href="../teste01/index"      >Index</a></li>
+                <li><a href="../teste01/index2.html">Index=2</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">ESTÁTICAS</li>
+                <li><a href="../index3.html"        >Index=3</a></li>
+                <li><a href="../index4.html"        >Index=4</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
 <!-- <div class="container"> -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c6d128;">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #c6d128;">
 
     <a href="/"><i class="fa d-inline fa-home" style="color: #fc0303;"></i>&nbsp; Início  </a>
     
@@ -13,46 +66,47 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;TeSTaR</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="../teste01/dtTable">DataTable</a>
-            <a class="dropdown-item" href="../teste01/index">Index</a>
-            <a class="dropdown-item" href="../teste01/index2.html">Index=2</a>
-            <a class="dropdown-item" href="../index3.html">Index=3</a>
+            <a href="../teste01/dtTable">DataTable</a>
+            <a href="../teste01/index">Index</a>
+            <a href="../teste01/index2.html">Index=2</a>
+            <a href="../index3.html">Index=3</a>
+			<a href="../index4.html">Index=4</a>
           </div>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user-o" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;Usuários</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/contato/index">Cadastrar</a>
-            <a class="dropdown-item" href="/contato/contato_lista">Listar</a>
-            <a class="dropdown-item" href="/contato/lista_contato">Lista 2</a>
+            <a href="/contato/index">Cadastrar</a>
+            <a href="/contato/contato_lista">Listar</a>
+            <a href="/contato/lista_contato">Lista 2</a>
           </div>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-car" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;Veículos</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/veiculo/veiculo_cad">Cadastrar</a>
-            <a class="dropdown-item" href="/veiculo/veiculo_lista">Listar</a>
-            <a class="dropdown-item" href="/veiculo/lista_veiculo">Lista 2</a>
+            <a href="/veiculo/veiculo_cad">Cadastrar</a>
+            <a href="/veiculo/veiculo_lista">Listar</a>
+            <a href="/veiculo/lista_veiculo">Lista 2</a>
           </div>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-usd" aria-hidden="true" style="color: #fc0303;"></i>&nbsp;Despesas</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/despesa/index">Cadastrar</a>
-            <a class="dropdown-item" href="/despesa/despesa_lista">Listar</a>
+            <a href="/despesa/index">Cadastrar</a>
+            <a href="/despesa/despesa_lista">Listar</a>
           </div>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag" aria-hidden="true" style="color: #fc0303;"></i> &nbsp;Ficha de Uso</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="/uso/uso_abrir">Abrir</a>
-            <a class="dropdown-item" href="/uso/uso_finalizar">Finalizar</a>
-            <a class="dropdown-item" href="/uso/uso_aberto">Consultar abertos</a>
-            <a class="dropdown-item" href="/uso/uso_lista">Listar</a>
+            <a href="/uso/uso_abrir">Abrir</a>
+            <a href="/uso/uso_finalizar">Finalizar</a>
+            <a href="/uso/uso_aberto">Consultar abertos</a>
+            <a href="/uso/uso_lista">Listar</a>
           </div>
         </li>
 
@@ -68,5 +122,5 @@
 
       </ul>
     </div>
-  </nav>
+  </nav> -->
 <!-- </div> -->

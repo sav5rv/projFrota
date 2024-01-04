@@ -1,3 +1,10 @@
+utilizado:
+         node v18.18.2
+		 npm  9.8.1
+		 mongoDB 6.0.5
+		 mongosh 1.8.0
+
+ * - * - * - * - * - * - * - * - * - * - * - * - *		 
 
 incluir campo memorando
 
