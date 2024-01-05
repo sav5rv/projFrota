@@ -3,14 +3,21 @@ const Login = require('../models/LoginModel');
 
 
 exports.index = async (req, res) => {
+
+  const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
+                                    //  porque o método session.get() retorna um objeto 
+    console.log('LINHA 7 USO CONTROLLER ' + email);
+
   const login = new Login();
-    const login2 = await login.buscaLogins();
+    const login_email = await login.buscaEmail(email);
+    
+    console.log('LINHA 14 contato CONTROLLER ' + login_email);
 
     try {
-      if(!login2) res.render('contato', {});
+      if(!login_email) res.render('contato_cad', {});
       
-      const str_login = JSON.stringify( login2 );
-      res.render('contato', { contato : {}, str_login });
+      const str_login = JSON.stringify( login_email );
+      res.render('contato_cad', { contato : {}, str_login });
 
       // console.log("LINHA 15 CONTATO CONTROLLER " + login2);
       // console.log("LINHA 16 CONTATO CONTROLLER " + str_login);
@@ -23,6 +30,22 @@ exports.index = async (req, res) => {
 };
 
 
+exports.contato_abrir = async(req, res) => {
+
+    const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
+                                    //  porque o método session.get() retorna um objeto 
+    console.log('LINHA 7 USO CONTROLLER ' + email);
+
+    const login       = new Login();
+    const login_email = await login.buscaEmail(email);
+    
+    console.log('LINHA 10 USO CONTROLLER ' + login_email);
+
+  res.render('uso_abrir', {
+    uso : {},
+    login_email : login_email,
+  });
+};
 // exports.usuarioExiste = async (req, res) => {
 //   const login = new Login();
 //     const login2 = await login.userExists();
