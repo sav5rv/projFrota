@@ -10,7 +10,11 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Preencha os campos abaixo para cadastrar um veículo.</h3>
+              <% if ( veiculo._id ) { %>
+                <h3 class="panel-title">Altere os campos abaixo para editar o registro.</h3>
+              <% } else { %>
+                <h3 class="panel-title">Preencha os campos abaixo para cadastrar um veículo.</h3>
+              <% } %>
             </div>
 
             <div class="panel-body">
@@ -18,11 +22,9 @@
               <%- include('includes/messages') %>
 
                 <% if(veiculo._id) { %>
-                  <form id="frm1" action="/veiculo/edit/<%= veiculo._id %>" method="POST" class="form-horizontal"
-                    novalidate="novalidate">
+                  <form id="frm1" action="/veiculo/edit/<%= veiculo._id %>" method="POST" class="form-horizontal">
                     <% } else { %>
-                      <form id="frm1" action="/veiculo/register" method="POST" class="form-horizontal"
-                        novalidate="novalidate">
+                      <form id="frm1" action="/veiculo/register" method="POST" class="form-horizontal">
                         <% } %>
 
                           <input type="hidden" name="_csrf" value=<%=csrfToken %>>
@@ -31,7 +33,7 @@
                             <label class="col-sm-4 control-label" for="placa">Placa</label>
                             <div class="col-sm-5">
                               <input value="<%= veiculo.placa %>" type="text" class="form-control" id="placa"
-                                name="placa" maxlength="7" minlength="7" placeholder="modelo: EHP5H90">
+                                name="placa" maxlength="7" minlength="7" placeholder="modelo: EHP5H90" required>
                             </div>
                           </div>
 
@@ -58,7 +60,7 @@
                             <label class="col-sm-4 control-label" for="prefixo">Prefixo</label>
                             <div class="col-sm-5">
                               <input value="<%= veiculo.prefixo %>" type="text" class="form-control" id="prefixo"
-                                name="prefixo" maxlength="6" minlength="6" placeholder="modelo: R05237">
+                                name="prefixo" maxlength="6" minlength="6" placeholder="modelo: R05237" required>
                             </div>
                           </div>
 
@@ -95,28 +97,20 @@
                             <label class="col-sm-4 control-label" for="cor">Cor</label>
                             <div class="col-sm-5">
                               <input value="<%= veiculo.cor %>" type="text" class="form-control" id="cor" name="cor"
-                                maxlength="12" minlength="12" placeholder="modelo: Cinza">
+                                minlength="4" placeholder="modelo: Azul">
                             </div>
-                          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                          <button type="submit" class="btn btn-primary">Salvar</button>
-                          <button type="button" onclick="myFunction()">Try it</button>
-                      </form>
-                      <p id="demo">A Paragraph</p>
+                          </div>                      
 
             </div>
           </div>
+
+                          <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="reset" class="btn btn-primary">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="myFunction()">Try it</button>
+                          </div>
+                      </form>
+                      <p id="demo">A Paragraph</p>
         </div>
       </div>
     </div>
@@ -128,6 +122,6 @@
 
 
 
-          </body>
+</body>
 
-          </html>
+</html>

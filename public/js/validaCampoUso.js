@@ -7,26 +7,27 @@ function myFunction() {
 $( document ).ready( function () {
     $( "#frm1" ).validate( {
         rules: {
-            placa: {
-                required: true,
-                //regex: [a-zA-Z]{3}[a-zA-Z0-9]{4}
-                // message: 'O nome deve conter apenas letras.',
-                // maxlength: 7,
-                // minlength: 7,
-                // regex: '[A-Z]{3}[A-Z0-9]{4}',
-                // message: "erro"
+            rso: {
+                required: true
             },
+            hodometroInicio: {
+                required: true
+            },
+            
         },
         messages: {
-            placa: {
+            rso: {
                 required: "Por favor preencha o campo",
-                minlength: "Insira 7 caracteres",
-                // regex: "erro"
+                minlength: "Por favor insira 5 caracteres"
+            },
+            hodometroInicio: {
+                required: "Por favor preencha o campo",
+                minlength: "Por favor insira 9 caracteres"
             },
         },
         errorElement: "em",
         errorPlacement: function ( error, element ) {
-            // Adiciona a classe 'help-block' ao elemento error
+            // Add the `help-block` class to the error element
             error.addClass( "help-block" );
 
             if ( element.prop( "type" ) === "checkbox" ) {

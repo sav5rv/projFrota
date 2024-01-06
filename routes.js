@@ -82,6 +82,7 @@ route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
 // Rotas de uso - utilização
 route.get('/uso/uso_abrir',     loginRequired, usoController.uso_abrir); //Abrir
+route.get('/uso/uso_finalizar',     loginRequired, usoController.uso_finalizar); //Finalizar
 route.post('/uso/register',     loginRequired, usoController.register);
 route.get('/uso/delete/:id',    loginRequired, usoController.delete);
 route.get('/uso/uso_lista',     loginRequired, usoController.uso_lista); //Listar

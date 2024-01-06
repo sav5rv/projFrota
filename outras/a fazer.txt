@@ -64,9 +64,40 @@ barra do rodapé centralizar os elementos
 
 --------------------------------------------------------------------
 
+                                        LOGINS
+verificar se o sistema está logado e avisar ao usuario
+
+------------------------------------------------------------------------
+
+                                     USUÁRIOS
 quando edito a tabela de contatos, precisa editar a tabela de login tambem - ainda não foi feito
 o maior problema é quando alterado o campo tipo de usuario
 tem que mudar no middleware no tbLogin
+
 o tipo de usuario é definido no arquivo login_criar.ejs
 
 as funções da tela cadastro devem ser melhor definidas
+
+uma saída seria direcionar o model_login para a Tb Contatos
+
+usuario ADM vai acessar a lista dos usuarios que se cadastraram no login, vai verificar qual cadastro falta completar
+atraves do menu lista e vai editar esse registro, por isso que temos que juntar as tblogin e tbcadastro
+
+------------------------------------------------------------------------------------
+
+                                      FICHAS DE uso
+pesquisar os veiculos cadastrados e preencher um combobox ou preenchimento automatico no cammpo PLACA, dessa forma
+será direcionado qual veículo usar
+
+jQuery Masked Input
+validação da formatação da PLACA
+
+o numero do rso quando for finalizar a ficha deve já vir preenchido com o número da ficha de inicial
+
+
+--------------------------------------------------------------------------------------
+
+                                         VEICULOS
+tela cadastro depois que salva, exibe os registros e permanece na mesma tela, talvez devesse voltar para a lista
+ou alterar os botoes
+

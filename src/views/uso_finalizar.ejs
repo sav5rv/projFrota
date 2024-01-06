@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
           <div class="page-header">
-            <h4 class="text-center">Abrir ficha de Uso do Veículo</h4>
+            <h4 class="text-center">Finalizar ficha de Uso do Veículo</h4>
           </div>
 
           <div class="panel panel-default">
@@ -74,24 +74,24 @@
 
     
                               <div class="form-group">                            
-                                <label class="col-sm-4 control-label" for="hodometroInicio" id="label_inicio">Hodômetro Inicial</label>
+                                <label class="col-sm-4 control-label" for="hodometroFim" id="label_Fim">Hodômetro Final</label>
                                 <div class="col-sm-5">
-                                  <input value="<%= uso.hodometroInicio %>" type="number" class="form-control" id="hodometroInicio"
-                                    name="hodometroInicio" maxlength="6" minlength="6" placeholder="modelo: 000456123" required>
+                                  <input value="<%= uso.hodometroFim %>" type="number" class="form-control" id="hodometroFim"
+                                    name="hodometroFim" maxlength="6" minlength="6" placeholder="modelo: 000456123" required>
                                 </div>
                               </div>
 
                               <div class="form-group">
-                                <label class="col-sm-4 control-label" for="dataInicio" id="label_inicio">Data Inicial</label>
+                                <label class="col-sm-4 control-label" for="dataFim" id="label_Fim">Data Final</label>
                                 <div class="col-sm-5">
-                                  <input value="<%= uso.dataInicio %>" type="date" class="form-control" name="dataInicio" id="dataInicio">
+                                  <input value="<%= uso.dataFim %>" type="date" class="form-control" name="dataFim" id="dataFim">
                                 </div>
                               </div>
 
                             <div class="form-group">
-                              <label class="col-sm-4 control-label" for="horaInicio" id="label_inicio">Hora Inicial</label>
+                              <label class="col-sm-4 control-label" for="horaFim" id="label_Fim">Hora Final</label>
                               <div class="col-sm-5">
-                                <input value="<%= uso.horaInicio %>" type="time" class="form-control" name="horaInicio" id="horaInicio">
+                                <input value="<%= uso.horaFim %>" type="time" class="form-control" name="horaFim" id="horaFim">
                               </div>
                             </div>
 
