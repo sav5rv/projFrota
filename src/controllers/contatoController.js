@@ -6,7 +6,7 @@ exports.index = async (req, res) => {
 
   const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
                                     //  porque o método session.get() retorna um objeto 
-    console.log('LINHA 7 USO CONTROLLER ' + email);
+    console.log('LINHA 7 contato CONTROLLER ' + email);
 
   const login = new Login();
     const login_email = await login.buscaEmail(email);
@@ -16,11 +16,14 @@ exports.index = async (req, res) => {
     try {
       if(!login_email) res.render('contato_cad', {});
       
-      const str_login = JSON.stringify( login_email );
-      res.render('contato_cad', { contato : {}, str_login });
+      //const login_mail = JSON.stringify( login_email );
+      res.render('contato_cad', { 
+          contato : {}, 
+          login_email : login_email,
+      });
 
       // console.log("LINHA 15 CONTATO CONTROLLER " + login2);
-      // console.log("LINHA 16 CONTATO CONTROLLER " + str_login);
+      // console.log("LINHA 16 CONTATO CONTROLLER " + login_mail);
 
     } catch (e) {
         console.log(e);
@@ -129,8 +132,8 @@ exports.editIndex = async function(req, res) {
     const login = new Login();
     const login2 = await login.buscaLogins();
     
-    const str_login = JSON.stringify( login2 );
-    res.render('contato', { contato, str_login });
+    const login_mail = JSON.stringify( login2 );
+    res.render('contato_cad', { contato, login_mail });
 
   } catch (e) {
       console.log(e);
