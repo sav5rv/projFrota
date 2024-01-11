@@ -1,41 +1,59 @@
 <%- include('includes/head') %>
-<%- include('includes/nav') %>
+  <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-2"></div>
-    <div>
-      <h1 class="text-center">Login</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="page-header">
+            <h4 class="text-center">Login</h4>
+          </div>
 
-      <%- include('includes/messages') %>
 
-      <form class="form-login" action="/login/login" method="POST">
-        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
-        <div class="form-group">
-          <label>EMail</label>
-          <input type="email" class="form-control" name="email">
-        </div>
-        
-        <div class="form-group">
-          <label>Senha</label>
-          <input type="password" class="form-control" name="password">
-        </div>
-        
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Entrar</button>
+            <div class="panel-body">
 
-          <a class="btn btn-primary" href="/login/criar">Criar conta</a> <!-- link para voltar pag anterior -->
-        </div>
-      
-      </form>
+              <%- include('includes/messages') %>
 
-    </div>
-    <div class="col-lg-2"></div>
-  </div>
-</div>
+                  <form id="frm1" action="/login/login" method="POST" class="form-horizontal" novalidate="novalidate">
 
-<%- include('includes/footer') %>
+
+                          <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="email">EMail</label>
+                            <div class="col-sm-5">
+                              <input type="email" name="email" id="email" class="form-control" required>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="senha">Senha</label>
+                            <div class="col-sm-5">
+                              <input type="password" name="password" id="password" class="form-control" required>
+                            </div>
+                          </div>
+            </div> <!-- FIM PANEL-BODY -->
+
+
+                      <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <button type="reset" class="btn btn-primary">Cancelar</button>
+                        <a class="btn btn-primary" href="/login/criar">Criar conta</a> <!-- link para voltar pag anterior -->
+                        <a class="btn btn-primary" href="/login/esqueci">Esqueci a Senha</a>
+                      </div>
+                  </form>
+
+        </div> <!-- FIM COL-SM-8 -->
+      </div> <!-- FIM ROW -->
+    </div> <!-- FIM CONTAINER -->
+
+
+        <%- include('includes/footer') %>
+
+          <script type="text/javascript" src="/js/validaCampoLogin.js"></script>
+
+
 
 </body>
 </html>

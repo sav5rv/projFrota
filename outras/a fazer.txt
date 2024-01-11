@@ -67,6 +67,10 @@ barra do rodapé centralizar os elementos
                                         LOGINS
 verificar se o sistema está logado e avisar ao usuario
 
+definir qtd caracter do campo senha
+
+criar a função esqueci a senha
+
 ------------------------------------------------------------------------
 
                                      USUÁRIOS

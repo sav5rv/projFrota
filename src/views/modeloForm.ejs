@@ -1,0 +1,61 @@
+<%- include('includes/head') %>
+  <%- include('includes/nav') %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="page-header">
+            <h4 class="text-center">TITULO</h4>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                TITULO
+            </div>
+
+            <div class="panel-body">
+
+              <%- include('includes/messages') %>
+
+                  <form id="frm1" action="/uso/register" method="POST" class="form-horizontal" novalidate="novalidate">
+
+
+                          <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="email">Email do usuário</label>
+                            <div class="col-sm-5">
+                              <input type="email" name="email" id="email" class="form-control" value="" readonly>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="rso">RSO número</label>
+                            <div class="col-sm-5">
+                              <input type="number" name="rso" id="rso" class="form-control" value="" maxlength="6" minlength="6" placeholder="modelo: 000456" pattern="[A-Z]{3}[A-Z0-9]{4}" required>
+                            </div>
+                          </div>
+            </div> <!-- FIM PANEL-BODY -->
+          </div> <!-- FIM PANEL-DEFAULT -->
+
+                          <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="reset" class="btn btn-primary">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="myFunction()">Try it</button>
+                          </div>
+                      </form>
+                      <p id="demo">A Paragraph</p>
+        </div> <!-- FIM COL-SM-8 -->
+      </div> <!-- FIM ROW -->
+    </div> <!-- FIM CONTAINER -->
+
+
+        <%- include('includes/footer') %>
+
+          <script type="text/javascript" src="/js/validaCampoUso.js"></script>
+
+
+
+</body>
+</html>

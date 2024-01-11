@@ -34,6 +34,10 @@ exports.index2 = (req, res) => {
   res.render('./teste01/index2.html');
   };
 
+  exports.modeloForm = (req, res) => {
+    res.render('modeloForm');
+    };  
+
 
 // exports.index2 = async(req, res) => {
 //   const contatos = await Contato.buscaContatos();
