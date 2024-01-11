@@ -22,12 +22,14 @@ route.get('/', homeController.index);
 
 
 // Rotas para o menu TESTE
-route.get('/teste01/index',     teste01Controller.index);
-//route.get('/teste01/criar',     teste01Controller.criar);
-//route.post('/teste01/register', teste01Controller.register);
-route.get('/teste01/dtTable',      teste01Controller.veiculo_lista);
-route.get('/modeloForm',     teste01Controller.modeloForm);
-route.get('/teste01/index2.html',     teste01Controller.index2);
+route.get('/teste01/index',             teste01Controller.index);
+//route.get('/teste01/criar',           teste01Controller.criar);
+//route.post('/teste01/register',       teste01Controller.register);
+route.get('/teste01/dtTable',           teste01Controller.veiculo_lista);
+route.get('/teste01/lista_placa',       veiculoController.lista_placa);
+route.get('/teste01/placa',       teste01Controller.placa);
+route.get('/modeloForm',                teste01Controller.modeloForm);
+route.get('/teste01/index2.html',       teste01Controller.index2);
 route.get('/index3.html');
 route.get('/index4.html');
 
@@ -58,13 +60,14 @@ route.get('/contato/lista_contato',     loginRequiredADM, contatoController.list
 // Rotas de veiculo
 
 route.get('/veiculo/veiculo_cad',              loginRequiredADM, veiculoController.index);
-route.post('/veiculo/register',          loginRequiredADM, veiculoController.register);
-route.get('/veiculo/delete/:id',         loginRequiredADM, veiculoController.delete);
-route.get('/veiculo/veiculo_lista',      loginRequiredADM, veiculoController.veiculo_lista);
-route.get('/veiculo/veiculo_lista/:id',  loginRequiredADM, veiculoController.editIndex);
-route.post('/veiculo/edit/:id',          loginRequiredADM, veiculoController.edit);
-route.get('/veiculo/lista_veiculo',      loginRequiredADM, veiculoController.lista_veiculo);
+route.post('/veiculo/register',                loginRequiredADM, veiculoController.register);
+route.get('/veiculo/delete/:id',               loginRequiredADM, veiculoController.delete);
+route.get('/veiculo/veiculo_lista',            loginRequiredADM, veiculoController.veiculo_lista);
+route.get('/veiculo/veiculo_lista/:id',        loginRequiredADM, veiculoController.editIndex);
+route.post('/veiculo/edit/:id',                loginRequiredADM, veiculoController.edit);
+route.get('/veiculo/lista_veiculo',            loginRequiredADM, veiculoController.lista_veiculo);
 route.get('/veiculo/teste_lista_veiculo/:rodas',      veiculoController.teste_lista_veiculo);
+// route.get('/veiculo/cbo_veiculo',      veiculoController.lista_placa);
 
 
 

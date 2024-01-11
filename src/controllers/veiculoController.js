@@ -20,6 +20,21 @@ exports.veiculo_lista = async(req, res) => {
 };
 
 
+exports.lista_placa = async(req, res) => {
+  const placa = await Veiculo.buscaPlaca();
+
+  try {
+    // estou enviando resposta de uma solicitação FETCH
+    res.send(placa);// não é um obj json = { renavan: '123456789', rodas: '4', _id: 652348bf0e056336b4e81bfa },{ renavan: '123006789', rodas: '4', _id: 65676e9864aa66fbd77ffa78 }              
+    console.log('LINHA 29 VEICULO CONTROLLER ' + placa);
+
+  } catch (e) {
+    console.log(e);
+    return res.render( '404');
+  }
+};
+
+
 exports.lista_veiculo = async(req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();
 

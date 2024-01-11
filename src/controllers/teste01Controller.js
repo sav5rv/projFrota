@@ -6,6 +6,12 @@ exports.index = (req, res) => {
   };
 
 
+  exports.placa = (req, res) => {
+    res.render('./teste01/lista_placa');
+    };
+
+
+
 exports.veiculo_lista = async(req, res) => {
   const veiculos = await Veiculo.buscaVeiculos();
 
