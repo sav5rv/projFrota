@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/> -->
 
     <title>Frota - Lista Placas</title>
   </head>
@@ -17,8 +17,24 @@
 
     <h1>página lista placa</h1>
     <p>teste</p>
-    <button id="btUm" onclick="lista_placa()">Listar Placas</button>
+    <p><button id="btUm" onclick="lista_placa()">Listar Placas</button></p>
+    <p><button id="btUm" onclick="lista_placa_2()">Listar Placas - 2</button></p>
+    <p><button id="btUm" onclick="lista_placa_3()">Listar Placas - 3</button></p>
     <p id="veiculo">local da lista</p>
+    <p>
+    <select type="" name="list" id="list">
+
+      <option selected> Escolher... </option>
+      <option>...</option>
+
+    </select>
+  </p>
+
+  <p>
+    <ul>
+      <li class="list">...</li>
+    </ul>
+  </p>
 
 
 
@@ -26,37 +42,88 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
     <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> -->
 
 
     <script>
-  let x = " ";
-      function lista_placa() {
-        const linhaPlaca = document.getElementById("veiculo");
-        alert("linha 39");
-        try {
-          fetch('/teste01/lista_placa')
-            .then(response => response.json())
-            .then(data => {
-              console.log(data);
-              x = data.placa;
-              // Atualiza o preço na página
-              linhaPlaca.innerHTML = data;
-              //return x;
-            })
-        } catch(error) {
-          console.log(error);
-          return res.send('Erro na requisição:', error);
-        }
+
+      async function lista_placa() {
+
+        const response = await fetch('/teste01/lista_placa');
+
+        const data = await response.json();
+
+        const select = document.querySelector("select"); //seleciona o primeiro elemento select que estiver presente no documento HTML - o seletor CSS é "select"
+
+        data.forEach((item) => {
+          const option = document.createElement("option");
+          option.value = item._id;
+          option.textContent = item.placa;
+
+          select.appendChild(option);
+        }); 
+
+        // outra forma de acessar os valores JSON (não carregou todos os itens)
+
+        // const options = data.map((item) => {
+        //   const option = document.createElement("option");
+        //   option.value = item._id;
+        //   option.textContent = item.placa;
+
+        //   return option;
+        // });
+
+        // select.appendChild(...options);
+
       };
 
-      console.log("linha 56 lista_placa" + x);  //não funcionou para eu pegar o valor de x
+      async function lista_placa_2() {
+
+        const response = await fetch('/teste01/lista_placa');
+
+        const data = await response.json();
+
+        const list = document.querySelector(".list"); //Seleciona o primeiro elemento dentro do documento HTML que possui a classe "list"
+
+        list.innerHTML = data.map((item) => `<li>${item._id}</li>`).join("");
+
+      }
+
 
 
     </script>
+
+
+<!-- <script>
+
+  async function lista_placa() {
+    try {
+
+    const linhaPlaca = document.getElementById("veiculo");
+    alert("linha 61");
+      fetch('/teste01/ista_placa')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          x = data.placa;
+          // Atualiza o preço na página
+          linhaPlaca.innerHTML = data;
+          //return x;
+    })
+    } catch(error) {
+      console.log(error);
+      return res.render('404');
+      // return res.send('Erro na requisição:', error);
+    }
+  };
+
+  console.log("linha 77 lista_placa" + x);  //não funcionou para eu pegar o valor de x
+
+
+</script>     -->
 
 
 
