@@ -16,11 +16,21 @@
   <body>
 
     <h1>página lista placa</h1>
+
     <p>teste</p>
+
     <p><button id="btUm" onclick="lista_placa()">Listar Placas</button></p>
     <p><button id="btUm" onclick="lista_placa_2()">Listar Placas - 2</button></p>
     <p><button id="btUm" onclick="lista_placa_3()">Listar Placas - 3</button></p>
-    <p id="veiculo">local da lista</p>
+    <p><button id="btUm" onclick="lista_placa_4()">Listar Placas - 4</button></p>
+    <p><button id="btUm" onclick="lista_placa_5()">Listar Placas - 5</button></p>
+
+    <p id="veiculo">local da lista 4</p>
+
+    <p><input type="text" id="input-nome"></p>
+
+    <span> <input type="text" id="input-nome-2"></span>
+
     <p>
     <select type="" name="list" id="list">
 
@@ -36,17 +46,7 @@
     </ul>
   </p>
 
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-    <!-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> -->
-
+  <p><input type="text" id="input-nome-5"></p>
 
     <script>
 
@@ -90,28 +90,71 @@
 
         list.innerHTML = data.map((item) => `<li>${item._id}</li>`).join("");
 
-      }
+      };
 
 
 
-    </script>
+      async function lista_placa_5() {
+
+        const endpoint = '/teste01/lista_placa';
+
+        const response = await fetch(endpoint);
+
+        const data = await response.json();
+
+        const input = document.querySelector('#input-nome-5');
+
+        input.value = data[1].placa; //somente especificando qual o registro [1], [2] que deu certo
+
+        console.log(data[1]); //somente especificando qual o registro que deu certo
+      };
 
 
-<!-- <script>
 
-  async function lista_placa() {
+      async function lista_placa_3() {
+
+        const endpoint = '/teste01/lista_placa';
+
+        const response = await fetch(endpoint);
+
+        const data = await response.json();
+
+        const input = document.querySelector('#input-nome');
+
+        const input2 = document.querySelector('#input-nome-2');
+
+        data.forEach((item) => {
+          input.textContent += item.placa + ", "; //o textContent não aceitou a informação
+        });
+
+        data.forEach((item) => {
+          input2.value += item.placa + ", ";
+          console.log('Linha 127 ' + item.placa);
+        });    
+      };      
+
+
+
+
+  async function lista_placa_4() {
     try {
+      let x = "A";
+      const linhaVeiculo = document.getElementById("veiculo");
 
-    const linhaPlaca = document.getElementById("veiculo");
-    alert("linha 61");
-      fetch('/teste01/ista_placa')
+      alert("linha 139");
+
+      //faz uma requisição GET para o endpoint
+      fetch('/teste01/lista_placa')
+
+      //se a requisição for bem-sucedida, o código irá retornar o corpo da resposta como um objeto JSON
         .then(response => response.json())
+
         .then(data => {
-          console.log(data);
-          x = data.placa;
-          // Atualiza o preço na página
-          linhaPlaca.innerHTML = data;
-          //return x;
+          console.log(data[2]); //tentei acrescentar mais informação como na linha 147, mas deu erro
+          x = data[1].placa;
+          console.log('linha 147 ' + x);
+          linhaVeiculo.innerHTML = data[1].placa;
+          
     })
     } catch(error) {
       console.log(error);
@@ -120,10 +163,10 @@
     }
   };
 
-  console.log("linha 77 lista_placa" + x);  //não funcionou para eu pegar o valor de x
+  console.log("linha 162 lista_placa" + x);
 
 
-</script>     -->
+</script>
 
 
 
