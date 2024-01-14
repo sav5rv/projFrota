@@ -75,12 +75,16 @@ Veiculo.buscaPorRodas = async function(rodas) {
   return veiculo;
 };
 
+
+
 // usado para testar o Fetch em teste01/lista_placa
 Veiculo.buscaPlaca = async function() {
-  // if(typeof rodas !== 'string') return;
-  const veiculo = await VeiculoModel.find( { }, { placa:1, cor:1 } );
+  const veiculo = await VeiculoModel.find( { }, { _id:0, placa:1, cor:2 } ); //Pesquisa que oculta o campo _id
+  
   return veiculo;
 };
+
+
 
 Veiculo.buscaVeiculos = async function() {
   const veiculos = await VeiculoModel.find()

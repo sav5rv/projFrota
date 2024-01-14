@@ -13,7 +13,7 @@
               <% if ( contato._id ) { %>
                 <h3 class="panel-title">Altere os campos abaixo para editar o cadastro do usuário.</h3>
               <% } else { %>
-                <h3 class="panel-title">Preencha os campos abaixo para cadastrar um usuário.</h3>
+                <h3 class="panel-title">Preencha abaixo para cadastrar um usuário.</h3>
               <% } %>
             </div>
 
@@ -35,6 +35,7 @@
                         <input type="email" class="form-control" name="email" id="email" required value="<%= contato.email %>" >
                       </div>
                     </div>
+                    
 
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="nome">Nome</label>
@@ -153,6 +154,128 @@
 
     <%- include('includes/footer') %>
       <script type="text/javascript" src="/js/validaCampoContato_Cad.js"></script>
+
+      <script>
+        async function lista_placa() {
+
+          const array_placa = [];
+
+          const endpoint = '/teste01/lista_placa';
+
+          const response = await fetch(endpoint);
+
+          const data = await response.json();
+
+          data.forEach((item) => {
+            const campo_placa = item.placa
+            array_placa.push(campo_placa);
+            // console.log('Linha 173 ' + campo_placa);            
+          });
+
+          $('#nome').click(function() {
+          // let x = [];
+          // x = lista_placa.call(this);
+          console.log(array_placa);
+        //   // O elemento que será usado como input
+          input:$("#nome").autocomplete({
+            source: array_placa
+            // autoSelectFirst : true,
+            // minLength:2,
+            // height: 300,
+          });
+        });
+        };
+        
+        lista_placa();
+
+        $(".my-element").click(function() {
+          // Chama a função myFunction() com o contexto do elemento HTML
+          myFunction.call(this);
+        });
+
+
+// chamar uma função dentro do JQUERY
+        // $("#nome").click(function() {
+        //   alert("Hello, world!");
+        // });
+
+
+
+
+        $('#nome').click(function() {
+          let x = [];
+          x = lista_placa.call(this);
+          console.log(x);
+        //   // O elemento que será usado como input
+          input:$("#nome").autocomplete({
+            source: x
+            // autoSelectFirst : true,
+            // minLength:2,
+            // height: 300,
+          });
+        });
+
+
+
+// retornando array vazio - a lista esta vazia ou espremida
+        // $(document).ready(function() {
+        //             //   // O elemento que será usado como input
+        //   input:$("#nome").autocomplete({
+        //     source: '/teste01/lista_placa',
+        //     autoSelectFirst : true,
+        //     minLength:2,
+        //     height: 300,
+        //   });
+        // });
+
+
+        //alert('linha 159');
+
+
+
+
+        $(document).ready(function() {
+          // A lista de opções que serão apresentadas
+          var x = ["Brasil", "EUA", "Canadá", "Argentina", "México"];
+
+          // O elemento que será usado como input
+          input:$("#email").autocomplete({
+            source: x
+          });            
+        });
+
+
+
+        // $( function() {
+        //   var availableTags = [
+        //   "ActionScript",
+        //   "AppleScript",
+        //   "Asp",
+        //   "BASIC",
+        //   "C",
+        //   "C++",
+        //   "Clojure",
+        //   "COBOL",
+        //   "ColdFusion",
+        //   "Erlang",
+        //   "Fortran",
+        //   "Groovy",
+        //   "Haskell",
+        //   "Java",
+        //   "JavaScript",
+        //   "Lisp",
+        //   "Perl",
+        //   "PHP",
+        //   "Python",
+        //   "Ruby",
+        //   "Scala",
+        //   "Scheme"
+        //   ];
+        //   $( "#email" ).autocomplete({
+        //     source: availableTags
+        //   });
+        // } );
+      </script>
 
 </body>
 </html>

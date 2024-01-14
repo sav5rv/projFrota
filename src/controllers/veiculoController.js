@@ -21,13 +21,16 @@ exports.veiculo_lista = async(req, res) => {
 
 
 exports.lista_placa = async(req, res) => {
-  const placa = await Veiculo.buscaPlaca();
+  const placa = await Veiculo.buscaPlaca(); //retorna um array de objetos JSON
 
   try {
     // estou enviando resposta de uma solicitação FETCH
-    res.send(placa);// não é um obj json = { renavan: '123456789', rodas: '4', _id: 652348bf0e056336b4e81bfa },{ renavan: '123006789', rodas: '4', _id: 65676e9864aa66fbd77ffa78 }              
-    console.log('LINHA 29 VEICULO CONTROLLER ' + placa);
+    const data = JSON.stringify( placa ); //converte o array de objetos placa em uma string JSON
+    //envia a string JSON
+    res.send(placa);// não é um obj json é uma string = { renavan: '123456789', rodas: '4', _id: 652348bf0e056336b4e81bfa },{ renavan: '123006789', rodas: '4', _id: 65676e9864aa66fbd77ffa78 }              
 
+    //console.log('LINHA 30 VEICULO CONTROLLER ' + placa);
+    //console.log('LINHA 31 VEICULO CONTROLLER ' + data);
   } catch (e) {
     console.log(e);
     return res.render( '404');
