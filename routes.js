@@ -26,7 +26,7 @@ route.get('/teste01/index',             teste01Controller.index);
 //route.get('/teste01/criar',           teste01Controller.criar);
 //route.post('/teste01/register',       teste01Controller.register);
 route.get('/teste01/dtTable',           teste01Controller.veiculo_lista);
-route.get('/teste01/lista_placa',       veiculoController.lista_placa);
+route.get('/teste01/lista_placa',       veiculoController.lista_placa); //Fetch usado em Contato_Cad
 route.get('/teste01/placa',             teste01Controller.placa);
 route.get('/modeloForm',                teste01Controller.modeloForm);
 route.get('/teste01/index2.html',       teste01Controller.index2);
@@ -36,12 +36,13 @@ route.get('/index4.html');
 
 
 // Rotas de login
-route.get('/login/index',     loginController.index);
-route.get('/login/criar',     loginController.criar); //chama a tela
-route.post('/login/register', loginController.register); // salva as informações no bc
-route.post('/login/login',    loginController.login);
-route.get('/login/logado',    loginController.logado);
-route.get('/login/logout',    loginController.logout);
+route.get('/login/index',       loginController.index);
+route.get('/login/criar',       loginController.criar); //chama a tela
+route.post('/login/register',   loginController.register); // salva as informações no bc
+route.post('/login/login',      loginController.login);
+route.get('/login/logado',      loginController.logado);
+route.get('/login/logout',      loginController.logout);
+route.get('/login/lista_email_login', loginController.lista_email_login); //Fetch usado em Contato_Cad
 
 
 

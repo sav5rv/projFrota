@@ -32,7 +32,7 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="email">EMail</label>
                       <div class="col-sm-5">
-                        <input type="email" class="form-control" name="email" id="email" required value="<%= contato.email %>" >
+                        <input type="email" name="email" id="email" class="form-control" required value="<%= contato.email %>" onfocus="lista_email_login()">
                       </div>
                     </div>
                     
@@ -40,7 +40,7 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="nome">Nome</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" name="nome" id="nome" required value="<%= contato.nome %>" >
+                        <input type="text" class="form-control" name="nome" id="nome" required value="<%= contato.nome %>" onfocus="lista_email_login()">
                       </div>
                     </div>
 
@@ -54,34 +54,11 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="tipoUsuario">Tipo de Usuario</label>
                       <div class="col-sm-5">
-                        <select <% if( contato.id ) { %>
-                          value="<%= contato.tipoUsuario %>"
-                            <% } else { %>
-                              value="<%= login_email.tipoUsuario %>"
-                                readonly
-                                <% } %>
-                                  type=""
-                                  class="form-control"
-                                  name="tipoUsuario"
-                                  id="tipoUsuario"
-                                  required >
-
-                                  <% if( contato.id ) { %>
-                                    <% if ( contato.tipoUsuario ) { %>
-                                      <option selected>
-                                        <%= contato.tipoUsuario %>
-                                      </option>
-                                      <% } else { %>
-                                        <option selected> Escolher... </option>
-                                        <% } %>
-                                          <% } else { %>
-                                            "<%= login_email.tipoUsuario %>"
-                                              <% } %>
-
-                                                <option>Administrador</option>
-                                                <option>Encarregado</option>
-                                                <option>Usuario</option>
-
+                        <select type="" name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= contato.tipoUsuario %>">
+                            <option selected> Escolher... </option>
+                            <option>Administrador</option>
+                            <option>Encarregado</option>
+                            <option>Usuario</option>
                         </select>
                       </div>
                     </div>
@@ -153,129 +130,8 @@
     </div><!-- fim container -->
 
     <%- include('includes/footer') %>
-      <script type="text/javascript" src="/js/validaCampoContato_Cad.js"></script>
+      <script type="text/javascript" src="/js/geral.js"></script>
 
-      <script>
-        async function lista_placa() {
-
-          const array_placa = [];
-
-          const endpoint = '/teste01/lista_placa';
-
-          const response = await fetch(endpoint);
-
-          const data = await response.json();
-
-          data.forEach((item) => {
-            const campo_placa = item.placa
-            array_placa.push(campo_placa);
-            // console.log('Linha 173 ' + campo_placa);            
-          });
-
-          $('#nome').click(function() {
-          // let x = [];
-          // x = lista_placa.call(this);
-          console.log(array_placa);
-        //   // O elemento que será usado como input
-          input:$("#nome").autocomplete({
-            source: array_placa
-            // autoSelectFirst : true,
-            // minLength:2,
-            // height: 300,
-          });
-        });
-        };
-        
-        lista_placa();
-
-        $(".my-element").click(function() {
-          // Chama a função myFunction() com o contexto do elemento HTML
-          myFunction.call(this);
-        });
-
-
-// chamar uma função dentro do JQUERY
-        // $("#nome").click(function() {
-        //   alert("Hello, world!");
-        // });
-
-
-
-
-        $('#nome').click(function() {
-          let x = [];
-          x = lista_placa.call(this);
-          console.log(x);
-        //   // O elemento que será usado como input
-          input:$("#nome").autocomplete({
-            source: x
-            // autoSelectFirst : true,
-            // minLength:2,
-            // height: 300,
-          });
-        });
-
-
-
-// retornando array vazio - a lista esta vazia ou espremida
-        // $(document).ready(function() {
-        //             //   // O elemento que será usado como input
-        //   input:$("#nome").autocomplete({
-        //     source: '/teste01/lista_placa',
-        //     autoSelectFirst : true,
-        //     minLength:2,
-        //     height: 300,
-        //   });
-        // });
-
-
-        //alert('linha 159');
-
-
-
-
-        $(document).ready(function() {
-          // A lista de opções que serão apresentadas
-          var x = ["Brasil", "EUA", "Canadá", "Argentina", "México"];
-
-          // O elemento que será usado como input
-          input:$("#email").autocomplete({
-            source: x
-          });            
-        });
-
-
-
-        // $( function() {
-        //   var availableTags = [
-        //   "ActionScript",
-        //   "AppleScript",
-        //   "Asp",
-        //   "BASIC",
-        //   "C",
-        //   "C++",
-        //   "Clojure",
-        //   "COBOL",
-        //   "ColdFusion",
-        //   "Erlang",
-        //   "Fortran",
-        //   "Groovy",
-        //   "Haskell",
-        //   "Java",
-        //   "JavaScript",
-        //   "Lisp",
-        //   "Perl",
-        //   "PHP",
-        //   "Python",
-        //   "Ruby",
-        //   "Scala",
-        //   "Scheme"
-        //   ];
-        //   $( "#email" ).autocomplete({
-        //     source: availableTags
-        //   });
-        // } );
-      </script>
 
 </body>
 </html>

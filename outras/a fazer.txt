@@ -87,6 +87,8 @@ uma saída seria direcionar o model_login para a Tb Contatos
 usuario ADM vai acessar a lista dos usuarios que se cadastraram no login, vai verificar qual cadastro falta completar
 atraves do menu lista e vai editar esse registro, por isso que temos que juntar as tblogin e tbcadastro
 
+eliminar a TABELA Contato, transferir tudo para a tb Login
+
 ------------------------------------------------------------------------------------
 
                                       FICHAS DE uso

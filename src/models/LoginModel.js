@@ -25,8 +25,6 @@ class Login {
     if(this.errors.length > 0) return;
     this.login = await LoginModel.findOne({ email: this.body.email });
 
-
-
     if(!this.login) {
       this.errors.push('Usuário não existe.');
       return;
@@ -37,7 +35,6 @@ class Login {
       this.login = null;
       return;
     }
-
   }
 
   
@@ -72,9 +69,10 @@ class Login {
 
     // A senha precisa ter entre 3 e 50
     if(this.body.password.length < 3 || this.body.password.length > 50) {
-      this.errors.push('A senha precisa ter entre 3 e 50 caracteres.');
+      this.errors.push('A senha precisa ter entre 8 e 16 caracteres.');
     }
   }
+
 
   cleanUp() {
     for(const key in this.body) {
@@ -82,6 +80,7 @@ class Login {
         this.body[key] = '';
       }
     }
+
 
     this.body = {
       email:       this.body.email,
@@ -92,11 +91,13 @@ class Login {
     };
   }
 
-  // sendo chamada em homeController
+
+  // sendo chamada em homeController para contar a qtd de registro para a pág index
+  // sendo chamado em contato_cad para a função Fetch Lista_Email_Login
   async buscaLogins() {
-    this.login = await LoginModel.find()
-      .sort({ criadoEm: -1 });
-      
+    this.login = await LoginModel.find({ }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4 } )
+      .sort({ nome: -1 });
+      //console.log('LINHA 99 LOGIN MODEL ' + this.login);
       // na classe temos que colocar oq será retornado
     return this.login
   };
@@ -104,8 +105,8 @@ class Login {
 
   // o buscar_o_email está vindo do USOcontrolle
   async buscaEmail(buscar_o_email) { 
-    this.login = await LoginModel.findOne({ email: buscar_o_email });
-    console.log('LINHA 106 LOGIN MODEL ' + buscar_o_email);
+    this.login = await LoginModel.findOne({ email: buscar_o_email }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4 });
+    console.log('LINHA 108 LOGIN MODEL ' + buscar_o_email);
     
     return this.login
   };
