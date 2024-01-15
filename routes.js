@@ -26,7 +26,6 @@ route.get('/teste01/index',             teste01Controller.index);
 //route.get('/teste01/criar',           teste01Controller.criar);
 //route.post('/teste01/register',       teste01Controller.register);
 route.get('/teste01/dtTable',           teste01Controller.veiculo_lista);
-route.get('/teste01/lista_placa',       veiculoController.lista_placa); //Fetch usado em Contato_Cad
 route.get('/teste01/placa',             teste01Controller.placa);
 route.get('/modeloForm',                teste01Controller.modeloForm);
 route.get('/teste01/index2.html',       teste01Controller.index2);
@@ -69,7 +68,7 @@ route.post('/veiculo/edit/:id',                loginRequiredADM, veiculoControll
 route.get('/veiculo/lista_veiculo',            loginRequiredADM, veiculoController.lista_veiculo);
 route.get('/veiculo/teste_lista_veiculo/:rodas',      veiculoController.teste_lista_veiculo);
 // route.get('/veiculo/cbo_veiculo',      veiculoController.lista_placa);
-
+route.get('/veiculo/lista_placa',       veiculoController.lista_placa); //Fetch usado em veiculo_cad
 
 
 

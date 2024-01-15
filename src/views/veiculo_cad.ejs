@@ -32,8 +32,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="placa">Placa</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.placa %>" type="text" class="form-control" id="placa"
-                                name="placa" maxlength="7" minlength="7" placeholder="modelo: EHP5H90" required>
+                              <input id="placa" name="placa" type="text" class="form-control" maxlength="7" minlength="7" value="<%= veiculo.placa %>" onclick="lista_placa()" placeholder="modelo: EHP5H90" required>
                             </div>
                           </div>
 
@@ -41,8 +40,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="renavan">Renavan</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.renavan %>" type="text" class="form-control" id="renavan"
-                                name="renavan" maxlength="9" minlength="9" placeholder="modelo: 000123789">
+                              <input name="renavan" id="renavan" type="number" class="form-control" value="<%= veiculo.renavan %>" onfocus="lista_placa()" maxlength="9" minlength="9" placeholder="modelo: 000123789">
                             </div>
                           </div>
 
@@ -77,8 +75,16 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="combustivel">Combustível</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.combustivel %>" type="text" class="form-control"
-                                id="combustivel" name="combustivel" maxlength="1" minlength="1">
+                              <select id="combustivel" name="combustivel" value="<%= veiculo.combustivel %>" class="form-control">
+                                <option value = "0" selected>. . .</option>
+                                <option value = "A/G" >Álcool e Gasolina</option>
+                                <option value = "A">Álcool</option>
+                                <option value = "G">Gasolina</option>
+                                <option value = "D">Diesel</option>
+                                <option value = "GNV">Gás Natural</option>
+                                <option value = "E">Elétrico</option>
+                                <option value = "H">Hibrido</option>
+                             </select>
                             </div>
                           </div>
 
@@ -86,8 +92,12 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="rodas">Qtd de Rodas</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.rodas %>" type="text" class="form-control" id="rodas"
-                                name="rodas" maxlength="1" minlength="1">
+                              <select type="number" id="rodas" name="rodas" value="<%= veiculo.rodas %>" class="form-control">
+                                <option value = "0" selected>. . . </option>
+                                <option value = "4" >4</option>
+                                <option value = "2">2</option>
+                                <option value = "3">3</option>
+                             </select>
                             </div>
                           </div>
 
@@ -118,7 +128,7 @@
 
         <%- include('includes/footer') %>
 
-          <script type="text/javascript" src="/js/validaCampoVeicCad.js"></script>
+          <script type="text/javascript" src="/js/geral.js"></script>
 
 
 

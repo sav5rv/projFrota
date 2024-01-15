@@ -12,10 +12,24 @@ $( document ).ready( function () {
                 email: {
 
                 },
+                placa: {
+                    required: true,
+                    //regex: [a-zA-Z]{3}[a-zA-Z0-9]{4}
+                    // message: 'O nome deve conter apenas letras.',
+                    // maxlength: 7,
+                    // minlength: 7,
+                    // regex: '[A-Z]{3}[A-Z0-9]{4}',
+                    // message: "erro"
+                },
             },
             messages: {
                 email: {
 
+                },
+                placa: {
+                    required: "Por favor preencha o campo",
+                    minlength: "Insira 7 caracteres",
+                    // regex: "erro"
                 },
             },
 
@@ -45,33 +59,50 @@ $( document ).ready( function () {
 
 //-----------------------------------------------------------------------
 
-// configurando o JQuery Autocomplete do contato_cad
+// configurando o JQuery Autocomplete do veiculo_cad
 async function lista_placa() {
 
     const array_placa = [];
-
-    const endpoint = '/teste01/lista_placa';
-
+    const endpoint = '/veiculo/lista_placa';
     const response = await fetch(endpoint);
-    console.log('linha 56 geral.js' + response);
     const data = await response.json();
-    console.log('linha 58 geral.js' + data);
+
     data.forEach((item) => {
       const campo_placa = item.placa
       array_placa.push(campo_placa);            
     });
 
-    // configurando o JQuery Autocomplete
+               // configurando o JQuery Autocomplete
     $(document).ready(function() {
       console.log(array_placa);
-      // O elemento que será usado como input
-      input:$("#nome").autocomplete({
-      source: array_placa
+              // O elemento que será usado como input
+      input:$("#placa").autocomplete({
+      source: array_placa,
         // autoSelectFirst : true,
-        // minLength:2,
-        // height: 300,
+              minLength:1,
+              height: 300,
       });
     });
+
+    let placa = document.getElementById('placa');
+    let renavan = document.getElementById('renavan');
+    let chassi = document.getElementById('chassi');
+    let prefixo = document.getElementById('prefixo');    
+    let hodometro = document.getElementById('hodometro');
+    let combustivel = document.getElementById('combustivel');
+    let rodas = document.getElementById('rodas');
+    let cor = document.getElementById('cor');    
+
+    const form_placa = data.find(( form_placa ) => form_placa.placa === placa.value);
+console.log(form_placa);
+    placa.value = form_placa.placa;
+    renavan.value = form_placa.renavan;
+    chassi.value = form_placa.chassi;
+    prefixo.value = form_placa.prefixo;
+    hodometro.value = form_placa.hodometro;
+    combustivel.value = form_placa.combustivel;
+    rodas.value = form_placa.rodas;
+    cor.value = form_placa.cor;
 };
   
 //lista_placa(); comando para chamar a função sem nenhuma ação anterior
