@@ -35,12 +35,14 @@ route.get('/index4.html');
 
 
 // Rotas de login
-route.get('/login/index',       loginController.index);
-route.get('/login/criar',       loginController.criar); //chama a tela
-route.post('/login/register',   loginController.register); // salva as informações no bc
-route.post('/login/login',      loginController.login);
-route.get('/login/logado',      loginController.logado);
-route.get('/login/logout',      loginController.logout);
+route.get('/login/index',             loginController.index);
+route.get('/login/criar',             loginController.criar); //chama a tela
+route.post('/login/register',         loginController.register); // salva as informações no bc
+route.post('/login/login',            loginController.login);
+route.get('/login/logado',            loginController.logado);
+route.get('/login/logout',            loginController.logout);
+
+//Fetch usado em veiculo_cad
 route.get('/login/lista_email_login', loginController.lista_email_login); //Fetch usado em Contato_Cad
 
 
@@ -58,17 +60,18 @@ route.get('/contato/lista_contato',     loginRequiredADM, contatoController.list
 
 
 // Rotas de veiculo
-
 route.get('/veiculo/veiculo_cad',              loginRequiredADM, veiculoController.index);
 route.post('/veiculo/register',                loginRequiredADM, veiculoController.register);
 route.get('/veiculo/delete/:id',               loginRequiredADM, veiculoController.delete);
 route.get('/veiculo/veiculo_lista',            loginRequiredADM, veiculoController.veiculo_lista);
-route.get('/veiculo/veiculo_lista/:id',        loginRequiredADM, veiculoController.editIndex);
+route.get('/veiculo/veiculo_lista/:id',        loginRequiredADM, veiculoController.editIndex); //usado no retorno do cad veiculo
 route.post('/veiculo/edit/:id',                loginRequiredADM, veiculoController.edit);
 route.get('/veiculo/lista_veiculo',            loginRequiredADM, veiculoController.lista_veiculo);
+
+//Fetch usado em veiculo_cad
 route.get('/veiculo/teste_lista_veiculo/:rodas',      veiculoController.teste_lista_veiculo);
-// route.get('/veiculo/cbo_veiculo',      veiculoController.lista_placa);
-route.get('/veiculo/lista_placa',       veiculoController.lista_placa); //Fetch usado em veiculo_cad
+// route.get('/veiculo/cbo_veiculo',                  veiculoController.lista_placa);
+route.get('/veiculo/lista_placa',                     veiculoController.lista_placa);
 
 
 
@@ -85,13 +88,13 @@ route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
 
 // Rotas de uso - utilização
-route.get('/uso/uso_abrir',     loginRequired, usoController.uso_abrir); //Abrir
-route.get('/uso/uso_finalizar',     loginRequired, usoController.uso_finalizar); //Finalizar
-route.post('/uso/register',     loginRequired, usoController.register);
-route.get('/uso/delete/:id',    loginRequired, usoController.delete);
-route.get('/uso/uso_lista',     loginRequired, usoController.uso_lista); //Listar
-route.get('/uso/index_uso/:id', loginRequired, usoController.editIndex);
-route.post('/uso/edit/:id',     loginRequired, usoController.edit);
+route.get('/uso/uso_abrir',             loginRequired, usoController.uso_abrir); //Abrir
+route.get('/uso/uso_finalizar/:id',     loginRequired, usoController.uso_finalizar); //Finalizar
+route.post('/uso/register',             loginRequired, usoController.register);
+route.get('/uso/delete/:id',            loginRequired, usoController.delete);
+route.get('/uso/uso_lista',             loginRequired, usoController.uso_lista); //Listar
+route.get('/uso/index_uso/:id',         loginRequired, usoController.editIndex);
+route.post('/uso/edit/:id',             loginRequired, usoController.edit);
 
 
 // Rotas rodapé

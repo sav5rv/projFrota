@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const VeiculoSchema = new mongoose.Schema({
   placa:       { type: String, required: true },
@@ -17,50 +16,72 @@ const VeiculoSchema = new mongoose.Schema({
 const VeiculoModel = mongoose.model('Veiculo', VeiculoSchema);
 
 function Veiculo(body) {
-  this.body = body;
+  this.body = body; //body é o obj JavaScript que esta vindo do cabeçalho da página e está sendo armazenado em um novo obj que é o this.body
   this.errors = [];
   this.veiculo = null;
 }
 
+
 Veiculo.prototype.register = async function() {
-  this.valida();
+  await this.valida();
+  await this.placaExists();
+  await this.renavanExists();
+
   if(this.errors.length > 0) return;
-  this.veiculo = await VeiculoModel.create(this.body);
+
+  this.veiculo = await VeiculoModel.create(this.body);  
 };
+
 
 Veiculo.prototype.valida = function() {
   this.cleanUp();
-
-  // Validação
   if(!this.body.placa) this.errors.push('Placa é um campo obrigatório.');
+
 };
+
+Veiculo.prototype.renavanExists = async function() {
+  this.renavan = await VeiculoModel.findOne({ renavan: this.body.renavan });
+  if(this.renavan) this.errors.push('Renavan já cadastrado.');
+};
+
+
+Veiculo.prototype.placaExists = async function() {
+  this.placa = await VeiculoModel.findOne({ placa: this.body.placa });
+  if(this.placa) this.errors.push('Placa já cadastrada.');
+};
+
 
 Veiculo.prototype.cleanUp = function() {
-  for(const key in this.body) {
-    if(typeof this.body[key] !== 'string') {
-      this.body[key] = '';
-    }
-  }
+    for(const key in this.body) {
+      if(typeof this.body[key] !== 'string') {
+        this.body[key] = '';
+      }
+    }; 
+    
 
-  this.body = {
-    placa:       this.body.placa,
-    renavan:     this.body.renavan,
-    chassi:      this.body.chassi,
-    prefixo:     this.body.prefixo,
-    hodometro:   this.body.hodometro,
-    combustivel: this.body.combustivel,
-    rodas:       this.body.rodas,
-    cor:         this.body.cor,
+    this.body = {
+      placa:       this.body.placa.toUpperCase().replace(' ', ''),
+      renavan:     this.body.renavan,
+      chassi:      this.body.chassi,
+      prefixo:     this.body.prefixo.toUpperCase().replace(' ', ''),
+      hodometro:   this.body.hodometro,
+      combustivel: this.body.combustivel.toUpperCase().replace(' ', ''),
+      rodas:       this.body.rodas,
+      cor:         this.body.cor.toUpperCase().replace(' ', ''),
 
-  };
+    };
 };
+
 
 Veiculo.prototype.edit = async function(id) {
   if(typeof id !== 'string') return;
+
   this.valida();
   if(this.errors.length > 0) return;
+
   this.veiculo = await VeiculoModel.findByIdAndUpdate(id, this.body, { new: true });
 };
+
 
 // Métodos estáticos
 Veiculo.buscaPorId = async function(id) {
@@ -69,6 +90,7 @@ Veiculo.buscaPorId = async function(id) {
   return veiculo;
 };
 
+
 Veiculo.buscaPorRodas = async function(rodas) {
   // if(typeof rodas !== 'string') return;
   const veiculo = await VeiculoModel.find( { rodas: rodas }, { renavan:1, rodas:1 } );
@@ -76,22 +98,21 @@ Veiculo.buscaPorRodas = async function(rodas) {
 };
 
 
-
 // usado para testar o Fetch em teste01/lista_placa
 Veiculo.buscaPlaca = async function() {
   const veiculo = await VeiculoModel.find({ }, { _id:0 } ) //Pesquisa que oculta o campo _id
-  .sort({ placa: -1 });
-  
+    .sort({ placa: -1 });  
   return veiculo;
 };
 
 
 
 Veiculo.buscaVeiculos = async function() {
-  const veiculos = await VeiculoModel.find()
+  const veiculos = await VeiculoModel.find( )
     .sort({ criadoEm: -1 });
   return veiculos;
 };
+
 
 Veiculo.delete = async function(id) {
   if(typeof id !== 'string') return;

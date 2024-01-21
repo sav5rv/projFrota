@@ -32,7 +32,11 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="placa">Placa</label>
                             <div class="col-sm-5">
-                              <input id="placa" name="placa" type="text" class="form-control" maxlength="7" minlength="7" value="<%= veiculo.placa %>" onclick="lista_placa()" placeholder="modelo: EHP5H90" required>
+                              <% if(veiculo._id) { %>
+                                <input id="placa" name="placa" type="text" class="form-control" maxlength="7" minlength="7" value="<%= veiculo.placa %>" onclick="lista_placa()" placeholder="XXX9X99" readonly>
+                              <% } else { %>
+                                <input id="placa" name="placa" type="text" class="form-control" maxlength="7" minlength="7" value="<%= veiculo.placa %>" onclick="lista_placa()" placeholder="XXX9X99" required>
+                              <% } %>
                             </div>
                           </div>
 
@@ -40,7 +44,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="renavan">Renavan</label>
                             <div class="col-sm-5">
-                              <input name="renavan" id="renavan" type="number" class="form-control" value="<%= veiculo.renavan %>" onfocus="lista_placa()" maxlength="9" minlength="9" placeholder="modelo: 000123789">
+                              <input name="renavan" id="renavan" type="number" class="form-control" value="<%= veiculo.renavan %>" onfocus="lista_placa()" maxlength="9" minlength="9" placeholder="000000009">
                             </div>
                           </div>
 
@@ -48,8 +52,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="chassi">Chassi</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.chassi %>" type="text" class="form-control" id="chassi"
-                                name="chassi" maxlength="17" minlength="17" placeholder="modelo: 00012378900012317">
+                              <input value="<%= veiculo.chassi %>" type="text" class="form-control" id="chassi" name="chassi" maxlength="17" minlength="17" placeholder="000XXX000XXX00017">
                             </div>
                           </div>
 
@@ -57,8 +60,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="prefixo">Prefixo</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.prefixo %>" type="text" class="form-control" id="prefixo"
-                                name="prefixo" maxlength="6" minlength="6" placeholder="modelo: R05237" required>
+                              <input value="<%= veiculo.prefixo %>" type="text" class="form-control" id="prefixo" name="prefixo" maxlength="6" minlength="6" placeholder="X5000" required>
                             </div>
                           </div>
 
@@ -66,8 +68,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="hodometro">Hodometro</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.hodometro %>" type="text" class="form-control" id="hodometro"
-                                name="hodometro" maxlength="6" minlength="6" placeholder="modelo: 000123">
+                              <input value="<%= veiculo.hodometro %>" type="text" class="form-control" id="hodometro" name="hodometro" maxlength="6" minlength="6" placeholder="000006">
                             </div>
                           </div>
 
@@ -75,15 +76,15 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="combustivel">Combustível</label>
                             <div class="col-sm-5">
-                              <select id="combustivel" name="combustivel" value="<%= veiculo.combustivel %>" class="form-control">
-                                <option value = "0" selected>. . .</option>
-                                <option value = "A/G" >Álcool e Gasolina</option>
-                                <option value = "A">Álcool</option>
-                                <option value = "G">Gasolina</option>
-                                <option value = "D">Diesel</option>
-                                <option value = "GNV">Gás Natural</option>
-                                <option value = "E">Elétrico</option>
-                                <option value = "H">Hibrido</option>
+                              <select id="combustivel" name="combustivel" class="form-control">
+                                <option value = "<%= veiculo.combustivel %>" selected><%= veiculo.combustivel %></option>
+                                <option value = "Alcool e Gasolina" >Alcool e Gasolina</option>
+                                <option value = "Alcool"            >Alcool</option>
+                                <option value = "Gasolina"          >Gasolina</option>
+                                <option value = "Diesel"            >Diesel</option>
+                                <option value = "Gás Natural"       >Gás Natural</option>
+                                <option value = "Elétrico"          >Elétrico</option>
+                                <option value = "Hibrido"           >Hibrido</option>
                              </select>
                             </div>
                           </div>
@@ -92,9 +93,9 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="rodas">Qtd de Rodas</label>
                             <div class="col-sm-5">
-                              <select type="number" id="rodas" name="rodas" value="<%= veiculo.rodas %>" class="form-control">
-                                <option value = "0" selected>. . . </option>
-                                <option value = "4" >4</option>
+                              <select type="number" id="rodas" name="rodas" class="form-control">
+                                <option value = "<%= veiculo.rodas %>" selected><%= veiculo.rodas %></option>
+                                <option value = "4">4</option>
                                 <option value = "2">2</option>
                                 <option value = "3">3</option>
                              </select>
@@ -106,21 +107,17 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="cor">Cor</label>
                             <div class="col-sm-5">
-                              <input value="<%= veiculo.cor %>" type="text" class="form-control" id="cor" name="cor"
-                                minlength="4" placeholder="modelo: Azul">
+                              <input value="<%= veiculo.cor %>" type="text" class="form-control" id="cor" name="cor" minlength="4">
                             </div>
                           </div>                      
 
             </div>
           </div>
-
                           <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary">Salvar</button>
                             <button type="reset" class="btn btn-primary">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="myFunction()">Try it</button>
                           </div>
                       </form>
-                      <p id="demo">A Paragraph</p>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ utilizado:
 		 mongoDB 6.0.5
 		 mongosh 1.8.0
          bootStrap  V3.4
+         https://fontawesome.com/v4/icons/ V-4
 
  * - * - * - * - * - * - * - * - * - * - * - * - *		 
 
@@ -107,3 +108,8 @@ o numero do rso quando for finalizar a ficha deve já vir preenchido com o núme
 tela cadastro depois que salva, exibe os registros e permanece na mesma tela, talvez devesse voltar para a lista
 ou alterar os botoes
 
+qd entro na tela para editar, o botão cancelar não tem ação - já na tela de cadastro limpa os campos
+
+tratar para não repetir o mesmo valor no campo placa em edição e adição = OK
+
+tratar para não repetir o mesmo valor no campo renavan em adição = OK - FALTA edição

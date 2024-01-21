@@ -74,7 +74,7 @@ exports.teste_lista_veiculo = async(req, res) => {
 };
 
 
-exports.register = async(req, res) => {
+exports.register = async (req, res) => {
   try {
     const veiculo = new Veiculo(req.body);
     await veiculo.register();
@@ -86,13 +86,15 @@ exports.register = async(req, res) => {
     }
 
     req.flash('success', 'Veiculo registrado com sucesso.');
-    req.session.save(() => res.redirect(`/veiculo/veiculo_lista/${veiculo.veiculo._id}`));
+    req.session.save(() => res.redirect(`/veiculo/veiculo_lista/`));
     return;
+
   } catch(e) {
     console.log(e);
     return res.render('404');
   }
 };
+
 
 exports.editIndex = async function(req, res) {
   if(!req.params.id) return res.render('404');
@@ -103,7 +105,8 @@ exports.editIndex = async function(req, res) {
   res.render('veiculo_cad', { veiculo });
 };
 
-exports.edit = async function(req, res) {
+
+exports.edit = async function (req, res) {
   try {
     if(!req.params.id) return res.render('404');
     const veiculo = new Veiculo(req.body);
@@ -118,11 +121,13 @@ exports.edit = async function(req, res) {
     req.flash('success', 'Veiculo editado com sucesso.');
     req.session.save(() => res.redirect(`/veiculo/veiculo_lista/`));
     return;
+
   } catch(e) {
     console.log(e);
     res.render('404');
   }
 };
+
 
 exports.delete = async function(req, res) {
   if(!req.params.id) return res.render('404');

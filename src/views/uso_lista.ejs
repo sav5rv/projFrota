@@ -28,8 +28,9 @@
                 <th>Hodômetro Final</th>
                 <th>Data Final</th>
                 <th>Hora Final</th>
-                <th>Editar</th>
-                <th>Excluir</th>
+                <th title="Finalizar"><i class="text-warning fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true"></i></th>
+                <th title="Editar">   <i class="text-primary fa fa-pencil-square-o" aria-hidden="true"></i></th>
+                <th title="Excluir">  <i class="text-danger fa fa-trash-o" aria-hidden="true"></i></th>
             </tr>
         </thead>
           <% usos.forEach(uso => { %>
@@ -43,8 +44,12 @@
             <td><%= uso.hodometroFim %></td>
             <td><%= uso.dataFim %></td>
             <td><%= uso.horaFim %></td>
-            <td><a href="/uso/index_uso/<%= uso._id %>">Editar</a></td>
-            <td><a class="text-danger" href="/uso/delete/<%= uso._id %>">Excluir</a></td>
+            <td title="Finalizar"><a class="text-warning" href="/uso/uso_finalizar/<%= uso._id %>"><i class="fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true"></i></a></td>
+            <td title="Editar">   <a class="text-primary" href="/uso/index_uso/<%= uso._id %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+            <td title="Excluir">  <a class="text-danger" href="/uso/delete/<%= uso._id %>" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+            
+            
+            </a>
           </tr>
           <% }); %>
         </table>
