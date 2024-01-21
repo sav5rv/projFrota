@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "undefined/subscriptions/05066999-8652-4446-bc3f-29a6a4e3d1c7/resourceGroups/01-teste_group/providers/Microsoft.Web/sites/AppContFrota",
-    "appService.deploySubpath": "."
-}
