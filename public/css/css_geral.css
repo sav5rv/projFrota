@@ -1,11 +1,25 @@
 body {
-    padding-top: 60px;
-    padding-bottom: 20px;
+    padding-top: 100px;
+    padding-bottom: 30px;
   }
   
   .navbar {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
+
+  .nav {
+    margin-bottom: 5px;
+  }
+
+#footer-1 {
+  background-color: #c6d128;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}  
+
+.fa {
+  color: #fc0303;
+}
 
 #label_inicio {
   color: blue;
@@ -16,17 +30,17 @@ body {
 }
 
 @media (min-width: 400px) {
-  .nav {
+  /* .nav {
     background-color: red;
-  }
+  } */
 
-  .navbar-default {
+  /* .navbar-default {
     background-color: aqua;
-  }
+  } */
 
-  .navbar {
+  /* .navbar {
     background-color: chartreuse;
-  }
+  } */
 
-  #nav-bar-right
+  
 }
