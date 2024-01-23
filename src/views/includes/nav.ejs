@@ -8,16 +8,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">
-            <img alt="Brand" src="/img/favicon.ico">
+          <a class="navbar-brand" href="/">
+            <img alt="Início" src="/img/favicon.ico">
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="/" >Início</a></li>
+            <li class=""><a href="/" >Início</a></li>
 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true"></i>&nbsp;TeSTaR <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-cog fa-spin fa-1x fa-fw cor_icone" aria-hidden="true"></i>&nbsp;TeSTaR <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="../teste01/dtTable"    >DataTable</a></li>
                 <li><a href="../teste01/index"      >consulta Fetch</a></li>
@@ -32,7 +32,7 @@
             </li>
 
             <li class="dropdown">
-              <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;Usuários <span class="caret"></span></a>
+              <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user-o cor_icone" aria-hidden="true"></i>&nbsp;Usuários <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/contato/index"        >Cadastrar</a></li>
                 <li><a href="/contato/contato_lista">Listar</a></li>
@@ -41,7 +41,7 @@
             </li>
 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-car" aria-hidden="true"></i>&nbsp;Veículos <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-car cor_icone" aria-hidden="true"></i>&nbsp;Veículos <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/veiculo/veiculo_cad"   >Cadastrar</a></li>
                 <li><a href="/veiculo/veiculo_lista" >Listar</a></li>
@@ -50,7 +50,7 @@
             </li>
 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;Despesas <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-usd cor_icone" aria-hidden="true"></i>&nbsp;Despesas <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/despesa/index"        >Cadastrar</a></li>
                 <li><a href="/despesa/despesa_lista">Listar</a></li>
@@ -58,7 +58,7 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag" aria-hidden="true"></i> &nbsp;Ficha de Uso <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-hashtag cor_icone" aria-hidden="true"></i> &nbsp;Ficha de Uso <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/uso/uso_abrir"     >Abrir</a></li>
                 <li><a href="/uso/uso_finalizar" >Finalizar</a></li>
@@ -69,22 +69,16 @@
 
             <% if(user) { %>
               <li>
-                <a href="/login/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;SAIR</a>
+                <a href="/login/logout"><i class="fa fa-sign-out" aria-hidden="true cor_icone"></i>&nbsp;SAIR</a>
               </li>
             <% } else { %>
               <li>
-                <a href="/login/index"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;ENTRAR</a>
+                <a href="/login/index"><i class="fa fa-sign-in" aria-hidden="true cor_icone"></i>&nbsp;ENTRAR</a>
               </li>
               <% } %>
 
 
           </ul>
-          <!-- <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
-          </ul> -->
-
 
         </div><!--/.nav-collapse -->
       </div>

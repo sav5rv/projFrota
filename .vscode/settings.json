@@ -2,5 +2,7 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/05066999-8652-4446-bc3f-29a6a4e3d1c7/resourceGroups/NetworkWatcherRG/providers/Microsoft.Web/sites/appfrota",
+    "appService.deploySubpath": "."
 }

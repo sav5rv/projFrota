@@ -1,14 +1,11 @@
-body {
-    padding-top: 100px;
-    padding-bottom: 30px;
-  }
-  
-  .navbar {
-    margin-bottom: 5px;
-  }
+/* . = representa Classe
+   # = representa Id
+*/
 
-  .nav {
-    margin-bottom: 5px;
+
+body {
+    padding-top: 40px;
+    padding-bottom: 30px;
   }
 
 #footer-1 {
@@ -17,8 +14,12 @@ body {
   padding-bottom: 10px;
 }  
 
-.fa {
-  color: #fc0303;
+.espaco_linha {
+  padding-top: 2.5px; /*está separando no rodapé as linhas das palavras*/
+}
+
+.cor_icone {
+  color: #fc03037e;
 }
 
 #label_inicio {
@@ -29,18 +30,11 @@ body {
   color: blue;
 }
 
-@media (min-width: 400px) {
-  /* .nav {
-    background-color: red;
-  } */
-
-  /* .navbar-default {
-    background-color: aqua;
-  } */
-
-  /* .navbar {
-    background-color: chartreuse;
-  } */
+@media (min-width: 768px) {  /*não funcionou*/
+  .container {
+    width: 820px;
+    font-size: 18;
+  }
 
   
 }
