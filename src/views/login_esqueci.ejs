@@ -1,0 +1,74 @@
+<%- include('includes/head') %>
+  <%- include('includes/nav') %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="page-header">
+            <h4 class="text-center">Alterar Senha</h4>
+          </div>
+
+
+
+            <div class="panel-body">
+
+              <%- include('includes/messages') %>
+
+                  <form id="frm1" action="/login/esqueci_senha" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
+
+
+                          <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="email">EMail</label>
+                            <div class="col-sm-5">
+                              <input type="email" name="email" id="email" class="form-control" >
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="re">RE</label>
+                            <div class="col-sm-5">
+                              <input type="number" name="re" id="re" class="form-control" value="<%=  %>">
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="password">Senha Antiga</label>
+                            <div class="col-sm-5">
+                              <input type="password" name="password" id="password" class="form-control" required minlength="3" maxlength="16">
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="senhaNova">Senha Nova</label>
+                            <div class="col-sm-5">
+                              <input type="password" name="senhaNova" id="senhaNova" class="form-control" required minlength="3" maxlength="16">
+                            </div>
+                          </div>
+            </div> <!-- FIM PANEL-BODY -->
+
+
+                      <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                        <button type="reset" class="btn btn-primary">Cancelar</button>
+                      </div>
+                  </form>
+
+        </div> <!-- FIM COL-SM-8 -->
+      </div> <!-- FIM ROW -->
+    </div> <!-- FIM CONTAINER -->
+
+
+        <%- include('includes/footer') %>
+
+          <script type="text/javascript" src="/js/validaCampoLogin.js"></script>
+
+
+
+</body>
+</html>

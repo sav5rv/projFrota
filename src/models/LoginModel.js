@@ -20,6 +20,9 @@ class Login {
     this.login = null;
   }
 
+
+
+
   async log() {
     this.valida();
     if(this.errors.length > 0) return;
@@ -37,6 +40,9 @@ class Login {
     }
   }
 
+
+
+
   
   async register() {
     this.valida();
@@ -46,10 +52,12 @@ class Login {
       if(this.errors.length > 0) return;
 
     const salt = bcryptjs.genSaltSync();
-      this.body.password = bcryptjs.hashSync(this.body.password, salt);
+      password = bcryptjs.hashSync(password, salt);
 
     this.login = await LoginModel.create(this.body);
   }
+
+
 
   
 
@@ -60,6 +68,38 @@ class Login {
 
 
 
+
+
+  // o esqueci_senha está vindo do LOGINcontrolle
+  async esqueci_senha( email, password, re, senhaNova ) {
+        
+    if(this.login = await LoginModel.findOne({ email: email, re: re }, { })) {
+      if(bcryptjs.compareSync(password, this.login.password)){
+        
+        // const salt = bcryptjs.genSaltSync();
+        // senhaNova = bcryptjs.hashSync(senhaNova, salt);
+
+        this.login = await LoginModel.findByIdAndUpdate(this.login._id, senhaNova, { new: true });
+
+        console.log('LINHA 74 LOGIN MODEL ' + this.login);
+        return this.login;
+
+      } else {
+        this.login = null;
+      }
+    } else {
+      this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados acima.');
+      console.log('LINHA 82 LOGIN MODEL ' + this.login);
+      return;
+    };   
+  };
+
+
+
+
+
+
+
   valida() {
     this.cleanUp();
 
@@ -67,11 +107,14 @@ class Login {
     // O e-mail precisa ser válido
     if(!validator.isEmail(this.body.email)) this.errors.push('E-mail inválido');
 
-    // A senha precisa ter entre 3 e 50
-    if(this.body.password.length < 3 || this.body.password.length > 50) {
-      this.errors.push('A senha precisa ter entre 8 e 16 caracteres.');
+    // A senha precisa ter entre 3 e 16
+    if(this.body.password.length < 3 || this.body.password.length > 16) {
+      this.errors.push('A senha precisa ter entre 3 e 16 caracteres.');
     }
   }
+
+
+
 
 
   cleanUp() {

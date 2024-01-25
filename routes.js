@@ -37,8 +37,10 @@ route.get('/index4.html');
 // Rotas de login
 route.get('/login/index',             loginController.index);
 route.get('/login/criar',             loginController.criar); //chama a tela
-route.post('/login/register',         loginController.register); // salva as informações no bc
+route.post('/login/register',         loginController.register); // ENVIAR e salva as informações no bc
 route.post('/login/login',            loginController.login);
+route.get('/login/esqueci',           loginController.esqueci); // formulario esqueci senha ou alterar senha
+route.post('/login/esqueci_senha',     loginController.esqueci_senha); //ENVIAR inf para alterar o BD
 route.get('/login/logado',            loginController.logado);
 route.get('/login/logout',            loginController.logout);
 

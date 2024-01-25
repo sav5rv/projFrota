@@ -4,8 +4,8 @@
 
 
 body {
-    padding-top: 40px;
-    padding-bottom: 30px;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
 
 #footer-1 {
@@ -30,11 +30,16 @@ body {
   color: blue;
 }
 
-@media (min-width: 768px) {  /*não funcionou*/
+/* não funcionou  -  tem que tirar o Menu Testar para caber no 800px*/
+/* @media (min-width: 803px) {   
   .container {
-    width: 820px;
+    width: 900px;
     font-size: 18;
   }
 
-  
-}
+  .container>.navbar-collapse, .container>.navbar-header {
+      margin-right: 0;
+      margin-left: 0;
+  }
+
+} */
