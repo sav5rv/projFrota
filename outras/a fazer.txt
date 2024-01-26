@@ -53,9 +53,12 @@ teremos utilizadores (classificados como do tipo usuario) que não irão usar ne
 exceto para lançar despesas e usos (utilização) esses terão apenas cadastro de login, talvez não seja necessário
 ter o cadastro completo (em contato)
 
-----------------------------------------------------------
+---------------------------------------------------------------------------------
+                                  BARRA DE NAVEGAÇÃO
 
 barra de navegação sombra do ativado
+
+barra de navegação, retirei o link INICIO para ela ficar menor
 
 barra do rodapé centralizar os elementos = OK tirei o elemento NAV e coloquei DIV
 
@@ -113,3 +116,8 @@ qd entro na tela para editar, o botão cancelar não tem ação - já na tela de
 tratar para não repetir o mesmo valor no campo placa em edição e adição = OK
 
 tratar para não repetir o mesmo valor no campo renavan em adição = OK - FALTA edição
+
+-----------------------------------------------------------------------------------------------------------
+
+não consegui recuperar o Ip do usuario local
+não consegui recuperar o nome do usuario da máquina local

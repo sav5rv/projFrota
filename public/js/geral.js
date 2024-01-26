@@ -1,3 +1,81 @@
+
+
+  //comando para executar função após a pág ter sido carregada
+window.addEventListener("load", function() {    
+  //.....                    
+});
+
+window.addEventListener("load", capturaData());
+
+window.addEventListener("load", capturaGeo());
+window.addEventListener("load", capturaIP2());
+
+//----------------------------------------------------------------------------------
+
+
+function capturaData() {
+    const dateTimeFormat = new Intl.DateTimeFormat("pt-BR", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      });
+      
+    const data = new Date();      
+    const dataFormatada = dateTimeFormat.format(data);      
+    console.log(dataFormatada);
+    document.getElementById("criadoEm").innerHTML = dataFormatada;                    
+};
+
+
+//---------------------------------------------------------------------------------
+
+  
+
+
+function capturaIP(){
+    // https://pt.stackoverflow.com/questions/170188/como-obter-o-ip-do-usu%C3%A1rio-via-javascript
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.open("GET", 'http://meuip.com/api/meuip.php');
+    // xmlhttp.send();
+    // xmlhttp.onload = function(e) {
+    //   alert("Seu IP é: "+xmlhttp.response);
+    // }
+
+    $(function() {
+        $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+         function(json) {
+          //document.write("Meu IP público é: ", json.ip);
+          document.getElementById("ip").innerHTML = json.ip;
+         }
+        );
+       });    
+};
+
+//---------------------------------------------------------------------------------
+
+function capturaGeo(){ 
+    if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+
+    } else {
+            alert("O seu navegador não suporta Geolocalização.");
+    }
+    function showPosition(position){
+        //alert("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);  
+        console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+        document.getElementById("geo").innerHTML = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
+     }
+};
+
+
+
+//---------------------------------------------------------------------------------
+
+
+
 // FUNÇÃO TESTE CONTATO_CAD
 function myFunction() {
     document.getElementById("demo").innerHTML = "Paragraph changed.";
@@ -311,3 +389,17 @@ function enviarEmail() {
       }
     };
   }
+
+
+
+// ------------------------------------------------------------------------------------------------  
+
+
+function formataMoeda() {
+    let valor = document.getElementById("valor").value;
+    valor = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(valor)
+    document.getElementById("valor").value = valor;
+}
+
+// ------------------------------------------------------------------------------------------------ 
+

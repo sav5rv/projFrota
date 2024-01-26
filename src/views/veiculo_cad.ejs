@@ -29,6 +29,7 @@
 
                           <input type="hidden" name="_csrf" value=<%=csrfToken %>>
 
+
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="placa">Placa</label>
                             <div class="col-sm-5">
@@ -109,7 +110,7 @@
                             <div class="col-sm-5">
                               <input value="<%= veiculo.cor %>" type="text" class="form-control" id="cor" name="cor" minlength="4">
                             </div>
-                          </div>                      
+                          </div>
 
             </div>
           </div>
@@ -117,6 +118,9 @@
                             <button type="submit" class="btn btn-primary">Salvar</button>
                             <button type="reset" class="btn btn-primary">Cancelar</button>
                           </div>
+                          <p id="criadoEm">Dt/Hr atual</p>
+                          <p id="ip">IP atual</p>
+                          <p id="geo">Loc Geo atual</p>
                       </form>
         </div>
       </div>

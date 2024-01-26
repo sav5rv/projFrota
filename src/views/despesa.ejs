@@ -1,78 +1,138 @@
 <%- include('includes/head') %>
-<%- include('includes/nav') %>
+  <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="page-header">
+            <h4 class="text-center">CADASTRO DESPESA</h4>
+          </div>
 
-    <div class="col-lg-8">
-      <div class="text-center">
-        <img src="/img/despesa.jpg" style="width:80px;height:80px;">
-      
-        <h4>Despesas</h4>
-        <p>Preencha os campos para cadastrar uma despesa.</p>
-      </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                TITULO
+            </div>
 
-      <%- include('includes/messages') %>
+            <div class="panel-body">
 
-      <% if(despesa._id) { %>
-      <form action="/despesa/edit/<%= despesa._id %>" method="POST">
-      <% } else { %>
-      <form action="/despesa/register" method="POST">
-      <% } %>
-        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
-        <div class="form-group">
-          <label>E-Mail do usuário</label>
-          <input value="<%= despesa.email %>" type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-          <label>Placa</label>
-          <input value="<%= despesa.placa %>" type="text" class="form-control" name="placa">
-        </div>
-        <div class="form-group">
-          <label>Tipo de Despesa</label>
-          <input value="<%= despesa.tipoDespesa %>" type="text" class="form-control" name="tipoDespesa">
-        </div>
-        <div class="form-group">
-          <label>Hodômetro</label>
-          <input value="<%= despesa.hodometro %>" type="text" class="form-control" name="hodometro">
-        </div>
-        <div class="form-group">
-          <label>Data da realização</label>
-          <input value="<%= despesa.data %>" type="text" class="form-control" name="data">
-        </div>
-        <div class="form-group">
-          <label>Hora da realização</label>
-          <input value="<%= despesa.hora %>" type="text" class="form-control" name="hora">
-        </div>
-        <div class="form-group">
-          <label>Local da realização</label>
-          <input value="<%= despesa.local %>" type="text" class="form-control" name="local">
-        </div>
-        <div class="form-group">
-          <label>Unidade dos itens comprados</label>
-          <input value="<%= despesa.unidade %>" type="text" class="form-control" name="unidade">
-        </div>
-        <div class="form-group">
-          <label>Quantidade de itens</label>
-          <input value="<%= despesa.quantidade %>" type="text" class="form-control" name="quantidade">
-        </div>
-        <div class="form-group">
-          <label>Valor Total Gasto</label>
-          <input value="<%= despesa.valor %>" type="text" class="form-control" name="valor">
-        </div>
-        <div class="form-group">
-          <label>Observações</label>
-          <input value="<%= despesa.obs %>" type="text" class="form-control" name="obs">
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-      </form>
+              <%- include('includes/messages') %>
+
+                  <% if(despesa._id) { %>
+                    <form id="frm1" action="/despesa/edit/<%= despesa._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
+                  <% } else { %>
+                    <form id="frm1" action="/despesa/register" method="POST" class="form-horizontal" novalidate="novalidate">
+                  <% } %>
+
+                  <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="email">Email do usuário</label>
+                    <div class="col-sm-5">
+                      <input type="email" name="email" id="email" class="form-control" value="<%= despesa.email %>" readonly>
+                    </div>
+                  </div>
 
 
-    </div>
-    
-    <div class="col-lg-2"></div>
-  </div>
-</div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="placa">Placa</label>
+                    <div class="col-sm-5">
+                      <input type="text" name="placa" id="placa" class="form-control" maxlength="7" minlength="7" value="<%= despesa.placa %>" onclick="lista_placa()" placeholder="XXX9X99" required>
+                    </div>
+                  </div>
 
-<%- include('includes/footer') %>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="tipoDespesa">Tipo de Despesa</label>
+                    <div class="col-sm-5">
+                      <select type="text" id="tipoDespesa" name="tipoDespesa" class="form-control">
+                        <option value = "<%= despesa.tipoDespesa %>" selected><%= despesa.tipoDespesa %></option>
+                        <option value = "Pneu">Pneu</option>
+                        <option value = "Óleo">Óleo</option>
+                        <option value = "Mecânica">Mecânica</option>
+                     </select>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="hodometro">Hodômetro</label>
+                    <div class="col-sm-5">
+                      <input type="number" name="hodometro" id="hodometro" class="form-control" value="<%= despesa.hodometro %>" maxlength="6" minlength="6" placeholder="000006">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="data">Data da realização</label>
+                    <div class="col-sm-5">
+                      <input type="date" name="data" id="data" class="form-control" value="<%= despesa.data %>">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="hora">Hora da realização</label>
+                    <div class="col-sm-5">
+                      <input type="time" name="hora" id="hora" class="form-control" value="<%= despesa.hora %>">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="local">Local da realização</label>
+                    <div class="col-sm-5">
+                      <input type="text" name="local" id="local" class="form-control" value="<%= despesa.local %>">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="unidade">Unidade dos itens comprados</label>
+                    <div class="col-sm-5">
+                      <input type="text" name="unidade" id="unidade" class="form-control" value="<%= despesa.unidade %>">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="quantidade">Quantidade de itens</label>
+                    <div class="col-sm-5">
+                      <input type="number" name="quantidade" id="quantidade" class="form-control" value="<%= despesa.quantidade %>" maxlength="4">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="valor">Valor Total Gasto</label>
+                    <div class="col-sm-5">
+                      <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoeda();">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="obs">Observações</label>
+                    <div class="col-sm-5">
+                      <input type="text" name="obs" id="obs" class="form-control" value="<%= despesa.obs %>">
+                    </div>
+                  </div>
+            </div> <!-- FIM PANEL-BODY -->
+          </div> <!-- FIM PANEL-DEFAULT -->
+
+                    <div class="form-group text-center">
+                      <button type="submit" class="btn btn-primary">Salvar</button>
+                      <button type="reset" class="btn btn-primary">Cancelar</button>                            
+                    </div>
+                </form>
+
+        </div> <!-- FIM COL-SM-8 -->
+      </div> <!-- FIM ROW -->
+    </div> <!-- FIM CONTAINER -->
+
+
+        <%- include('includes/footer') %>
+
+          <script type="text/javascript" src="/js/geral.js"></script>
+
+</body>
+</html>

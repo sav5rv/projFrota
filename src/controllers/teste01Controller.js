@@ -37,12 +37,58 @@ exports.veiculo_lista = async(req, res) => {
 
 
 exports.index2 = (req, res) => {
-  res.render('./teste01/index2.html');
-  };
+  //res.render('./teste01/index2.html');
 
-  exports.modeloForm = (req, res) => {
-    res.render('modeloForm');
+// // Recupera o objeto `Request`.
+// const request = req;
+
+// // Recupera o cabeçalho `X-Forwarded-For`.
+// const headers = request.headers;
+
+// // Recupera o endereço IP do cliente original da solicitação.
+// const ip = headers["X-Forwarded-For"];
+
+// // Divide o valor do cabeçalho em um array de strings.
+// const ips = ip.split(",");
+
+// // Recupera o índice 0 do array para obter o endereço IP do cliente original da solicitação.
+// const ipOriginal = ips[0];
+
+// // Recupera o nome do usuário da máquina com o endereço IP especificado.
+// const nomeUsuario = window.getRemoteUser(ipOriginal);
+
+// // Imprime o nome do usuário no console.
+// console.log(nomeUsuario);
+
+// // Retorna uma resposta vazia.
+// res.send();
+
+
+// Recupera o objeto `Request`.
+const request = req;
+
+// Recupera o objeto `User`.
+const user = window.User;
+
+// Recupera o nome do usuário.
+const nomeUsuario = user.name;
+
+// Imprime o nome do usuário no console.
+console.log(nomeUsuario);
+
+// Retorna uma resposta vazia.
+res.send();
+
+};
+
+
+
+
+exports.modeloForm-1 = (req, res) => {
+    res.render('./modeloForm-1');
     };  
+
+
 
 
 // exports.index2 = async(req, res) => {
