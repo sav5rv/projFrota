@@ -74,6 +74,7 @@ exports.teste_lista_veiculo = async(req, res) => {
 };
 
 
+
 exports.register = async (req, res) => {
   try {
     const veiculo = new Veiculo(req.body);

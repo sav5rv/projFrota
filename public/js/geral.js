@@ -3,7 +3,7 @@ function myFunction() {
     document.getElementById("demo").innerHTML = "Paragraph changed.";
 };
 
-//-----------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 
 // JQuery Validate CAMPOS de CONTATO_CAD
 $( document ).ready( function () {
@@ -57,7 +57,7 @@ $( document ).ready( function () {
 } );
 
 
-//-----------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 // configurando o JQuery Autocomplete do veiculo_cad
 async function lista_placa() {
@@ -108,7 +108,7 @@ console.log(form_placa);
 //lista_placa(); comando para chamar a função sem nenhuma ação anterior
 
 
-//--------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
 
 
 // configurando o JQuery Autocomplete do campo email do contato_cad
@@ -167,7 +167,7 @@ console.log(form_email);
 //lista_email_login();
 
 
-//-----------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
 
 
 // preencher campo nome + re + tipoUsuario qd o campo email perder o foco
@@ -182,7 +182,7 @@ function completa_campo_contato_cad(email) {
 
 
 
-//-----------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
 
 
 //script de teste em contato_cad para o JQuery AutoComplete
@@ -277,6 +277,37 @@ function completa_campo_contato_cad(email) {
 // } );
 
 
-//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 
-
+function enviarEmail() {
+    // Obtém os dados do formulário
+    const nome     = document.getElementById("fale_nome").value;
+    const email    = document.getElementById("fale_email").value;
+    const assunto  = document.getElementById("fale_assunto").value;
+    const mensagem = document.getElementById("fale_msg").value;
+  
+    // Cria um objeto com os dados do formulário
+    const dados = {
+      nome: nome,
+      email: email,
+      assunto: assunto,
+      mensagem: mensagem,
+    };
+  
+    // Envia o email
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/wsavioli@proton.me");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(dados));
+  
+    // Verifica o status da resposta
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Email enviado com sucesso
+        alert("Email enviado com sucesso!");
+      } else {
+        // Erro ao enviar o email
+        alert("Ocorreu um erro ao enviar o email.");
+      }
+    };
+  }

@@ -49,41 +49,32 @@ exports.register = async function(req, res) {
 };
 
 
-exports.esqueci = async function(req,res) {
-  return res.render('login_esqueci');  
+exports.alterar = async function(req,res) {
+  return res.render('login_alterar');  
 };
 
 
-exports.esqueci_senha = async function(req,res) {
+exports.alterar_senha = async function(req,res) {
   try {
-    const obj = new Login(); //instanciando o obj X da classe login
+    const login = new Login(); //instanciando o obj login da classe Login
 
-    const email = req.body.email;
-    const re = req.body.re;
-    const password = req.body.password;
+    const email     = req.body.email;
+    const re        = req.body.re;
+    const password  = req.body.password;
     const senhaNova = req.body.senhaNova;
 
-    console.log(email, re, password);
+    await login.alterar_senha( email, password, re, senhaNova ); //chamando a função da classe
 
-    await obj.esqueci_senha( email, password, re ); //chamando a função da classe
+    if(login.errors.length > 0) {
+      req.flash('errors', login.errors);
+      req.session.save(() => res.redirect('back'));
+      return;
+    }
 
-    const array_de_obj = obj.login; //{ nome: 'Adm da Frota', email: '123@123.com' },{ nome: 'qwer', email: '3@3.com' },
-
-
-    console.log('LINHA 73 login CONTROLLER ' + array_de_obj); //está dando somente como object
-      
-    // res.render('esqueci', { array_de_obj });
-    return res.send("Teste");
-
-      //envia um array de objetos
-      //res.send(array_de_obj);
-      //se eu não usar login.login vai trazer o array errors junto
-      //login.login é o nome do array
-      //detro desse array temos objetos com duas propriedades
-      //uma com nome renavan e outra com nome rodas 
-      //{ renavan: '123456789', rodas: '4', _id: 652348bf0e056336b4e81bfa },{ renavan: '123006789', rodas: '4', _id: 65676e9864aa66fbd77ffa78 }              
-  
-      
+    req.flash('success', 'Senha alterada com sucesso.');
+    req.session.save(() => res.redirect(`/login/index/`));
+    return;
+    
   } catch (e) {
       console.log(e);
       return res.render( '404');
@@ -108,6 +99,7 @@ exports.lista_email_login = async function(req, res) {
       
       //envia um array de objetos
       res.send(array_de_obj);
+      
       //se eu não usar login.login vai trazer o array errors junto
       //login.login é o nome do array
       //detro desse array temos objetos com duas propriedades

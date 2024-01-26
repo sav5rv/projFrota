@@ -9,6 +9,7 @@ const LoginSchema = new mongoose.Schema({
   re:          { type: String, required: false, default: ''},
   tipoUsuario: { type: String, required: true },
   criadoEm:    { type: Date, default: Date.now },
+  alteradoEm:  { type: Date, default: '' },
 });
 
 const LoginModel = mongoose.model('Login', LoginSchema);
@@ -52,7 +53,7 @@ class Login {
       if(this.errors.length > 0) return;
 
     const salt = bcryptjs.genSaltSync();
-      password = bcryptjs.hashSync(password, salt);
+      this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
     this.login = await LoginModel.create(this.body);
   }
@@ -70,26 +71,35 @@ class Login {
 
 
 
-  // o esqueci_senha está vindo do LOGINcontrolle
-  async esqueci_senha( email, password, re, senhaNova ) {
+  // o alterar_senha está vindo do LOGINcontrolle
+  async alterar_senha( email, password, re, senhaNova ) {
         
     if(this.login = await LoginModel.findOne({ email: email, re: re }, { })) {
+      // console.log('LINHA 77 LOGIN MODEL ' + this.login);
+      // console.log('LINHA 78 LOGIN MODEL ' + this.login.password);
+      // console.log('LINHA 79 LOGIN MODEL ' + password);
+
       if(bcryptjs.compareSync(password, this.login.password)){
-        
-        // const salt = bcryptjs.genSaltSync();
-        // senhaNova = bcryptjs.hashSync(senhaNova, salt);
+        const id = this.login.id;
+                
+        const salt = bcryptjs.genSaltSync();
+        senhaNova = bcryptjs.hashSync(senhaNova, salt);
 
-        this.login = await LoginModel.findByIdAndUpdate(this.login._id, senhaNova, { new: true });
+        // console.log('LINHA 81 LOGIN MODEL ' + senhaNova);
+        // console.log('LINHA 82 LOGIN MODEL ' + id);
 
-        console.log('LINHA 74 LOGIN MODEL ' + this.login);
+        this.login = await LoginModel.findByIdAndUpdate(id, {password: senhaNova}, { new: true });
+        //if(this.login) this.sucess.push('Senha Alterada.');
+        // console.log('LINHA 84 LOGIN MODEL ' + this.login);
         return this.login;
 
       } else {
+        this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados informado.');
         this.login = null;
+        return this.login;
       }
     } else {
-      this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados acima.');
-      console.log('LINHA 82 LOGIN MODEL ' + this.login);
+      this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados informado.');
       return;
     };   
   };

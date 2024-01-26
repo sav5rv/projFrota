@@ -1,67 +1,69 @@
 <%- include('includes/head') %>
-<%- include('includes/nav') %>
+  <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
-
-    <div class="col-lg-8 my-3">
-      <h1 class="text-center">Fale Conosco</h1>
-      <form action="wsavioli@proton.me" method="POST" enctype="text/plain">
-        <div class="form-group">
-          <label for="nome">Qual o seu nome?</label>
-          <input type="text" class="form-control" id="nome" placeholder="Digite o seu nome">
-        </div>
-        <div class="form-group">
-          <label for="email">E o seu email?</label>
-          <input type="email" class="form-control" id="email" placeholder="nome@exemplo.com">
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Select de exemplo</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect2">Exemplo de select múltiplo</label>
-          <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="mensagem">E qual a sua Mensagem?</label>
-          <textarea class="form-control" id="mensagem" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="">Enviar mensagem</button>
-          <button type="reset" class="">Limpar campos</button>
-        </div>
-      </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="page-header">
+            <h4 class="text-center">FALE CONOSCO</h4>
+          </div>
 
 
 
-      
+            <div class="panel-body">
 
-    </div>
-    
-    <div class="col-lg-2"></div>
-  </div>
-</div>
+              <%- include('includes/messages') %>
 
-<%- include('includes/footer') %>
+                  <form id="frm1" action="/enviarEmail" enctype="text/plain" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
 
-<script>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="fale_nome">Qual o seu nome?</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="fale_nome" id="fale_nome" class="form-control" placeholder="Digite o seu nome" required >
+                      </div>
+                    </div>
 
-</script>
 
-    
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="fale_email">O seu email?</label>
+                      <div class="col-sm-5">
+                        <input type="email" name="fale_email" id="fale_email" class="form-control" placeholder="nome@exemplo.com">
+                      </div>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="fale_assunto">O seu assunto?</label>
+                      <div class="col-sm-5">
+                        <input type="text" name="fale_assunto" id="fale_assunto" class="form-control">
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="fale_msg">E qual a sua Mensagem?</label>
+                      <div class="col-sm-5">
+                        <textarea name="fale_msg" id="fale_msg" class="form-control" rows="3"></textarea>
+                      </div>
+                    </div>
+            </div> <!-- FIM PANEL-BODY -->
+
+
+                      <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                        <button type="reset" class="btn btn-primary">Cancelar</button>
+                      </div>
+                  </form>
+
+        </div> <!-- FIM COL-SM-8 -->
+      </div> <!-- FIM ROW -->
+    </div> <!-- FIM CONTAINER -->
+
+
+        <%- include('includes/footer') %>
+
+          <script type="text/javascript" src="/js/geral.js"></script>
+
 </body>
 </html>
