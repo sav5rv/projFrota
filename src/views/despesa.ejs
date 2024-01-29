@@ -28,7 +28,11 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="email">Email do usuário</label>
                     <div class="col-sm-5">
-                      <input type="email" name="email" id="email" class="form-control" value="<%= despesa.email %>" readonly>
+                      <% if(despesa._id) { %>
+                        <input type="email" name="email" id="email" class="form-control" value="<%= despesa.email %>" readonly>
+                      <% } else { %>
+                        <input type="email" name="email" id="email" class="form-control" value="<%= email %>" readonly>
+                      <% } %>
                     </div>
                   </div>
 
@@ -49,6 +53,7 @@
                         <option value = "Pneu">Pneu</option>
                         <option value = "Óleo">Óleo</option>
                         <option value = "Mecânica">Mecânica</option>
+                        <option value = "Mecânica">Vidraçaria</option>
                      </select>
                     </div>
                   </div>
@@ -106,7 +111,11 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="valor">Valor Total Gasto</label>
                     <div class="col-sm-5">
-                      <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoeda();">
+                      <% if(despesa._id) { %>
+                        <input type="text" name="valor" id="valor" class="form-control" value="<%= despesa.valor %>"onblur="formataMoeda();">                        
+                      <% } else { %>
+                        <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoeda();">
+                      <% } %>
                     </div>
                   </div>
 
@@ -121,7 +130,8 @@
 
                     <div class="form-group text-center">
                       <button type="submit" class="btn btn-primary">Salvar</button>
-                      <button type="reset" class="btn btn-primary">Cancelar</button>                            
+                      <button type="button" id="btnCancelar" name="btnCancelar"  class="btn btn-primary">Cancelar</a>
+                                                  
                     </div>
                 </form>
 

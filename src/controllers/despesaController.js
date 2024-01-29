@@ -1,10 +1,18 @@
 const Despesa = require('../models/DespesaModel');
 
+
+
 exports.index = (req, res) => {
+  const email = req.session.email;
+
   res.render('despesa', {
-    despesa: {}
+    despesa: {},
+    email: email,
   });
 };
+
+
+
 
 exports.despesa_lista = async(req, res) => {
   const despesas = await Despesa.buscaDespesas();
@@ -18,6 +26,9 @@ exports.despesa_lista = async(req, res) => {
       return res.render('404');
   }
 };
+
+
+
 
 exports.register = async(req, res) => {
   try {

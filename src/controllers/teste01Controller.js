@@ -64,28 +64,28 @@ exports.index2 = (req, res) => {
 // res.send();
 
 
-// Recupera o objeto `Request`.
-const request = req;
+// // Recupera o objeto `Request`.
+// const request = req;
 
-// Recupera o objeto `User`.
-const user = window.User;
+// // Recupera o objeto `User`.
+// const user = window.User;
 
-// Recupera o nome do usuário.
-const nomeUsuario = user.name;
+// // Recupera o nome do usuário.
+// const nomeUsuario = user.name;
 
-// Imprime o nome do usuário no console.
-console.log(nomeUsuario);
+// // Imprime o nome do usuário no console.
+// console.log(nomeUsuario);
 
-// Retorna uma resposta vazia.
-res.send();
+// // Retorna uma resposta vazia.
+// res.send();
 
 };
 
 
 
 
-exports.modeloForm-1 = (req, res) => {
-    res.render('./modeloForm-1');
+exports.modeloForm1 = (req, res) => {
+    res.render('./teste01/modeloForm-1');
     };  
 
 

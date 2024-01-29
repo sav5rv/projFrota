@@ -5,29 +5,29 @@ window.addEventListener("load", function() {
   //.....                    
 });
 
-window.addEventListener("load", capturaData());
+//window.addEventListener("load", capturaData());
 
-window.addEventListener("load", capturaGeo());
-window.addEventListener("load", capturaIP2());
+//window.addEventListener("load", capturaGeo());
+//window.addEventListener("load", capturaIP2());
 
 //----------------------------------------------------------------------------------
 
 
-function capturaData() {
-    const dateTimeFormat = new Intl.DateTimeFormat("pt-BR", {
-        day: "numeric",
-        month: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      });
+// function capturaData() {
+//     const dateTimeFormat = new Intl.DateTimeFormat("pt-BR", {
+//         day: "numeric",
+//         month: "numeric",
+//         year: "numeric",
+//         hour: "numeric",
+//         minute: "numeric",
+//         second: "numeric",
+//       });
       
-    const data = new Date();      
-    const dataFormatada = dateTimeFormat.format(data);      
-    console.log(dataFormatada);
-    document.getElementById("criadoEm").innerHTML = dataFormatada;                    
-};
+//     const data = new Date();      
+//     const dataFormatada = dateTimeFormat.format(data);      
+//     console.log(dataFormatada);
+//     document.getElementById("criadoEm").innerHTML = dataFormatada;                    
+// };
 
 
 //---------------------------------------------------------------------------------
@@ -71,6 +71,23 @@ function capturaGeo(){
 };
 
 
+
+//---------------------------------------------------------------------------------
+
+// comando do Btn Cancelar e Voltar nos formulários
+
+    const btnCancelar = document.querySelector("#btnCancelar");
+    const formulario = document.querySelectorAll("input");
+
+    btnCancelar.addEventListener("click", function() { // executada qd é clicado no btnCancelar
+
+        for (const campo of formulario) { // percorre todos os elementos input e atribui vazio
+            campo.value = "";
+        }
+        
+        history.back(); //voltar para página anterior
+
+    });  
 
 //---------------------------------------------------------------------------------
 

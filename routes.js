@@ -27,8 +27,8 @@ route.get('/teste01/index',             teste01Controller.index);
 //route.post('/teste01/register',       teste01Controller.register);
 route.get('/teste01/dtTable',           teste01Controller.veiculo_lista);
 route.get('/teste01/placa',             teste01Controller.placa);
-route.get('/teste01/modeloForm-1',                teste01Controller.modeloForm-1);
-route.get('/teste01/index2',       teste01Controller.index2);
+route.get('/teste01/modeloForm1',                teste01Controller.modeloForm1);
+route.get('/teste01/index2.ejs',       teste01Controller.index2);
 route.get('/index3.html');
 route.get('/index4.html');
 
