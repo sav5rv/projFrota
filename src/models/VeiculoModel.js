@@ -62,10 +62,10 @@ Veiculo.prototype.cleanUp = function() {
     this.body = {
       placa:       this.body.placa.toUpperCase().replace(' ', ''),
       renavan:     this.body.renavan,
-      chassi:      this.body.chassi,
+      chassi:      this.body.chassi.toUpperCase(),
       prefixo:     this.body.prefixo.toUpperCase().replace(' ', ''),
       hodometro:   this.body.hodometro,
-      combustivel: this.body.combustivel.toUpperCase().replace(' ', ''),
+      combustivel: this.body.combustivel,  //qd uso toUpperCase nessa linha o select não está retornando valor na função carregar placa
       rodas:       this.body.rodas,
       cor:         this.body.cor.toUpperCase().replace(' ', ''),
 
@@ -99,9 +99,9 @@ Veiculo.buscaPorRodas = async function(rodas) {
 
 
 // usado para testar o Fetch em teste01/lista_placa
-Veiculo.buscaPlaca = async function() {
+Veiculo.lista_placa = async function() {
   const veiculo = await VeiculoModel.find({ }, { _id:0 } ) //Pesquisa que oculta o campo _id
-    .sort({ placa: -1 });  
+    .sort({ placa: 1 });  
   return veiculo;
 };
 

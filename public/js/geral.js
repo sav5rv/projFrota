@@ -1,9 +1,9 @@
 
 
   //comando para executar função após a pág ter sido carregada
-window.addEventListener("load", function() {    
-  //.....                    
-});
+// window.addEventListener("load", function() {    
+//   //.....                    
+// });
 
 //window.addEventListener("load", capturaData());
 
@@ -154,15 +154,28 @@ $( document ).ready( function () {
 
 //------------------------------------------------------------------------------
 
+//somente FETCH em veículo placa
+async function buscar_placa() {
+
+    const endpoint = '/veiculo/lista_placa';
+    const response = await fetch(endpoint);
+    const dados_fetch = await response.json();
+
+    return dados_fetch;
+}
+
+
+//---------------------------------------------------------------------------------
+
 // configurando o JQuery Autocomplete do veiculo_cad
 async function lista_placa() {
 
     const array_placa = [];
-    const endpoint = '/veiculo/lista_placa';
-    const response = await fetch(endpoint);
-    const data = await response.json();
 
-    data.forEach((item) => {
+    const dados_fetch = await buscar_placa();
+    console.log(dados_fetch);
+
+    dados_fetch.forEach((item) => {
       const campo_placa = item.placa
       array_placa.push(campo_placa);            
     });
@@ -179,25 +192,26 @@ async function lista_placa() {
       });
     });
 
-    let placa = document.getElementById('placa');
-    let renavan = document.getElementById('renavan');
-    let chassi = document.getElementById('chassi');
-    let prefixo = document.getElementById('prefixo');    
-    let hodometro = document.getElementById('hodometro');
+    let placa       = document.getElementById('placa');
+    let renavan     = document.getElementById('renavan');
+    let chassi      = document.getElementById('chassi');
+    let prefixo     = document.getElementById('prefixo');    
+    let hodometro   = document.getElementById('hodometro');
     let combustivel = document.getElementById('combustivel');
-    let rodas = document.getElementById('rodas');
-    let cor = document.getElementById('cor');    
+    let rodas       = document.getElementById('rodas');
+    let cor         = document.getElementById('cor');    
 
-    const form_placa = data.find(( form_placa ) => form_placa.placa === placa.value);
+    const form_placa = dados_fetch.find(( form_placa ) => form_placa.placa === placa.value);
 console.log(form_placa);
-    placa.value = form_placa.placa;
-    renavan.value = form_placa.renavan;
-    chassi.value = form_placa.chassi;
-    prefixo.value = form_placa.prefixo;
-    hodometro.value = form_placa.hodometro;
+    placa.value       = form_placa.placa;
+    renavan.value     = form_placa.renavan;
+    chassi.value      = form_placa.chassi;
+    prefixo.value     = form_placa.prefixo;
+    hodometro.value   = form_placa.hodometro;
     combustivel.value = form_placa.combustivel;
-    rodas.value = form_placa.rodas;
-    cor.value = form_placa.cor;
+    rodas.value       = form_placa.rodas;
+    cor.value         = form_placa.cor;
+
 };
   
 //lista_placa(); comando para chamar a função sem nenhuma ação anterior
@@ -205,6 +219,25 @@ console.log(form_placa);
 
 //----------------------------------------------------------------------------------------------
 
+    // Preenchimento do select placa em USO_ABRIR
+
+    async function select_placa() {
+
+        const dados_fetch = await buscar_placa();
+
+        const select = document.getElementById("placa");
+        // O loop repetirá uma vez para cada elemento presente em dados_fetch
+        // Em cada iteração, o valor atual do elemento será atribuído à variável X
+        for (const x of dados_fetch) {
+            const option = document.createElement("option");
+            
+            option.value = x.placa;       //conteúdo do valor
+            option.textContent = x.placa; //conteúdo do texto
+            select.appendChild(option);
+        }
+    }
+
+//----------------------------------------------------------------------------------------------
 
 // configurando o JQuery Autocomplete do campo email do contato_cad
 async function lista_email_login() {
@@ -249,10 +282,6 @@ console.log(form_email);
         tipoUsuario.value = form_email.tipoUsuario;
 
         // if (nome.value and re.value and tipoUsuario.value != )
-
-
-
-
         
     } catch(e) {
         console.log(e);
@@ -265,15 +294,33 @@ console.log(form_email);
 //----------------------------------------------------------------------------------------------
 
 
-// preencher campo nome + re + tipoUsuario qd o campo email perder o foco
-function completa_campo_contato_cad(email) {
-    
+// configurando o JQuery Autocomplete do uso_abrir
+async function lista_campo_placa() {
+
+    const array_placa = [];
+    const endpoint = '/veiculo/lista_campo_placa';
+    const response = await fetch(endpoint);
+    const data = await response.json();
+
+    data.forEach((item) => {
+      const campo_placa = item.placa
+      array_placa.push(campo_placa);            
+    });
+
+               // configurando o JQuery Autocomplete
+    $(document).ready(function() {
+      console.log(array_placa);
+              // O elemento que será usado como input
+      input:$("#placa").autocomplete({
+      source: array_placa,
+        // autoSelectFirst : true,
+              minLength:1,
+              height: 300,
+      });
+    });
 
 
-    
-
-
-}
+};
 
 
 

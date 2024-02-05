@@ -52,6 +52,10 @@ exports.uso_lista = async(req, res) => {
   }
 };
 
+
+
+
+
 exports.register = async(req, res) => {
   try {
     const uso = new Uso(req.body);
@@ -72,14 +76,39 @@ exports.register = async(req, res) => {
   }
 };
 
+
+
+
+
 exports.editIndex = async function(req, res) {
   if(!req.params.id) return res.render('404');
 
   const uso = await Uso.buscaPorId(req.params.id);
   if(!uso) return res.render('404');
 
-  res.render('uso', { uso });
+  const login = new Login();
+
+    const login2 = await login.buscaEmail(req.params.email); 
+    const login_email = JSON.stringify( login2 );
+
+    console.log('USO CONTROLLER linha 93' + uso + '/n');
+    console.log('USO CONTROLLER linha 94' + login_email + '/n');
+    
+
+
+  // req.flash('success', 'Registro Cadastrado');
+  // req.session.save(() => res.redirect(`/uso/uso_lista/`));
+  // return;
+
+  // res.render('uso_abrir', { uso, login_email });
+  res.render('uso_abrir', {
+    uso : uso,
+    login_email : login_email,
+  });
 };
+
+
+
 
 exports.edit = async function(req, res) {
   try {
@@ -96,11 +125,16 @@ exports.edit = async function(req, res) {
     req.flash('success', 'Utilização editada com sucesso.');
     req.session.save(() => res.redirect(`/uso/index_uso/`));
     return;
+
   } catch(e) {
     console.log(e);
     res.render('404');
   }
 };
+
+
+
+
 
 exports.delete = async function(req, res) {
   if(!req.params.id) return res.render('404');

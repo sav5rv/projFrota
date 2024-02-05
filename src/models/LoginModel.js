@@ -156,10 +156,12 @@ class Login {
   };
 
 
+
+
   // o buscar_o_email está vindo do USOcontrolle
   async buscaEmail(buscar_o_email) { 
     this.login = await LoginModel.findOne({ email: buscar_o_email }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4 });
-    console.log('LINHA 108 LOGIN MODEL ' + buscar_o_email);
+    console.log('LINHA 164 LOGIN MODEL ' + buscar_o_email + '/n');
     
     return this.login
   };

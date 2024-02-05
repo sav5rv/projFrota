@@ -68,6 +68,11 @@ barra do rodapé centralizar os elementos = OK tirei o elemento NAV e coloquei D
 
 --------------------------------------------------------------------
 
+                                DESPESA 
+a virgula se digitada no campo moeda da erro
+
+----------------------------------------------------------------------
+
                                         LOGINS
 verificar se o sistema está logado e avisar ao usuario
 

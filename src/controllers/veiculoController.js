@@ -21,7 +21,7 @@ exports.veiculo_lista = async(req, res) => {
 
 
 exports.lista_placa = async(req, res) => {
-  const placa = await Veiculo.buscaPlaca(); //retorna um array de objetos JSON
+  const placa = await Veiculo.lista_placa(); //retorna um array de objetos JSON
 
   try {
     // estou enviando resposta de uma solicitação FETCH

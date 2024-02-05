@@ -95,8 +95,9 @@ route.get('/uso/uso_finalizar/:id',     loginRequired, usoController.uso_finaliz
 route.post('/uso/register',             loginRequired, usoController.register);
 route.get('/uso/delete/:id',            loginRequired, usoController.delete);
 route.get('/uso/uso_lista',             loginRequired, usoController.uso_lista); //Listar
+route.get('/uso/uso_lista/:id, email',         loginRequiredADM, usoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.get('/uso/index_uso/:id',         loginRequired, usoController.editIndex);
-route.post('/uso/edit/:id',             loginRequired, usoController.edit);
+route.post('/uso/edit/:id, email',             loginRequired, usoController.edit);
 
 
 // Rotas rodapé

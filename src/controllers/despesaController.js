@@ -41,9 +41,10 @@ exports.register = async(req, res) => {
       return;
     }
 
-    req.flash('success', 'Despesa registrada com sucesso.');
-    req.session.save(() => res.redirect(`/despesa/despesa_lista/${despesa.despesa._id}`));
+    req.flash('success', 'Despesa registrada com sucesso!');
+    req.session.save(() => res.redirect(`/despesa/despesa_lista`));
     return;
+
   } catch(e) {
     console.log(e);
     return res.render('404');
@@ -74,6 +75,7 @@ exports.edit = async function(req, res) {
     req.flash('success', 'Despesa editado com sucesso.');
     req.session.save(() => res.redirect(`/despesa/despesa_lista/`));
     return;
+
   } catch(e) {
     console.log(e);
     res.render('404');
