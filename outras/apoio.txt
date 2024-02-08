@@ -1,3 +1,12 @@
+USAR DOIS PARAMETROS PARA CONSULTA DINAMICA
+
+na ROTA:          route.get('/uso/uso_lista/:id/:email',  loginRequiredADM, usoController.editIndex);
+
+no formulario:    href="/uso/uso_lista/<%= uso._id %>/<%= uso.email %>"
+
+
+
+-------------------------------------------------------------------------------------------------
       <% if(contatos.length > 0) { %>
       <div>
         <table id="example" class="display" style="width:100%">

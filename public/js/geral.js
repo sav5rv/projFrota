@@ -117,6 +117,7 @@ $( document ).ready( function () {
                     // message: "erro"
                 },
             },
+            
             messages: {
                 email: {
 

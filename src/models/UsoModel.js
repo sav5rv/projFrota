@@ -65,12 +65,25 @@ Uso.prototype.edit = async function(id) {
   this.uso = await UsoModel.findByIdAndUpdate(id, this.body, { new: false, default: '' });
 };
 
+
+
+
+
 // Métodos estáticos
 Uso.buscaPorId = async function(id) {
   if(typeof id !== 'string') return;
+
+  // const email = this.body.email;
+console.log('LINHA 77 USO MODEL ' + id);
+  // const query = { id, email };
+
   const uso = await UsoModel.findById(id);
+
   return uso;
 };
+
+
+
 
 Uso.buscaUsos = async function() {
   const usos = await UsoModel.find()

@@ -11,7 +11,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <% if ( uso._id ) { %>
-                <h3 class="panel-title">Altere os campos abaixo.</h3>
+                <h3 class="panel-title">Editar os campos abaixo.</h3>
               <% } else { %>
                 <h3 class="panel-title">Preencha os campos abaixo.</h3>
               <% } %>
@@ -22,11 +22,13 @@
               <%- include('includes/messages') %>
 
                 <% if( uso._id ) { %>
-                  <form id="frm1" action="/uso/edit/<%= uso._id, uso.email %>" method="POST" class="form-horizontal" novalidate="novalidate">
+                  <form id="frm1" action="/uso/edit/<%= uso._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } else { %>
                   <form id="frm1" action="/uso/register" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } %>
-<%= console.log(login_email) %>
+
+<%= console.log('USO Abrir LINHA 29 ' + login2.nome) %>
+
                 <input type="hidden" name="_csrf" value=<%=csrfToken %>>
 
                 <div class="form-group">
@@ -35,7 +37,7 @@
                     <% if( uso._id ) { %>
                       <input value="<%= uso.email %>" type="email" class="form-control" id="email" name="email" readonly>
                     <% } else { %>
-                      <input value="<%= login_email.email %>" type="email" class="form-control" id="email" name="email" readonly>
+                      <input value="<%= login2.email %>" type="email" class="form-control" id="email" name="email" readonly>
                     <% } %>
                   </div>
                 </div>
@@ -44,14 +46,14 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="nome">Nome do usuário</label>
                   <div class="col-sm-5">
-                      <input value="<%= login_email.nome %>" type="text" class="form-control" id="nome" name="nome" readonly>
+                      <input value="<%= login2.nome %>" type="text" class="form-control" id="nome" name="nome" readonly>
                   </div>
                 </div>
                 
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="re">Reg Estatístico</label>
                   <div class="col-sm-5">
-                      <input value="<%= login_email.re %>" type="number" class="form-control" id="re" name="re" readonly>
+                      <input value="<%= login2.re %>" type="number" class="form-control" id="re" name="re" readonly>
                   </div>
                 </div>
 
@@ -65,9 +67,13 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="placa">Placa</label>
                   <div class="col-sm-5">
-                    <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
-                      <!-- a função select_placa está preenchendo o elemento select -->
-                   </select>
+                    <% if( uso._id ) { %>
+                      <select id="placa" name="placa" class="form-control" value="<%= uso.placa %>" onfocus="select_placa()">
+                    <% } else { %>
+                      <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                        <!-- a função select_placa está preenchendo o elemento select -->
+                     </select>
+                    <% } %>
                   </div>
                 </div>
 

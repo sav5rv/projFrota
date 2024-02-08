@@ -9,13 +9,13 @@ exports.uso_abrir = async(req, res) => {
     console.log('LINHA 7 USO CONTROLLER ' + email);
 
     const login       = new Login();
-    const login_email = await login.buscaEmail(email);
+    const login2 = await login.buscaEmail(email);
     
-    console.log('LINHA 10 USO CONTROLLER ' + login_email);
+    console.log('LINHA 10 USO CONTROLLER ' + login2);
 
   res.render('uso_abrir', {
     uso : {},
-    login_email : login_email,
+    login2 : login2,
   });
 };
 
@@ -39,6 +39,8 @@ res.render('uso_finalizar', {
 
 
 
+
+
 exports.uso_lista = async(req, res) => {
   const usos = await Uso.buscaUsos();
 
@@ -56,6 +58,7 @@ exports.uso_lista = async(req, res) => {
 
 
 
+
 exports.register = async(req, res) => {
   try {
     const uso = new Uso(req.body);
@@ -68,7 +71,7 @@ exports.register = async(req, res) => {
     }
 
     req.flash('success', 'Utilização registrada com sucesso.');
-    req.session.save(() => res.redirect(`/uso/index_uso/${uso.uso._id}`));
+    req.session.save(() => res.redirect(`/uso/uso_lista/`));
     return;
   } catch(e) {
     console.log(e);
@@ -80,32 +83,26 @@ exports.register = async(req, res) => {
 
 
 
+
+
 exports.editIndex = async function(req, res) {
   if(!req.params.id) return res.render('404');
 
-  const uso = await Uso.buscaPorId(req.params.id);
-  if(!uso) return res.render('404');
+  const id = req.params.id;
+
+  const uso = await Uso.buscaPorId(id);
+    if(!uso) return res.render('404');
 
   const login = new Login();
+    const login2 = await login.buscaEmail(uso.email); 
 
-    const login2 = await login.buscaEmail(req.params.email); 
-    const login_email = JSON.stringify( login2 );
-
-    console.log('USO CONTROLLER linha 93' + uso + '/n');
-    console.log('USO CONTROLLER linha 94' + login_email + '/n');
+    console.log('USO CONTROLLER linha 93 ' + uso + '/n');
+    console.log('USO CONTROLLER linha 94 ' + login2 + '/n');
     
-
-
-  // req.flash('success', 'Registro Cadastrado');
-  // req.session.save(() => res.redirect(`/uso/uso_lista/`));
-  // return;
-
-  // res.render('uso_abrir', { uso, login_email });
-  res.render('uso_abrir', {
-    uso : uso,
-    login_email : login_email,
-  });
+  res.render('uso_abrir', { uso, login2 });
 };
+
+
 
 
 
