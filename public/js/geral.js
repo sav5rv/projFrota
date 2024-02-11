@@ -102,6 +102,7 @@ function myFunction() {
 
 // JQuery Validate CAMPOS de CONTATO_CAD
 $( document ).ready( function () {
+    $("#hodometo").mask("999.999");
     $( "#frm1" ).validate( {
             rules: {
                 email: {

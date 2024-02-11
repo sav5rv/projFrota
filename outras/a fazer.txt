@@ -109,6 +109,8 @@ validação da formatação da PLACA
 
 o numero do rso quando for finalizar a ficha deve já vir preenchido com o número da ficha de inicial
 
+quando clico o btn cancelar está voltando com uma msg errada
+
 
 --------------------------------------------------------------------------------------
 

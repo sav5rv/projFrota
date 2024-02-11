@@ -12,7 +12,8 @@
 
     <!-- Jquery js -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    
+    <!-- <script type="text/javascript" src="js/jquery.maskedinput.min.js"/></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js" integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- javaScript js -->
     <script type="text/javascript" src="/js/index3.js"></script>
 
@@ -26,7 +27,15 @@
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>        
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>  
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#cpf").mask("999.999");
+            });
+            // https://awari.com.br/javascript-mascara-de-entrada/?utm_source=blog&utm_campaign=projeto+blog&utm_medium=Javascript:%20M%C3%A1scara%20de%20Entrada
+            // https://pt.stackoverflow.com/questions/51109/como-mascarar-um-input-no-html5
+        </script>        
 
 </head>
 
@@ -41,10 +50,24 @@
         <label for="email">E-Mail <span>(required)</span></label>
         <input id="email" type="email" name="email" required>
         </p>
+
+        <p>
+        <label for="cpf">TESTE <span>(required)</span></label>
+        <input id="cpf" type="text" name="cpf" maxlength="7" minlength="3">
+        </p>
+
+        <p>
+        <label for="cpf2">TESTE <span>(required)</span></label>
+        <input id="cpf2" type="text" name="cpf2" value="cpf">
+        </p>            
+
+
         <p>
         <input class="submit" type="submit" value="SUBMIT">
         </p>
         </form>
+
+        
     <!-- jQuery Validation For Input Groups end-->
 </body>
 

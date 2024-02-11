@@ -27,8 +27,6 @@
                   <form id="frm1" action="/uso/register" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } %>
 
-<%= console.log('USO Abrir LINHA 29 ' + login2.nome) %>
-
                 <input type="hidden" name="_csrf" value=<%=csrfToken %>>
 
                 <div class="form-group">
@@ -60,7 +58,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="rso">RSO número</label>
                   <div class="col-sm-5">
-                    <input value="<%= uso.rso %>" type="number" class="form-control" id="rso" name="rso" maxlength="4" minlength="4" placeholder="0004" required>
+                    <input value="<%= uso.rso %>" type="text" class="form-control" id="rso" name="rso" maxlength="5" minlength="4" placeholder="0004" required>
                   </div>
                 </div>
                 
@@ -68,7 +66,9 @@
                   <label class="col-sm-4 control-label" for="placa">Placa</label>
                   <div class="col-sm-5">
                     <% if( uso._id ) { %>
-                      <select id="placa" name="placa" class="form-control" value="<%= uso.placa %>" onfocus="select_placa()">
+                      <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                        <option value = "<%= uso.placa %>" selected><%= uso.placa %></option>
+                      </select>
                     <% } else { %>
                       <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
                         <!-- a função select_placa está preenchendo o elemento select -->

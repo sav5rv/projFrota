@@ -1,13 +1,15 @@
 exports.middlewareGlobal = (req, res, next) => {
-  res.locals.errors = req.flash('errors');
+  res.locals.errors  = req.flash('errors');
   res.locals.success = req.flash('success');
-  res.locals.user = req.session.user;
+  res.locals.user    = req.session.user;
   next();
 };
 
 exports.outroMiddleware = (req, res, next) => {
   next();
 };
+
+
 
 exports.checkCsrfError = (err, req, res, next) => {
   if(err) {
@@ -17,10 +19,14 @@ exports.checkCsrfError = (err, req, res, next) => {
   next();
 };
 
+
+
 exports.csrfMiddleware = (req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 };
+
+
 
 exports.loginRequired = (req, res, next) => {
   if(!req.session.user) {
@@ -33,6 +39,7 @@ exports.loginRequired = (req, res, next) => {
 };
 
 
+
 exports.loginRequiredADM = (req, res, next) => {
   if(!req.session.user) {
     req.flash('errors', 'Você precisa fazer login.');
@@ -41,7 +48,7 @@ exports.loginRequiredADM = (req, res, next) => {
   }
 
   if(req.session.user.tipoUsuario != "Administrador") {
-    //console.log("LINHA 44 MIDDLEWARE = = " + req.session.user.tipoUsuario);
+    //console.log("LINHA 51 MIDDLEWARE = = " + req.session.user.tipoUsuario);
     req.flash('errors', 'Perfil não permitido.');
     req.session.save(() => res.redirect('/'));
     return;

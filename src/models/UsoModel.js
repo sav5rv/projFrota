@@ -16,17 +16,25 @@ const UsoSchema = new mongoose.Schema({
 
 const UsoModel = mongoose.model('Uso', UsoSchema);
 
+
+
 function Uso(body) {
   this.body = body;
   this.errors = [];
   this.uso = null;
 }
 
+
+
+
 Uso.prototype.register = async function() {
   this.valida();
   if(this.errors.length > 0) return;
   this.uso = await UsoModel.create(this.body);
 };
+
+
+
 
 Uso.prototype.valida = function() {
   this.cleanUp();
@@ -37,6 +45,9 @@ Uso.prototype.valida = function() {
   if(!this.body.placa) this.errors.push('Placa é um campo obrigatório.');
   if(!this.body.email) this.errors.push('E-Mail é um campo obrigatório.');
 };
+
+
+
 
 Uso.prototype.cleanUp = function() {
   for(const key in this.body) {
@@ -58,6 +69,10 @@ Uso.prototype.cleanUp = function() {
   };
 };
 
+
+
+
+
 Uso.prototype.edit = async function(id) {
   if(typeof id !== 'string') return;
   this.valida();
@@ -67,19 +82,10 @@ Uso.prototype.edit = async function(id) {
 
 
 
-
-
-// Métodos estáticos
 Uso.buscaPorId = async function(id) {
   if(typeof id !== 'string') return;
-
-  // const email = this.body.email;
-console.log('LINHA 77 USO MODEL ' + id);
-  // const query = { id, email };
-
-  const uso = await UsoModel.findById(id);
-
-  return uso;
+    const uso = await UsoModel.findById(id);
+    return uso;
 };
 
 
@@ -90,6 +96,16 @@ Uso.buscaUsos = async function() {
     .sort({ criadoEm: -1 });
   return usos;
 };
+
+
+
+Uso.buscaUsoEmail = async function(email) {
+  const usos = await UsoModel.find({ email : email })
+    .sort({ criadoEm: -1 });
+  return usos;
+};
+
+
 
 Uso.delete = async function(id) {
   if(typeof id !== 'string') return;
