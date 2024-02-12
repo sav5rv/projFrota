@@ -1,4 +1,24 @@
 
+const rso             = document.getElementById('rso');    
+const hodometroInicio = document.getElementById('hodometroInicio');    
+const hodometroFinal  = document.getElementById('hodometroFinal');    
+const hodometro       = document.getElementById('hodometro');
+
+const placa       = document.getElementById('placa');
+const renavan     = document.getElementById('renavan');
+const chassi      = document.getElementById('chassi');
+const prefixo     = document.getElementById('prefixo');    
+// let hodometro   = document.getElementById('hodometro');
+const combustivel = document.getElementById('combustivel');
+const rodas       = document.getElementById('rodas');
+const cor         = document.getElementById('cor');
+
+const nome        = document.getElementById('nome');
+const re          = document.getElementById('re');
+const email       = document.getElementById('email');
+const tipoUsuario = document.getElementById('tipoUsuario');
+
+const valor = document.getElementById("valor");
 
   //comando para executar função após a pág ter sido carregada
 // window.addEventListener("load", function() {    
@@ -102,7 +122,7 @@ function myFunction() {
 
 // JQuery Validate CAMPOS de CONTATO_CAD
 $( document ).ready( function () {
-    $("#hodometo").mask("999.999");
+    // $("#hodometo").mask("999.999");
     $( "#frm1" ).validate( {
             rules: {
                 email: {
@@ -117,17 +137,40 @@ $( document ).ready( function () {
                     // regex: '[A-Z]{3}[A-Z0-9]{4}',
                     // message: "erro"
                 },
+
+                hodometro: {
+                    required: true,
+                    min: 5,
+                },
+
+                obs: {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 5,
+                },
             },
             
             messages: {
                 email: {
 
                 },
+
                 placa: {
                     required: "Por favor preencha o campo",
                     minlength: "Insira 7 caracteres",
                     // regex: "erro"
                 },
+
+                hodometro: {
+                    require: "Por favor preencha o campo",
+                    min: "Confira o hodometro",
+                },
+
+                obs: {
+                    required: "Por favor preencha o campo",
+                    minlength: "Insira minimo 2 caracteres",
+                    maxLength: "5",
+                }, //não funcionou correto
             },
 
         errorElement: "em",
@@ -154,16 +197,103 @@ $( document ).ready( function () {
 } );
 
 
+
+
 //------------------------------------------------------------------------------
+// trata a QUANTIDADE DE CARACTERES que é permitido dentro do input tipo numero
+
+// const rso = document.getElementById('rso');
+// const hodometro = document.getElementById("hodometro");
+// const hodometroInicio = document.getElementById("hodometroInicio");
+// const hodometroFinal = document.getElementById("hodometroFinal");
+
+if(rso){
+    document.getElementById("rso").addEventListener("input", function() {
+        if (this.value.length > 4) {
+        this.value = this.value.slice(0, 4);
+        }
+    });
+};
+
+if(hodometroInicio){
+    document.getElementById("hodometroInicio").addEventListener("input", function() {
+        if (this.value.length > 6) {
+        this.value = this.value.slice(0, 6);
+        }
+    });
+};
+
+if(hodometroFinal){
+    document.getElementById("hodometroFinal").addEventListener("input", function() {
+        if (this.value.length > 6) {
+        this.value = this.value.slice(0, 6);
+        }
+    });
+}
+
+if(hodometro){
+    document.getElementById("hodometro").addEventListener("input", function() {
+        if (this.value.length > 6) {
+        this.value = this.value.slice(0, 6);
+        }
+    });
+};
+
+
+
+//------------------------------------------------------------------------------
+
+function completarComZero() {
+
+    // const rso = document.getElementById('rso');    
+    // const hodometroInicio = document.getElementById('hodometroInicio');    
+    // const hodometroFinal = document.getElementById('hodometroFinal');    
+    // const hodometro = document.getElementById('hodometro');
+    
+    //numero = String(numero);
+    
+    if(rso){
+        const numRso = rso.value;
+    // Retorna o número com zeros à esquerda até ter 4 caracteres
+        rso.value = numRso.padStart(4, "0");
+    };
+    
+    if(hodometro){
+        const numHodometro = hodometro.value;
+        hodometro.value = numHodometro.padStart(6, "0");
+    };
+    
+    if(hodometroInicio){
+        const numHodometroInicio = hodometroInicio.value;
+        hodometroInicio.value = numHodometroInicio.padStart(6, "0");
+    };
+    
+    if(hodometroFinal){
+        const numHodometroFinal = hodometroFinal.value;
+        hodometroFinal.value = numHodometroFinal.padStart(6, "0");
+    };
+
+};
+
+
+
+//------------------------------------------------------------------------------
+
+
 
 //somente FETCH em veículo placa
 async function buscar_placa() {
-
-    const endpoint = '/veiculo/lista_placa';
-    const response = await fetch(endpoint);
-    const dados_fetch = await response.json();
-
-    return dados_fetch;
+    try {
+        const endpoint = '/veiculo/lista_placa';
+        const response = await fetch(endpoint);
+        const dados_fetch = await response.json();
+    
+        if(!dados_fetch) return console.log('erro');
+        return dados_fetch;
+        
+    } catch (error) {
+        console.log('Deu erro: ' + error);
+    }
 }
 
 
@@ -194,14 +324,14 @@ async function lista_placa() {
       });
     });
 
-    let placa       = document.getElementById('placa');
-    let renavan     = document.getElementById('renavan');
-    let chassi      = document.getElementById('chassi');
-    let prefixo     = document.getElementById('prefixo');    
-    let hodometro   = document.getElementById('hodometro');
-    let combustivel = document.getElementById('combustivel');
-    let rodas       = document.getElementById('rodas');
-    let cor         = document.getElementById('cor');    
+    // let placa       = document.getElementById('placa');
+    // let renavan     = document.getElementById('renavan');
+    // let chassi      = document.getElementById('chassi');
+    // let prefixo     = document.getElementById('prefixo');    
+    // let hodometro   = document.getElementById('hodometro');
+    // let combustivel = document.getElementById('combustivel');
+    // let rodas       = document.getElementById('rodas');
+    // let cor         = document.getElementById('cor');    
 
     const form_placa = dados_fetch.find(( form_placa ) => form_placa.placa === placa.value);
 console.log(form_placa);
@@ -225,18 +355,28 @@ console.log(form_placa);
 
     async function select_placa() {
 
-        const dados_fetch = await buscar_placa();
-
-        const select = document.getElementById("placa");
-        // O loop repetirá uma vez para cada elemento presente em dados_fetch
-        // Em cada iteração, o valor atual do elemento será atribuído à variável X
-        for (const x of dados_fetch) {
-            const option = document.createElement("option");
+        try {
+            const dados_fetch = await buscar_placa();
             
-            option.value = x.placa;       //conteúdo do valor
-            option.textContent = x.placa; //conteúdo do texto
-            select.appendChild(option);
+            console.log(dados_fetch);
+            console.log(typeof dados_fetch);
+
+            const select = document.getElementById("placa");
+            // O loop repetirá uma vez para cada elemento presente em dados_fetch
+            // Em cada iteração, o valor atual do elemento será atribuído à variável X
+            for (const x of dados_fetch) {
+                const option = document.createElement("option");
+                
+                option.value = x.placa;       //conteúdo do valor
+                option.textContent = x.placa; //conteúdo do texto
+
+                select.appendChild(option);
+            }
+            
+        } catch (error) {
+            console.log('Deu erro: ' + error);
         }
+
     }
 
 //----------------------------------------------------------------------------------------------
@@ -267,10 +407,10 @@ async function lista_email_login() {
             });
         });
 
-        let nome = document.getElementById('nome');
-        let re = document.getElementById('re');
-        let email = document.getElementById('email');
-        let tipoUsuario = document.getElementById('tipoUsuario');
+        // let nome = document.getElementById('nome');
+        // let re = document.getElementById('re');
+        // let email = document.getElementById('email');
+        // let tipoUsuario = document.getElementById('tipoUsuario');
 
 
         // const email_value = email.value;
@@ -462,9 +602,10 @@ function enviarEmail() {
 
 
 function formataMoeda() {
-    let valor = document.getElementById("valor").value;
-    valor = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(valor)
-    document.getElementById("valor").value = valor;
+    let moeda = valor.value;
+
+    moeda = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(moeda);
+    valor.value = moeda;
 }
 
 // ------------------------------------------------------------------------------------------------ 

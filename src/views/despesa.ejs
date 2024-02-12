@@ -40,7 +40,15 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="placa">Placa</label>
                     <div class="col-sm-5">
-                      <input type="text" name="placa" id="placa" class="form-control" maxlength="7" minlength="7" value="<%= despesa.placa %>" onclick="lista_placa()" placeholder="XXX9X99" required>
+                      <% if( despesa._id ) { %>
+                        <select id="placa" name="placa" class="form-control" autofocus onfocus="select_placa()">
+                          <option value = "<%= despesa.placa %>" selected><%= despesa.placa %></option>
+                        </select>
+                      <% } else { %>
+                        <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                          <!-- a função select_placa está preenchendo o elemento select -->
+                       </select>
+                      <% } %>
                     </div>
                   </div>
 
@@ -63,7 +71,7 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="hodometro">Hodômetro</label>
                     <div class="col-sm-5">
-                      <input type="number" name="hodometro" id="hodometro" class="form-control" value="<%= despesa.hodometro %>" maxlength="6" minlength="6" placeholder="000006">
+                      <input type="number" name="hodometro" id="hodometro" class="form-control" value="<%= despesa.hodometro %>" required onchange="completarComZero()">
                     </div>
                   </div>
 
@@ -122,7 +130,8 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="obs">Observações</label>
                     <div class="col-sm-5">
-                      <input type="text" name="obs" id="obs" class="form-control" value="<%= despesa.obs %>">
+                      <input type="text" name="obs" id="obs" class="form-control" value="<%= despesa.obs %>"
+                      required minlength="2" maxlength="5">
                     </div>
                   </div>
             </div> <!-- FIM PANEL-BODY -->

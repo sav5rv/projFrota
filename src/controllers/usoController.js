@@ -8,7 +8,7 @@ exports.uso_abrir = async(req, res) => {
 
     const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
                                     //  porque o método session.get() retorna um objeto 
-    console.log('LINHA 7 USO CONTROLLER ' + email);
+    // console.log('LINHA 7 USO CONTROLLER ' + email);
 
     const login       = new Login();
     const login2 = await login.buscaEmail(email);

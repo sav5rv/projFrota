@@ -8,10 +8,9 @@
       <div class="text-center">
         <img src="/img/despesa.jpg" style="width:80px;height:80px;">
         <h4>Despesas</h4>
-        <p>Despesas cadastradas no sistema</p>
+        <p><%- include('includes/messages') %></p>
       </div>
 
-      <%- include('includes/messages') %>
 
 
       <% if(despesas.length > 0) { %>

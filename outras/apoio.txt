@@ -1,3 +1,7 @@
+QUANDO ESTIVER TESTANDO UM JAVASCRIPT VIA SERVIDOR
+  = se estiver apenas editando o codigo JS não precisa reiniciar o servidor, apenas atualizar a página
+
+
 USAR DOIS PARAMETROS PARA CONSULTA DINAMICA
 
 na ROTA:          route.get('/uso/uso_lista/:id/:email',  loginRequiredADM, usoController.editIndex);
