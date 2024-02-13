@@ -32,7 +32,7 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="email">EMail</label>
                       <div class="col-sm-5">
-                        <input type="email" name="email" id="email" class="form-control" required value="<%= contato.email %>" onfocus="lista_email_login()">
+                        <input type="email" name="email" id="email" class="form-control" required value="<%= contato.email %>" onfocus="lista_email_login()" >
                       </div>
                     </div>
                     
@@ -54,11 +54,11 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="tipoUsuario">Tipo de Usuario</label>
                       <div class="col-sm-5">
-                        <select type="" name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= contato.tipoUsuario %>">
-                            <option selected> Escolher... </option>
-                            <option>Administrador</option>
-                            <option>Encarregado</option>
-                            <option>Usuario</option>
+                        <select name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= contato.tipoUsuario %>">
+                            <option value = "<%= contato.tipoUsuario %>" selected><%= contato.tipoUsuario %></option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Encarregado">Encarregado</option>
+                            <option value="Usuario">Usuario</option>
                         </select>
                       </div>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="celular">Celular</label>
                       <div class="col-sm-5">
-                        <input class="form-control" name="celular" id="celular" value="<%= contato.celular %>" oninput="mascara()" />
+                        <input type="text" class="form-control" name="celular" id="celular" value="<%= contato.celular %>" oninput="mascara()" />
                       </div>
                     </div>
 
@@ -123,7 +123,7 @@
           </div> <!-- fim panel-default-->            
                   <div class="form-group text-center">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <button type="reset" class="btn btn-primary">Cancelar</button>
+                    <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()" >Cancelar</button>
                     <button type="button" class="btn btn-primary" onclick="myFunction()">Try it</button>
                   </div>
               </form>

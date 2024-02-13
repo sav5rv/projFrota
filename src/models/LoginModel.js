@@ -106,9 +106,9 @@ class Login {
 
 
 
-
-
-
+  
+  
+  
 
   valida() {
     this.cleanUp();
@@ -122,19 +122,19 @@ class Login {
       this.errors.push('A senha precisa ter entre 3 e 16 caracteres.');
     }
   }
-
-
-
-
-
+  
+  
+  
+  
+  
   cleanUp() {
     for(const key in this.body) {
       if(typeof this.body[key] !== 'string') {
         this.body[key] = '';
       }
     }
-
-
+    
+    
     this.body = {
       email:       this.body.email,
       password:    this.body.password,
@@ -143,16 +143,27 @@ class Login {
       tipoUsuario: this.body.tipoUsuario
     };
   }
-
-
+  
+  
   // sendo chamada em homeController para contar a qtd de registro para a pág index
   // sendo chamado em contato_cad para a função Fetch Lista_Email_Login
   async buscaLogins() {
     this.login = await LoginModel.find({ }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4 } )
-      .sort({ nome: -1 });
-      //console.log('LINHA 99 LOGIN MODEL ' + this.login);
-      // na classe temos que colocar oq será retornado
+    // this.login = await LoginModel.find({ }, { _id:0, email:1, password:2, nome:3, re:4, tipoUsuario:5 } )
+    .sort({ nome: -1 });
+    // na classe temos que colocar oq será retornado
     return this.login
+  };
+  
+  
+  async edit(email) {
+    
+    console.log('LINHA 160 LOGIN MODEL ' + this.body.re);
+
+    if(typeof email !== 'string') return;
+    this.cleanUp();
+    if(this.errors.length > 0) return;
+    this.login = await LoginModel.findOneAndUpdate({ email : email }, { nome : this.body.nome, re : this.body.re, tipoUsuario : this.body.tipoUsuario }, { new: true });
   };
 
 

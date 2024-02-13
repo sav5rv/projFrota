@@ -130,7 +130,7 @@ exports.editIndex = async function(req, res) {
       if(!contato) return res.render('404');
 
     const login = new Login();
-    const login2 = await login.buscaLogins();
+      const login2 = await login.buscaLogins();
     
     const login_mail = JSON.stringify( login2 );
     res.render('contato_cad', { contato, login_mail });
@@ -146,14 +146,21 @@ exports.editIndex = async function(req, res) {
 exports.edit = async function(req, res) {
   try {
     if(!req.params.id) return res.render('404');
+
     const contato = new Contato(req.body);
     await contato.edit(req.params.id);
 
-    if(contato.errors.length > 0) {
+    console.log('LINHA 153 CONTATO CONTROLLER ' + req.body.email);
+
+    const login = new Login(req.body);
+    await login.edit(req.body.email);
+
+    if( contato.errors.length > 0 || login.errors.length > 0 ) {
       req.flash('errors', contato.errors);
       req.session.save(() => res.redirect('back'));
       return;
     }
+
 
     req.flash('success', 'Contato editado com sucesso.');
     /* req.session.save(() => res.redirect(`/contato/contato_lista/${contato.contato._id}`)); para chama id ESPECIFICO*/

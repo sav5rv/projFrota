@@ -167,7 +167,9 @@ exports.logado = async function(req,res) {
 
 exports.logout = function(req, res) {
   req.session.destroy();
-  res.redirect('/');
+  res.redirect('../fim.html');
+  // res.send('USUÁRIO DESCONECTADO');
+  
   
 };
 

@@ -97,18 +97,18 @@ function capturaGeo(){
 
 // comando do Btn Cancelar e Voltar nos formulários
 
-    const btnCancelar = document.querySelector("#btnCancelar");
-    const formulario = document.querySelectorAll("input");
+    // const btnCancelar = document.querySelector("#btnCancelar");
+    // const formulario = document.querySelectorAll("input");
 
-    btnCancelar.addEventListener("click", function() { // executada qd é clicado no btnCancelar
+    // btnCancelar.addEventListener("click", function() { // executada qd é clicado no btnCancelar
 
-        for (const campo of formulario) { // percorre todos os elementos input e atribui vazio
-            campo.value = "";
-        }
+    //     for (const campo of formulario) { // percorre todos os elementos input e atribui vazio
+    //         campo.value = "";
+    //     }
         
-        history.back(); //voltar para página anterior
+    //     history.back(); //voltar para página anterior
 
-    });  
+    // });  
 
 
     
@@ -415,7 +415,7 @@ async function lista_email_login() {
 
         // configurando o JQuery Autocomplete
         $(document).ready(function() {
-            console.log(array_email);
+            //console.log(array_email);
             // O elemento que será usado como input
             input:$("#email").autocomplete({
             source: array_email
@@ -423,6 +423,11 @@ async function lista_email_login() {
                 // minLength:2,
                 // height: 300,
             });
+            const form_email = data.find(( form_email ) => form_email.email === email.value);
+    //console.log(form_email);             //está retornando com a senha * * * * * * * * 
+    nome.value        = form_email.nome;
+    re.value          = form_email.re;
+    tipoUsuario.value = form_email.tipoUsuario;
         });
 
         // let nome = document.getElementById('nome');
@@ -435,14 +440,21 @@ async function lista_email_login() {
         // const index = users.indexOf({ email_value }); //forma de localizar o index do registro
 
 
-        const form_email = data.find(( form_email ) => form_email.email === email.value);
-console.log(form_email);
-        nome.value = form_email.nome;
-        re.value = form_email.re;
-        tipoUsuario.value = form_email.tipoUsuario;
 
-        // if (nome.value and re.value and tipoUsuario.value != )
-        
+
+// if (nome.value != " " & re.value != " " & tipoUsuario.value != " ") {
+//     console.log(nome.value);
+//     console.log(re.value);
+//     console.log(tipoUsuario.value);
+    
+//     document.getElementById('celular').autofocus;
+//                    //alert('teste');
+                
+
+
+            
+//         };
+
     } catch(e) {
         console.log(e);
     }
