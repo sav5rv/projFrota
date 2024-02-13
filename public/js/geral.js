@@ -19,6 +19,7 @@ const email       = document.getElementById('email');
 const tipoUsuario = document.getElementById('tipoUsuario');
 
 const valor = document.getElementById("valor");
+const celular = document.getElementById("celular");
 
   //comando para executar função após a pág ter sido carregada
 // window.addEventListener("load", function() {    
@@ -109,13 +110,30 @@ function capturaGeo(){
 
     });  
 
+
+    
 //---------------------------------------------------------------------------------
+//mascara campo telefone
+function mascara() {
+
+    if(celular){
+
+        new Cleave('#celular', {
+            numericOnly: true,
+            blocks: [0, 2, 0, 4, 4],
+            delimiters: ["(", ")", " ", "-"]
+        });
+    };
+
+};
 
 
 
+//---------------------------------------------------------------------------------
 // FUNÇÃO TESTE CONTATO_CAD
 function myFunction() {
     document.getElementById("demo").innerHTML = "Paragraph changed.";
+
 };
 
 //---------------------------------------------------------------------------------

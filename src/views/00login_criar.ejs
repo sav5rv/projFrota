@@ -5,12 +5,13 @@
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
           <div class="page-header">
-            <h4 class="text-center">Usuários</h4>
+            <h4 class="text-center">Cadastrar Usuario</h4>
+            <p><%- include('includes/messages') %></p>
           </div>
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <% if ( contato._id ) { %>
+              <% if ( login._id ) { %>
                 <h3 class="panel-title">Altere os campos abaixo para editar o cadastro do usuário.</h3>
               <% } else { %>
                 <h3 class="panel-title">Preencha abaixo para cadastrar um usuário.</h3>
@@ -19,15 +20,31 @@
 
             <div class="panel-body">
 
-              <%- include('includes/messages') %>
-
-                <% if( contato._id ) { %>
-                  <form id="frm1" action="/contato/edit/<%= contato._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
+                <% if( login._id ) { %>
+                  <form id="frm1" action="/login/edit/<%= login._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } else { %>
-                  <form id="frm1" action="/contato/register" method="POST" class="form-horizontal" novalidate="novalidate">
+                  <form id="frm1" action="/login/register" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } %>
 
                     <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="nome">Nome</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" name="nome" id="nome" required value="<%= contato.nome %>" onfocus="lista_email_login()">
+                      </div>
+                    </div>
+                    
+
+
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="re">RE</label>
+                      <div class="col-sm-5">
+                        <input type="number" class="form-control" name="re" id="re" required placeholder="modelo: 123456 (seis números)" value="<%= contato.re %>" >
+                      </div>
+                    </div>
+
+
 
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="email">EMail</label>
@@ -37,19 +54,19 @@
                     </div>
                     
 
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label" for="nome">Nome</label>
-                      <div class="col-sm-5">
-                        <input type="text" class="form-control" name="nome" id="nome" required value="<%= contato.nome %>" onfocus="lista_email_login()">
-                      </div>
-                    </div>
 
                     <div class="form-group">
-                      <label class="col-sm-4 control-label" for="re">RE</label>
-                      <div class="col-sm-5">
-                        <input type="number" class="form-control" name="re" id="re" required placeholder="modelo: 123456 (seis números)" value="<%= contato.re %>" >
-                      </div>
+                      <label>Senha</label>
+                      <input type="password" class="form-control" name="password" id="password">
                     </div>
+        
+
+
+                    <div class="form-group">
+                      <label>Confirme a senha digitada</label>
+                      <input type="password" class="form-control" name="confirma" id="confirma">
+                    </div>
+                    
 
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="tipoUsuario">Tipo de Usuario</label>
@@ -64,14 +81,17 @@
                     </div>
 
 
+
+
+
+
+
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="celular">Celular</label>
                       <div class="col-sm-5">
-                        <input class="form-control" name="celular" id="celular" value="<%= contato.celular %>" oninput="mascara()" />
+                        <input type="tel" class="form-control" name="celular" id="celular" value="<%= contato.celular %>" placeholder="modelo: 12-4512-1678" >
                       </div>
                     </div>
-
-
 
 
                     <div class="form-group">
@@ -80,8 +100,6 @@
                         <input type="text" class="form-control" name="cnhRegistro" id="cnhRegistro" value="<%= contato.cnhRegistro %>" placeholder="modelo: 000123456 (nove números)">
                       </div>
                     </div>
-
-
 
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="categoria"">Categoria da CNH</label>
