@@ -139,80 +139,81 @@ function myFunction() {
 //---------------------------------------------------------------------------------
 
 // JQuery Validate CAMPOS de CONTATO_CAD
-$( document ).ready( function () {
-    // $("#hodometo").mask("999.999");
-    $( "#frm1" ).validate( {
-            rules: {
-                email: {
 
-                },
-                placa: {
-                    required: true,
-                    //regex: [a-zA-Z]{3}[a-zA-Z0-9]{4}
-                    // message: 'O nome deve conter apenas letras.',
-                    // maxlength: 7,
-                    // minlength: 7,
-                    // regex: '[A-Z]{3}[A-Z0-9]{4}',
-                    // message: "erro"
-                },
+// $( document ).ready( function () {
+//     // $("#hodometo").mask("999.999");
+//     $( "#frm1" ).validate( {
+//             rules: {
+//                 email: {
 
-                hodometro: {
-                    required: true,
-                    min: 5,
-                },
+//                 },
+//                 placa: {
+//                     required: true,
+//                     //regex: [a-zA-Z]{3}[a-zA-Z0-9]{4}
+//                     // message: 'O nome deve conter apenas letras.',
+//                     // maxlength: 7,
+//                     // minlength: 7,
+//                     // regex: '[A-Z]{3}[A-Z0-9]{4}',
+//                     // message: "erro"
+//                 },
 
-                obs: {
-                    required: true,
-                    minLength: 2,
-                    maxLength: 5,
-                },
-            },
+//                 hodometro: {
+//                     required: true,
+//                     min: 5,
+//                 },
+
+//                 obs: {
+//                     required: true,
+//                     minLength: 2,
+//                     maxLength: 5,
+//                 },
+//             },
             
-            messages: {
-                email: {
+//             messages: {
+//                 email: {
 
-                },
+//                 },
 
-                placa: {
-                    required: "Por favor preencha o campo",
-                    minlength: "Insira 7 caracteres",
-                    // regex: "erro"
-                },
+//                 placa: {
+//                     required: "Por favor preencha o campo",
+//                     minlength: "Insira 7 caracteres",
+//                     // regex: "erro"
+//                 },
 
-                hodometro: {
-                    require: "Por favor preencha o campo",
-                    min: "Confira o hodometro",
-                },
+//                 hodometro: {
+//                     require: "Por favor preencha o campo",
+//                     min: "Confira o hodometro",
+//                 },
 
-                obs: {
-                    required: "Por favor preencha o campo",
-                    minlength: "Insira minimo 2 caracteres",
-                    maxLength: "5",
-                }, //não funcionou correto
-            },
+//                 obs: {
+//                     required: "Por favor preencha o campo",
+//                     minlength: "Insira minimo 2 caracteres",
+//                     maxLength: "5",
+//                 }, //não funcionou correto
+//             },
 
-        errorElement: "em",
+//         errorElement: "em",
 
-        errorPlacement: function ( error, element ) {
-        // Adiciona a classe 'help-block' ao elemento error
-            error.addClass( "help-block" );
+//         errorPlacement: function ( error, element ) {
+//         // Adiciona a classe 'help-block' ao elemento error
+//             error.addClass( "help-block" );
 
-            if ( element.prop( "type" ) === "checkbox" ) {
-                error.insertAfter( element.parent( "label" ) );
-            } else {
-                error.insertAfter( element );
-            }
-        },
+//             if ( element.prop( "type" ) === "checkbox" ) {
+//                 error.insertAfter( element.parent( "label" ) );
+//             } else {
+//                 error.insertAfter( element );
+//             }
+//         },
 
-        highlight: function ( element, errorClass, validClass ) {
-            $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-        },
+//         highlight: function ( element, errorClass, validClass ) {
+//             $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+//         },
 
-        unhighlight: function (element, errorClass, validClass) {
-            $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-        }
-    } );
-} );
+//         unhighlight: function (element, errorClass, validClass) {
+//             $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+//         }
+//     } );
+// } );
 
 
 
@@ -399,16 +400,28 @@ console.log(form_placa);
 
 //----------------------------------------------------------------------------------------------
 
+
+async function buscar_email_login() {
+
+        const endpoint = '/login/lista_email_login';
+        const response = await fetch(endpoint);
+        const dados_fetch = await response.json();
+
+        if(!dados_fetch) return console.log('erro');
+        return dados_fetch;
+};
+
+//----------------------------------------------------------------------------------------------
+
 // configurando o JQuery Autocomplete do campo email do contato_cad
 async function lista_email_login() {
 
     try {
-        const array_email = [];
-        const endpoint = '/login/lista_email_login';
-        const response = await fetch(endpoint);
-        const data = await response.json();
+        const dados_fetch = await buscar_email_login();
+        console.log(dados_fetch);
+        const array_email = [];        
 
-        data.forEach((item) => {
+        dados_fetch.forEach((item) => {
         const campo = item.email
         array_email.push(campo);            
         });
@@ -418,23 +431,31 @@ async function lista_email_login() {
             //console.log(array_email);
             // O elemento que será usado como input
             input:$("#email").autocomplete({
-            source: array_email
-                // autoSelectFirst : true,
-                // minLength:2,
-                // height: 300,
-            });
-            const form_email = data.find(( form_email ) => form_email.email === email.value);
-    //console.log(form_email);             //está retornando com a senha * * * * * * * * 
-    nome.value        = form_email.nome;
-    re.value          = form_email.re;
-    tipoUsuario.value = form_email.tipoUsuario;
+            source: array_email,
         });
+    });
+    } catch(e) {
+        console.log(e);
+    }
+};
 
-        // let nome = document.getElementById('nome');
-        // let re = document.getElementById('re');
-        // let email = document.getElementById('email');
-        // let tipoUsuario = document.getElementById('tipoUsuario');
+//----------------------------------------------------------------------------------------------
 
+// configurando o JQuery Autocomplete do campo email do contato_cad
+async function lista_email_login_2() {
+    try {
+        const dados_fetch = await buscar_email_login();
+
+        const form_email = dados_fetch.find(( form_email ) => form_email.email === email.value);
+        console.log(form_email);             //está retornando com a senha * * * * * * * * 
+        nome.value        = form_email.nome;
+        re.value          = form_email.re;
+        tipoUsuario.value = form_email.tipoUsuario;
+
+    } catch (error) {
+        
+    }
+};
 
         // const email_value = email.value;
         // const index = users.indexOf({ email_value }); //forma de localizar o index do registro
@@ -449,18 +470,7 @@ async function lista_email_login() {
     
 //     document.getElementById('celular').autofocus;
 //                    //alert('teste');
-                
 
-
-            
-//         };
-
-    } catch(e) {
-        console.log(e);
-    }
-};
-  
-//lista_email_login();
 
 
 //----------------------------------------------------------------------------------------------
@@ -624,7 +634,7 @@ function enviarEmail() {
         alert("Ocorreu um erro ao enviar o email.");
       }
     };
-  }
+  };
 
 
 
@@ -636,7 +646,4 @@ function formataMoeda() {
 
     moeda = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(moeda);
     valor.value = moeda;
-}
-
-// ------------------------------------------------------------------------------------------------ 
-
+};
