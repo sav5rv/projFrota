@@ -8,7 +8,7 @@ const placa       = document.getElementById('placa');
 const renavan     = document.getElementById('renavan');
 const chassi      = document.getElementById('chassi');
 const prefixo     = document.getElementById('prefixo');    
-// let hodometro   = document.getElementById('hodometro');
+
 const combustivel = document.getElementById('combustivel');
 const rodas       = document.getElementById('rodas');
 const cor         = document.getElementById('cor');
@@ -17,10 +17,13 @@ const nome        = document.getElementById('nome');
 const re          = document.getElementById('re');
 const email       = document.getElementById('email');
 const tipoUsuario = document.getElementById('tipoUsuario');
+const celular     = document.getElementById('celular');
+const cnhRegistro = document.getElementById('cnhRegistro');
+const categoria   = document.getElementById('categoria');
+const validade    = document.getElementById('validade');
+const obs         = document.getElementById('obs');
 
-const valor = document.getElementById("valor");
-const celular = document.getElementById("celular");
-
+const valor       = document.getElementById('valor');
   //comando para executar função após a pág ter sido carregada
 // window.addEventListener("load", function() {    
 //   //.....                    
@@ -117,11 +120,24 @@ function capturaGeo(){
 function mascara() {
 
     if(celular){
-
         new Cleave('#celular', {
             numericOnly: true,
             blocks: [0, 2, 0, 4, 4],
             delimiters: ["(", ")", " ", "-"]
+        });
+    };
+
+    if(cnhRegistro){
+        new Cleave('#cnhRegistro', {
+            numericOnly: true,
+            blocks: [9]
+        });
+    };
+
+    if(re){
+        new Cleave('#re', {
+            numericOnly: true,
+            blocks: [7]
         });
     };
 
@@ -221,10 +237,6 @@ function myFunction() {
 //------------------------------------------------------------------------------
 // trata a QUANTIDADE DE CARACTERES que é permitido dentro do input tipo numero
 
-// const rso = document.getElementById('rso');
-// const hodometro = document.getElementById("hodometro");
-// const hodometroInicio = document.getElementById("hodometroInicio");
-// const hodometroFinal = document.getElementById("hodometroFinal");
 
 if(rso){
     document.getElementById("rso").addEventListener("input", function() {
@@ -264,12 +276,6 @@ if(hodometro){
 
 function completarComZero() {
 
-    // const rso = document.getElementById('rso');    
-    // const hodometroInicio = document.getElementById('hodometroInicio');    
-    // const hodometroFinal = document.getElementById('hodometroFinal');    
-    // const hodometro = document.getElementById('hodometro');
-    
-    //numero = String(numero);
     
     if(rso){
         const numRso = rso.value;
@@ -292,13 +298,23 @@ function completarComZero() {
         hodometroFinal.value = numHodometroFinal.padStart(6, "0");
     };
 
+    if(re){
+        const numRe = re.value;
+        re.value = numRe.padStart(7, "0");
+
+    };
+
+    if(cnhRegistro){
+        const numCnhRegistro = cnhRegistro.value;
+        cnhRegistro.value = numCnhRegistro.padStart(9, "0");
+    };
+
+
 };
 
 
 
 //------------------------------------------------------------------------------
-
-
 
 //somente FETCH em veículo placa
 async function buscar_placa() {
@@ -322,9 +338,7 @@ async function buscar_placa() {
 async function lista_placa() {
 
     const array_placa = [];
-
     const dados_fetch = await buscar_placa();
-    console.log(dados_fetch);
 
     dados_fetch.forEach((item) => {
       const campo_placa = item.placa
@@ -333,7 +347,6 @@ async function lista_placa() {
 
                // configurando o JQuery Autocomplete
     $(document).ready(function() {
-      console.log(array_placa);
               // O elemento que será usado como input
       input:$("#placa").autocomplete({
       source: array_placa,
@@ -341,19 +354,10 @@ async function lista_placa() {
               minLength:1,
               height: 300,
       });
-    });
-
-    // let placa       = document.getElementById('placa');
-    // let renavan     = document.getElementById('renavan');
-    // let chassi      = document.getElementById('chassi');
-    // let prefixo     = document.getElementById('prefixo');    
-    // let hodometro   = document.getElementById('hodometro');
-    // let combustivel = document.getElementById('combustivel');
-    // let rodas       = document.getElementById('rodas');
-    // let cor         = document.getElementById('cor');    
+    });    
 
     const form_placa = dados_fetch.find(( form_placa ) => form_placa.placa === placa.value);
-console.log(form_placa);
+
     placa.value       = form_placa.placa;
     renavan.value     = form_placa.renavan;
     chassi.value      = form_placa.chassi;
@@ -403,12 +407,12 @@ console.log(form_placa);
 
 async function buscar_email_login() {
 
-        const endpoint = '/login/lista_email_login';
-        const response = await fetch(endpoint);
-        const dados_fetch = await response.json();
+    const endpoint = '/login/lista_email_login';
+    const response = await fetch(endpoint);
+    const dados_fetch = await response.json();
 
-        if(!dados_fetch) return console.log('erro');
-        return dados_fetch;
+    if(!dados_fetch) return console.log('erro');
+    return dados_fetch;
 };
 
 //----------------------------------------------------------------------------------------------
@@ -418,7 +422,7 @@ async function lista_email_login() {
 
     try {
         const dados_fetch = await buscar_email_login();
-        console.log(dados_fetch);
+console.log(dados_fetch);
         const array_email = [];        
 
         dados_fetch.forEach((item) => {
@@ -428,8 +432,6 @@ async function lista_email_login() {
 
         // configurando o JQuery Autocomplete
         $(document).ready(function() {
-            //console.log(array_email);
-            // O elemento que será usado como input
             input:$("#email").autocomplete({
             source: array_email,
         });
@@ -452,9 +454,26 @@ async function lista_email_login_2() {
         re.value          = form_email.re;
         tipoUsuario.value = form_email.tipoUsuario;
 
+        if (nome.value != " " & re.value != " " & tipoUsuario.value != " ") {
+            console.log(nome.value);
+            console.log(re.value);
+            console.log(tipoUsuario.value);
+            // btnSalvar.disabled = true;
+            // nome.disabled        = true;
+            // re.disabled          = true;
+            // tipoUsuario.disabled = true;
+            // celular.disabled     = true;
+            // cnhRegistro.disabled = true;
+            // categoria.disabled   = true;
+            // validade.disabled    = true;
+            // obs.disabled         = true;
+            
+            console.log('teste');
+        };
+
     } catch (error) {
-        
-    }
+        console.log('Deu erro: ' + error);
+    };
 };
 
         // const email_value = email.value;
@@ -463,18 +482,7 @@ async function lista_email_login_2() {
 
 
 
-// if (nome.value != " " & re.value != " " & tipoUsuario.value != " ") {
-//     console.log(nome.value);
-//     console.log(re.value);
-//     console.log(tipoUsuario.value);
-    
-//     document.getElementById('celular').autofocus;
-//                    //alert('teste');
-
-
-
 //----------------------------------------------------------------------------------------------
-
 
 // configurando o JQuery Autocomplete do uso_abrir
 async function lista_campo_placa() {
@@ -507,7 +515,6 @@ async function lista_campo_placa() {
 
 
 //------------------------------------------------------------------------------------------------------
-
 
 //script de teste em contato_cad para o JQuery AutoComplete
 
