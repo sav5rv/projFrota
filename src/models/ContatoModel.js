@@ -22,11 +22,24 @@ function Contato(body) {
   this.contato = null;
 }
 
+
+
 Contato.prototype.register = async function() {
   this.valida();
-  if(this.errors.length > 0) return;
+    if(this.errors.length > 0) return;
+
+  this.loginExists();
+    // if(this.errrors.length > 0) return;
+
   this.contato = await ContatoModel.create(this.body);
-};
+}
+
+
+Contato.prototype.loginExists = async function() {
+  this.contato = ContatoModel.findOne({ email: this.body.email });
+  if(this.contato) this.errors.push('Usuário já cadastrado com esse email.');
+}
+
 
 Contato.prototype.valida = function() {
   this.cleanUp();
@@ -39,7 +52,9 @@ Contato.prototype.valida = function() {
   if(!this.body.nome && !this.body.email) {
     this.errors.push('Campos Nome e EMail são obrigatórios');
   }
-};
+}
+
+
 
 Contato.prototype.cleanUp = function() {
   for(const key in this.body) {
@@ -60,6 +75,8 @@ Contato.prototype.cleanUp = function() {
     obs:         this.body.obs,
   };
 };
+
+
 
 Contato.prototype.edit = async function(id) {
   if(typeof id !== 'string') return;

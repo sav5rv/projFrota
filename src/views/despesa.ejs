@@ -71,7 +71,7 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="hodometro">Hodômetro</label>
                     <div class="col-sm-5">
-                      <input type="number" name="hodometro" id="hodometro" class="form-control" value="<%= despesa.hodometro %>" required onchange="completarComZero()">
+                      <input type="number" name="hodometro" id="hodometro" class="form-control" value="<%= despesa.hodometro %>" required onchange="completarComZeroHod()">
                     </div>
                   </div>
 
@@ -116,16 +116,19 @@
                   </div>
 
 
+
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="valor">Valor Total Gasto</label>
                     <div class="col-sm-5">
                       <% if(despesa._id) { %>
-                        <input type="text" name="valor" id="valor" class="form-control" value="<%= despesa.valor %>"onblur="formataMoeda();">                        
+                        <input type="text" name="valor" id="valor" class="form-control" value="<%= despesa.valor %>" onblur="formataMoeda2();" />
                       <% } else { %>
-                        <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoeda();">
+                        <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoeda2();" />
                       <% } %>
                     </div>
                   </div>
+
+
 
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="obs">Observações</label>
@@ -139,7 +142,7 @@
 
                     <div class="form-group text-center">
                       <button type="submit" class="btn btn-primary">Salvar</button>
-                      <button type="button" id="btnCancelar" name="btnCancelar"  class="btn btn-primary">Cancelar</a>
+                      <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()">Cancelar</a>
                                                   
                     </div>
                 </form>

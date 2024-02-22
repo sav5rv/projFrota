@@ -50,7 +50,7 @@
                       <label class="col-sm-4 control-label" for="re">RE</label>
                       <div class="col-sm-5">
                         <input type="number" class="form-control" name="re" id="re"
-                               value="<%= contato.re %>" oninput="mascara()" onchange="completarComZero()" />
+                               value="<%= contato.re %>" oninput="mascara()" onblur="completarComZeroRE()" />
                       </div>
                     </div>
 
@@ -90,7 +90,7 @@
                       <label class="col-sm-4 control-label" for="cnhRegistro">Registro da CNH</label>
                       <div class="col-sm-5">
                         <input type="number" class="form-control" name="cnhRegistro" id="cnhRegistro"
-                               value="<%= contato.cnhRegistro %>" oninput="mascara()" onblur="completarComZero()" />
+                               value="<%= contato.cnhRegistro %>" oninput="mascara()" onchange="completarComZeroCnhRegistro()" />
                       </div>
                     </div>
 

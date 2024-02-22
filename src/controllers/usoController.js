@@ -25,18 +25,25 @@ exports.uso_abrir = async(req, res) => {
 
 exports.uso_finalizar = async(req, res) => {
 
-  const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
+  if(!req.params.id) return res.render('404');
+
+  const id = req.params.id;
+
+  const uso = await Uso.buscaPorId(id);
+    if(!uso) return res.render('404');
+
+  const email = uso.email;    //usando a sessão atribuída no LOGINController linha 62
                                   //  porque o método session.get() retorna um objeto 
   console.log('LINHA 7 USO CONTROLLER ' + email);
 
   const login       = new Login();
   const login_email = await login.buscaEmail(email);
   
-  console.log('LINHA 10 USO CONTROLLER ' + login_email);
+  console.log('LINHA 10 USO CONTROLLER ' + uso);
 
 res.render('uso_finalizar', {
-  uso : {},
-  login_email : login_email,
+  uso : uso,
+  login_email: login_email,
 });
 };
 

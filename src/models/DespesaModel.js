@@ -41,6 +41,8 @@ Despesa.prototype.valida = function() {
   
 };
 
+
+
 Despesa.prototype.cleanUp = function() {
   for(const key in this.body) {
     if(typeof this.body[key] !== 'string') {
@@ -63,12 +65,16 @@ Despesa.prototype.cleanUp = function() {
   };
 };
 
+
+
 Despesa.prototype.edit = async function(id) {
   if(typeof id !== 'string') return;
   this.valida();
   if(this.errors.length > 0) return;
   this.despesa = await DespesaModel.findByIdAndUpdate(id, this.body, { new: false, default: ''  });
 };
+
+
 
 // Métodos estáticos
 Despesa.buscaPorId = async function(id) {
@@ -77,17 +83,31 @@ Despesa.buscaPorId = async function(id) {
   return despesa;
 };
 
+
+
 Despesa.buscaDespesas = async function() {
   const despesas = await DespesaModel.find()
     .sort({ criadoEm: -1 });
   return despesas;
 };
 
+
+
+Despesa.buscaDespesaEmail = async function(email) {
+  const despesas = await DespesaModel.find({ email: email })
+    .sort({ criadoEm: -1 });
+  return despesas;
+};
+
+
+
 Despesa.delete = async function(id) {
   if(typeof id !== 'string') return;
   const despesa = await DespesaModel.findOneAndDelete({_id: id});
   return despesa;
 };
+
+
 
 
 module.exports = Despesa;

@@ -49,12 +49,35 @@ exports.register = async function(req, res) {
 };
 
 
-exports.alterar = async function(req,res) {
+
+
+exports.alterar = async function(req, res) {
   return res.render('login_alterar');  
 };
 
 
-exports.alterar_senha = async function(req,res) {
+
+
+exports.login_dtTable = async function(req, res) {
+  
+  const login = new Login();
+  const logins = await login.buscaLogins();
+
+  try {
+    if(!logins) return res.render('404');
+    const str_logins = JSON.stringify( logins );
+    res.render('login_dtTable', { str_logins });
+
+  } catch (error) {
+    console.log(error);
+    return res.render('404');
+  }
+};
+
+
+
+
+exports.alterar_senha = async function(req, res) {
   try {
     const login = new Login(); //instanciando o obj login da classe Login
 

@@ -15,12 +15,24 @@ exports.index = (req, res) => {
 
 
 exports.despesa_lista = async(req, res) => {
-  const despesas = await Despesa.buscaDespesas();
+  const tipoUsuario = req.session.user.tipoUsuario;
+  const email       = req.session.user.email;
 
+  
   try {
-    if(!despesas) return res.render('404');
-    res.render('despesa_lista', { despesas }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
-                                               //não preciso fazer { contatos:contatos }
+    if ( tipoUsuario == 'Administrador' ) { 
+      const despesas = await Despesa.buscaDespesas();
+
+      if(!despesas) return res.render('404');
+      res.render('despesa_lista', { despesas }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
+                                                 //não preciso fazer { contatos:contatos }
+    } else {
+      const despesas = await Despesa.buscaDespesaEmail(email);
+
+      if(!despesas) return res.render('404');
+      res.render('despesa_lista', { despesas });
+    }
+
   } catch(e) {
       console.log(e);
       return res.render('404');

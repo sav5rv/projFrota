@@ -22,9 +22,6 @@ exports.index = async (req, res) => {
           login_email : login_email,
       });
 
-      // console.log("LINHA 15 CONTATO CONTROLLER " + login2);
-      // console.log("LINHA 16 CONTATO CONTROLLER " + login_mail);
-
     } catch (e) {
         console.log(e);
         return res.render('404');
@@ -95,6 +92,7 @@ exports.lista_contato = async(req, res) => {
 
 
 
+
 exports.register = async(req, res) => {
   try {
     const contato = new Contato(req.body);
@@ -118,6 +116,7 @@ exports.register = async(req, res) => {
       return res.render('404');
   }
 };
+
 
 
 

@@ -40,9 +40,10 @@ route.get('/login/criar',             loginController.criar); //chama a tela
 route.post('/login/register',         loginController.register); // ENVIAR e salva as informações no bc
 route.post('/login/login',            loginController.login);
 route.get('/login/alterar',           loginController.alterar); // formulario esqueci senha ou alterar senha
-route.post('/login/alterar_senha',     loginController.alterar_senha); //ENVIAR inf para alterar o BD
+route.post('/login/alterar_senha',    loginController.alterar_senha); //ENVIAR inf para alterar o BD
 route.get('/login/logado',            loginController.logado);
 route.get('/login/logout',            loginController.logout);
+route.get('/login/lista',       loginRequiredADM, loginController.login_dtTable);
 
 //Fetch usado em veiculo_cad
 route.get('/login/lista_email_login', loginController.lista_email_login); //Fetch usado em Contato_Cad

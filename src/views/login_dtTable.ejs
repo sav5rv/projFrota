@@ -1,0 +1,83 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+    <!-- <div class="container"> -->
+      <!-- <div class="row justify-content-center"> -->
+          <div class="col-lg-12">
+            <%- include('includes/messages') %>
+            <p></p>
+            <h4 class="text-center">Usuários Cadastrados</h4>
+
+            <table id="dt-table" class="display hover order-column" style="width:100%;">
+              <thead>
+                <tr>
+                  <th>EMail</th>
+                  <th>Nome</th>
+                  <th>RE</th>
+                  <th>Tipo Usuário</th>
+                  <th>Criado Em</th>
+                  <th>Alterado Em</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+
+        </div>
+      <!-- </div> -->
+    <!-- </div> -->
+
+<!-- o rodapé foi tirado devido estar sobrepondo a tabela -->
+
+    <!-- Foi colocado no final para a página carregar mais rápido -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.4.min.js"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    
+        <script src="https://getbootstrap.com.br/docs/4.1/assets/js/vendor/holder.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+
+      console.log ( <%- str_logins %> );  //vai exibir no console do navegador
+
+          $('#dt-table').DataTable({
+            //new DataTable('#dt-table', {
+                data: <%- str_logins %>,
+                columns: [
+                    { data: 'email' },
+                    { data: 'nome' },
+                    { data: 're' },
+                    { data: 'tipoUsuario' },
+                    { data: 'criadoEm' },
+                    { data: 'alteradoEm' },
+                ],
+                
+                // "pageLength": 3,
+                // "stateSave" : true
+                paging: false,
+                scrollCollapse: true,
+                scrollY: '210px',
+                scrollX: true,
+                // language: {
+                //   decimal: ',',
+                //   thousands: '.'
+                // },
+                columnDefs: [
+                    {
+                        // targets: 7,
+                        // render: DataTable.render.nome()
+                    }
+                ]
+            });
+
+    </script> 
+
+
+
+</body>
+</html>

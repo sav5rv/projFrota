@@ -22,6 +22,7 @@ function Veiculo(body) {
 }
 
 
+
 Veiculo.prototype.register = async function() {
   await this.valida();
   await this.placaExists();
@@ -33,16 +34,20 @@ Veiculo.prototype.register = async function() {
 };
 
 
+
 Veiculo.prototype.valida = function() {
   this.cleanUp();
   if(!this.body.placa) this.errors.push('Placa é um campo obrigatório.');
 
 };
 
+
+
 Veiculo.prototype.renavanExists = async function() {
   this.renavan = await VeiculoModel.findOne({ renavan: this.body.renavan });
   if(this.renavan) this.errors.push('Renavan já cadastrado.');
 };
+
 
 
 Veiculo.prototype.placaExists = async function() {

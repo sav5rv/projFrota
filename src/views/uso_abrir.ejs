@@ -10,7 +10,7 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <% if ( uso._id ) { %>
+              <% if( uso._id ) { %>
                 <h3 class="panel-title">Editar os campos abaixo.</h3>
               <% } else { %>
                 <h3 class="panel-title">Preencha os campos abaixo.</h3>
@@ -58,7 +58,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="rso">RSO número</label>
                   <div class="col-sm-5">
-                    <input value="<%= uso.rso %>" type="number" class="form-control" id="rso" name="rso" required autofocus onchange="completarComZero()">
+                    <input value="<%= uso.rso %>" type="number" class="form-control" id="rso" name="rso" required autofocus onchange="completarComZeroRso()">
                   </div>
                 </div>
                 
@@ -81,7 +81,7 @@
                 <div class="form-group">                            
                   <label class="col-sm-4 control-label" for="hodometroInicio" id="label_inicio">Hodômetro Inicial</label>
                   <div class="col-sm-5">
-                    <input value="<%= uso.hodometroInicio %>" type="number" class="form-control" id="hodometroInicio" name="hodometroInicio" required onchange="completarComZero()">
+                    <input value="<%= uso.hodometroInicio %>" type="number" class="form-control" id="hodometroInicio" name="hodometroInicio" required onchange="completarComZeroHodInicio()">
                   </div>
                 </div>
 
@@ -98,6 +98,30 @@
                   <input value="<%= uso.horaInicio %>" type="time" class="form-control" name="horaInicio" id="horaInicio">
                 </div>
               </div>
+
+              <!-- acrescentado esses inputs para não alterar o model de Edição no Banco de Dados -->
+
+              <div class="form-group">                            
+                <!-- <label class="col-sm-4 control-label" for="hodometroFim" id="label_Fim">Hodômetro Final</label> -->
+                <div class="col-sm-5">
+                  <input value="<%= uso.hodometroFim %>" type="hidden" class="form-control" id="hodometroFim"
+                    name="hodometroFim" required onchange="completarComZeroHodFinal()" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <!-- <label class="col-sm-4 control-label" for="dataFim" id="label_Fim">Data Final</label> -->
+                <div class="col-sm-5">
+                  <input value="<%= uso.dataFim %>" type="hidden" class="form-control" name="dataFim" id="dataFim">
+                </div>
+              </div>
+
+            <div class="form-group">
+              <!-- <label class="col-sm-4 control-label" for="horaFim" id="label_Fim">Hora Final</label> -->
+              <div class="col-sm-5">
+                <input value="<%= uso.horaFim %>" type="hidden" class="form-control" name="horaFim" id="horaFim">
+              </div>
+            </div>
 
             </div>
           </div>

@@ -1,7 +1,7 @@
 
 const rso             = document.getElementById('rso');    
 const hodometroInicio = document.getElementById('hodometroInicio');    
-const hodometroFinal  = document.getElementById('hodometroFinal');    
+const hodometroFim  = document.getElementById('hodometroFim');    
 const hodometro       = document.getElementById('hodometro');
 
 const placa       = document.getElementById('placa');
@@ -116,7 +116,8 @@ function capturaGeo(){
 
     
 //---------------------------------------------------------------------------------
-//mascara campo telefone
+//MASCARA DOS CAMPOS usando o CLEAVE
+
 function mascara() {
 
     if(celular){
@@ -145,92 +146,35 @@ function mascara() {
 
 
 
+// ------------------------------------------------------------------------------------------------  
+
+
+function formataMoeda() {
+    let moeda = valor.value;
+
+    moeda = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(moeda);
+    valor.value = moeda;
+};
+
+
+
+function formataMoeda2() {
+    new Cleave('#valor', {
+        numeral: true,
+        prefix: 'R$ ',
+        numeralDecimalMark: ',',
+        delimiter: '.'
+    });
+    
+};
+
+
 //---------------------------------------------------------------------------------
 // FUNÇÃO TESTE CONTATO_CAD
 function myFunction() {
     document.getElementById("demo").innerHTML = "Paragraph changed.";
 
 };
-
-//---------------------------------------------------------------------------------
-
-// JQuery Validate CAMPOS de CONTATO_CAD
-
-// $( document ).ready( function () {
-//     // $("#hodometo").mask("999.999");
-//     $( "#frm1" ).validate( {
-//             rules: {
-//                 email: {
-
-//                 },
-//                 placa: {
-//                     required: true,
-//                     //regex: [a-zA-Z]{3}[a-zA-Z0-9]{4}
-//                     // message: 'O nome deve conter apenas letras.',
-//                     // maxlength: 7,
-//                     // minlength: 7,
-//                     // regex: '[A-Z]{3}[A-Z0-9]{4}',
-//                     // message: "erro"
-//                 },
-
-//                 hodometro: {
-//                     required: true,
-//                     min: 5,
-//                 },
-
-//                 obs: {
-//                     required: true,
-//                     minLength: 2,
-//                     maxLength: 5,
-//                 },
-//             },
-            
-//             messages: {
-//                 email: {
-
-//                 },
-
-//                 placa: {
-//                     required: "Por favor preencha o campo",
-//                     minlength: "Insira 7 caracteres",
-//                     // regex: "erro"
-//                 },
-
-//                 hodometro: {
-//                     require: "Por favor preencha o campo",
-//                     min: "Confira o hodometro",
-//                 },
-
-//                 obs: {
-//                     required: "Por favor preencha o campo",
-//                     minlength: "Insira minimo 2 caracteres",
-//                     maxLength: "5",
-//                 }, //não funcionou correto
-//             },
-
-//         errorElement: "em",
-
-//         errorPlacement: function ( error, element ) {
-//         // Adiciona a classe 'help-block' ao elemento error
-//             error.addClass( "help-block" );
-
-//             if ( element.prop( "type" ) === "checkbox" ) {
-//                 error.insertAfter( element.parent( "label" ) );
-//             } else {
-//                 error.insertAfter( element );
-//             }
-//         },
-
-//         highlight: function ( element, errorClass, validClass ) {
-//             $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-//         },
-
-//         unhighlight: function (element, errorClass, validClass) {
-//             $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-//         }
-//     } );
-// } );
-
 
 
 
@@ -254,8 +198,8 @@ if(hodometroInicio){
     });
 };
 
-if(hodometroFinal){
-    document.getElementById("hodometroFinal").addEventListener("input", function() {
+if(hodometroFim){
+    document.getElementById("hodometroFim").addEventListener("input", function() {
         if (this.value.length > 6) {
         this.value = this.value.slice(0, 6);
         }
@@ -273,43 +217,42 @@ if(hodometro){
 
 
 //------------------------------------------------------------------------------
+// completar COM ZERO 
 
-function completarComZero() {
-
-    
-    if(rso){
-        const numRso = rso.value;
+function completarComZeroRso() {
+    const numRso = rso.value;
     // Retorna o número com zeros à esquerda até ter 4 caracteres
-        rso.value = numRso.padStart(4, "0");
-    };
-    
-    if(hodometro){
-        const numHodometro = hodometro.value;
-        hodometro.value = numHodometro.padStart(6, "0");
-    };
-    
-    if(hodometroInicio){
-        const numHodometroInicio = hodometroInicio.value;
-        hodometroInicio.value = numHodometroInicio.padStart(6, "0");
-    };
-    
-    if(hodometroFinal){
-        const numHodometroFinal = hodometroFinal.value;
-        hodometroFinal.value = numHodometroFinal.padStart(6, "0");
-    };
-
-    if(re){
-        const numRe = re.value;
-        re.value = numRe.padStart(7, "0");
-
-    };
-
-    if(cnhRegistro){
-        const numCnhRegistro = cnhRegistro.value;
-        cnhRegistro.value = numCnhRegistro.padStart(9, "0");
-    };
+    rso.value = numRso.padStart(4, "0");
+};
 
 
+function completarComZeroHod() {
+    const numHodometro = hodometro.value;
+    hodometro.value = numHodometro.padStart(6, "0");
+};
+
+
+function completarComZeroHodInicio() {
+    const numHodometroInicio = hodometroInicio.value;
+    hodometroInicio.value = numHodometroInicio.padStart(6, "0");
+};
+
+
+function completarComZeroHodFinal() {
+    const numHodometroFim = hodometroFim.value;
+    hodometroFim.value = numHodometroFim.padStart(6, "0");
+};
+
+
+function completarComZeroCnhRegistro() {
+    const numCnhRegistro = cnhRegistro.value;
+    cnhRegistro.value = numCnhRegistro.padStart(9, "0");
+};
+
+
+function completarComZeroRE() {
+    const numRe = re.value;
+    re.value = numRe.padStart(7, "0");
 };
 
 
@@ -645,12 +588,83 @@ function enviarEmail() {
 
 
 
-// ------------------------------------------------------------------------------------------------  
+//---------------------------------------------------------------------------------
+
+// JQuery Validate CAMPOS de CONTATO_CAD
+
+// $( document ).ready( function () {
+//     // $("#hodometo").mask("999.999");
+//     $( "#frm1" ).validate( {
+//             rules: {
+//                 email: {
+
+//                 },
+//                 placa: {
+//                     required: true,
+//                     //regex: [a-zA-Z]{3}[a-zA-Z0-9]{4}
+//                     // message: 'O nome deve conter apenas letras.',
+//                     // maxlength: 7,
+//                     // minlength: 7,
+//                     // regex: '[A-Z]{3}[A-Z0-9]{4}',
+//                     // message: "erro"
+//                 },
+
+//                 hodometro: {
+//                     required: true,
+//                     min: 5,
+//                 },
+
+//                 obs: {
+//                     required: true,
+//                     minLength: 2,
+//                     maxLength: 5,
+//                 },
+//             },
+            
+//             messages: {
+//                 email: {
+
+//                 },
+
+//                 placa: {
+//                     required: "Por favor preencha o campo",
+//                     minlength: "Insira 7 caracteres",
+//                     // regex: "erro"
+//                 },
+
+//                 hodometro: {
+//                     require: "Por favor preencha o campo",
+//                     min: "Confira o hodometro",
+//                 },
+
+//                 obs: {
+//                     required: "Por favor preencha o campo",
+//                     minlength: "Insira minimo 2 caracteres",
+//                     maxLength: "5",
+//                 }, //não funcionou correto
+//             },
+
+//         errorElement: "em",
+
+//         errorPlacement: function ( error, element ) {
+//         // Adiciona a classe 'help-block' ao elemento error
+//             error.addClass( "help-block" );
+
+//             if ( element.prop( "type" ) === "checkbox" ) {
+//                 error.insertAfter( element.parent( "label" ) );
+//             } else {
+//                 error.insertAfter( element );
+//             }
+//         },
+
+//         highlight: function ( element, errorClass, validClass ) {
+//             $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+//         },
+
+//         unhighlight: function (element, errorClass, validClass) {
+//             $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+//         }
+//     } );
+// } );
 
 
-function formataMoeda() {
-    let moeda = valor.value;
-
-    moeda = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(moeda);
-    valor.value = moeda;
-};

@@ -80,6 +80,10 @@ definir qtd caracter do campo senha será de 3 a 16 - falta corrigir alguns camp
 
 criar a função esqueci a senha
 
+listar todos os registros... Clicar em um registro e chamar o Usuario Cadastrar (já preenchido).... Terminar de preencher e salvar no tbContato
+
+na lista icone exibindo se já está incluído na Tb Cadastro, ou um link nesse icone que muda se estiver incluído
+
 ------------------------------------------------------------------------
 
                                      USUÁRIOS

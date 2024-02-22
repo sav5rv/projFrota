@@ -148,12 +148,14 @@ class Login {
   // sendo chamada em homeController para contar a qtd de registro para a pág index
   // sendo chamado em contato_cad para a função Fetch Lista_Email_Login
   async buscaLogins() {
-    this.login = await LoginModel.find({ }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4 } )
+    this.login = await LoginModel.find({ }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4, criadoEm:5, alteradoEm:6 } )
     // this.login = await LoginModel.find({ }, { _id:0, email:1, password:2, nome:3, re:4, tipoUsuario:5 } )
     .sort({ nome: -1 });
     // na classe temos que colocar oq será retornado
     return this.login
   };
+
+
   
   
   async edit(email) {
