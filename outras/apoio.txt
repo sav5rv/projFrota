@@ -67,4 +67,12 @@ no formulario:    href="/uso/uso_lista/<%= uso._id %>/<%= uso.email %>"
         <p class="text-center lead">Não existem usuários cadastrados.</p>
       <% } %>
 
+
     </div>
+------------------------------------------------------------------------------------------------
+
+dot ENV arq conf
+chave1=valor1;
+
+CONNECTIONSTRING = mongodb+srv://wsavioli:briGHT1590@cluster1.1ltdolk.mongodb.net/frota-2?retryWrites=true&w=majority
+
