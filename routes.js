@@ -98,6 +98,7 @@ route.get('/uso/delete/:id',            loginRequired, usoController.delete);
 route.get('/uso/uso_lista',             loginRequired, usoController.uso_lista);     //Listar
 route.get('/uso/uso_lista/:id',         loginRequired, usoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/uso/edit/:id',             loginRequired, usoController.edit);        //3º salvei o form alterado
+route.get('/uso/uso_aberto',            loginRequired, usoController.uso_lista);     //Listar
 
 
 // Rotas rodapé
