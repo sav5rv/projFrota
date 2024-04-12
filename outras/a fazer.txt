@@ -6,29 +6,15 @@ utilizado:
          bootStrap  V3.4
          https://fontawesome.com/v4/icons/ V-4
 
- * - * - * - * - * - * - * - * - * - * - * - * - *		 
+----------------------------------------------------------------		 
 
-incluir campo memorando
+campo memorando, com dificuldade de salvar no Bc Dados - usei string e a quant de caract que aceita é suficiente
 
-==>  ==>  ==> lista dos usuarios criados na tb Login
-
-----------------------------------------------------------------
-
-
-CONTATO
-email = campo email
-
-celular = campo fone
+todos os campos no Bc Dados são tipo string
 
 tipo de usuario = Administrador / Auxiliar / Usuario
 
 categoria CNH = A / B / C / D / E
-
-validade CNH = campo data
-
-
-
-observações = campo memorando   -   	NÃO SALVOU NO MONGODB
 
 --------------------------------------------------------------
 
@@ -100,7 +86,6 @@ uma saída seria direcionar o model_login para a Tb Contatos
 usuario ADM vai acessar a lista dos usuarios que se cadastraram no login, vai verificar qual cadastro falta completar
 atraves do menu lista e vai editar esse registro, por isso que temos que juntar as tblogin e tbcadastro
 
-eliminar a TABELA Contato, transferir tudo para a tb Login
 
 ------------------------------------------------------------------------------------
 
