@@ -30,6 +30,45 @@ body {
   color: blue;
 }
 
+/* formatar msg de erros */
+p.note {
+  font-size: 1rem;
+  color: red;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 4px;
+  /* font-family: 'Lato'; */
+  width: 300px;
+  margin-top: 10px;
+}
+
+label {
+  width: 300px;
+  /* font-weight: bold; */
+  display: inline-block;
+  margin-top: 20px;
+}
+
+label span {
+  font-size: 1rem;
+}
+
+label.error {
+    color: red;
+    font-size: 1rem;
+    display: block;
+    margin-top: 5px;
+}
+
+input.error {
+    border: 1px dashed red;
+    /* font-weight: 300; */
+    color: red;
+}
+
 /* não funcionou  -  tem que tirar o Menu Testar para caber no 800px*/
 /* @media (min-width: 803px) {   
   .container {

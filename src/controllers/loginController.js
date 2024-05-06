@@ -56,6 +56,11 @@ exports.alterar = async function(req, res) {
 };
 
 
+exports.esqueci = async function(req, res) {
+  return res.render('login_esqueci');  
+};
+
+
 
 
 exports.login_dtTable = async function(req, res) {
@@ -105,6 +110,13 @@ exports.alterar_senha = async function(req, res) {
  
 };
 
+
+
+
+
+exports.esqueci_senha = async function(req, res) {
+
+};
 
 
 

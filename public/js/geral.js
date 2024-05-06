@@ -1,7 +1,7 @@
 
 const rso             = document.getElementById('rso');    
 const hodometroInicio = document.getElementById('hodometroInicio');    
-const hodometroFim  = document.getElementById('hodometroFim');    
+const hodometroFim    = document.getElementById('hodometroFim');    
 const hodometro       = document.getElementById('hodometro');
 
 const placa       = document.getElementById('placa');
@@ -506,6 +506,13 @@ async function lista_campo_placa() {
 //alert('linha 159');
 
 
+// validação campos tela login
+$(document).ready(function() {
+    $("#frmLoginIndex").validate();
+  });
+
+
+
 
 
 // $(document).ready(function() {
@@ -666,5 +673,3 @@ function enviarEmail() {
 //         }
 //     } );
 // } );
-
-
