@@ -1,4 +1,5 @@
 const Login = require('../models/LoginModel');
+const Contato = require('../models/ContatoModel');
 
 
 exports.index = (req, res) => {  
@@ -6,9 +7,19 @@ exports.index = (req, res) => {
 };
 
 
-
 exports.criar = (req, res) => {  
   return res.render('login_criar');
+};
+
+
+
+exports.alterar = async function(req, res) {
+  return res.render('login_alterar');  
+};
+
+
+exports.esqueci = async function(req, res) {
+  return res.render('login_esqueci');  
 };
 
 
@@ -51,14 +62,6 @@ exports.register = async function(req, res) {
 
 
 
-exports.alterar = async function(req, res) {
-  return res.render('login_alterar');  
-};
-
-
-exports.esqueci = async function(req, res) {
-  return res.render('login_esqueci');  
-};
 
 
 
@@ -115,7 +118,42 @@ exports.alterar_senha = async function(req, res) {
 
 
 exports.esqueci_senha = async function(req, res) {
+  try {
+    const login = new Login(); //instanciando o obj login da classe Login
+    const contato = new Contato();
 
+    const email       = req.body.email;
+    const re          = req.body.re;
+    const nome        = req.body.nome;
+    const cnhRegistro = req.body.cnhRegistro;
+
+    await login.esqueci_senha( email, re, nome ); //chamando a função da classe
+
+    if(login.errors.length > 0) {
+      req.flash('errors', login.errors);
+      req.session.save(() => res.redirect('back'));
+      return;
+    }
+
+    await contato.esqueci_senha(cnhRegistro);
+
+    if(contato.errors.length > 0) {
+      req.flash('errors', contato.errors);
+      req.session.save(() => res.redirect('back'));
+      return;
+    }
+    
+    await login.gerar_senha(email, re);
+
+    req.flash('success', `${login.id}`);
+    req.session.save(() => res.redirect(`/login/index/`));
+    return;
+    
+  } catch (e) {
+      console.log(e);
+      return res.render( '404');
+    }
+ 
 };
 
 

@@ -86,6 +86,19 @@ Contato.prototype.edit = async function(id) {
 };
 
 
+// sendo chamado de loginController
+Contato.prototype.esqueci_senha = async function(registro) {
+  this.contato = await ContatoModel.findOne({ cnhRegistro: registro });
+  if(!this.contato){
+    this.errors.push(`Não foi localizar a CNH: ${registro} - FALE COM O ADMINISTRADOR`); //JS template string
+    return;
+    
+  } else {
+    console.log('LINHA 106 CONTATO MODEL' + this.contato);
+    return this.contato;
+  }
+}; 
+
 // Métodos estáticos
 Contato.buscaPorId = async function(id) {
   if(typeof id !== 'string') return;
@@ -95,9 +108,11 @@ Contato.buscaPorId = async function(id) {
 
 Contato.buscaContatos = async function() {
   const contatos = await ContatoModel.find();
-
   return contatos;
 };
+
+
+
 
 Contato.delete = async function(id) {
   if(typeof id !== 'string') return;

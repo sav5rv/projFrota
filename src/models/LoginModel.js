@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 
+
 const LoginSchema = new mongoose.Schema({
   email:       { type: String, required: true },
   password:    { type: String, required: true },
@@ -12,7 +13,9 @@ const LoginSchema = new mongoose.Schema({
   alteradoEm:  { type: Date, default: '' },
 });
 
+
 const LoginModel = mongoose.model('Login', LoginSchema);
+
 
 class Login {
   constructor(body) {
@@ -107,7 +110,61 @@ class Login {
 
 
   
+  // o esqueci_senha está vindo do LOGINcontrolle
+  async esqueci_senha( email, re, nome ) {        
+    if(this.login = await LoginModel.findOne({ email: email, re: re, nome: nome }, { })) {
+      console.log('LINHA 116 LOGIN MODEL ' + this.login);
+      console.log('LINHA 117 LOGIN MODEL ' + this.login.email);
+
+      return this.login;
+    } else {
+        this.errors.push(`Não foi localizado o usuario - ${email}`); //JS template string
+        return;
+    };   
+  };
+
+
+  async gerar_senha(email, re) {
+    const max = re;
+    const num = Math.floor(Math.random() * (max - 0 + 1)) + 0;
+    let senhaNova = toString(num);
+    console.log( `LINHA 133 LOGIN MODEL senha: ${num}`);
+
+       
+      if(this.login = await LoginModel.findOne({ email: email, re: re }, { })) {
+        // console.log('LINHA 77 LOGIN MODEL ' + this.login);
+        // console.log('LINHA 78 LOGIN MODEL ' + this.login.password);
+        // console.log('LINHA 79 LOGIN MODEL ' + password);
   
+        if(senhaNova){
+          const id = this.login.id;
+                  
+          const salt  = bcryptjs.genSaltSync();
+          senhaNova   = bcryptjs.hashSync(senhaNova, salt);
+  
+          console.log('LINHA 144 LOGIN MODEL ' + senhaNova);
+          console.log('LINHA 145 LOGIN MODEL ' + id);
+  
+          this.login = await LoginModel.findByIdAndUpdate(id, {password: senhaNova}, { new: true });
+          //if(this.login) this.sucess.push('Senha Alterada.');
+          // console.log('LINHA 84 LOGIN MODEL ' + this.login);
+          //if(this.login) this.success.push('Anote sua senha: ');
+          return this.login.id;
+  
+        } else {
+          this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados informado.');
+          this.login = null;
+          return this.login;
+        }
+      } else {
+        this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados informado.');
+        return;
+      };   
+
+  };
+  
+  
+
   
 
   valida() {

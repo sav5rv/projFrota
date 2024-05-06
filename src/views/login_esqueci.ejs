@@ -14,7 +14,7 @@
 
               <%- include('includes/messages') %>
 
-                  <form id="frm1" action="/login/esqueci_senha" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
+                  <form id="frmEsqueciSenha" action="/login/esqueci_senha" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
 
 
                           <input type="hidden" name="_csrf" value=<%=csrfToken %>>
@@ -23,14 +23,14 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="email">EMail</label>
                             <div class="col-sm-5">
-                              <input type="email" name="email" id="email" class="form-control" >
+                              <input type="email" name="email" id="email" class="form-control" required >
                             </div>
                           </div>
 
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="re">RE</label>
                             <div class="col-sm-5">
-                              <input type="number" name="re" id="re" class="form-control">
+                              <input type="number" name="re" id="re" class="form-control" pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456">
                             </div>
                           </div>
 
@@ -44,7 +44,15 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="cnhRegistro">Número da CNH</label>
                             <div class="col-sm-5">
-                              <input type="number" name="cnhRegistro" id="cnhRegistro" class="form-control">
+                              <input type="number" name="cnhRegistro" id="cnhRegistro" class="form-control" pattern="[0-9]{9}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456789">
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="cnhRegistro">Senha Temporária</label>
+                            <div>
+                              <label name="senhaTemp" id="senhaTemp">x x x</label>
                             </div>
                           </div>
 
@@ -67,7 +75,13 @@
 
         <%- include('includes/footer') %>
 
-          <script type="text/javascript" src="/js/geral.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#frmEsqueciSenha").validate();
+      });
+
+      
+    </script>
 
 
 

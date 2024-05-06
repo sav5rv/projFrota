@@ -18,31 +18,46 @@
             <input type="hidden" name="tipoUsuario" value="Usuario">
 
             <div class="form-group">
-              <label>Nome</label>
-              <input type="text" class="form-control" name="nome" id="nome">
+              <label class="col-sm-4 control-label">Nome Completo</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" required name="nome" id="nome" >
+              </div>
             </div>
 
             <div class="form-group">
-              <label>Registro Estatistico</label>
-              <input type="text" class="form-control" name="re" id="re"  pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456">
+              <label class="col-sm-4 control-label" for="re">RE</label>
+              <div class="col-sm-5">
+                <input type="number" name="re" id="re" class="form-control" required pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456" >
+              </div>
             </div>
             
             <div class="form-group">
-              <label>E-Mail<span>(required)</span></label>
-              <input type="email" name="email" id="email" class="form-control" required>
-            </div>
-            
-            <div class="form-group">
-              <label>Senha<span>(required)</span></label>
-              <input type="password" name="password" id="password" class="form-control" required minlength="3" maxlength="16">
+              <label class="col-sm-4 control-label" for="email">EMail</label>
+              <div class="col-sm-5">
+                <input type="email" name="email" id="email" class="form-control" required >
+              </div>
             </div>
 
+
             <div class="form-group">
-              <label>Confirme a senha digitada</label>
-              <input type="password" class="form-control" name="confirma" id="confirma">
+              <label class="col-sm-4 control-label">Senha<span></span></label>
+              <div class="col-sm-5">
+                <input type="password" name="password" id="password" class="form-control" required minlength="3" maxlength="16">
+              </div>
             </div>
-            
+
+
             <div class="form-group">
+              <label class="col-sm-4 control-label">Confirme a senha<span></span></label>
+              <div class="col-sm-5">
+                <input type="password" name="confirma" id="confirma" class="form-control" required minlength="3" maxlength="16">
+              </div>
+            </div>
+
+        </div> <!-- FIM PANEL-BODY -->    
+            
+            
+            <div class="form-group text-center">
               <% if(user) { %>            
                 <a class="nav-link" href="/login/login">LOGAR</a>            
               <% } else { %>            
@@ -54,9 +69,9 @@
           </form>
         </div>
 
-        <div class="col-lg-2"></div>
-      </div>
-    </div>
+      </div> <!-- FIM COL-SM-8 -->
+    </div> <!-- FIM ROW -->
+  </div> <!-- FIM CONTAINER -->
 
     <%- include('includes/footer') %>
 
