@@ -60,12 +60,6 @@ exports.register = async function(req, res) {
 };
 
 
-
-
-
-
-
-
 exports.login_dtTable = async function(req, res) {
   
   const login = new Login();
@@ -81,7 +75,6 @@ exports.login_dtTable = async function(req, res) {
     return res.render('404');
   }
 };
-
 
 
 
@@ -116,7 +109,6 @@ exports.alterar_senha = async function(req, res) {
 
 
 
-
 exports.esqueci_senha = async function(req, res) {
   try {
     const login = new Login(); //instanciando o obj login da classe Login
@@ -145,7 +137,7 @@ exports.esqueci_senha = async function(req, res) {
     
     await login.gerar_senha(email, re);
 
-    req.flash('success', `${login.id}`);
+    req.flash('success', `Sua nova senha é: ${login.login}`); //é login.login, pq estou atribuindo um valor direto na linha 156 em LoginModel
     req.session.save(() => res.redirect(`/login/index/`));
     return;
     

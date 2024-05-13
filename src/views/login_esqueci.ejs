@@ -19,6 +19,12 @@
 
                           <input type="hidden" name="_csrf" value=<%=csrfToken %>>
 
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label" for="nome">Nome Completo</label>
+                            <div class="col-sm-5">
+                              <input type="text" name="nome" id="nome" class="form-control">
+                            </div>
+                          </div>
 
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="email">EMail</label>
@@ -34,12 +40,6 @@
                             </div>
                           </div>
 
-                          <div class="form-group">
-                            <label class="col-sm-4 control-label" for="nome">Nome Completo</label>
-                            <div class="col-sm-5">
-                              <input type="text" name="nome" id="nome" class="form-control">
-                            </div>
-                          </div>
 
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="cnhRegistro">Número da CNH</label>
@@ -47,16 +47,6 @@
                               <input type="number" name="cnhRegistro" id="cnhRegistro" class="form-control" pattern="[0-9]{9}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456789">
                             </div>
                           </div>
-
-
-                          <div class="form-group">
-                            <label class="col-sm-4 control-label" for="cnhRegistro">Senha Temporária</label>
-                            <div>
-                              <label name="senhaTemp" id="senhaTemp">x x x</label>
-                            </div>
-                          </div>
-
-
 
             </div> <!-- FIM PANEL-BODY -->
 

@@ -21,6 +21,7 @@ class Login {
   constructor(body) {
     this.body = body;
     this.errors = [];
+    this.success = [];
     this.login = null;
   }
 
@@ -36,8 +37,12 @@ class Login {
       this.errors.push('Usuário não existe.');
       return;
     }
+    console.log('LOGIN-MODEL LINHA 40   ' + this.body.password);
+    console.log('LOGIN-MODEL LINHA 41   ' + this.login.password);
 
     if(!bcryptjs.compareSync(this.body.password, this.login.password)) {
+      console.log('LOGIN-MODEL LINHA 40   ' + this.body.password);
+      console.log('LOGIN-MODEL LINHA 41   ' + this.login.password);
       this.errors.push('Senha inválida');
       this.login = null;
       return;
@@ -108,7 +113,6 @@ class Login {
   };
 
 
-
   
   // o esqueci_senha está vindo do LOGINcontrolle
   async esqueci_senha( email, re, nome ) {        
@@ -124,32 +128,32 @@ class Login {
   };
 
 
+
   async gerar_senha(email, re) {
     const max = re;
     const num = Math.floor(Math.random() * (max - 0 + 1)) + 0;
-    let senhaNova = toString(num);
+    //let senhaNova = num;
+    let senhaNova = num.toString();
     console.log( `LINHA 133 LOGIN MODEL senha: ${num}`);
+    console.log( `LINHA 133 LOGIN MODEL senha: ${senhaNova}`);
 
        
       if(this.login = await LoginModel.findOne({ email: email, re: re }, { })) {
-        // console.log('LINHA 77 LOGIN MODEL ' + this.login);
-        // console.log('LINHA 78 LOGIN MODEL ' + this.login.password);
-        // console.log('LINHA 79 LOGIN MODEL ' + password);
   
-        if(senhaNova){
-          const id = this.login.id;
+        if(this.login){
+          //const id = this.login.id;
                   
           const salt  = bcryptjs.genSaltSync();
           senhaNova   = bcryptjs.hashSync(senhaNova, salt);
-  
-          console.log('LINHA 144 LOGIN MODEL ' + senhaNova);
-          console.log('LINHA 145 LOGIN MODEL ' + id);
-  
-          this.login = await LoginModel.findByIdAndUpdate(id, {password: senhaNova}, { new: true });
-          //if(this.login) this.sucess.push('Senha Alterada.');
-          // console.log('LINHA 84 LOGIN MODEL ' + this.login);
-          //if(this.login) this.success.push('Anote sua senha: ');
-          return this.login.id;
+          //senhaNova = senhaNova;
+          
+          console.log('LINHA 147 LOGIN MODEL ' + this.login.password);
+          console.log('LINHA 149 LOGIN MODEL ' + senhaNova);
+          console.log('LINHA 150 LOGIN MODEL ' + this.login.id);
+          
+          this.login = await LoginModel.findByIdAndUpdate(this.login.id, {password: senhaNova}, { new: true });
+          
+          return this.login = num; // estou passando somente o valor da nova senha
   
         } else {
           this.errors.push('Não foi localizado nenhum usuario com o conjunto de dados informado.');
@@ -205,7 +209,7 @@ class Login {
   // sendo chamada em homeController para contar a qtd de registro para a pág index
   // sendo chamado em contato_cad para a função Fetch Lista_Email_Login
   async buscaLogins() {
-    this.login = await LoginModel.find({ }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4, criadoEm:5, alteradoEm:6 } )
+    this.login = await LoginModel.find({ }, { _id:1, email:2, nome:3, re:4, tipoUsuario:5, criadoEm:6, alteradoEm:7 } )
     // this.login = await LoginModel.find({ }, { _id:0, email:1, password:2, nome:3, re:4, tipoUsuario:5 } )
     .sort({ nome: -1 });
     // na classe temos que colocar oq será retornado
@@ -228,10 +232,10 @@ class Login {
 
 
 
-  // o buscar_o_email está vindo do USOcontrolle
+  // o buscar_o_email está vindo do USOcontrolle ou do ContatoController linha 12
   async buscaEmail(buscar_o_email) { 
-    this.login = await LoginModel.findOne({ email: buscar_o_email }, { _id:0, email:1, nome:2, re:3, tipoUsuario:4 });
-    console.log('LINHA 164 LOGIN MODEL ' + buscar_o_email + '/n');
+    this.login = await LoginModel.findOne({ email: buscar_o_email }, { _id:1, email:2, nome:3, re:4, tipoUsuario:5 });
+    //console.log('LINHA 164 LOGIN MODEL ' + buscar_o_email);
     
     return this.login
   };

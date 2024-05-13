@@ -6,18 +6,17 @@ exports.index = async (req, res) => {
 
   const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
                                     //  porque o método session.get() retorna um objeto 
-    console.log('LINHA 7 contato CONTROLLER ' + email);
+  console.log('LINHA 7 contato CONTROLLER ' + email);
 
   const login = new Login();
-    const login_email = await login.buscaEmail(email);
-    
-    console.log('LINHA 14 contato CONTROLLER ' + login_email);
+    const login_email = await login.buscaEmail(email); //retorna com id, re, email, nome, tpUsuario
+    console.log('LINHA 12 contato CONTROLLER ' + login_email);
 
     try {
       if(!login_email) res.render('contato_cad', {});
       
       //const login_mail = JSON.stringify( login_email );
-      res.render('contato_cad', { 
+      res.render('contato_cad', {
           contato : {}, 
           login_email : login_email,
       });
@@ -26,7 +25,6 @@ exports.index = async (req, res) => {
         console.log(e);
         return res.render('404');
     }
-
 };
 
 
@@ -95,6 +93,7 @@ exports.lista_contato = async(req, res) => {
 
 exports.register = async(req, res) => {
   try {
+
     const contato = new Contato(req.body);
     await contato.register();
 
@@ -106,7 +105,7 @@ exports.register = async(req, res) => {
 
     req.flash('success', 'Contato registrado com sucesso.');
     req.session.tipoUsuario = req.body.tipoUsuario;
-    console.log("LINHA 84 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
+    console.log("LINHA 108 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
     //req.session.save(() => res.redirect(`/contato/contato_lista/${contato.contato._id}`));
     req.session.save(() => res.redirect(`/contato/contato_lista/`));
     return;

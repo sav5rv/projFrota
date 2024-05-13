@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+
 const ContatoSchema = new mongoose.Schema({
+  login_id:    { type: Object, reuqired: false },
   nome:        { type: String, required: true },
   email:       { type: String, required: true },
   celular:     { type: String, required: false, default: '' },
-  re:          { type: String, required: false, default: '' },  
-  tipoUsuario: { type: String, required: false, default: '' },
+  re:          { type: String, required: true },  
+  tipoUsuario: { type: String, required: true },
   cnhRegistro: { type: String, required: false, default: '' },
   categoria:   { type: String, required: false, default: '' },
   validade:    { type: String, required: false, default: '' },
@@ -33,6 +35,7 @@ Contato.prototype.register = async function() {
 
   this.contato = await ContatoModel.create(this.body);
 }
+
 
 
 Contato.prototype.loginExists = async function() {
@@ -64,6 +67,7 @@ Contato.prototype.cleanUp = function() {
   }
 
   this.body = {
+    login_id:    this.body.idForm,
     nome:        this.body.nome,
     email:       this.body.email,
     celular:     this.body.celular,

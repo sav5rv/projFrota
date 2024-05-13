@@ -392,7 +392,8 @@ async function lista_email_login_2() {
         const dados_fetch = await buscar_email_login();
 
         const form_email = dados_fetch.find(( form_email ) => form_email.email === email.value);
-        console.log(form_email);             //está retornando com a senha * * * * * * * * 
+        console.log(form_email);             //cuidado para não retornar a senha * * * * * * * *
+        idForm.value      = form_email._id; 
         nome.value        = form_email.nome;
         re.value          = form_email.re;
         tipoUsuario.value = form_email.tipoUsuario;
