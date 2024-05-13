@@ -61,6 +61,7 @@ route.get('/contato/contato_lista',     loginRequiredADM, contatoController.cont
 route.get('/contato/contato_lista/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/contato/edit/:id',         loginRequiredADM, contatoController.edit); //3º salvei o form alterado
 route.get('/contato/lista_contato',     loginRequiredADM, contatoController.lista_contato);
+route.get('/contato/validar_login',     loginRequiredADM, contatoController.validar_login); //1º listei
 
 
 

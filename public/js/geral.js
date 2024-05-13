@@ -365,7 +365,7 @@ async function lista_email_login() {
 
     try {
         const dados_fetch = await buscar_email_login();
-console.log(dados_fetch);
+        //console.log(dados_fetch);
         const array_email = [];        
 
         dados_fetch.forEach((item) => {

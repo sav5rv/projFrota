@@ -104,18 +104,25 @@ Contato.prototype.esqueci_senha = async function(registro) {
 }; 
 
 // Métodos estáticos
+Contato.busca_validar = async function(id) {
+  if(typeof id !== 'string') return;
+  this.contato = await ContatoModel.findOne({ login_id: id });
+  return this.contato;
+};
+
+
+
 Contato.buscaPorId = async function(id) {
   if(typeof id !== 'string') return;
   const contato = await ContatoModel.findById(id);
   return contato;
 };
 
+
 Contato.buscaContatos = async function() {
   const contatos = await ContatoModel.find();
   return contatos;
 };
-
-
 
 
 Contato.delete = async function(id) {

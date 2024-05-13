@@ -44,21 +44,40 @@ exports.contato_abrir = async(req, res) => {
     login_email : login_email,
   });
 };
-// exports.usuarioExiste = async (req, res) => {
-//   const login = new Login();
-//     const login2 = await login.userExists();
-
-//   try {
-//     res.render('contato', { contato, login2 });
-
-//   } catch (e) {
-//       console.log(e);
-//       return res.render('404');
-//   }
-
-// };
 
 
+//------------------------------------------------------------------------------------
+exports.validar_login = async(req, res) => {
+  const novo_array = [];
+
+  try {
+    const login = new Login();
+    const login2 = await login.buscaLogins();
+    
+    login2.forEach(( item2 ) => {
+      console.log(item2._id);
+      const contatos = Contato.busca_validar(item2._id);
+      console.log(contatos.email);
+      if( !contatos ) novo_array.push(item2);
+      //const registro = item.email;
+      //novo_array.push(registro);
+      // console.log('LINHA 062 - CONTATO CONTROLLER - ' + item2);      
+      
+    });
+
+    novo_array.forEach(( item3 ) => {
+      console.log('LINHA 066 - CONTATO CONTROLLER - ' + item3);
+    });
+
+
+  } catch (e) {
+    console.log(e);
+    return res.render('404');
+  }
+};
+
+
+//------------------------------------------------------------------------------------
 exports.contato_lista = async(req, res) => {
   const contatos = await Contato.buscaContatos();
 
@@ -73,7 +92,7 @@ exports.contato_lista = async(req, res) => {
 };
 
 
-
+//===============================================================================================
 exports.lista_contato = async(req, res) => {
   const contatos = await Contato.buscaContatos();
 

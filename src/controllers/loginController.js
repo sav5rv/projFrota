@@ -198,18 +198,12 @@ exports.login = async function(req, res) {
 
     req.session.user = login.login;
     //está atribuindo a variavel Global definida no middleware com a q veio do Login Model
-
-    // console.log("LINHA 72 LOGIN CONTROLLER = = " + req.session.user);  
-    
-    // console.log("LINHA 75 LOGIN CONTROLLER = = " + login.login);        
-
+    // console.log("LINHA 72 LOGIN CONTROLLER = = " + req.session.user);     
+    // console.log("LINHA 75 LOGIN CONTROLLER = = " + login.login);
     // console.log("LINHA 77 LOGIN CONTROLLER = = " + login.login.tipoUsuario);
-
     // console.log("LINHA 79 LOGIN CONTROLLER = = " + req.session.login.tipoUsuario);
-
     req.session.tipoUsuario = req.body.tipoUsuario;
     req.session.email       = req.body.email;
-
     req.session.save(() => res.redirect(`/login/logado/`));
     // redirecionei para uma rota, em que essa rota renderiza a pagina juntamente com os parametros e as msg
     return;
@@ -237,6 +231,3 @@ exports.logout = function(req, res) {
   
   
 };
-
-
-
