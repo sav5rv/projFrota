@@ -219,8 +219,7 @@ class Login {
 
   
   
-  async edit(email) {
-    
+  async edit(email) {    
     console.log('LINHA 160 LOGIN MODEL ' + this.body.re);
 
     if(typeof email !== 'string') return;

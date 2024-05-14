@@ -51,22 +51,25 @@ exports.validar_login = async(req, res) => {
   const novo_array = [];
 
   try {
-    const login = new Login();
+    const login = new Login();  // isso é instanciar
     const login2 = await login.buscaLogins();
     
-    login2.forEach(( item2 ) => {
-      console.log(item2._id);
-      const contatos = Contato.busca_validar(item2._id);
-      console.log(contatos.email);
-      if( !contatos ) novo_array.push(item2);
+    login2.forEach( async( item2 ) => {
+      //console.log('LINHA 058 - CONTATO CONTROLLER - ' + item2);
+      
+      console.log('LINHA 059 - CONTATO CONTROLLER - ' + item2._id);
+
+      const contato = await Contato.busca_validar(item2._id);
+      console.log('LINHA 060 - CONTATO CONTROLLER - ', contato);
+      //if( !contatos ) novo_array.push(item2);
       //const registro = item.email;
       //novo_array.push(registro);
-      // console.log('LINHA 062 - CONTATO CONTROLLER - ' + item2);      
+      //console.log('LINHA 062 - CONTATO CONTROLLER - ' + item2);      
       
     });
 
     novo_array.forEach(( item3 ) => {
-      console.log('LINHA 066 - CONTATO CONTROLLER - ' + item3);
+      //console.log('LINHA 066 - CONTATO CONTROLLER - ' + item3);
     });
 
 
