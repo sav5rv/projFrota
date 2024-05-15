@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
-const { validar_login } = require('../controllers/contatoController');
+// const { validar_login } = require('../controllers/contatoController');
 
 
 const LoginSchema = new mongoose.Schema({
