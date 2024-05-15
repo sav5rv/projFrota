@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
+const { validar_login } = require('../controllers/contatoController');
 
 
 const LoginSchema = new mongoose.Schema({
@@ -132,24 +133,22 @@ class Login {
   async gerar_senha(email, re) {
     const max = re;
     const num = Math.floor(Math.random() * (max - 0 + 1)) + 0;
-    //let senhaNova = num;
     let senhaNova = num.toString();
-    console.log( `LINHA 133 LOGIN MODEL senha: ${num}`);
-    console.log( `LINHA 133 LOGIN MODEL senha: ${senhaNova}`);
+    // console.log( `LINHA 133 LOGIN MODEL senha: ${num}`);
+    // console.log( `LINHA 133 LOGIN MODEL senha: ${senhaNova}`);
 
        
       if(this.login = await LoginModel.findOne({ email: email, re: re }, { })) {
   
         if(this.login){
-          //const id = this.login.id;
                   
           const salt  = bcryptjs.genSaltSync();
           senhaNova   = bcryptjs.hashSync(senhaNova, salt);
           //senhaNova = senhaNova;
           
-          console.log('LINHA 147 LOGIN MODEL ' + this.login.password);
-          console.log('LINHA 149 LOGIN MODEL ' + senhaNova);
-          console.log('LINHA 150 LOGIN MODEL ' + this.login.id);
+          // console.log('LINHA 147 LOGIN MODEL ' + this.login.password);
+          // console.log('LINHA 149 LOGIN MODEL ' + senhaNova);
+          // console.log('LINHA 150 LOGIN MODEL ' + this.login.id);
           
           this.login = await LoginModel.findByIdAndUpdate(this.login.id, {password: senhaNova}, { new: true });
           
@@ -208,6 +207,7 @@ class Login {
   
   // sendo chamada em homeController para contar a qtd de registro para a pág index
   // sendo chamado em contato_cad para a função Fetch Lista_Email_Login
+  // sendo chamado em contatoController linha 50 - validar_Login
   async buscaLogins() {
     this.login = await LoginModel.find({ }, { _id:1, email:2, nome:3, re:4, tipoUsuario:5, criadoEm:6, alteradoEm:7 } )
     // this.login = await LoginModel.find({ }, { _id:0, email:1, password:2, nome:3, re:4, tipoUsuario:5 } )
@@ -228,6 +228,12 @@ class Login {
     this.login = await LoginModel.findOneAndUpdate({ email : email }, { nome : this.body.nome, re : this.body.re, tipoUsuario : this.body.tipoUsuario }, { new: true });
   };
 
+
+  async delete(id) {
+    if(typeof id !== 'string') return;
+    this.login = await LoginModel.findOneAndDelete({_id: id});
+    return;
+  };  
 
 
 

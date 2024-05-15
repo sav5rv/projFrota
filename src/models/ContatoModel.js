@@ -103,20 +103,18 @@ Contato.prototype.esqueci_senha = async function(registro) {
   }
 }; 
 
+
 // MÉTODOS ESTÁTICOS não requerem a criação de uma instância do modelo para serem chamados
 // removemos o this desnecessário, pois estamos trabalhando com um método estático e não precisamos referenciar a instância do modelo
-Contato.busca_validar = async function(x) {
-  const id = x.toString();
-  console.log('LINHA 110 CONTATO MODEL ' , id);
-  if(typeof id !== 'string') {
+Contato.busca_validar = async function(id2) {
+  if(typeof id2 !== 'string') {
     console.log('não é string');
     return;
 
   } else {
-    console.log('LINHA 116 CONTATO MODEL ' , id);
-    const contato = await ContatoModel.findOne({ login_id: id });
-    console.log('LINHA 111 CONTATO MODEL ' , contato);
+    const contato = await ContatoModel.findOne({ login_id: id2 });
     return contato;
+
   }
 };
 

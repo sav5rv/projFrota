@@ -12,6 +12,10 @@ exports.criar = (req, res) => {
 };
 
 
+exports.delete = (req, res) => {  
+  return res.render('validar_login');
+};
+
 
 exports.alterar = async function(req, res) {
   return res.render('login_alterar');  

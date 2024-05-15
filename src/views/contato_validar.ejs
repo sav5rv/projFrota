@@ -6,50 +6,44 @@
 
     <div class="col-lg-12">
       <div class="text-center">
-        <img src="/img/despesa.jpg" style="width:50px;height:50px;">
+        <!-- <img src="/img/despesa.jpg" style="width:50px;height:50px;"> -->
         <h4>Usuários</h4>
-        <p>Relação dos usuários cadastrados</p>
+        <p>Relação dos usuários para validar o cadastro</p>
         <p><%- include('includes/messages') %></p>
       </div>
       
 
-      <% if(contatos.length > 0) { %>
+      <% if(novo_array.length > 0) { %>
       <div class="responsive-table">
         <table class="table my-3">
           <thead>
             <tr>
                 <th>Nome</th>
-                <th>EMail</th>
-                <th>Celular</th>
                 <th>RE</th>
+                <th>EMail</th>
                 <th>Tipo Usuário</th>
-                <th>Registro CNH</th>
-                <th>Categoria CNH</th>
-                <th>Validade CNH</th>
-                <th>Observações</th>
-                <th>Editar</th>
+                <th>Criado Em</th>
+                <th>iD</th>
+                <th>Validar</th>
                 <th>Excluir</th>
             </tr>
         </thead>
-          <% contatos.forEach(contato => { %>
+          <% novo_array.forEach(item => { %>
           <tr>
-            <td><%= contato.nome %></td>
-            <td><%= contato.email %></td>
-            <td><%= contato.celular %></td>
-            <td><%= contato.re %></td>
-            <td><%= contato.tipoUsuario %></td>
-            <td><%= contato.cnhRegistro %></td>
-            <td><%= contato.categoria %></td>
-            <td><%= contato.validade %></td>
-            <td><%= contato.obs %></td>
-            <td><a href="/contato/contato_lista/<%= contato._id %>">Editar</a></td>
-            <td><a class="text-danger" href="/contato/delete/<%= contato._id %>">Excluir</a></td>
+            <td><%= item.nome %></td>
+            <td><%= item.re %></td>
+            <td><%= item.email %></td>
+            <td><%= item.tipoUsuario %></td>
+            <td><%= item.criadoEm %></td>
+            <td><%= item._id %></td>
+            <td><a href="/contato/contato_lista/<%= novo_array._id %>">Validar</a></td>
+            <td><a class="text-danger" href="/login/delete/<%= novo_array._id %>">Excluir</a></td>
           </tr>
           <% }); %>
         </table>
       </div>
       <% } else { %>
-        <p class="text-center lead">Não existem usuários cadastrados.</p>
+        <p class="text-center lead">Todos os usuários já estão validados.</p>
       <% } %>
 
     </div>

@@ -46,32 +46,64 @@ exports.contato_abrir = async(req, res) => {
 };
 
 
-//------------------------------------------------------------------------------------
+
 exports.validar_login = async(req, res) => {
   const novo_array = [];
 
   try {
     const login = new Login();  // isso é instanciar
     const login2 = await login.buscaLogins();
+
+    if ( login2 ) {
+      // Em resumo, o código (async () => {})(); cria uma função assíncrona vazia e a executa imediatamente, sem realizar nenhuma ação específica
+      (async () => {
+        for (const log2 of login2) { //Ele itera sobre um array chamado
+          
+          const id2 = log2._id.toString(); //tem que ser String, que é o armazenado no BD
+          const contato = await Contato.busca_validar(id2);
+          if (! contato) novo_array.push(log2);
+        };            
+        console.log(`qtd de registros falta cadastrar: ${novo_array.length}`);
+        
+        res.render('contato_validar', { novo_array });
+      })();
+    };
     
-    login2.forEach( async( item2 ) => {
-      //console.log('LINHA 058 - CONTATO CONTROLLER - ' + item2);
-      
-      console.log('LINHA 059 - CONTATO CONTROLLER - ' + item2._id);
+  } catch (e) {
+    console.log(e);
+    return res.render('404');
+  }
+};
 
-      const contato = await Contato.busca_validar(item2._id);
-      console.log('LINHA 060 - CONTATO CONTROLLER - ', contato);
-      //if( !contatos ) novo_array.push(item2);
-      //const registro = item.email;
-      //novo_array.push(registro);
-      //console.log('LINHA 062 - CONTATO CONTROLLER - ' + item2);      
-      
+//------------------------------------------------------------------------------------
+exports.validar2_login = async(req, res) => {
+  const novo_array = [];
+  let contador1 = 0;
+  let contador2 = 0;
+
+  try {
+    const login = new Login();  // isso é instanciar
+    const login2 = await login.buscaLogins();
+    
+    login2.forEach( async( item2 ) => {            
+      const id2 = item2._id.toString(); //tem que ser String, que é o armazenado no BD
+      const contato = await Contato.busca_validar(id2);
+      if (contato) {
+        contador1 += 1;
+        
+      } else {
+        contador2 += 1;
+        console.log(`LINHA 68 CONTATO CONTROLLER: ${item2}`);
+        novo_array.push(item2);
+      };
     });
+    
+    novo_array.forEach( (item3 ) => {
+      console.log('LINHA 073 - CONTATO CONTROLLER - ' + item3);
 
-    novo_array.forEach(( item3 ) => {
-      //console.log('LINHA 066 - CONTATO CONTROLLER - ' + item3);
     });
-
+//QUANDO TIRO O NOVO ARRAY DE DENTRO DO FOREACH ELE NÃO CARREGA OS VALORES
+    res.render('contato_validar', { novo_array });
 
   } catch (e) {
     console.log(e);
