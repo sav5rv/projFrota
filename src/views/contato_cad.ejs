@@ -22,6 +22,7 @@
               <%- include('includes/messages') %>
 
                 <% if( contato._id ) { %>
+                  <% console.log(contato.id) %>
                   <form id="frm1" action="/contato/edit/<%= contato._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } else { %>
                   <form id="frm1" action="/contato/register" method="POST" class="form-horizontal" novalidate="novalidate">

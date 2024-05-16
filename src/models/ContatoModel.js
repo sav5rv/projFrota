@@ -31,7 +31,7 @@ Contato.prototype.register = async function() {
     if(this.errors.length > 0) return;
 
   this.loginExists();
-    // if(this.errrors.length > 0) return;
+    if(this.errors.length > 0) return;
 
   this.contato = await ContatoModel.create(this.body);
 }
@@ -39,7 +39,8 @@ Contato.prototype.register = async function() {
 
 
 Contato.prototype.loginExists = async function() {
-  this.contato = ContatoModel.findOne({ email: this.body.email });
+  console.log('linha 42 ContatoModel ' + this.body.email);
+  this.contato = await ContatoModel.findOne({ email: this.body.email });
   if(this.contato) this.errors.push('Usuário já cadastrado com esse email.');
 }
 

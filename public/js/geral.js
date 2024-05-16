@@ -252,7 +252,7 @@ function completarComZeroCnhRegistro() {
 
 function completarComZeroRE() {
     const numRe = re.value;
-    re.value = numRe.padStart(7, "0");
+    re.value = numRe.padStart(6, "0");
 };
 
 
