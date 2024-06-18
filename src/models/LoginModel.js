@@ -216,6 +216,10 @@ class Login {
     return this.login
   };
 
+  // a função assíncrona buscaLogins retorna
+  // uma PROMISE com um array de objetos JavaScript.
+  // Cd obj no array representa um Document encontrado na Colection login do MongoDB
+
 
   
   
@@ -246,6 +250,16 @@ class Login {
   };
 
 
+
+  // o buscar_o_id está vindo do ContatoController linha 90
+  async buscaPorId(buscar_o_id) { 
+    if(typeof buscar_o_id !== 'string') return;
+    this.login = await LoginModel.findById(buscar_o_id);
+    console.log('LINHA 258 LOGIN MODEL ' + buscar_o_id);
+    
+    return this.login
+    
+  };  
 }
 
 module.exports = Login;

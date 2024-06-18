@@ -59,11 +59,14 @@ route.get('/contato/index',             loginRequiredADM, contatoController.inde
 route.post('/contato/register',         loginRequiredADM, contatoController.register); //adicionar novo
 route.get('/contato/delete/:id',        loginRequiredADM, contatoController.delete); //deletar
 route.get('/contato/contato_lista',     loginRequiredADM, contatoController.contato_lista); //1º listei
+route.get('/contato/lista_contato',     loginRequiredADM, contatoController.lista_contato); 
 route.get('/contato/contato_lista/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/contato/edit/:id',         loginRequiredADM, contatoController.edit); //3º salvei o form alterado
-route.get('/contato/lista_contato',     loginRequiredADM, contatoController.lista_contato);
-route.get('/contato/validar_login',     loginRequiredADM, contatoController.validar_login); //1º listei
 
+route.get('/contato/login_validar',                loginRequiredADM, contatoController.login_validar); //1º listei
+route.get('/contato/login_validar_lista/:id',   loginRequiredADM, contatoController.login_validar_lista);  //2º escolhi o registro
+route.post('/contato/login_validar_register',      loginRequiredADM, contatoController.login_validar_register); //3º salvei o registro
+route.get('/contato/login_validar_delete/:id',        loginRequiredADM, contatoController.login_validar_delete); //deletar
 
 
 // Rotas de veiculo

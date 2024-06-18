@@ -41,7 +41,7 @@ Contato.prototype.register = async function() {
 Contato.prototype.loginExists = async function() {
   console.log('linha 42 ContatoModel ' + this.body.email);
   this.contato = await ContatoModel.findOne({ email: this.body.email });
-  if(this.contato.email == this.body.email) this.errors.push('Usuário já cadastrado com esse email.');
+  if(this.contato) if(this.contato.email === this.body.email) this.errors.push('Usuário já cadastrado com esse email.');
 }
 
 
@@ -52,6 +52,8 @@ Contato.prototype.valida = function() {
   if(!this.body.nome) this.errors.push('Nome é um campo obrigatório.');
   // O e-mail precisa ser válido
   if(this.body.email && !validator.isEmail(this.body.email)) this.errors.push('E-mail inválido');
+  //validar o campo login_id como String
+  if(typeof this.body.login_id !== 'string') this.errors.push('Login Id deve ser String');
 
   if(!this.body.nome && !this.body.email) {
     this.errors.push('Campos Nome e EMail são obrigatórios');
@@ -68,7 +70,7 @@ Contato.prototype.cleanUp = function() {
   }
 
   this.body = {
-    login_id:    this.body.idForm,
+    login_id:    this.body.idForm.trim(), // o erro estava no elemento input da pag html, tinha deixado espaço sobrando entre o texto e as aspas, ai salvava com espaço no BD
     nome:        this.body.nome,
     email:       this.body.email,
     celular:     this.body.celular,
@@ -113,7 +115,9 @@ Contato.busca_validar = async function(id2) {
     return;
 
   } else {
-    const contato = await ContatoModel.findOne({ login_id: id2 });
+    const contato = await ContatoModel.findOne({ login_id : id2 });
+    console.log('LINHA 117 CONTATO MODEL' + contato);
+    console.log('LINHA 118 CONTATO MODEL' + id2);
     return contato;
 
   }

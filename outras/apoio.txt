@@ -1,5 +1,11 @@
+     user       adm: ws@gmail.com       senha: 123
+
 QUANDO ESTIVER TESTANDO UM JAVASCRIPT VIA SERVIDOR
   = se estiver apenas editando o codigo JS não precisa reiniciar o servidor, apenas atualizar a página
+
+
+O RETORNO DE UMA CONSULTA EM UMA COLLECTION (tabela) NO mongodb
+  = é um array de objetos JavaScript - cada obj dentro do array representa um document da collection 
 
 
 USAR DOIS PARAMETROS PARA CONSULTA DINAMICA
