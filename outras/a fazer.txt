@@ -20,10 +20,21 @@ categoria CNH = A / B / C / D / E
 
            contato_lista.js cadastro de usuario (login/criar)
 
-depois que salva um registro novo, ele fica na tela, ao clicar no btn salvar novamente, dá msg que editou e ai sai
+para inserir um registro completo deve-se ter um prévio registro na tb Login
 
------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
 
+                      GRÁFICOS - https://www.chartjs.org/
+GUIA = https://www.chartjs.org/docs/latest/getting-started/usage.html
+
+GUIA = https://www.w3schools.com/ai/ai_chartjs.asp
+
+https://www.geeksforgeeks.org/chart-js-tutorial/
+
+https://www.geeksforgeeks.org/chart-js-api-developer/?ref=lbp
+
+
+------------------------------------------------------------------------------------------------------                      
 
            a lógica do Middleware
 
@@ -64,12 +75,6 @@ verificar se o sistema está logado e avisar ao usuario
 
 definir qtd caracter do campo senha será de 3 a 16 - falta corrigir alguns campos
 
-criar a função esqueci a senha
-
-listar todos os registros... Clicar em um registro e chamar o Usuario Cadastrar (já preenchido).... Terminar de preencher e salvar no tbContato
-
-na lista icone exibindo se já está incluído na Tb Cadastro, ou um link nesse icone que muda se estiver incluído
-
 ------------------------------------------------------------------------
 
                                      USUÁRIOS
@@ -79,18 +84,10 @@ tem que mudar no middleware no tbLogin
 
 o tipo de usuario é definido no arquivo login_criar.ejs
 
-as funções da tela cadastro devem ser melhor definidas
-
-uma saída seria direcionar o model_login para a Tb Contatos
-
-usuario ADM vai acessar a lista dos usuarios que se cadastraram no login, vai verificar qual cadastro falta completar
-atraves do menu lista e vai editar esse registro, por isso que temos que juntar as tblogin e tbcadastro
-
-
 ------------------------------------------------------------------------------------
 
                                       FICHAS DE uso
-pesquisar os veiculos cadastrados e preencher um combobox ou preenchimento automatico no cammpo PLACA, dessa forma
+pesquisar os veiculos cadastrados e preencher um combobox ou preenchimento automatico no campo PLACA, dessa forma
 será direcionado qual veículo usar
 
 jQuery Masked Input
