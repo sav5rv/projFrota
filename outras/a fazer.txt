@@ -25,6 +25,7 @@ para inserir um registro completo deve-se ter um prévio registro na tb Login
 -------------------------------------------------------------------------------------------------------
 
                       GRÁFICOS - https://www.chartjs.org/
+                      
 GUIA = https://www.chartjs.org/docs/latest/getting-started/usage.html
 
 GUIA = https://www.w3schools.com/ai/ai_chartjs.asp

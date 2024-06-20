@@ -26,9 +26,10 @@ route.get('/teste01/index',             teste01Controller.index);
 //route.get('/teste01/criar',           teste01Controller.criar);
 //route.post('/teste01/register',       teste01Controller.register);
 route.get('/teste01/dtTable',           teste01Controller.veiculo_lista);
+route.get('/teste01/despesa_lista',           teste01Controller.despesa_lista);
 route.get('/teste01/placa',             teste01Controller.placa);
-route.get('/teste01/modeloForm1',                teste01Controller.modeloForm1);
-route.get('/teste01/index2.ejs',       teste01Controller.index2);
+route.get('/teste01/modeloForm1',       teste01Controller.modeloForm1);
+route.get('/teste01/index2.ejs',        teste01Controller.index2);
 route.get('/index3.html');
 route.get('/index4.html');
 
@@ -63,10 +64,10 @@ route.get('/contato/lista_contato',     loginRequiredADM, contatoController.list
 route.get('/contato/contato_lista/:id', loginRequiredADM, contatoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/contato/edit/:id',         loginRequiredADM, contatoController.edit); //3º salvei o form alterado
 
-route.get('/contato/login_validar',                loginRequiredADM, contatoController.login_validar); //1º listei
-route.get('/contato/login_validar_lista/:id',   loginRequiredADM, contatoController.login_validar_lista);  //2º escolhi o registro
-route.post('/contato/login_validar_register',      loginRequiredADM, contatoController.login_validar_register); //3º salvei o registro
-route.get('/contato/login_validar_delete/:id',        loginRequiredADM, contatoController.login_validar_delete); //deletar
+route.get('/contato/login_validar',            loginRequiredADM, contatoController.login_validar); //1º listei
+route.get('/contato/login_validar_lista/:id',  loginRequiredADM, contatoController.login_validar_lista);  //2º escolhi o registro
+route.post('/contato/login_validar_register',  loginRequiredADM, contatoController.login_validar_register); //3º salvei o registro
+route.get('/contato/login_validar_delete/:id', loginRequiredADM, contatoController.login_validar_delete); //deletar
 
 
 // Rotas de veiculo
@@ -77,6 +78,8 @@ route.get('/veiculo/veiculo_lista',            loginRequiredADM, veiculoControll
 route.get('/veiculo/veiculo_lista/:id',        loginRequiredADM, veiculoController.editIndex); //usado no retorno do cad veiculo
 route.post('/veiculo/edit/:id',                loginRequiredADM, veiculoController.edit);
 route.get('/veiculo/lista_veiculo',            loginRequiredADM, veiculoController.lista_veiculo);
+
+
 
 //Fetch usado em veiculo_cad
 route.get('/veiculo/teste_lista_veiculo/:rodas',      veiculoController.teste_lista_veiculo);

@@ -1,5 +1,6 @@
 const Veiculo = require('../models/VeiculoModel');
 const Contato = require('../models/ContatoModel');
+const Despesa = require('../models/DespesaModel');
 
 exports.index = (req, res) => {
   res.render('./teste01/index');
@@ -29,6 +30,25 @@ exports.veiculo_lista = async(req, res) => {
     //res.send({ veiculos });
     //res.send(x);
     //res.json(veiculos);
+  } catch(e) {
+      console.log(e);
+      return res.render('404');
+  }
+};
+
+
+exports.despesa_lista = async(req, res) => {
+  const despesa = await Despesa.buscaDespesas();
+
+  try {
+    if(!despesa) return res.render('404');
+    const x = JSON.stringify( despesa );
+    //const y = JSON.stringify( x );
+    // console.log ( veiculos );
+    // console.log ( x );
+    
+    res.render('./teste01/despesa_lista', { x } ); //como a chave é veiculos e a variavel que esta vindo é veiculos tb não preciso fazer { veiculos:veiculos }
+
   } catch(e) {
       console.log(e);
       return res.render('404');
