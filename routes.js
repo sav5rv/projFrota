@@ -26,7 +26,7 @@ route.get('/teste01/index',             teste01Controller.index);
 //route.get('/teste01/criar',           teste01Controller.criar);
 //route.post('/teste01/register',       teste01Controller.register);
 route.get('/teste01/dtTable',           teste01Controller.veiculo_lista);
-route.get('/teste01/despesa_lista',           teste01Controller.despesa_lista);
+route.get('/teste01/despesa_lista',     teste01Controller.despesa_lista);
 route.get('/teste01/placa',             teste01Controller.placa);
 route.get('/teste01/modeloForm1',       teste01Controller.modeloForm1);
 route.get('/teste01/index2.ejs',        teste01Controller.index2);
@@ -96,6 +96,7 @@ route.get('/despesa/despesa_lista',     loginRequired, despesaController.despesa
 route.get('/despesa/despesa_lista/:id', loginRequired, despesaController.editIndex);
 route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
+route.get('/despesa/despesa_grafico',   despesaController.grafico);
 
 
 

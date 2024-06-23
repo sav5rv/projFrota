@@ -12,6 +12,18 @@ exports.index = (req, res) => {
 };
 
 
+exports.grafico = async(req, res) => {
+  try{
+    const desp = await Despesa.buscaGrafico();
+    const despesas = JSON.stringify( desp );
+    res.render('despesa_grafico', { despesas });
+  }
+  catch(e) {
+    console.log(e);
+    return res.render('404');
+  }
+};
+
 
 
 exports.despesa_lista = async(req, res) => {

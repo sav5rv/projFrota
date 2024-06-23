@@ -85,6 +85,15 @@ Despesa.buscaPorId = async function(id) {
 
 
 
+Despesa.buscaGrafico = async function() {
+  //const despesas = await DespesaModel.find({ }, { _id:0, email:1, password:2, nome:3, re:4, tipoUsuario:5 } )
+  const despesas = await DespesaModel.find({ })
+    .sort({ _id: -1 });
+  return despesas;
+};
+
+
+
 Despesa.buscaDespesas = async function() {
   const despesas = await DespesaModel.find()
     .sort({ criadoEm: -1 });

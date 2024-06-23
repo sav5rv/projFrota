@@ -1,0 +1,98 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+  <div class="row">
+
+    <div class="col-lg-12">
+      <div class="text-center">
+        <!-- <img src="/img/despesa.jpg" style="width:80px;height:80px;"> -->
+        <h4>Gráficos das Despesas</h4>
+        <p><%- include('includes/messages') %></p>
+      </div>
+
+      <% if(despesas.length > 0) { %>
+        <!-- <%- console.log( despesas ); %>  vai exibir no console do servidor -->
+        <div style="width:50%;">
+          <canvas id="area_graf1"></canvas>
+        </div>
+        <div>
+          <p id="lista">local da lista</p>
+        </div>
+      <% } else { %>
+        <p class="text-center lead">Não existem despesas cadastradas.</p>
+      <% } %>
+
+    </div>
+    
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+
+  <script>
+
+      //fazer a leitura do conteúdo do obj retornado da consulta (despesas)
+      for (const x of <%- despesas %>) {
+
+          // Imprime os dados de cada documento
+          const div = document.createElement("div");
+          div.textContent = `Id: ${x._id} | Placa: ${x.placa}`;
+          document.querySelector("#lista").appendChild(div);
+
+          //console.log(x.placa, x.data); irá ser exibido no console do browser
+        };
+
+
+      // crie um gráfico inicial vazio
+      var area_graf1 = document.getElementById("area_graf1");
+      var myChart1 = new Chart(area_graf1, {
+        type: 'bar',
+        data: {
+                labels: [],
+                datasets: [{
+                            data: [ ],
+                            borderWidth: 1,
+                            borderColor:'#00c0ef',
+                            label: 'liveCount',
+                }]
+        },
+        options: {
+                  responsive: true,
+                  title: {
+                    display: true,
+                    text: "área do gráfico UM",
+                  },
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero: true,
+                      }
+                    }]
+                  }
+        }
+      });
+      
+    
+      // // lógica para obter novos dados
+      // var getData = function() {
+      //   $.ajax({
+      //           url: 'https://jsonplaceholder.typicode.com/posts/' + postId + '/comments',
+      //           success: function(data) {
+      //             // processar seus dados para extrair oq vc deseja
+      //             // e.g. new label and a new data point
+                  
+      //             // adicionar novos rótulos e pontos de dados a estrutura de dados subjacente
+      //             myChart1.data.labels.push("Post " + postId++);
+      //             myChart1.data.datasets[0].data.push(getRandomIntInclusive(1, 25));
+                  
+      //             // re-render the chart
+      //             myChart1.update();
+      //           }
+      //   });
+      // };
+
+    </script> 
+<%- include('includes/footer') %>
