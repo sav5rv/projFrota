@@ -1,0 +1,420 @@
+[{
+  "_id": {
+    "$oid": "65bf925cc5a8841768cebb7b"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "987111",
+  "data": "2024-02-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 235,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65d692c25e58ec0020e86088"
+  },
+  "tipoDespesa": "Óleo",
+  "hodometro": "159010",
+  "data": "2024-05-22",
+  "hora": "15:30",
+  "local": "Itape",
+  "unidade": "Lts",
+  "quantidade": "55",
+  "valor": "R$ 255,66",
+  "obs": "teste",
+  "email": "adm@adm.com",
+  "placa": "BTF4501",
+  "criadoEm": {
+    "$date": "2024-02-22T00:18:10.514Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66735b6c360bfe4c924c8b6a"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "987511",
+  "data": "2024-03-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 535,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66735b82360bfe4c924c8b6b"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "987151",
+  "data": "2024-04-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 1235,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66735b93360bfe4c924c8b6c"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "989111",
+  "data": "2024-05-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 135,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66735bb8360bfe4c924c8b6d"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "999111",
+  "data": "2024-06-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 190,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66735bcb360bfe4c924c8b6e"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "500111",
+  "data": "2024-09-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 935,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66748435fa168c9366fab05f"
+  },
+  "tipoDespesa": "Combustível",
+  "hodometro": "987511",
+  "data": "2024-04-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 35,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66748462fa168c9366fab060"
+  },
+  "tipoDespesa": "Combustível",
+  "hodometro": "987511",
+  "data": "2024-05-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 95,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66748475fa168c9366fab061"
+  },
+  "tipoDespesa": "Combustível",
+  "hodometro": "988511",
+  "data": "2024-06-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 915,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784d23dd80bb804c039c4e"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "985111",
+  "data": "2024-02-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 535,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784d6bdd80bb804c039c4f"
+  },
+  "tipoDespesa": "Óleo",
+  "hodometro": "159910",
+  "data": "2024-06-22",
+  "hora": "15:30",
+  "local": "Itape",
+  "unidade": "Lts",
+  "quantidade": "5",
+  "valor": "R$ 205,66",
+  "obs": "teste",
+  "email": "adm@adm.com",
+  "placa": "BTF4501",
+  "criadoEm": {
+    "$date": "2024-02-22T00:18:10.514Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784d9fdd80bb804c039c50"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "98511",
+  "data": "2024-02-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 5,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784db2dd80bb804c039c51"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "9111",
+  "data": "2024-12-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "4",
+  "valor": "R$ 590,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784dc4dd80bb804c039c52"
+  },
+  "tipoDespesa": "Combustível",
+  "hodometro": "987511",
+  "data": "2024-01-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "45",
+  "valor": "R$ 1135,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784dd8dd80bb804c039c53"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "989111",
+  "data": "2024-11-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "2",
+  "valor": "R$ 235,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784deadd80bb804c039c54"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "999111",
+  "data": "2024-10-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "2",
+  "valor": "R$ 192,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784dfbdd80bb804c039c55"
+  },
+  "tipoDespesa": "Pneu",
+  "hodometro": "500111",
+  "data": "2024-10-04",
+  "hora": "10:28",
+  "local": "teste",
+  "unidade": "Unid",
+  "quantidade": "2",
+  "valor": "R$ 35,00",
+  "obs": "teste",
+  "email": "123@123.com",
+  "placa": "ABC1456",
+  "criadoEm": {
+    "$date": "2024-02-04T13:34:20.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784e14dd80bb804c039c56"
+  },
+  "tipoDespesa": "Óleo",
+  "hodometro": "159910",
+  "data": "2024-11-22",
+  "hora": "15:30",
+  "local": "Itape",
+  "unidade": "Lts",
+  "quantidade": "15",
+  "valor": "R$ 505,66",
+  "obs": "teste",
+  "email": "adm@adm.com",
+  "placa": "BTF4501",
+  "criadoEm": {
+    "$date": "2024-02-22T00:18:10.514Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66784e28dd80bb804c039c57"
+  },
+  "tipoDespesa": "Óleo",
+  "hodometro": "159010",
+  "data": "2024-03-22",
+  "hora": "15:30",
+  "local": "Itape",
+  "unidade": "Lts",
+  "quantidade": "5",
+  "valor": "R$ 20,66",
+  "obs": "teste",
+  "email": "adm@adm.com",
+  "placa": "BTF4501",
+  "criadoEm": {
+    "$date": "2024-02-22T00:18:10.514Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6679d1d221027f1dd5367eaa"
+  },
+  "tipoDespesa": "Óleo",
+  "hodometro": "19010",
+  "data": "2024-10-22",
+  "hora": "15:30",
+  "local": "Itape",
+  "unidade": "Lts",
+  "quantidade": "5",
+  "valor": "R$ 855,66",
+  "obs": "teste",
+  "email": "adm@adm.com",
+  "placa": "BTF4501",
+  "criadoEm": {
+    "$date": "2024-02-22T00:18:10.514Z"
+  },
+  "__v": 0
+}]
