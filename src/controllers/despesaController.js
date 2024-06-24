@@ -12,11 +12,23 @@ exports.index = (req, res) => {
 };
 
 
+
 exports.grafico = async(req, res) => {
   try{
-    const desp = await Despesa.buscaGrafico();
-    const despesas = JSON.stringify( desp );
-    res.render('despesa_grafico', { despesas });
+    const desp1 = await Despesa.buscaGrafico1();
+    const despesas1 = JSON.stringify( desp1 );
+
+    const desp2 = await Despesa.buscaGrafico2();
+    const despesas2 = JSON.stringify( desp2 );
+
+    const desp3 = await Despesa.buscaGrafico3();
+    const despesas3 = JSON.stringify( desp3 );    
+
+    res.render('despesa_grafico', { 
+      despesas1,  
+      despesas2, 
+      despesas3 
+    });
   }
   catch(e) {
     console.log(e);

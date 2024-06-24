@@ -85,13 +85,48 @@ Despesa.buscaPorId = async function(id) {
 
 
 
-Despesa.buscaGrafico = async function() {
-  //const despesas = await DespesaModel.find({ }, { _id:0, email:1, password:2, nome:3, re:4, tipoUsuario:5 } )
-  const despesas = await DespesaModel.find({ })
-    .sort({ _id: -1 });
-  return despesas;
+Despesa.buscaGrafico1 = async function() {
+  const despesas1 = await DespesaModel.aggregate([
+    {
+      $group: {
+        _id: "$placa",     // Agrupa por "colunaAgrupar"
+        count: { $sum: 1 } // Conta o número de documentos em cada grupo
+      }
+    }
+  ])  
+  return despesas1;
 };
 
+
+
+Despesa.buscaGrafico2 = async function() {
+  const despesas2 = await DespesaModel.aggregate([
+    {
+      $group: {
+        _id: "$tipoDespesa",     // Agrupa por "colunaAgrupar"
+        count: { $sum: 1 } // Conta o número de documentos em cada grupo
+      }
+    }
+  ])  
+  return despesas2;
+};
+
+
+
+Despesa.buscaGrafico3 = async function() {
+  const despesas3 = await DespesaModel.aggregate([
+    { 
+      $match: { placa: "ABC1456" }
+    },
+    {
+      $group: {
+        _id: "$tipoDespesa",     // Agrupa por "colunaAgrupar"
+        count: { $sum: 1 } // Conta o número de documentos em cada grupo
+      }
+    }
+  ])  
+  return despesas3;
+};
 
 
 Despesa.buscaDespesas = async function() {
