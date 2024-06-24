@@ -22,12 +22,16 @@ exports.grafico = async(req, res) => {
     const despesas2 = JSON.stringify( desp2 );
 
     const desp3 = await Despesa.buscaGrafico3();
-    const despesas3 = JSON.stringify( desp3 );    
+    const despesas3 = JSON.stringify( desp3 );
+
+    const desp4 = await Despesa.buscaGrafico4();
+    const despesas4 = JSON.stringify( desp4 );
 
     res.render('despesa_grafico', { 
       despesas1,  
       despesas2, 
-      despesas3 
+      despesas3,
+      despesas4
     });
   }
   catch(e) {

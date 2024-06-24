@@ -76,7 +76,6 @@ Despesa.prototype.edit = async function(id) {
 
 
 
-// Métodos estáticos
 Despesa.buscaPorId = async function(id) {
   if(typeof id !== 'string') return;
   const despesa = await DespesaModel.findById(id);
@@ -127,6 +126,24 @@ Despesa.buscaGrafico3 = async function() {
   ])  
   return despesas3;
 };
+
+
+
+Despesa.buscaGrafico4 = async function() {
+  const despesas4 = await DespesaModel.aggregate([
+    {
+      $group: {
+        _id: { // Agrupamento hierárquico
+          campo1: "$placa",
+          campo2: "$tipoDespesa"
+        },
+        count: { $sum: 1 } // Conta por qualquer campo dentro do grupo
+      }
+    }
+  ])  
+  return despesas4;
+};
+
 
 
 Despesa.buscaDespesas = async function() {

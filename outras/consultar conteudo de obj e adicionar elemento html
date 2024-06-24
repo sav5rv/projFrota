@@ -1,0 +1,10 @@
+      //fazer a leitura do conteúdo do obj retornado da consulta (despesas)
+      for (const x of <%- despesas3 %>) {
+
+          // Imprime os dados de cada documento
+          const div = document.createElement("div");
+          div.textContent = `Id: ${x._id} | Placa: ${x.placa}`;
+          document.querySelector("#lista").appendChild(div);
+
+          console.log(x.placa); //irá ser exibido no console do browser
+        };
