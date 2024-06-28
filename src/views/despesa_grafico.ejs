@@ -11,7 +11,7 @@
       </div>
 
       <% if(despesas1.length > 0) { %>
-        <%- console.log( despesas1 ); %> 
+        <%- console.log( despesas4 ); %> 
         <div class="container" style="display: flex; justify-content: space-around;">
         <div style="width:50%; border: solid 1px rgba(15, 14, 14, 0.5);">
           <canvas id="area_graf1"></canvas>   
@@ -135,7 +135,45 @@
       });
 
 
-      //var area_graf4 = document.getElementById("area_graf4");
+
+  const tipoDespesas = despesas4.map(item => item._id.tipoDespesa).sort().unique();
+  const datasets = [];
+
+  for (const tipoDespesas of tipoDespesa) {
+    const itensNoLocal = despesas4.filter(item => item._id.tipoDespesa === tipoDespesa).slice(0, 3);
+    datasets.push({
+      label: tipoDespesa,
+      data: itensNoLocal.map(item => item.count),
+      backgroundColor: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)',
+    });
+  }
+
+  const data = {
+    labels: despesas4.map(item => item.data).sort().unique(),
+    datasets: datasets
+  };
+
+  const options = {
+    title: 'Itens Mais Vendidos por Local da Loja',
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+
+  const ctx = document.getElementById("area_graf4").getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+  });
+
+
+
+/*    var area_graf4 = document.getElementById("area_graf4");
       new Chart(document.getElementById("area_graf4"), {
       type: 'bar',
       data: {
@@ -157,7 +195,7 @@
           display: true,
           text: 'Population growth (millions)'
         }
-      }
+      } */
       });
       /* var myChart4 = new Chart(area_graf4, {
         type: 'bar',

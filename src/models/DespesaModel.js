@@ -133,6 +133,19 @@ Despesa.buscaGrafico4 = async function() {
   const despesas4 = await DespesaModel.aggregate([
     {
       $group: {
+        _id: { data: "$data", tipoDespesa: "$tipoDespesa" }, // Agrupa por item e local da loja
+        count: { $sum: 1 } // Conta o número de documentos em cada grupo
+      }
+    },
+    {
+      $sort: { tipoDespesa: 1, data: 1, count: -1 } // Ordena por local da loja, item e contagem decrescente
+    },
+    { $limit: 50 } // Limita a 3 itens mais vendidos por local da loja
+  ])
+  
+/*   const despesas4 = await DespesaModel.aggregate([
+    {
+      $group: {
         _id: { // Agrupamento hierárquico
           campo1: "$placa",
           campo2: "$tipoDespesa"
@@ -140,7 +153,7 @@ Despesa.buscaGrafico4 = async function() {
         count: { $sum: 1 } // Conta por qualquer campo dentro do grupo
       }
     }
-  ])  
+  ]) */  
   return despesas4;
 };
 
