@@ -24,14 +24,14 @@ exports.grafico = async(req, res) => {
     const desp3 = await Despesa.buscaGrafico3();
     const despesas3 = JSON.stringify( desp3 );
 
-    const desp4 = await Despesa.buscaGrafico4();
-    const despesas4 = JSON.stringify( desp4 );
+    const desp5 = await Despesa.buscaGrafico5();
+    const despesas5 = JSON.stringify( desp5 );
 
     res.render('despesa_grafico', { 
       despesas1,  
       despesas2, 
       despesas3,
-      despesas4
+      despesas5
     });
   }
   catch(e) {

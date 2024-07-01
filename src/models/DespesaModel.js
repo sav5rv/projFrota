@@ -137,32 +137,25 @@ Despesa.buscaGrafico3 = async function() {
 
 
 
-Despesa.buscaGrafico4 = async function() {
-  const despesas4 = await DespesaModel.aggregate([
+Despesa.buscaGrafico5 = async function() {
+  const despesas5 = await DespesaModel.aggregate([
     {
-      $group: {
-        _id: { data: "$data", tipoDespesa: "$tipoDespesa" }, // Agrupa por item e local da loja
-        count: { $sum: 1 } // Conta o número de documentos em cada grupo
-      }
+      $match: { tipoDespesa: "Pneu" }  // Filtro pelo produto específico
     },
     {
-      $sort: { tipoDespesa: 1, data: 1, count: -1 } // Ordena por local da loja, item e contagem decrescente
-    },
-    { $limit: 50 } // Limita a 3 itens mais vendidos por local da loja
-  ])
-  
-/*   const despesas4 = await DespesaModel.aggregate([
-    {
       $group: {
-        _id: { // Agrupamento hierárquico
-          campo1: "$placa",
-          campo2: "$tipoDespesa"
+        _id: {
+          //data: { $dateToString: { format: "%Y-%m-%d", date: "$data" } }
+          data: { $dateToString: { format: "%m-%Y", date: "$data" } }
         },
-        count: { $sum: 1 } // Conta por qualquer campo dentro do grupo
+        totalValor: { $sum: "$valor" }
       }
+    },
+    {
+      $sort: { "_id.data": 1 }
     }
-  ]) */  
-  return despesas4;
+  ]);    
+  return despesas5;
 };
 
 

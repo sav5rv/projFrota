@@ -11,25 +11,37 @@
       </div>
 
       <% if(despesas1.length > 0) { %>
-        <%- console.log( despesas4 ); %> 
+
+        <% console.log(despesas5) %>
+
         <div class="container" style="display: flex; justify-content: space-around;">
-        <div style="width:50%; border: solid 1px rgba(15, 14, 14, 0.5);">
+        <div style="width:100%; border: solid 1px rgba(15, 14, 14, 0.5);">
           <canvas id="area_graf1"></canvas>   
         </div>
+        </div>
 
-        <div style="width:50%; border: solid 1px rgba(15, 14, 14, 0.5);">
+        <div class="container" style="display: flex; justify-content: space-around;">
+        <div style="width:100%; border: solid 1px rgba(15, 14, 14, 0.5);">
           <canvas id="area_graf2"></canvas>
         </div>
         </div>
 
         <div class="container" style="display: flex; justify-content: space-around;">
-        <div style="width:50%; border: solid 1px rgba(15, 14, 14, 0.5);">
+        <div style="width:100%; border: solid 1px rgba(15, 14, 14, 0.5);">
           <canvas id="area_graf3"></canvas>
         </div>
+        </div>
 
-        <div style="width:50%; border: solid 1px rgba(15, 14, 14, 0.5);">
+        <div class="container" style="display: flex; justify-content: space-around;">
+        <div style="width:100%; border: solid 1px rgba(15, 14, 14, 0.5);">
           <canvas id="area_graf4"></canvas>
         </div>
+        </div>
+
+        <div class="container" style="display: flex; justify-content: space-around;">
+          <div style="width:100%; border: solid 1px rgba(15, 14, 14, 0.5);">
+            <canvas id="area_graf5"></canvas>
+          </div>
         </div>
 
       <% } else { %>
@@ -48,11 +60,11 @@
       // crie um gráfico inicial vazio
       var area_graf1 = document.getElementById("area_graf1");
       var myChart1 = new Chart(area_graf1, {
-        type: 'pie',
+        type: 'bar',
         data: {
           labels: <%- despesas1 %>.map(row => row._id),
           datasets: [{
-            label: "Qtd despesas cadastradas",
+            label: " ",
             backgroundColor: ['rgb(255, 255, 1)', 'rgb(255, 55, 135)', 'rgb(155, 255, 255)', 'rgb(255, 55, 255)', 'rgb(5, 5, 255)'],
             data: <%- despesas1 %>.map(row => row.count)
           }]
@@ -62,10 +74,10 @@
           plugins: {
             subtitle: {
               display: true,
-              text: "Número de despesas registradas",
+              text: "Número de despesas registradas por veículo",
             },
             legend: {
-              display: true
+              display: false,
             },
           }
         }
@@ -74,13 +86,18 @@
 
       //var area_graf2 = document.getElementById("area_graf2");
       new Chart(document.getElementById("area_graf2"), {
-        type: 'doughnut',
+        type: 'bar',
         data: {
           labels: <%- despesas2 %>.map(row => row._id),
           datasets: [
             {
-              label: "Qtd:",
-              backgroundColor: ['rgb(255, 255, 1)', 'rgb(25, 55, 135)', 'rgb(5, 255, 255)', 'rgb(255, 55, 255)', 'rgb(5, 5, 55)'],
+              label: " ",
+              backgroundColor: [
+                'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)',
+                'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)',
+                'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)',
+                'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)',
+              ],
               data: <%- despesas2 %>.map(row => row.count)
             }
           ]
@@ -90,10 +107,10 @@
           plugins: {
             subtitle: {
               display: true,
-              text: "Número de despesas registradas",
+              text: "Número de despesas registradas por tipo",
             },
             legend: {
-              display: true
+              display: false,
             },
           }
         }
@@ -135,58 +152,62 @@
       });
 
 
+//GRÁFICO 05
+      const chartData = {
+        labels: [],  // datas únicas
+        datasets: [{
+          label: "Pneus",
+          data: []
+        }]
+      };
 
-  const tipoDespesas = <%- despesas4 %>.map(item => item._id.tipoDespesa).sort().unique();
-  const datasets = [];
+      // Resultados da consulta com o filtro aplicado
+      const resultsTESTE = [
+        { "_id": { "data": "2023-01-01" }, "totalValor": 150 },
+        { "_id": { "data": "2023-01-02" }, "totalValor": 200 },
+        // outros documentos...
+      ];
 
-  for (const tipoDespesas of tipoDespesa) {
-    const itensNoLocal = <%- despesas4 %>.filter(item => item._id.tipoDespesa === tipoDespesa).slice(0, 3);
-    datasets.push({
-      label: tipoDespesa,
-      data: itensNoLocal.map(item => item.count),
-      backgroundColor: 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)',
-    });
-  }
+      const results = <%- despesas5 %>;
 
-  const data = {
-    labels: <%- despesas4 %>.map(item => item.data).sort().unique(),
-    datasets: datasets
-  };
+      results.forEach(result => {
+        const data = result._id.data;
+        chartData.labels.push(data);
+        chartData.datasets[0].data.push(result.totalValor);
+      });
 
-  const options = {
-    title: 'Itens Mais Vendidos por Local da Loja',
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
+      const config = {
+      type: 'bar', // ou 'line', etc.
+      data: chartData,
+      options: {
+        scales: {
+          x: {
+            title: { display: true, text: 'Mês/Ano' }
+          },
+          y: {
+            title: { display: true, text: 'Valores em R$' }
+          }
         }
-      }]
-    }
-  };
+      }
+    };
 
-  const ctx = document.getElementById("area_graf4").getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: options
-  });
-
+    const area_graf5 = new Chart(document.getElementById('area_graf5'), config);
 
 
 /*    var area_graf4 = document.getElementById("area_graf4");
       new Chart(document.getElementById("area_graf4"), {
       type: 'bar',
       data: {
-        labels: <%- despesas4 %>.map(row => row.count),
+        labels: <%- despesas5 %>.map(row => row.count),
         datasets: [
           {
             label: "Placa",
             backgroundColor: "#3e95cd",
-            data: <%- despesas4 %>.map(row => row._id.campo1)
+            data: <%- despesas5 %>.map(row => row._id.campo1)
           }, {
             label: "Tipo",
             backgroundColor: "#8e5ea2",
-            data: <%- despesas4 %>.map(row => row._id.campo2)
+            data: <%- despesas5 %>.map(row => row._id.campo2)
           }
         ]
       },
@@ -200,9 +221,9 @@
       /* var myChart4 = new Chart(area_graf4, {
         type: 'bar',
         data: {
-                labels: <%- despesas4 %>.map(row => row._id.campo2),
+                labels: <%- despesas5 %>.map(row => row._id.campo2),
                 datasets: [{
-                            data: <%- despesas4 %>.map(row => row.count),
+                            data: <%- despesas5 %>.map(row => row.count),
                             borderWidth: 1,
                             borderColor:'',
                             label: 'teste4',
