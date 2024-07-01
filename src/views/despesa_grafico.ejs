@@ -53,7 +53,7 @@
           labels: <%- despesas1 %>.map(row => row._id),
           datasets: [{
             label: "Qtd despesas cadastradas",
-            backgroundColor: ["#228b22", "#ffd700"],
+            backgroundColor: ['rgb(255, 255, 1)', 'rgb(255, 55, 135)', 'rgb(155, 255, 255)', 'rgb(255, 55, 255)', 'rgb(5, 5, 255)'],
             data: <%- despesas1 %>.map(row => row.count)
           }]
         },
@@ -80,7 +80,7 @@
           datasets: [
             {
               label: "Qtd:",
-              backgroundColor: ["#3cba9f","#e8c3b9","#c45850"],
+              backgroundColor: ['rgb(255, 255, 1)', 'rgb(25, 55, 135)', 'rgb(5, 255, 255)', 'rgb(255, 55, 255)', 'rgb(5, 5, 55)'],
               data: <%- despesas2 %>.map(row => row.count)
             }
           ]
@@ -136,11 +136,11 @@
 
 
 
-  const tipoDespesas = despesas4.map(item => item._id.tipoDespesa).sort().unique();
+  const tipoDespesas = <%- despesas4 %>.map(item => item._id.tipoDespesa).sort().unique();
   const datasets = [];
 
   for (const tipoDespesas of tipoDespesa) {
-    const itensNoLocal = despesas4.filter(item => item._id.tipoDespesa === tipoDespesa).slice(0, 3);
+    const itensNoLocal = <%- despesas4 %>.filter(item => item._id.tipoDespesa === tipoDespesa).slice(0, 3);
     datasets.push({
       label: tipoDespesa,
       data: itensNoLocal.map(item => item.count),
@@ -149,7 +149,7 @@
   }
 
   const data = {
-    labels: despesas4.map(item => item.data).sort().unique(),
+    labels: <%- despesas4 %>.map(item => item.data).sort().unique(),
     datasets: datasets
   };
 
@@ -196,7 +196,7 @@
           text: 'Population growth (millions)'
         }
       } */
-      });
+      
       /* var myChart4 = new Chart(area_graf4, {
         type: 'bar',
         data: {

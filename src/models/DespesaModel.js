@@ -5,13 +5,13 @@ const DespesaSchema = new mongoose.Schema({
   email:       { type: String, required: true },
   placa:       { type: String, required: true },
   tipoDespesa: { type: String, required: false, default: '' },
-  hodometro:   { type: String, required: false, default: '' },
-  data:        { type: String, required: false, default: '' },
+  hodometro:   { type: Number, required: false, default:0 },
+  data:        { type: Date, required: false},
   hora:        { type: String, required: false, default: '' },
   local:       { type: String, required: false, default: '' },
   unidade:     { type: String, required: false, default: '' },
-  quantidade:  { type: String, required: false, default: '' },
-  valor:       { type: String, required: false, default: '' },
+  quantidade:  { type: Number, required: false, default:0 },
+  valor:       { type: Number, required: false, default:0 },
   obs:         { type: String, required: false, default: '' },
   criadoEm:    { type: Date, default: Date.now },
 });
@@ -50,6 +50,14 @@ Despesa.prototype.cleanUp = function() {
     }
   }
 
+/*   let x = this.body.valor; //pega o valor moeda
+  console.log (x);
+  x = x.slice(3); //retira o cifrão
+  console.log (x);
+  x = parseFloat(x.replace(',', '.')); //substitui a virgula por ponto (Mongo usa somente ponto)
+  console.log(x);
+  console.log(typeof x); // confirma se é number */
+
   this.body = {
     email:       this.body.email,
     placa:       this.body.placa,    
@@ -60,7 +68,7 @@ Despesa.prototype.cleanUp = function() {
     local:       this.body.local,
     unidade:     this.body.unidade,
     quantidade:  this.body.quantidade,
-    valor:       this.body.valor,
+    valor:       parseFloat(this.body.valor.replace('R$', '').replace(/\./g, '').replace(',', '.')), //substitui a virgula por ponto (Mongo usa somente ponto)
     obs:         this.body.obs,
   };
 };

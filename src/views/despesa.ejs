@@ -5,7 +5,9 @@
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
           <div class="page-header">
-            <h4 class="text-center">CADASTRO DESPESA</h4>
+            <h4 class="text-center">CADASTRO DESPESA - despesa.EJS
+
+            </h4>
           </div>
 
           <div class="panel panel-default">
@@ -18,9 +20,9 @@
               <%- include('includes/messages') %>
 
                   <% if(despesa._id) { %>
-                    <form id="frm1" action="/despesa/edit/<%= despesa._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
+                    <form id="frmDespesa" action="/despesa/edit/<%= despesa._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
                   <% } else { %>
-                    <form id="frm1" action="/despesa/register" method="POST" class="form-horizontal" novalidate="novalidate">
+                    <form id="frmDespesa" action="/despesa/register" method="POST" class="form-horizontal" novalidate="novalidate">
                   <% } %>
 
                   <input type="hidden" name="_csrf" value=<%=csrfToken %>>
@@ -41,7 +43,7 @@
                     <label class="col-sm-4 control-label" for="placa">Placa</label>
                     <div class="col-sm-5">
                       <% if( despesa._id ) { %>
-                        <select id="placa" name="placa" class="form-control" autofocus onfocus="select_placa()">
+                        <select id="placa" name="placa" class="form-control" autofocus onfocus="select_placa()" >
                           <option value = "<%= despesa.placa %>" selected><%= despesa.placa %></option>
                         </select>
                       <% } else { %>

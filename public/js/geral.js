@@ -24,7 +24,11 @@ const validade    = document.getElementById('validade');
 const obs         = document.getElementById('obs');
 
 const valor       = document.getElementById('valor');
-  //comando para executar função após a pág ter sido carregada
+
+const frmDespesa = document.querySelector('frmDespesa');
+
+//----------------------------------------------------------------------------------------
+//comando para executar função após a pág ter sido carregada
 // window.addEventListener("load", function() {    
 //   //.....                    
 // });
@@ -33,6 +37,18 @@ const valor       = document.getElementById('valor');
 
 //window.addEventListener("load", capturaGeo());
 //window.addEventListener("load", capturaIP2());
+
+
+frmDespesa.addEventListener('onload', (event) => {
+    alert('despesa');
+  formataMoeda2(event);
+  // Opcional: event.preventDefault() para evitar envio padrão
+});
+
+//----------------------------------------------------------------------------------
+//formatar com formato moeda Brasil quando carregar do banco para o formulário
+
+
 
 //----------------------------------------------------------------------------------
 

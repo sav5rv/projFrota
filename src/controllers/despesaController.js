@@ -91,6 +91,8 @@ exports.register = async(req, res) => {
   }
 };
 
+
+
 exports.editIndex = async function(req, res) {
   if(!req.params.id) return res.render('404');
 
@@ -99,6 +101,8 @@ exports.editIndex = async function(req, res) {
 
   res.render('despesa', { despesa });
 };
+
+
 
 exports.edit = async function(req, res) {
   try {
