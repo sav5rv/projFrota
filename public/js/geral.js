@@ -336,7 +336,7 @@ async function lista_placa() {
     // Preenchimento do select placa em USO_ABRIR
 
     async function select_placa() {
-
+        
         try {
             const dados_fetch = await buscar_placa();
             
@@ -344,6 +344,7 @@ async function lista_placa() {
             console.log(typeof dados_fetch);
 
             const select = document.getElementById("placa");
+
             // O loop repetirá uma vez para cada elemento presente em dados_fetch
             // Em cada iteração, o valor atual do elemento será atribuído à variável X
             for (const x of dados_fetch) {
@@ -354,6 +355,7 @@ async function lista_placa() {
 
                 select.appendChild(option);
             }
+
             
         } catch (error) {
             console.log('Deu erro: ' + error);

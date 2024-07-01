@@ -28,6 +28,20 @@
 
         <div class="container" style="display: flex; justify-content: space-around;">
         <div style="width:100%; border: solid 1px rgba(15, 14, 14, 0.5);">
+          <form>
+            <div class="form-group">
+              <button></button>
+              <label class="col-sm-4 control-label" for="placa">Placa</label>
+              <div class="col-sm-5">
+
+
+                  <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                    <!-- a função select_placa está preenchendo o elemento select -->
+                 </select>
+
+              </div>
+            </div>
+        </form>
           <canvas id="area_graf3"></canvas>
         </div>
         </div>
@@ -55,6 +69,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
   <script>
+
+placa.addEventListener('onclick', (event) => {
+    alert(despesa);
+  
+  // Opcional: event.preventDefault() para evitar envio padrão
+});
+
+
       // import Chart from 'chart.js/auto'
 
       // crie um gráfico inicial vazio
