@@ -10,7 +10,7 @@ utilizado:
 
 campo memorando, com dificuldade de salvar no Bc Dados - usei string e a quant de caract que aceita é suficiente
 
-todos os campos no Bc Dados são tipo string
+todos os campos no Bc Dados são tipo string - ALTERADO - foi necessário devido a geração do grafico
 
 tipo de usuario = Administrador / Auxiliar / Usuario
 
@@ -88,13 +88,10 @@ o tipo de usuario é definido no arquivo login_criar.ejs
 ------------------------------------------------------------------------------------
 
                                       FICHAS DE uso
-pesquisar os veiculos cadastrados e preencher um combobox ou preenchimento automatico no campo PLACA, dessa forma
-será direcionado qual veículo usar
+o SELECT está abrindo com a primeira placa da lista preenchida - seria melhor se estivesse vazio qd abrir a tela
 
 jQuery Masked Input
 validação da formatação da PLACA
-
-o numero do rso quando for finalizar a ficha deve já vir preenchido com o número da ficha de inicial
 
 quando clico o btn cancelar está voltando com uma msg errada
 

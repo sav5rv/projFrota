@@ -1,4 +1,5 @@
 <%- include('includes/head') %>
+<script type="text/javascript" src="/js/geral.js"></script>
   <%- include('includes/nav') %>
 
     <div class="container">
@@ -66,11 +67,12 @@
                   <label class="col-sm-4 control-label" for="placa">Placa</label>
                   <div class="col-sm-5">
                     <% if( uso._id ) { %>
-                      <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                      <select id="placa" name="placa" class="form-control" onclick="select_placa()">
                         <option value = "<%= uso.placa %>" selected><%= uso.placa %></option>
                       </select>
                     <% } else { %>
-                      <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                      <select id="placa" name="placa" class="form-control">
+                        <option value="" selected>Selecione…</option>
                         <!-- a função select_placa está preenchendo o elemento select -->
                      </select>
                     <% } %>
@@ -130,7 +132,7 @@
                             <button type="submit" class="btn btn-primary">Salvar</button>
                             <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()">Cancelar</a>
                           </div>
-                      </form>
+                    </form>
 
         </div>
       </div>
@@ -138,10 +140,6 @@
 
 
         <%- include('includes/footer') %>
-
-          <script type="text/javascript" src="/js/geral.js"></script>
-
-
 
 </body>
 

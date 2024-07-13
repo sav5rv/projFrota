@@ -38,12 +38,8 @@ const frmDespesa = document.querySelector('frmDespesa');
 //window.addEventListener("load", capturaGeo());
 //window.addEventListener("load", capturaIP2());
 
+window.onload = select_placa; //tem que ser chamado quando a tela for aberta, não deu certo através do evento
 
-frmDespesa.addEventListener('onload', (event) => {
-    alert('despesa');
-  formataMoeda2(event);
-  // Opcional: event.preventDefault() para evitar envio padrão
-});
 
 //----------------------------------------------------------------------------------
 //formatar com formato moeda Brasil quando carregar do banco para o formulário
@@ -337,30 +333,33 @@ async function lista_placa() {
 
     async function select_placa() {
         
-        try {
-            const dados_fetch = await buscar_placa();
-            
-            console.log(dados_fetch);
-            console.log(typeof dados_fetch);
+        try {            
+            const dadosFetch = await buscar_placa();
 
-            const select = document.getElementById("placa");
+            // Filtrar e organizar dados (se necessário)
+            const dadosUteis = dadosFetch.map(item => ({
+                value: item.placa, // Use o ID ou outro valor relevante para o option
+                text: item.placa   // Use o nome ou outra propriedade para o texto do option
+            }));
+
+            const select = document.getElementById('placa');
+            select.innerHTML = '';
 
             // O loop repetirá uma vez para cada elemento presente em dados_fetch
             // Em cada iteração, o valor atual do elemento será atribuído à variável X
-            for (const x of dados_fetch) {
-                const option = document.createElement("option");
-                
-                option.value = x.placa;       //conteúdo do valor
-                option.textContent = x.placa; //conteúdo do texto
+            dadosUteis.forEach(x => {
+                const option = document.createElement('option');
 
-                select.appendChild(option);
-            }
+                option.value = x.value;       //conteúdo do valor
+                option.textContent = x.text;  //conteúdo do texto
 
+                select.appendChild(option);                
+            });
+            //select.textContent = 'Selecione...';
             
         } catch (error) {
             console.log('Deu erro: ' + error);
         }
-
     }
 
 //----------------------------------------------------------------------------------------------
