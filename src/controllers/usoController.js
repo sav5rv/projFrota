@@ -32,19 +32,22 @@ exports.uso_finalizar = async(req, res) => {
   const uso = await Uso.buscaPorId(id);
     if(!uso) return res.render('404');
 
-  const email = uso.email;    //usando a sessão atribuída no LOGINController linha 62
-                                  //  porque o método session.get() retorna um objeto 
-  console.log('LINHA 7 USO CONTROLLER ' + email);
-
+  const email = uso.email;          //usando a sessão atribuída no LOGINController linha 62
+                                    //porque o método session.get() retorna um objeto 
   const login       = new Login();
   const login_email = await login.buscaEmail(email);
   
-  console.log('LINHA 10 USO CONTROLLER ' + uso);
+  if(!login_email) {
+    req.flash('errors', `O usuário ${email} não foi localizado na tabela de Login - Precisa ser cadastrado novamente!`);
+    req.session.save(() => res.redirect('back'));
+    return;
+  }
 
-res.render('uso_finalizar', {
-  uso : uso,
-  login_email: login_email,
-});
+
+  res.render('uso_finalizar', {
+    uso : uso,
+    login_email: login_email,
+  });
 };
 
 
@@ -56,7 +59,7 @@ exports.uso_lista = async(req, res) => {
   // const email       = res.locals.user.email;
   const email       = req.session.user.email;
   
-  // console.log('LINHA 49 USOCONTROLLER: ' + email);
+  //console.log('LINHA 49 USOCONTROLLER: ' + email);
   if (tipoUsuario == 'Administrador' ) {
     const usos = await Uso.buscaUsos();
 
@@ -73,8 +76,8 @@ exports.uso_lista = async(req, res) => {
 
     try {
       if(!usos) return res.render('404');
-      res.render('uso_lista', { usos }); //como a chave chama usos e a variavel que esta vindo é usos tambem
-                                                //não preciso fazer { usos:usos }
+      res.render('uso_lista', { usos });
+
     } catch(e) {
         console.log(e);
         return res.render('404');

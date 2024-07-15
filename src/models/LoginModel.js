@@ -244,9 +244,15 @@ class Login {
   // o buscar_o_email está vindo do USOcontrolle ou do ContatoController linha 12
   async buscaEmail(buscar_o_email) { 
     this.login = await LoginModel.findOne({ email: buscar_o_email }, { _id:1, email:2, nome:3, re:4, tipoUsuario:5 });
-    //console.log('LINHA 164 LOGIN MODEL ' + buscar_o_email);
-    
-    return this.login
+    console.log('LINHA 247 LOGIN MODELO ' + this.login);
+
+    if(!this.login) {
+      //this.errors.push(`O email ${buscar_o_email} não foi localizado`); não consegui fazer referência em uso Controller linha 45
+      this.login = null;
+      return this.login;
+    }
+
+    return this.login;
   };
 
 

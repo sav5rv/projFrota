@@ -23,7 +23,7 @@
               <%- include('includes/messages') %>
 
                 <% if( uso._id ) { %>
-                  <form id="frm1" action="/uso/edit/<%= uso._id %>" method="POST" class="form-horizontal" novalidate="novalidate">
+                  <form id="frm1" action="/uso/edit/<%= uso._id %>" method="POST" class="form-horizontal">
                 <% } else { %>
                   <form id="frm1" action="/uso/register" method="POST" class="form-horizontal" novalidate="novalidate">
                 <% } %>
@@ -67,7 +67,7 @@
                   <label class="col-sm-4 control-label" for="placa">Placa</label>
                   <div class="col-sm-5">
                     <% if( uso._id ) { %>
-                      <select id="placa" name="placa" class="form-control" onclick="select_placa()">
+                      <select id="placa" name="placa" class="form-control">
                         <option value = "<%= uso.placa %>" selected><%= uso.placa %></option>
                       </select>
                     <% } else { %>

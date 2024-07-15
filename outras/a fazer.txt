@@ -93,7 +93,9 @@ o SELECT está abrindo com a primeira placa da lista preenchida - seria melhor s
 jQuery Masked Input
 validação da formatação da PLACA
 
-quando clico o btn cancelar está voltando com uma msg errada
+cada usuário que não seja com o perfil de ADM deve abrir somente as suas fichas de uso FEITO atenção qt ao perfil
+
+botão para confirmar a exclusão
 
 
 --------------------------------------------------------------------------------------
