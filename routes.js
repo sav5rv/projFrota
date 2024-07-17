@@ -114,6 +114,7 @@ route.get('/uso/uso_aberto',            loginRequired, usoController.uso_lista);
 
 // Rotas rodapé
 route.get('/faleConosco', rodapeController.faleConosco);
+route.post('/enviarEmail', rodapeController.enviarEmail);
 route.get('/credito',     rodapeController.credito);
 route.get('/mapaSite',    rodapeController.mapaSite);
 route.get('/sobre',       rodapeController.sobre);

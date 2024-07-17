@@ -114,3 +114,30 @@ tratar para não repetir o mesmo valor no campo renavan em adição = OK - FALTA
 
 não consegui recuperar o Ip do usuario local
 não consegui recuperar o nome do usuario da máquina local
+
+-----------------------------------------------------------------------------------------------------------
+
+informações configuração SERVIDOR email outlook
+Servidor IMAP    outlook.office365.com
+
+Porta IMAP   993
+
+Criptografia IMAP    SSL/TLS
+
+Método de Autenticação    OAuth2/Modern Auth
+
+Nome do servidor POP   outlook.office365.com
+
+Porta POP   995
+
+Criptografia POP   SSL/TLS
+
+Método de Autenticação   OAuth2/Modern Auth
+
+Nome do servidor SMTP   smtp-mail.outlook.com
+
+Porta SMTP  587
+
+Criptografia SMTP   STARTTLS
+
+Método de Autenticação    OAuth2/Modern Auth

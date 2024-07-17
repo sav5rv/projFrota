@@ -1,69 +1,107 @@
 <%- include('includes/head') %>
-  <%- include('includes/nav') %>
+  <%- include('includes/nav_rodape') %>
 
     <div class="container">
+    <div class="col-sm-8 col-sm-offset-2"> <!--alinhamento formulario-->
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
           <div class="page-header">
             <h4 class="text-center">FALE CONOSCO</h4>
           </div>
-
-
-
-            <div class="panel-body">
-
-              <%- include('includes/messages') %>
-
-                  <form id="frm1" action="/enviarEmail" enctype="text/plain" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
-
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label" for="fale_nome">Qual o seu nome?</label>
-                      <div class="col-sm-5">
-                        <input type="text" name="fale_nome" id="fale_nome" class="form-control" placeholder="Digite o seu nome" required >
-                      </div>
-                    </div>
-
-
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label" for="fale_email">O seu email?</label>
-                      <div class="col-sm-5">
-                        <input type="email" name="fale_email" id="fale_email" class="form-control" placeholder="nome@exemplo.com">
-                      </div>
-                    </div>
-
-
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label" for="fale_assunto">O seu assunto?</label>
-                      <div class="col-sm-5">
-                        <input type="text" name="fale_assunto" id="fale_assunto" class="form-control">
-                      </div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                      <label class="col-sm-4 control-label" for="fale_msg">E qual a sua Mensagem?</label>
-                      <div class="col-sm-5">
-                        <textarea name="fale_msg" id="fale_msg" class="form-control" rows="3"></textarea>
-                      </div>
-                    </div>
-            </div> <!-- FIM PANEL-BODY -->
-
-
-                      <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-                        <button type="reset" class="btn btn-primary">Cancelar</button>
-                      </div>
-                  </form>
-
-        </div> <!-- FIM COL-SM-8 -->
       </div> <!-- FIM ROW -->
+    
+      <div class="panel-body">
+        
+        <%- include('includes/messages') %>
+        
+        <!-- <form id="frmFaleConosco" action="/enviarEmail" enctype="text/plain" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off"> -->
+          <form id="frmFaleConosco">
+              <div class="form-group row">
+                <label class="col-sm-4 col-control-label" for="fale_nome">Qual o seu nome?</label>
+                <div class="col-sm-5">
+                  <input type="text" name="fale_nome" id="fale_nome" class="form-control" placeholder="Digite o seu nome" required>
+                </div>
+              </div> <!-- FIM ROW -->
+
+              <div class="form-group row">
+                <label class="col-sm-4 control-label" for="fale_email">O seu email?</label>
+                <div class="col-sm-5">
+                  <input type="email" name="fale_email" id="fale_email" class="form-control" placeholder="nome@exemplo.com">
+                </div>
+              </div> <!-- FIM ROW -->
+
+              <div class="form-group row">
+                <label class="col-sm-4 control-label" for="fale_assunto">O seu assunto?</label>
+                <div class="col-sm-5">
+                  <input type="text" name="fale_assunto" id="fale_assunto" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-4 control-label" for="fale_msg">E qual a sua Mensagem?</label>
+                <div class="col-sm-5">
+                  <textarea name="fale_msg" id="fale_msg" class="form-control" rows="3"></textarea>
+                </div>
+              </div>              
+              
+              <div class="form-group row">
+                <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                <button type="reset" class="btn btn-primary">Cancelar</button>
+                </div>
+              </div> <!-- FIM ROW -->
+            </form>
+      </div> <!-- FIM PANEL-BODY -->    
+
+    </div> <!-- FIM COL-SM-8 -->
     </div> <!-- FIM CONTAINER -->
 
+    <!-- <script type="text/javascript" src="/js/geral.js"></script> -->
+
+    <script>
+        const formulario = document.getElementById('frmFaleConosco');
+
+        formulario.addEventListener('submit', function (event) {
+          event.preventDefault(); // Evita o envio padrão do formulário
+
+          const nome    = document.getElementById('fale_nome').value;
+          const emailDestinatario   = document.getElementById('fale_email').value;
+          const assunto = document.getElementById('fale_assunto').value;
+          const mensagem     = document.getElementById('fale_msg').value;
+
+          // Enviar os dados para o servidor Node.js usando AJAX
+          enviarEmailNodejs(nome, emailDestinatario, assunto, mensagem);
+        });
+
+        function enviarEmailNodejs(nome, emailDestinatario, assunto, mensagem) {
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', '/enviarEmail'); // rota do seu servidor Node.js
+          xhr.setRequestHeader('Content-Type', 'application/json');
+
+          const dados = JSON.stringify({
+            nome: nome,
+            emailDestinatario: emailDestinatario,
+            assunto: assunto,
+            mensagem: mensagem
+          });
+
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              console.log('Email enviado com sucesso!');
+            } else {
+              console.error('Erro ao enviar email:', xhr.statusText);
+            }
+          };
+
+          xhr.onerror = function () {
+            console.error('Erro na requisição AJAX:', xhr.statusText);
+          };
+
+          xhr.send(dados);
+        }
+    </script>
 
         <%- include('includes/footer') %>
 
-          <script type="text/javascript" src="/js/geral.js"></script>
 
 </body>
 </html>
