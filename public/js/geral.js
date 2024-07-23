@@ -121,7 +121,6 @@ function capturaGeo(){
 
 
 //---------------------------------------------------------------------------------
-
 // comando do Btn Cancelar e Voltar nos formulários
 
     // const btnCancelar = document.querySelector("#btnCancelar");
@@ -141,7 +140,6 @@ function capturaGeo(){
     
 //---------------------------------------------------------------------------------
 //MASCARA DOS CAMPOS usando o CLEAVE
-
 function mascara() {
 
     if(celular){
@@ -171,6 +169,7 @@ function mascara() {
 
 
 // ------------------------------------------------------------------------------------------------  
+// Formatar os input VALOR
 function formataMoedaBR1() {
 
     new Cleave('#valor', {
@@ -195,7 +194,8 @@ function formatarMoedaBR(x) {
     valorX = valorX.replace(/\.+/g, '.');
   
     // Divide o valor em partes (parte inteira e parte decimal)
-    const partes = valorX.split('.');
+    const partes = valorX.split(',');
+          //partes = partes.split(',');
     console.log(partes);
     console.log(partes.length);
     const qtdPartes = partes.length;
@@ -207,11 +207,11 @@ function formatarMoedaBR(x) {
             valor.value = '';
             return '';
         }
-        
+
         const parteInteira = partes[0];
         
         // Formata a parte inteira com vírgulas
-        const parteInteiraFormatada = parteInteira.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+        const parteInteiraFormatada = parteInteira.replace(/(\d)(?=(\d{3})+$)/g, '$1.');
   
         // Retorna a string formatada completa
         return `R$ ${parteInteiraFormatada},00`;
@@ -248,7 +248,7 @@ function formataMoeda(x) {
     if (!x) {
         formataMoedaBR1();
     } else {
-        const valorFormatado = formatarMoedaBR(x);
+        const valorFormatado = formatarMoedaComVirgulaDinamica(x);
         console.log(valorFormatado); // Resultado: R$ 1.234.567,89
         valor.value = valorFormatado;
     }
@@ -258,12 +258,41 @@ function completarMoeda(){
 
     let valorX = valor.value;
     valorS = valorX.toString();
-    const valorFormatado = formatarMoedaBR(valorS);
+    const valorFormatado = formatarMoedaComVirgulaDinamica(valorS);
     console.log(valorFormatado); // Resultado: R$ 1.234.567,89
     valor.value = valorFormatado;
 }
 
-
+function formatarMoedaComVirgulaDinamica(valor) {
+    // Verifica se o valor é um número
+    // if (isNaN(valor)) {
+    //   return "";
+    // }
+  
+    // Converte o valor para string
+    valor = valor.toString();
+  
+    // Remove caracteres indesejados
+    valor = valor.replace(/[^0-9,.-]/g, "");
+  
+    // Separa a parte inteira da parte decimal
+    const partes = valor.split(".");
+  
+    // Formata a parte inteira com máscara de milhar (opcional)
+    const parteInteiraFormatada = partes[0].replace(/\B(?=(\d{3})+$)/g, ".");
+  
+    // Formata a parte decimal (se existir)
+    let parteDecimalFormatada = "";
+    if (partes.length > 1) {
+      parteDecimalFormatada = "," + partes[1].substring(0, 2); // Limita a parte decimal para 2 casas
+    } else {
+        // Adiciona vírgula e dois zeros se não houver parte decimal
+        parteDecimalFormatada = ",00";
+    }    
+  
+    // Retorna o valor formatado como moeda
+    return `R$ ${parteInteiraFormatada}${parteDecimalFormatada}`;
+  }
 //---------------------------------------------------------------------------------
 // FUNÇÃO TESTE CONTATO_CAD
 function myFunction() {

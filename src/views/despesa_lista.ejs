@@ -1,5 +1,10 @@
 <%- include('includes/head') %>
+
+
+
 <%- include('includes/nav') %>
+
+
 
 <!-- <div class="container"> -->
   <div class="row">
@@ -14,43 +19,8 @@
 
 
       <% if(despesas.length > 0) { %>
-        <div class="table-responsive">
-          <table class="table table-striped">
-          <thead>
-            <tr>
-                <th>EMail</th>
-                <th>Placa</th>
-                <th>Tipo</th>                
-                <th>Hodômetro</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Local</th>
-                <th>Unid</th>
-                <th>Quant</th>
-                <th>Valor</th>
-                <th>Observações</th>
-                <th>Editar</th>
-                <th>Excluir</th>
-            </tr>
-        </thead>
-          <% despesas.forEach(despesa => { %>
-          <tr>
-            <td><%= despesa.email %></td>
-            <td><%= despesa.placa %></td>            
-            <td><%= despesa.tipoDespesa %></td>
-            <td><%= despesa.hodometro %></td>
-            <td><%= despesa.data %></td>
-            <td><%= despesa.hora %></td>
-            <td><%= despesa.local %></td>
-            <td><%= despesa.unidade %></td>
-            <td><%= despesa.quantidade %></td>
-            <td><%= despesa.valor %></td>
-            <td><%= despesa.obs %></td>                      
-            <td><a href="/despesa/despesa_lista/<%= despesa._id %>">Editar</a></td>
-            <td><a class="text-danger" href="/despesa/delete/<%= despesa._id %>">Excluir</a></td>
-          </tr>
-          <% }); %>
-        </table>
+        <div id="tbContainer" class="table-responsive">
+
       </div>
       <% } else { %>
         <p class="text-center lead">Não existem despesas cadastradas.</p>
@@ -60,5 +30,21 @@
     
   </div>
 <!-- </div> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+  <script>
+
+    // Passar os dados vindos do servidor para uma variável JavaScript
+    // usar - em vez de = no <%- %>, pois o - utiliza os caracteres especiais tambem
+    const dadosBc = <%- JSON.stringify(despesas) %>;
+
+  </script>
+
+  <!-- <script src="/js/geral.js"> </script> -->
+
+  <script type="module" src="/js/despesa_lista.js"> </script>
 
 <%- include('includes/footer') %>
+
+</body>
+</html>

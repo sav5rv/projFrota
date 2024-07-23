@@ -74,7 +74,7 @@
                         <option value = "Pneu">Pneu</option>
                         <option value = "Óleo">Óleo</option>
                         <option value = "Mecânica">Mecânica</option>
-                        <option value = "Mecânica">Vidraçaria</option>
+                        <option value = "Vidraçaria">Vidraçaria</option>
                      </select>
                     </div>
                   </div>
@@ -136,7 +136,7 @@
                       <% if(despesa._id) { %>
                         <input type="text" name="valor" id="valor" class="form-control" value="<%= despesa.valor %>" />
                       <% } else { %>
-                        <input type="text" name="valor" id="valor" class="form-control" onblur="completarMoeda()"  />
+                        <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoedaBR1()"  />
                       <% } %>
                     </div>
                   </div>
