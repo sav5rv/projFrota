@@ -13,26 +13,28 @@
         
         <%- include('includes/messages') %>
         
-        <!-- <form id="frmFaleConosco" action="/enviarEmail" enctype="text/plain" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off"> -->
-          <form id="frmFaleConosco">
+        <form id="frmFaleConosco" action="/emailEnviar" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
+
+          <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
               <div class="form-group row">
                 <label class="col-sm-4 col-control-label" for="fale_nome">Qual o seu nome?</label>
                 <div class="col-sm-5">
-                  <input type="text" name="fale_nome" id="fale_nome" class="form-control" placeholder="Digite o seu nome" required>
+                  <input type="text" name="fale_nome" id="fale_nome" class="form-control" placeholder="Digite o seu nome" required value="Wellington">
                 </div>
               </div> <!-- FIM ROW -->
 
               <div class="form-group row">
                 <label class="col-sm-4 control-label" for="fale_email">O seu email?</label>
                 <div class="col-sm-5">
-                  <input type="email" name="fale_email" id="fale_email" class="form-control" placeholder="nome@exemplo.com">
+                  <input type="email" name="fale_email" id="fale_email" class="form-control" placeholder="nome@exemplo.com" value="w.savioli@aluno.ifsp.edu">
                 </div>
               </div> <!-- FIM ROW -->
 
               <div class="form-group row">
                 <label class="col-sm-4 control-label" for="fale_assunto">O seu assunto?</label>
                 <div class="col-sm-5">
-                  <input type="text" name="fale_assunto" id="fale_assunto" class="form-control">
+                  <input type="text" name="fale_assunto" id="fale_assunto" class="form-control" value="teste msg">
                 </div>
               </div>
 
@@ -57,49 +59,7 @@
 
     <!-- <script type="text/javascript" src="/js/geral.js"></script> -->
 
-    <script>
-        const formulario = document.getElementById('frmFaleConosco');
-
-        formulario.addEventListener('submit', function (event) {
-          event.preventDefault(); // Evita o envio padrão do formulário
-
-          const nome    = document.getElementById('fale_nome').value;
-          const emailDestinatario   = document.getElementById('fale_email').value;
-          const assunto = document.getElementById('fale_assunto').value;
-          const mensagem     = document.getElementById('fale_msg').value;
-
-          // Enviar os dados para o servidor Node.js usando AJAX
-          enviarEmailNodejs(nome, emailDestinatario, assunto, mensagem);
-        });
-
-        function enviarEmailNodejs(nome, emailDestinatario, assunto, mensagem) {
-          const xhr = new XMLHttpRequest();
-          xhr.open('POST', '/enviarEmail'); // rota do seu servidor Node.js
-          xhr.setRequestHeader('Content-Type', 'application/json');
-
-          const dados = JSON.stringify({
-            nome: nome,
-            emailDestinatario: emailDestinatario,
-            assunto: assunto,
-            mensagem: mensagem
-          });
-
-          xhr.onload = function () {
-            if (xhr.status === 200) {
-              console.log('Email enviado com sucesso!');
-            } else {
-              console.error('Erro ao enviar email:', xhr.statusText);
-            }
-          };
-
-          xhr.onerror = function () {
-            console.error('Erro na requisição AJAX:', xhr.statusText);
-          };
-
-          xhr.send(dados);
-        }
-    </script>
-
+    
         <%- include('includes/footer') %>
 
 

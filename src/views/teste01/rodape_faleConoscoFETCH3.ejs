@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Dados</title>
+</head>
+<body>
+  <%- include('includes/nav_rodape') %>
+
+  <h1>Enviar Dados</h1>
+  <form id="dataForm">
+    <input type="hidden" name="_csrf" value=<%=csrfToken %>>
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" value="Wellington" required><br><br>
+      
+      <label for="mensagem">Mensagem:</label>
+      <input type="text" id="mensagem" name="mensagem" value="Wellington" required></input><br><br>
+      
+      <button type="submit" class="btn btn-primary">ENVIAR - aq</button>
+  </form>
+
+  <script>
+    document.getElementById('dataForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const nome = document.getElementById('nome').value;
+        const mensagem = document.getElementById('mensagem').value;
+        
+        await fetch('http://localhost:3030/submit', {
+            method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, mensagem })
+        })
+
+        // .then(response => response.json())
+        // .then(texto => console.log(texto))
+
+  // .then(response => {
+  //   if (response.ok) {
+  //     return response.json(); // Processa a resposta JSON se a requisição for bem-sucedida
+  //   } else {
+  //     throw new Error('Erro na requisição: ' + response.status); // Lança um erro se a requisição falhar
+  //   }
+  // })
+  // .then(data => console.log('Dados:', data)) // Exibe os dados no console
+  // .catch(error => console.error('Erro:', error)); // Captura e trata o erro
+
+
+  .then(response => {
+    if (response.headers.get('content-type').includes('application/json')) {
+      return response.json();
+    } else {
+      throw new Error('Resposta não é JSON');
+    }
+  })
+  .then(data => console.log('Dados:', data)) // Exibe os dados no console
+  .catch(error => console.error('Erro:', error));
+
+  });
+</script>
+
+    
+        <%- include('includes/footer') %>
+
+
+</body>
+</html>

@@ -7,6 +7,15 @@ exports.index = (req, res) => {
   };
 
 
+exports.faleConoscoFETCH = (req, res) => {
+  res.render('./rodape_faleConoscoFETCH');
+  };  
+
+  exports.faleConoscoFETCH3 = (req, res) => {
+    res.render('./rodape_faleConoscoFETCH3');
+    };  
+
+
   exports.placa = (req, res) => {
     res.render('./teste01/lista_placa');
     };

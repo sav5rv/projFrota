@@ -1,48 +1,30 @@
-const nodemailer = require('nodemailer');
+const RodapeModel = require('../models/RodapeModel');
+
 
 exports.faleConosco = (req, res) => {
     res.render('rodape_faleConosco');
   };
 
-exports.enviarEmail = async function enviarEmailNodejs(nome, emailDestinatario, assunto, mensagem) {
-    // Configure o servidor de email que irá enviar a msg
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email', // Substitua por seu servidor de email
-      port: 587, // Porta do servidor de email
-      secure: false,
-      auth: {
-        user: account.user, // Substitua por seu email
-        pass: account.pass // Substitua por sua senha
-      }
-    });
-  
-    // Crie o email
-    const email = {
-      from: '"Seu Nome" <seuemail@seudominio.com>', // Substitua por seu email
-      to: emailDestinatario,
-      subject: assunto,
-      text: `Olá ${nome},\n\n${mensagem}`,
-      html: `<!DOCTYPE html>
-              <html lang="pt-BR">
-              <head>
-                  <meta charset="UTF-8">
-                  <title>Email de Contato</title>
-              </head>
-              <body>
-                  <h1>Olá ${nome},</h1>
-                  <p>${mensagem}</p>
-                  <br>
-                  Atenciosamente,<br>
-                  Equipe do Site
-              </body>
-              </html>`
-    };
-  
-    // Envie o email
-    await transporter.sendMail(email);
-  
-    console.log('Email enviado com sucesso!');
-};
+// não deu certo
+// quando tento acessar essa rota com fetch POST, não consigo enviar dados
+// e nem receber o retorno do res.json
+// dá um erro que estou recebendo html, eu acho que é a pág de erro 404 que eu criei
+  // exports.CAB = (req, res) => {
+  //   console.log(req.body);
+  //   const { nome, mensagem } = req.body;
+  //   console.log(`Nome: ${nome}`);
+  //   console.log(`Mensagem: ${mensagem}`);
+  //   res.json({ message: 'RETORNO DO SERVIDOR 3030'});
+
+  // };
+
+
+  exports.emailEnviar = (req, res) => {
+
+    console.log(`Nome: ${req.body.fale_nome}`);
+    console.log(`Mensagem: ${req.body.fale_mensagem}`);
+    res.send('RETORNO DO SERVIDOR 3030 - não no formato JSON');
+  }
 
 
   exports.credito = (req, res) => {

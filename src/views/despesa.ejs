@@ -1,5 +1,15 @@
 <%- include('includes/head') %>
-  <%- include('includes/nav') %>
+
+<script>
+
+  // Passar os dados vindos do servidor para uma variável JavaScript
+  // usar - em vez de = no <%- %>, pois o - utiliza os caracteres especiais tambem
+  const dadosBc = <%- JSON.stringify(despesa) %>;
+
+</script>
+
+<%- include('includes/nav') %>
+
 
     <div class="container">
       <div class="row">
@@ -28,7 +38,7 @@
                   <input type="hidden" name="_csrf" value=<%=csrfToken %>>
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="email">Email do usuário</label>
+                    <label class="col-sm-4 control-label" for="email">Email do usuário *</label>
                     <div class="col-sm-5">
                       <% if(despesa._id) { %>
                         <input type="email" name="email" id="email" class="form-control" value="<%= despesa.email %>" readonly>
@@ -40,14 +50,15 @@
 
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="placa">Placa</label>
+                    <label class="col-sm-4 control-label" for="placa">Placa *</label>
                     <div class="col-sm-5">
                       <% if( despesa._id ) { %>
-                        <select id="placa" name="placa" class="form-control" autofocus onfocus="select_placa()" >
+                        <select id="placa" name="placa" class="form-control" style="margin-top: 10px;">
                           <option value = "<%= despesa.placa %>" selected><%= despesa.placa %></option>
                         </select>
                       <% } else { %>
-                        <select id="placa" name="placa" class="form-control" onfocus="select_placa()">
+                        <select id="placa" name="placa" class="form-control">
+                          <option value = 'Selecione...' selected>Selecione...</option>
                           <!-- a função select_placa está preenchendo o elemento select -->
                        </select>
                       <% } %>
@@ -58,7 +69,7 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="tipoDespesa">Tipo de Despesa</label>
                     <div class="col-sm-5">
-                      <select type="text" id="tipoDespesa" name="tipoDespesa" class="form-control">
+                      <select type="text" id="tipoDespesa" name="tipoDespesa" class="form-control" style="margin-top: 10px;">
                         <option value = "<%= despesa.tipoDespesa %>" selected><%= despesa.tipoDespesa %></option>
                         <option value = "Pneu">Pneu</option>
                         <option value = "Óleo">Óleo</option>
@@ -71,7 +82,7 @@
 
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="hodometro">Hodômetro</label>
+                    <label class="col-sm-4 control-label" for="hodometro">Hodômetro *</label>
                     <div class="col-sm-5">
                       <input type="number" name="hodometro" id="hodometro" class="form-control" value="<%= despesa.hodometro %>" required onchange="completarComZeroHod()">
                     </div>
@@ -81,7 +92,7 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="data">Data da realização</label>
                     <div class="col-sm-5">
-                      <input type="date" name="data" id="data" class="form-control" value="<%= despesa.data %>">
+                      <input type="date" name="data" id="data" class="form-control" >
                     </div>
                   </div>
 
@@ -120,12 +131,12 @@
 
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="valor">Valor Total Gasto</label>
+                    <label class="col-sm-4 control-label" for="valor">Valor Total Gasto *</label>
                     <div class="col-sm-5">
                       <% if(despesa._id) { %>
-                        <input type="text" name="valor" id="valor" class="form-control" value="<%= despesa.valor %>" onblur="formataMoeda2();" />
+                        <input type="text" name="valor" id="valor" class="form-control" value="<%= despesa.valor %>" />
                       <% } else { %>
-                        <input type="text" name="valor" id="valor" class="form-control" onblur="formataMoeda2();" />
+                        <input type="text" name="valor" id="valor" class="form-control" onblur="completarMoeda()"  />
                       <% } %>
                     </div>
                   </div>
@@ -136,7 +147,7 @@
                     <label class="col-sm-4 control-label" for="obs">Observações</label>
                     <div class="col-sm-5">
                       <input type="text" name="obs" id="obs" class="form-control" value="<%= despesa.obs %>"
-                      required minlength="2" maxlength="5">
+                      required minlength="2" maxlength="250">
                     </div>
                   </div>
             </div> <!-- FIM PANEL-BODY -->
@@ -152,11 +163,11 @@
         </div> <!-- FIM COL-SM-8 -->
       </div> <!-- FIM ROW -->
     </div> <!-- FIM CONTAINER -->
-
+ 
+    <script src="/js/geral.js" defer> </script>
 
         <%- include('includes/footer') %>
 
-          <script type="text/javascript" src="/js/geral.js"></script>
 
 </body>
 </html>

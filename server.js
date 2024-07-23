@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const express  = require('express');
+const cors     = require('cors');
+
 const app      = express();
 const port     = process.env.PORT || 3030;
 const mongoose = require('mongoose');
@@ -29,6 +31,7 @@ const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/midd
 // app.use(helmet()); // helmet começou a causar problemas no localhost por conta da falta de SSL
 
 // Enable CORS
+app.use(cors());
 // A habilitação do CORS é necessária para o nosso teste local pois tanto o frontend como o backend estarão rodando 
   // na mesma máquina, com o mesmo IP. Dessa forma, é necessário desabilitar essa segurança para testar a nossa aplicação.
   // No ambiente produtivo, se as aplicações precisassem ficar na mesma máquina (incomum) seria adicionado o IP da máquina
@@ -40,7 +43,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json()); //mais recente em relação ao BodyParser
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 

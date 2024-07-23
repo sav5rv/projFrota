@@ -23,12 +23,23 @@ const categoria   = document.getElementById('categoria');
 const validade    = document.getElementById('validade');
 const obs         = document.getElementById('obs');
 
+const data         = document.getElementById('data');
+
 const valor       = document.getElementById('valor');
 
 const frmDespesa = document.querySelector('frmDespesa');
 
+//--------------------------------------------------------------------------------------------------------------------
+// CARREGAR VARIAVEL js DO HTML QUE FOI
+
+
 //----------------------------------------------------------------------------------------
 //comando para executar função após a pág ter sido carregada
+
+window.onload = select_placa(); //tem que ser chamado quando a tela for aberta, não deu certo através do evento
+window.onload = formataData(dadosBc.data);
+window.onload = formataMoeda(dadosBc.valor);
+
 // window.addEventListener("load", function() {    
 //   //.....                    
 // });
@@ -38,7 +49,6 @@ const frmDespesa = document.querySelector('frmDespesa');
 //window.addEventListener("load", capturaGeo());
 //window.addEventListener("load", capturaIP2());
 
-window.onload = select_placa; //tem que ser chamado quando a tela for aberta, não deu certo através do evento
 
 
 //----------------------------------------------------------------------------------
@@ -49,21 +59,23 @@ window.onload = select_placa; //tem que ser chamado quando a tela for aberta, n�
 //----------------------------------------------------------------------------------
 
 
-// function capturaData() {
-//     const dateTimeFormat = new Intl.DateTimeFormat("pt-BR", {
-//         day: "numeric",
-//         month: "numeric",
-//         year: "numeric",
-//         hour: "numeric",
-//         minute: "numeric",
-//         second: "numeric",
-//       });
-      
-//     const data = new Date();      
-//     const dataFormatada = dateTimeFormat.format(data);      
-//     console.log(dataFormatada);
-//     document.getElementById("criadoEm").innerHTML = dataFormatada;                    
-// };
+function formataData(dt) {
+
+    if(dadosBc.data) {
+
+    moment.locale('pt-BR');      
+    // console.log(dt);
+    // console.log(despesa2);
+    const dataF = new Date(dt); //primeiro converter o valor padrao ISODate que está vindo do Bc em um OBJ
+    //console.log(dataF);
+    const dataM = moment(dataF); //primeiro converter o OBJ data em momentJS
+    //console.log(dataM);
+    const dataFormatada = dataM.format('yyyy-MM-DD'); //agora formatar
+    //console.log(dataFormatada);
+                    
+    data.value = dataFormatada;
+    }
+};
 
 
 //---------------------------------------------------------------------------------
@@ -159,26 +171,97 @@ function mascara() {
 
 
 // ------------------------------------------------------------------------------------------------  
+function formataMoedaBR1() {
 
-
-function formataMoeda() {
-    let moeda = valor.value;
-
-    moeda = Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(moeda);
-    valor.value = moeda;
-};
-
-
-
-function formataMoeda2() {
     new Cleave('#valor', {
         numeral: true,
         prefix: 'R$ ',
         numeralDecimalMark: ',',
         delimiter: '.'
     });
-    
 };
+
+function formatarMoedaBR(x) {
+
+    let valorX = x.toString();
+    console.log(valorX)
+    // Verifica se o valor é uma string
+    if (typeof valorX !== 'string') {
+      throw new Error('O valor deve ser uma string.');
+    }
+  
+    // Remove caracteres não numéricos e pontos extras
+    valorX = valorX.replace(/[^0-9.,]/g, '');
+    valorX = valorX.replace(/\.+/g, '.');
+  
+    // Divide o valor em partes (parte inteira e parte decimal)
+    const partes = valorX.split('.');
+    console.log(partes);
+    console.log(partes.length);
+    const qtdPartes = partes.length;
+    if(qtdPartes == 1){
+        const parte1 = partes[0];
+        console.log(parte1);
+
+        if(!parte1){
+            valor.value = '';
+            return '';
+        }
+        
+        const parteInteira = partes[0];
+        
+        // Formata a parte inteira com vírgulas
+        const parteInteiraFormatada = parteInteira.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  
+        // Retorna a string formatada completa
+        return `R$ ${parteInteiraFormatada},00`;
+    }
+
+    if(qtdPartes == 2){
+        const parteMilhar = partes[0];
+        const parteInteira = partes[1];
+        const parteDecimal = partes[2] || '00'; // Adiciona zeros à parte decimal se não existir
+
+        // Formata a parte inteira com vírgulas
+        const parteInteiraFormatada = parteInteira.replace(/(\d)(?=(\d{3})+$)/g, '$1.');
+
+        // Retorna a string formatada completa
+        return `R$ ${parteMilhar}.${parteInteiraFormatada},${parteDecimal}`;
+    }
+
+    if(qtdPartes == 3){
+        const parteMilhao = partes[0];
+        const parteMilhar = partes[1];
+        const parteInteira = partes[2];
+        const parteDecimal = partes[3] || '00'; // Adiciona zeros à parte decimal se não existir
+
+        // Formata a parte inteira com vírgulas
+        const parteInteiraFormatada = parteInteira.replace(/(\d)(?=(\d{3})+$)/g, '$1.');
+
+        // Retorna a string formatada completa
+        return `R$ ${parteMilhao}.${parteMilhar}.${parteInteiraFormatada},${parteDecimal}`;
+    }
+
+  };
+
+function formataMoeda(x) {
+    if (!x) {
+        formataMoedaBR1();
+    } else {
+        const valorFormatado = formatarMoedaBR(x);
+        console.log(valorFormatado); // Resultado: R$ 1.234.567,89
+        valor.value = valorFormatado;
+    }
+};
+
+function completarMoeda(){
+
+    let valorX = valor.value;
+    valorS = valorX.toString();
+    const valorFormatado = formatarMoedaBR(valorS);
+    console.log(valorFormatado); // Resultado: R$ 1.234.567,89
+    valor.value = valorFormatado;
+}
 
 
 //---------------------------------------------------------------------------------
@@ -332,34 +415,44 @@ async function lista_placa() {
     // Preenchimento do select placa em USO_ABRIR
 
     async function select_placa() {
-        
         try {            
             const dadosFetch = await buscar_placa();
-
+            
             // Filtrar e organizar dados (se necessário)
             const dadosUteis = dadosFetch.map(item => ({
                 value: item.placa, // Use o ID ou outro valor relevante para o option
                 text: item.placa   // Use o nome ou outra propriedade para o texto do option
             }));
-
-            const select = document.getElementById('placa');
-            select.innerHTML = '';
-
-            // O loop repetirá uma vez para cada elemento presente em dados_fetch
-            // Em cada iteração, o valor atual do elemento será atribuído à variável X
-            dadosUteis.forEach(x => {
-                const option = document.createElement('option');
-
-                option.value = x.value;       //conteúdo do valor
-                option.textContent = x.text;  //conteúdo do texto
-
-                select.appendChild(option);                
-            });
-            //select.textContent = 'Selecione...';
             
-        } catch (error) {
-            console.log('Deu erro: ' + error);
-        }
+            const select = document.getElementById('placa');
+            const opt = document.createElement('option');
+
+                // if (!dadosBc.placa) {
+                //     opt.value = 'Selecione...';
+                //     opt.textContent = 'Selecione...';
+                //     opt.selected = 'Selecione...';
+                //     select.appendChild(opt);
+                // } else {
+                //     opt.value = dadosBc.placa;
+                //     opt.textContent = dadosBc.placa;
+                //     opt.selected = dadosBc.placa;
+                //     select.appendChild(opt);
+                // }
+
+                // O loop repetirá uma vez para cada elemento presente em dados_fetch
+                // Em cada iteração, o valor atual do elemento será atribuído à variável X
+                dadosUteis.forEach(x => {
+                    const option = document.createElement('option');
+
+                    option.value = x.value;       //conteúdo do valor
+                    option.textContent = x.text;  //conteúdo do texto
+
+                    select.appendChild(option);                
+                });
+                
+            } catch (error) {
+                console.log('Deu erro: ' + error);
+            }
     }
 
 //----------------------------------------------------------------------------------------------
@@ -580,35 +673,39 @@ $(document).ready(function() {
 
 function enviarEmail() {
     // Obtém os dados do formulário
-    const nome     = document.getElementById("fale_nome").value;
-    const email    = document.getElementById("fale_email").value;
-    const assunto  = document.getElementById("fale_assunto").value;
-    const mensagem = document.getElementById("fale_msg").value;
+    const nome     = document.getElementById("nome").value;
+    //const email    = document.getElementById("fale_email").value;
+    //const assunto  = document.getElementById("fale_assunto").value;
+    const mensagem = document.getElementById("mensagem").value;
   
     // Cria um objeto com os dados do formulário
-    const dados = {
-      nome: nome,
-      email: email,
-      assunto: assunto,
-      mensagem: mensagem,
-    };
+    var dados = JSON.stringify({
+        nome: nome,
+        mensagem: mensagem
+      });
   
     // Envia o email
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/wsavioli@proton.me");
+    xhr.open('POST', 'http://localhost:3030/CAB123');
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(dados));
+    xhr.setRequestHeader("Cookie", "connect.sid=s%3AnQJI-mATinpoYws7KBODJxjiWVGZbSos.KniIuxHRn2QMPwoQrQyLkTTatvFEGE7WjhzjVf6nBh0");
+    xhr.send(dados);
   
     // Verifica o status da resposta
     xhr.onload = function() {
       if (xhr.status === 200) {
         // Email enviado com sucesso
         alert("Email enviado com sucesso!");
+        console.log(xhr.statusText)
       } else {
         // Erro ao enviar o email
         alert("Ocorreu um erro ao enviar o email.");
+        console.error('Erro ao enviar email:', xhr.statusText);
       }
     };
+    xhr.onerror = function() {
+        console.error('Erro na requisição AJAX:', xhr.statusText);
+      };
   };
 
 

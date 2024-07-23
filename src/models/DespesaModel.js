@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+
 const DespesaSchema = new mongoose.Schema({
   email:       { type: String, required: true },
   placa:       { type: String, required: true },
@@ -72,6 +73,7 @@ Despesa.prototype.cleanUp = function() {
     obs:         this.body.obs,
   };
 };
+
 
 
 

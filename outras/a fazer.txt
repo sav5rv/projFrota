@@ -141,3 +141,11 @@ Porta SMTP  587
 Criptografia SMTP   STARTTLS
 
 Método de Autenticação    OAuth2/Modern Auth
+
+
+-------------------------------------------------------------------------------------
+
+POST
+não consegui acessar a rota usando FETCH ou XMLHttpRequest()
+não consegui enviar e nem receber informações de rotas dentro do meu código
+O meu código acessa a rota, envia dados e recebe informações se estiver em outro código

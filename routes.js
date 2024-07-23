@@ -32,6 +32,11 @@ route.get('/teste01/modeloForm1',       teste01Controller.modeloForm1);
 route.get('/teste01/index2.ejs',        teste01Controller.index2);
 route.get('/index3.html');
 route.get('/index4.html');
+route.get('/rodape_faleConoscoFETCH', teste01Controller.faleConoscoFETCH);
+route.get('/rodape_faleConoscoFETCH3', teste01Controller.faleConoscoFETCH3);
+
+// não funionou - route.post('/submit', rodapeController.CAB);
+
 
 
 
@@ -114,10 +119,14 @@ route.get('/uso/uso_aberto',            loginRequired, usoController.uso_lista);
 
 // Rotas rodapé
 route.get('/faleConosco', rodapeController.faleConosco);
-route.post('/enviarEmail', rodapeController.enviarEmail);
+route.post('/emailEnviar', rodapeController.emailEnviar);
 route.get('/credito',     rodapeController.credito);
 route.get('/mapaSite',    rodapeController.mapaSite);
 route.get('/sobre',       rodapeController.sobre);
+
+
+
+
 
 
 module.exports = route;
