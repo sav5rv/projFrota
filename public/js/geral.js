@@ -531,41 +531,56 @@ async function lista_email_login_2() {
         const dados_fetch = await buscar_email_login();
 
         const form_email = dados_fetch.find(( form_email ) => form_email.email === email.value);
-        console.log(form_email);             //cuidado para não retornar a senha * * * * * * * *
+        //cuidado para não retornar a senha * * * * * * * *
         idForm.value      = form_email._id; 
         nome.value        = form_email.nome;
         re.value          = form_email.re;
         tipoUsuario.value = form_email.tipoUsuario;
 
         if (nome.value != " " & re.value != " " & tipoUsuario.value != " ") {
-            console.log(nome.value);
-            console.log(re.value);
-            console.log(tipoUsuario.value);
-            // btnSalvar.disabled = true;
-            // nome.disabled        = true;
-            // re.disabled          = true;
-            // tipoUsuario.disabled = true;
-            // celular.disabled     = true;
-            // cnhRegistro.disabled = true;
-            // categoria.disabled   = true;
-            // validade.disabled    = true;
-            // obs.disabled         = true;
+            // console.log(nome.value);
+            // console.log(re.value);
+            // console.log(tipoUsuario.value);
+            btnSalvar.disabled = true;
+            nome.disabled        = true;
+            re.disabled          = true;
+            tipoUsuario.disabled = true;
+            // celular.visible     = false;
+            // cnhRegistro.visible = false;
+            // categoria.visible   = false;
+            // validade.visible    = false;
+            // obs.visible         = false;
             
             console.log('teste');
+            ocultar();
         };
 
     } catch (error) {
-        console.log('Deu erro: ' + error);
+        console.log('Deu erro função buscar_email_login(): ' + error);
     };
 };
 
-        // const email_value = email.value;
-        // const index = users.indexOf({ email_value }); //forma de localizar o index do registro
-
-
-
-
 //----------------------------------------------------------------------------------------------
+
+// Função ocultar no formulário Cadastro Usuário
+
+function ocultar() {
+  document.getElementById("ocultar").style.display = "none";
+  const msgElemento = document.querySelector("h3");
+
+  msgElemento.textContent = "EMAIL já cadastrado!!!";
+  msgElemento.style.display = "inline-block";
+  msgElemento.style.color = "red";
+  msgElemento.style.fontSize = "18px";
+  msgElemento.style.fontWeight = "bold";
+  msgElemento.style.padding = "10px 20px";
+
+  // acrescentar botão para LIMPAR os campos e voltar como estava, sem sair da tela
+
+}
+
+
+//-------------------------------------------------------------------------------------------------
 
 // configurando o JQuery Autocomplete do uso_abrir
 async function lista_campo_placa() {

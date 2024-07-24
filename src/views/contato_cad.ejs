@@ -1,5 +1,13 @@
 <%- include('includes/head') %>
   <%- include('includes/nav') %>
+<style>
+  #ocultar {
+    display: block;
+  }
+  #mensagem {
+
+  }
+</style>
 
     <div class="container">
       <div class="row">
@@ -13,7 +21,7 @@
               <% if ( contato._id ) { %>
                 <h3 class="panel-title">Altere os campos abaixo para editar o cadastro do usuário.</h3>
               <% } else { %>
-                <h3 class="panel-title">Preencha abaixo para cadastrar um usuário.</h3>
+                <h3 id="mensagem" class="panel-title">Preencha abaixo para cadastrar um usuário.</h3>
               <% } %>
             </div>
 
@@ -29,7 +37,9 @@
                 <% } %>
 
                     <input type="hidden" name="_csrf" value=<%= csrfToken %>>
-                    <input type="text" name="idForm" id="idForm" value="<%= contato._id %> ">
+
+                    <input type="hidden" name="idForm" id="idForm" value="<%= contato._id %> "> <!-- sendo utilizado para fazer consulta -->
+                    
                     <!-- // os campos <%= contato.email %>  serão usados quando formos editar -->
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="email">EMail</label>
@@ -38,7 +48,6 @@
                       </div>
                     </div>
                     
-                    
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="nome">Nome</label>
                       <div class="col-sm-5">
@@ -46,22 +55,17 @@
                       </div>
                     </div>
 
-
-
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="re">RE</label>
                       <div class="col-sm-5">
-                        <input type="number" class="form-control" name="re" id="re"
-                               value="<%= contato.re %>" oninput="mascara()" onblur="completarComZeroRE()" />
+                        <input type="number" class="form-control" name="re" id="re" value="<%= contato.re %>" oninput="mascara()" onblur="completarComZeroRE()" />
                       </div>
                     </div>
-
-                    
-                    
+                    <div id="ocultar">
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="tipoUsuario">Tipo de Usuario</label>
                       <div class="col-sm-5">
-                        <select name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= contato.tipoUsuario %>">
+                        <select name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= contato.tipoUsuario %>" style="margin-top: 10px;">
                           <% if (contato.tipoUsuario) { %>
                             <option selected>
                               <%= contato.tipoUsuario %>
@@ -70,13 +74,10 @@
                               <option selected> Escolher... </option>
                               <% } %>
                               <option value="Administrador">Administrador</option>
-                              <option value="Encarregado">Encarregado</option>
                               <option value="Usuario">Usuario</option>
                             </select>
                           </div>
                         </div>
-                        
-                        
                         
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="celular">Celular</label>
@@ -85,23 +86,17 @@
                           </div>
                         </div>
                         
-                        
-                        
-                        
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="cnhRegistro">Registro da CNH</label>
                           <div class="col-sm-5">
-                            <input type="number" class="form-control" name="cnhRegistro" id="cnhRegistro"
-                            value="<%= contato.cnhRegistro %>" oninput="mascara()" onchange="completarComZeroCnhRegistro()" />
+                            <input type="number" class="form-control" name="cnhRegistro" id="cnhRegistro" value="<%= contato.cnhRegistro %>" oninput="mascara()" onchange="completarComZeroCnhRegistro()" />
                           </div>
                         </div>
-                        
-                        
                         
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="categoria"">Categoria da CNH</label>
                           <div class=" col-sm-5">
-                            <select id=" categoria" name="categoria" class="form-control" value="<%= contato.categoria %>">
+                            <select id=" categoria" name="categoria" class="form-control" value="<%= contato.categoria %>" style="margin-top: 10px;">
                               <% if (contato.categoria) { %>
                                 <option selected>
                                   <%= contato.categoria %>
@@ -118,7 +113,6 @@
                       </div>
                     </div>
 
-
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="validade">Validade da CNH</label>
                       <div class="col-sm-5">
@@ -126,25 +120,18 @@
                       </div>
                     </div>
 
-
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="obs">Observações</label>
                       <div class="col-sm-5">
                         <input type="text" class="form-control" name="obs" id="obs" value="<%= contato.obs %>">
                       </div>
                     </div>
-                    
+                  </div> <!-- fim div ocultar -->
 
             </div> <!-- fim panel-body-->
           </div> <!-- fim panel-default-->            
                   <div class="form-group text-center">
-                    <button 
-                    type="submit" 
-                    id="btnSalvar" 
-                    class="btn btn-primary">Salvar
-                    </button>
-
-
+                    <button type="submit" id="btnSalvar" class="btn btn-primary">Salvar </button>
                     <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->
                   </div>
                 </form>
@@ -154,6 +141,7 @@
           </div><!-- fim container -->
           
           <%- include('includes/footer') %>
+
           <script type="text/javascript" src="/js/geral.js"></script>
           
 

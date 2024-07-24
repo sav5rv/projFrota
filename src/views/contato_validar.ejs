@@ -8,7 +8,7 @@
       <div class="text-center">
         <!-- <img src="/img/despesa.jpg" style="width:50px;height:50px;"> -->
         <h4>Usuários</h4>
-        <p>Relação dos usuários para validar o cadastro - CONTATO_VALIDAR</p>
+        <p id="informe"></p>;
         <p><%- include('includes/messages') %></p>
       </div>
       
@@ -52,3 +52,10 @@
 <!-- </div> -->
 
 <%- include('includes/footer') %>
+
+
+<script>
+  const informeElement = document.getElementById('informe');
+  informeElement.textContent = `Relação dos usuários com Login e ${<%- novo_array.length %>} usuários sem Cadastro - CONTATO_VALIDAR`;
+  
+</script>

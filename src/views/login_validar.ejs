@@ -54,16 +54,15 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label" for="tipoUsuario">Tipo de Usuario</label>
                       <div class="col-sm-5">
-                        <select name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= login_validar.tipoUsuario %>">
+                        <select name="tipoUsuario" id="tipoUsuario" class="form-control" required value="<%= login_validar.tipoUsuario %>" style="margin-top: 10px;">
                           <% if (login_validar.tipoUsuario) { %>
                             <option selected>
                               <%= login_validar.tipoUsuario %>
                             </option>
                             <% } else { %>
-                              <option selected> Escolher... </option>
+                              <option value="Selecione..."> Selecione... </option>
                               <% } %>
                               <option value="Administrador">Administrador</option>
-                              <option value="Encarregado">Encarregado</option>
                               <option value="Usuario">Usuario</option>
                             </select>
                           </div>
@@ -94,13 +93,13 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="categoria"">Categoria da CNH</label>
                           <div class=" col-sm-5">
-                            <select id=" categoria" name="categoria" class="form-control" value="<%= login_validar.categoria %>">
+                            <select id=" categoria" name="categoria" class="form-control" value="<%= login_validar.categoria %>" style="margin-top: 10px;">
                               <% if (login_validar.categoria) { %>
                                 <option selected>
                                   <%= login_validar.categoria %>
                                 </option>
                                 <% } else { %>
-                                  <option selected> Escolher... </option>
+                                  <option value="Selecione..."> Selecione... </option>
                                   <% } %>
                                   <option value="A">A</option>
                                   <option value="B">B</option>
@@ -131,12 +130,7 @@
             </div> <!-- fim panel-body-->
           </div> <!-- fim panel-default-->            
                   <div class="form-group text-center">
-                    <button 
-                    type="submit" 
-                    id="btnValidar" 
-                    class="btn btn-primary">Validar
-                    </button>
-
+                    <button type="submit" id="btnValidar" class="btn btn-primary">Validar</button>
                     <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->
                   </div>
                 </form>
@@ -146,7 +140,104 @@
           </div><!-- fim container -->
           
           <%- include('includes/footer') %>
+
           <script type="text/javascript" src="/js/geral.js"></script>
+
+          <script>
+            $(document).ready(function() {
+                // Adiciona um método de validação personalizado para datas
+                $.validator.addMethod("validDate", function(value, element) {
+                  // Verifica se o valor do campo é uma data válida
+                  return this.optional(element) || !isNaN(Date.parse(value));
+                }, "Por favor, insira uma data válida");
+
+                  // Adiciona um método de validação personalizado para selects
+                $.validator.addMethod("validSelect", function(value, element, arg) {
+                  // Verifica se o valor do campo select é diferente do argumento passado (por exemplo, "")
+                  // return value !== arg;
+                  return value !== 'Selecione...'
+                }, "Por favor, selecione uma opção válida");
+
+              $("#frm1").validate({
+                  rules: {
+                    nome:{
+                    required: true,
+                    minlength: 10,
+                    },
+                    re: {
+                      required: true,
+                      minlength: 5,
+                      maxlength: 6,
+                    },
+                    email: {
+                      email: true,
+                      required: true
+                    },
+                    tipoUsuario: {
+                      required: true,
+                      validSelect: true,                      
+                    },
+                    celular: {
+                      required: true,
+                    },
+                    cnhRegistro: {
+                      required: true,
+                      minlength: 9,
+                    },
+                    categoria: {
+                      required: true,
+                      validSelect: true,
+                    },
+                    validade: {
+                      required: true,
+                      validDate: true,
+                    },
+                    obs: {
+
+                    },
+                  },
+                  messages: {
+                    nome:{
+                    required: 'Campo obrigatório',
+                    minlength: 'Escreva o nome completo',
+                    },
+                    re: {
+                      required: 'Campo obrigatório',
+                      minlength: 'RE completo sem o dígito',
+                      maxlength: 'RE sem o dígito',
+                    },
+                    email: {
+                      required: 'Insira seu email',
+                      email: 'Insira um email válido',
+                    },
+                    tipoUsuario: {
+                      required: 'Campo obrigatório',
+                      validSelect: "Selecione uma opção"                      
+                    },
+                    celular: {
+                      required: 'Campo obrigatório',
+                    },
+                    cnhRegistro: {
+                      required: 'Insira o número do Registro da CNH',
+                      minlength: 'Mínimo nove dígitos',
+                    },
+                    categoria: {
+                      required: 'Campo obrigatório',
+                      validSelect: "Selecione uma opção"
+                    },
+                    validade: {
+                      required: 'Campo obrigatório',
+                      validDate: "Insira uma data válida",
+                    },
+                    obs: {
+
+                    },
+                  }
+                });
+              });
+      
+            
+          </script>
           
 
 </body>

@@ -6,13 +6,13 @@
           <div class="col-lg-12">
             <%- include('includes/messages') %>
             <p></p>
-            <h4 class="text-center">Usuários Cadastrados</h4>
+            <h4 class="text-center">Usuários com Login - Login_dtTable.ejs</h4>
 
             <table id="dt-table" class="display hover order-column" style="width:100%;">
               <thead>
                 <tr>
-                  <th>EMail</th>
                   <th>Nome</th>
+                  <th>EMail</th>
                   <th>RE</th>
                   <th>Tipo Usuário</th>
                   <th>Criado Em</th>
@@ -49,8 +49,8 @@
             //new DataTable('#dt-table', {
                 data: <%- str_logins %>,
                 columns: [
-                    { data: 'email' },
                     { data: 'nome' },
+                    { data: 'email' },
                     { data: 're' },
                     { data: 'tipoUsuario' },
                     { data: 'criadoEm' },
