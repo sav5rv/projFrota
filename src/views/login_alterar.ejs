@@ -14,7 +14,7 @@
 
               <%- include('includes/messages') %>
 
-                  <form id="frm1" action="/login/alterar_senha" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
+                  <form id="frmLoginAlterar" action="/login/alterar_senha" method="POST" class="form-horizontal" novalidate="novalidate" autocomplete="off">
 
 
                           <input type="hidden" name="_csrf" value=<%=csrfToken %>>
@@ -29,9 +29,9 @@
 
 
                           <div class="form-group">
-                            <label class="col-sm-4 control-label" for="re">RE</label>
+                            <label class="col-sm-4 control-label" for="re">RE(sem o dígito)</label>
                             <div class="col-sm-5">
-                              <input type="number" name="re" id="re" class="form-control" value="<%=  %>">
+                              <input type="number" name="re" id="re" class="form-control">
                             </div>
                           </div>
 
@@ -39,7 +39,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="password">Senha Antiga</label>
                             <div class="col-sm-5">
-                              <input type="password" name="password" id="password" class="form-control" required minlength="3" maxlength="16">
+                              <input type="password" name="password" id="password" class="form-control">
                             </div>
                           </div>
 
@@ -47,7 +47,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="senhaNova">Senha Nova</label>
                             <div class="col-sm-5">
-                              <input type="password" name="senhaNova" id="senhaNova" class="form-control" required minlength="3" maxlength="16">
+                              <input type="password" name="senhaNova" id="senhaNova" class="form-control">
                             </div>
                           </div>
             </div> <!-- FIM PANEL-BODY -->
@@ -55,8 +55,7 @@
 
                       <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">Alterar</button>
-                        <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->            
-                        <!-- <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()" >Cancelar</button> -->
+                        <a class="btn btn-primary" href="/login/index"> Cancelar </a> <!-- link formatado como botão -->            
                       </div>
                   </form>
 
@@ -66,10 +65,50 @@
 
 
         <%- include('includes/footer') %>
-
-          <script type="text/javascript" src="/js/geral.js"></script>
-
-
+<script>
+        $(document).ready(function() {
+          $("#frmLoginAlterar").validate({
+            rules: {
+              re: {
+                required: true,
+                minlength: 5,
+                maxlength: 6,
+              },
+              email: {
+                email: true,
+                required: true
+              },
+              password: {
+                required: true,
+                minlength: 3
+              },
+              senhaNova: {
+                required: true,
+                minlength: 3
+              }
+            },
+            messages: {
+              re: {
+                required: 'Campo obrigatório',
+                minlength: 'RE completo sem o dígito',
+                maxlength: 'RE sem o dígito',
+              },
+              email: {
+                required: 'Insira seu email',
+                email: 'Insira um email válido',
+              },
+              password: {
+                required: 'Insira a senha',
+                minlength: 'A senha deve ter entre 3 a 16 caracteres',
+              },
+              senhaNova: {
+                required: 'Insira uma nova senha',
+                minlength: 'A senha deve ter entre 3 a 16 caracteres',
+              },         
+            }
+          });
+        });
+</script>
 
 </body>
 </html>

@@ -25,16 +25,16 @@
             </div>
 
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="re">RE</label>
+              <label class="col-sm-4 control-label" for="re">RE(sem dígito)</label>
               <div class="col-sm-5">
-                <input type="number" name="re" id="re" class="form-control" required pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456" >
+                <input type="number" name="re" id="re" class="form-control">
               </div>
             </div>
             
             <div class="form-group">
               <label class="col-sm-4 control-label" for="email">EMail</label>
               <div class="col-sm-5">
-                <input type="email" name="email" id="email" class="form-control" required >
+                <input type="email" name="email" id="email" class="form-control">
               </div>
             </div>
 
@@ -42,7 +42,7 @@
             <div class="form-group">
               <label class="col-sm-4 control-label">Senha<span></span></label>
               <div class="col-sm-5">
-                <input type="password" name="password" id="password" class="form-control" required minlength="3" maxlength="16">
+                <input type="password" name="password" id="password" class="form-control">
               </div>
             </div>
 
@@ -50,21 +50,16 @@
             <div class="form-group">
               <label class="col-sm-4 control-label">Confirme a senha<span></span></label>
               <div class="col-sm-5">
-                <input type="password" name="confirma" id="confirma" class="form-control" required minlength="3" maxlength="16">
+                <input type="password" name="confirma" id="confirma" class="form-control">
               </div>
             </div>
 
         </div> <!-- FIM PANEL-BODY -->    
             
             
-            <div class="form-group text-center">
-              <% if(user) { %>            
-                <a class="nav-link" href="/login/login">LOGAR</a>            
-              <% } else { %>            
-                <button type="submit" class="btn btn-primary" id="btnCriar">Criar minha conta</button>            
-              <% } %>
-            
-              <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->            
+            <div class="form-group text-center">           
+              <button type="submit" class="btn btn-primary" id="btnCriar">Criar minha conta</button>
+              <a class="btn btn-primary" href="/login/index"> Cancelar </a> <!-- link formatado como botão -->            
             </div>
           </form>
         </div>
@@ -89,7 +84,54 @@
       });
 
       $(document).ready(function() {
-        $("#frmLoginCriar").validate();
+        $("#frmLoginCriar").validate({
+          rules: {
+            nome:{
+              required: true,
+              minlength: 10,
+            },
+            re: {
+              required: true,
+              minlength: 5,
+              maxlength: 6,
+            },
+            email: {
+              email: true,
+              required: true
+            },
+            password: {
+              required: true,
+              minlength: 3
+            },
+            confirma: {
+              required: true,
+              equalTo: '#password'
+            }
+          },
+          messages: {
+            nome:{
+              required: 'Campo obrigatório',
+              minlength: 'Escreva o nome completo',
+            },
+            re: {
+              required: 'Campo obrigatório',
+              minlength: 'RE completo sem o dígito',
+              maxlength: 'RE sem o dígito',
+            },
+            email: {
+              required: 'Insira seu email',
+              email: 'Insira um email válido',
+            },
+            password: {
+              required: 'Insira a senha',
+              minlength: 'A senha deve ter entre 3 a 16 caracteres',
+            },
+            confirma: {
+              required: 'Insira a senha',
+              equalTo: 'Senhas não conferem!!!',
+            },         
+          }
+        });
       });
 
       

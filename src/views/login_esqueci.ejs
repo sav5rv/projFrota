@@ -29,14 +29,14 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="email">EMail</label>
                             <div class="col-sm-5">
-                              <input type="email" name="email" id="email" class="form-control" required >
+                              <input type="email" name="email" id="email" class="form-control" >
                             </div>
                           </div>
 
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="re">RE</label>
                             <div class="col-sm-5">
-                              <input type="number" name="re" id="re" class="form-control" pattern="[0-9]{6}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456">
+                              <input type="number" name="re" id="re" class="form-control">
                             </div>
                           </div>
 
@@ -44,7 +44,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="cnhRegistro">Número da CNH</label>
                             <div class="col-sm-5">
-                              <input type="number" name="cnhRegistro" id="cnhRegistro" class="form-control" pattern="[0-9]{9}" data-toggle="tooltip" data-placement="top" title="Modelo: 123456789">
+                              <input type="number" name="cnhRegistro" id="cnhRegistro" class="form-control">
                             </div>
                           </div>
 
@@ -53,8 +53,7 @@
 
                       <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">Receber Senha Nova</button>`
-                        <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->            
-                        <!-- <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()" >Cancelar</button> -->
+                        <a class="btn btn-primary" href="/login/index"> Cancelar </a> <!-- link formatado como botão -->            
                       </div>
                   </form>
 
@@ -67,8 +66,47 @@
 
     <script>
       $(document).ready(function() {
-        $("#frmEsqueciSenha").validate();
-      });
+        $("#frmEsqueciSenha").validate({
+            rules: {
+              nome:{
+              required: true,
+              minlength: 10,
+              },
+              re: {
+                required: true,
+                minlength: 5,
+                maxlength: 6,
+              },
+              email: {
+                email: true,
+                required: true
+              },
+              cnhRegistro: {
+                required: true,
+                minlength: 9,
+              },
+            },
+            messages: {
+              nome:{
+              required: 'Campo obrigatório',
+              minlength: 'Escreva o nome completo',
+              },
+              re: {
+                required: 'Campo obrigatório',
+                minlength: 'RE completo sem o dígito',
+                maxlength: 'RE sem o dígito',
+              },
+              email: {
+                required: 'Insira seu email',
+                email: 'Insira um email válido',
+              },
+              cnhRegistro: {
+                required: 'Insira o número do Registro da CNH',
+                minlength: 'Mínimo nove dígitos',
+              },        
+            }
+          });
+        });
 
       
     </script>

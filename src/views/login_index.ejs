@@ -22,7 +22,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="email">EMail</label>
                             <div class="col-sm-5">
-                              <input type="email" name="email" id="email" class="form-control" value="ws@gmail.com" required >
+                              <input type="email" name="email" id="email" class="form-control" value="ws@gmail.com">
                             </div>
                           </div>
 
@@ -30,7 +30,7 @@
                           <div class="form-group">
                             <label class="col-sm-4 control-label" for="senha">Senha</label>
                             <div class="col-sm-5">
-                              <input type="password" name="password" id="password" class="form-control" required minlength="3" maxlength="16" value="123">
+                              <input type="password" name="password" id="password" class="form-control" value="123">
                             </div>
                           </div>
             </div> <!-- FIM PANEL-BODY -->
@@ -38,7 +38,7 @@
 
                       <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">Entrar</button>
-                        <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()" >Cancelar</button>
+                        <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->            
                       </div>
                       <div class="form-group text-center">
                         <a class="btn btn-primary" href="/login/criar">Criar conta</a> <!-- link para voltar pag anterior -->
@@ -52,9 +52,38 @@
     </div> <!-- FIM CONTAINER -->
 
 
-        <%- include('includes/footer') %>
+    <%- include('includes/footer') %>
 
-          <script type="text/javascript" src="/js/geral.js"></script>
+    <script>
+      //JQuery Validate, resp validação campos
+      $(document).ready(function() {
+        $('#frmLoginIndex').validate({
+          rules: {
+            email: {
+              email: true,
+              required: true
+            },
+            password: {
+              required: true,
+              minlength: 3
+            }
+          },
+          messages: {
+            email: {
+              required: 'Insira seu email',
+              email: 'Insira um email válido'
+            },
+            password: {
+              required: 'Insira a senha',
+              minlength: 'A senha deve ter entre 3 a 16 caracteres'
+            }
+          }
+        });
+      });
+
+    </script>
+
+
 
 
 
