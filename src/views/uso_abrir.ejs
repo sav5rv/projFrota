@@ -59,7 +59,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="rso">RSO número</label>
                   <div class="col-sm-5">
-                    <input value="<%= uso.rso %>" type="number" class="form-control" id="rso" name="rso" required autofocus onchange="completarComZeroRso()">
+                    <input value="<%= uso.rso %>" type="number" class="form-control" id="rso" name="rso" required autofocus onblur="completarComZeroRso()">
                   </div>
                 </div>
                 
@@ -82,7 +82,7 @@
                 <div class="form-group">                            
                   <label class="col-sm-4 control-label" for="hodometroInicio" id="label_inicio">Hodômetro Inicial</label>
                   <div class="col-sm-5">
-                    <input value="<%= uso.hodometroInicio %>" type="number" class="form-control" id="hodometroInicio" name="hodometroInicio" required onchange="completarComZeroHodInicio()">
+                    <input value="<%= uso.hodometroInicio %>" type="number" class="form-control" id="hodometroInicio" name="hodometroInicio" required onblur="completarComZeroHodInicio()">
                   </div>
                 </div>
 

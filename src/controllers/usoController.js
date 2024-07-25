@@ -38,16 +38,15 @@ exports.uso_finalizar = async(req, res) => {
   const login_email = await login.buscaEmail(email);
   
   if(!login_email) {
-    req.flash('errors', `O usuário ${email} não foi localizado na tabela de Login - Precisa ser cadastrado novamente!`);
+    req.flash('errors', `Esse registro não pode ser finalizado. - - - O usuário (${email}) não foi localizado! - - - Crie uma conta para ele na tela LOGIN.`);
     req.session.save(() => res.redirect('back'));
     return;
-  }
-
-
-  res.render('uso_finalizar', {
-    uso : uso,
-    login_email: login_email,
-  });
+  } else {
+    res.render('uso_finalizar', {
+      uso : uso,
+      login_email: login_email,
+    });
+  };
 };
 
 
@@ -127,9 +126,20 @@ exports.editIndex = async function(req, res) {
 
 
   const login = new Login(); //vou precisar para preencher outros input que não estão salvos no banco dados uso
-    const login2 = await login.buscaEmail(uso.email); 
+  const login2 = await login.buscaEmail(uso.email);
+
+  if(!login2) {
+    req.flash('errors', `Esse registro não pode ser editado. - - - O usuário (${uso.email}) não foi localizado! - - - Crie uma conta na tela Login.`);
+    req.session.save(() => res.redirect('back'));
+    return;
+  } else {
+    res.render('uso_abrir', {
+      uso : uso,
+      login2: login2,
+    });
+  };
     
-  res.render('uso_abrir', { uso, login2 });
+  //res.render('uso_abrir', { uso, login2 });
 };
 
 
@@ -164,12 +174,13 @@ exports.edit = async function(req, res) {
 
 
 exports.delete = async function(req, res) {
-  if(!req.params.id) return res.render('404');
+  const id = req.params.id;
+  if(!id) return res.render('404', { error: 'ID não fornecido.' });
 
-  const uso = await Uso.delete(req.params.id);
-  if(!uso) return res.render('404');
+  const uso = await Uso.delete(id);
+  if(!uso) return res.render('404', { error: `Registro com ID: ${id} não encontrado.` });
 
-  req.flash('success', 'Registro apagado com sucesso.');
-  req.session.save(() => res.redirect('back'));
+  req.flash('success', `Registro id: ${id} apagado com sucesso.`);
+  req.session.save(() => res.redirect(`/uso/uso_lista/`));
   return;
 };

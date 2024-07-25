@@ -111,6 +111,7 @@ route.get('/uso/uso_abrir',             loginRequired, usoController.uso_abrir);
 route.get('/uso/uso_finalizar/:id',     loginRequired, usoController.uso_finalizar); //Finalizar
 route.post('/uso/register',             loginRequired, usoController.register);
 route.get('/uso/delete/:id',            loginRequired, usoController.delete);
+//route.delete('/uso/delete/:id',            loginRequired, usoController.delete); //Fetch DELETE de uso_lista.js
 route.get('/uso/uso_lista',             loginRequired, usoController.uso_lista);     //Listar
 route.get('/uso/uso_lista/:id',         loginRequired, usoController.editIndex); //2º cliquei para editar e abri o form de edição
 route.post('/uso/edit/:id',             loginRequired, usoController.edit);      //3º salvei o form alterado
