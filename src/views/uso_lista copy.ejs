@@ -1,0 +1,70 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<!-- <div class="container"> -->
+  <div class="row" class="container-fluid" style="width: 100%; padding: auto; margin: auto;">
+
+    <div class="col-lg-12">
+      <div class="text-center">
+        <img src="/img/corrigir.png" style="width:50px;height:50px;">
+        <h4>Utilização</h4>
+        <p>Lista de fichas de uso cadastradas - USO_LISTA.EJS</p>
+
+        <p><%- include('includes/messages') %></p>
+      </div>
+
+      <% if(usos.length > 0) { %>
+      <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>EMail</th>
+              <th>Placa</th>
+              <th>KM Inicio</th>
+              <th>Data</th>
+              <th>Hora</th>
+              <th>RSO núm</th>
+              <th>KM Final</th>
+              <th>Data Final</th>
+              <th>Hora Final</th>
+              <th title="Finalizar"><i class="text-warning fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true"></i></th>
+              <th title="Editar"   ><i class="text-primary fa fa-pencil-square-o"         aria-hidden="true"></i></th>
+              <th title="Excluir"  ><i class="text-danger fa fa-trash-o"                  aria-hidden="true"></i></th>
+          </tr>
+          </thead>
+          <tbody>
+            <% usos.forEach(uso => { %>
+              <tr>
+                <td><%= uso.email %></td>
+                <td><%= uso.placa %></td>
+                <td><%= uso.hodometroInicio %></td>
+                <td><%= uso.dataInicio %></td>
+                <td><%= uso.horaInicio %></td>
+                <td><%= uso.rso %></td>
+                <td><%= uso.hodometroFim %></td>
+                <td><%= uso.dataFim %></td>
+                <td><%= uso.horaFim %></td>
+                
+                <% if(uso.hodometroFim > 0) { %>
+                  <td title="Ok"><i class="fa fa-check" aria-hidden="true"></i></td>  
+                <% } else { %>
+                  <td title="Finalizar"><a class="text-warning" href="/uso/uso_finalizar/<%= uso._id %>"><i class="fa fa-cog fa-spin fa-1x fa-fw" aria-hidden="true"></i></a></td>
+                <% }; %>
+
+                <td title="Editar">   <a class="text-primary" href="/uso/uso_lista/<%= uso._id %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td title="Excluir">  <a class="text-danger" href="/uso/delete/<%= uso._id %>" aria-label="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <% } else { %>
+        <p class="text-center lead">Não existem registros de uso cadastrados.</p>
+      <% } %>
+
+    </div>
+    
+  </div>
+
+<%- include('includes/footer') %>

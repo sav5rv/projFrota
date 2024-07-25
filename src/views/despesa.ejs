@@ -67,7 +67,7 @@
 
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="tipoDespesa">Tipo de Despesa</label>
+                    <label class="col-sm-4 control-label" for="tipoDespesa">Tipo de Despesa *</label>
                     <div class="col-sm-5">
                       <select type="text" id="tipoDespesa" name="tipoDespesa" class="form-control" style="margin-top: 10px;">
                         <option value = "<%= despesa.tipoDespesa %>" selected><%= despesa.tipoDespesa %></option>
@@ -90,7 +90,7 @@
 
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="data">Data da realização</label>
+                    <label class="col-sm-4 control-label" for="data">Data da realização *</label>
                     <div class="col-sm-5">
                       <input type="date" name="data" id="data" class="form-control" >
                     </div>
@@ -122,7 +122,7 @@
 
 
                   <div class="form-group">
-                    <label class="col-sm-4 control-label" for="quantidade">Quantidade de itens</label>
+                    <label class="col-sm-4 control-label" for="quantidade">Quantidade de itens *</label>
                     <div class="col-sm-5">
                       <input type="number" name="quantidade" id="quantidade" class="form-control" value="<%= despesa.quantidade %>" maxlength="4">
                     </div>
@@ -146,8 +146,7 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="obs">Observações</label>
                     <div class="col-sm-5">
-                      <input type="text" name="obs" id="obs" class="form-control" value="<%= despesa.obs %>"
-                      required minlength="2" maxlength="250">
+                      <input type="text" name="obs" id="obs" class="form-control" value="<%= despesa.obs %>">
                     </div>
                   </div>
             </div> <!-- FIM PANEL-BODY -->
@@ -155,7 +154,11 @@
 
                     <div class="form-group text-center">
                       <button type="submit" class="btn btn-primary">Salvar</button>
-                      <button type="reset" id="btnCancelar" name="btnCancelar" class="btn btn-primary" onclick="history.back()">Cancelar</a>
+                      <% if(despesa._id) { %>
+                        <a class="btn btn-primary" href="/despesa/despesa_lista"> Cancelar </a>                        
+                      <% } else { %>
+                        <a class="btn btn-primary" href="/"> Cancelar </a> <!-- link formatado como botão -->                        
+                      <% } %>
                                                   
                     </div>
                 </form>
@@ -164,9 +167,99 @@
       </div> <!-- FIM ROW -->
     </div> <!-- FIM CONTAINER -->
  
+    <%- include('includes/footer') %>
+    
     <script src="/js/geral.js" defer> </script>
 
-        <%- include('includes/footer') %>
+<script>
+  $(document).ready(function() {
+      // Adiciona um método de validação personalizado para datas
+      $.validator.addMethod("validDate", function(value, element) {
+        // Verifica se o valor do campo é uma data válida
+        return this.optional(element) || !isNaN(Date.parse(value));
+      }, "Por favor, insira uma data válida");
+
+      $.validator.addMethod("validHora", function(value, element) {
+        return this.optional(element) || /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(value);;
+      }, "Por favor, insira uma hora válida");
+
+        // Adiciona um método de validação personalizado para selects
+      $.validator.addMethod("validSelect", function(value, element, arg) {
+        // Verifica se o valor do campo select é diferente do argumento passado (por exemplo, "")
+        // return value !== arg;
+        return value !== 'Selecione...'
+      }, "Por favor, selecione uma opção válida");
+
+    $("#frmDespesa").validate({
+        rules: {
+          email: {
+            email: true,
+            required: true
+          },
+          placa: {
+            required: true,
+            validSelect: true,                      
+          },
+          tipoDespesa: {
+            required: true,
+            validSelect: true,
+          },
+          hodometro: {
+            required: true,
+            minlength: 6,
+          },
+          data: {
+            required: true,
+            validDate: true,
+          },
+          hora: {
+
+          },
+          quantidade: {
+            required: true,
+            minlength: 1,
+          },
+          valor: {
+            required: true,
+            minlength: 4,
+          },
+        },
+        messages: {
+          email: {
+            required: 'Insira seu email',
+            email: 'Insira um email válido',
+          },
+          placa: {
+            required: 'Campo obrigatório',
+            validSelect: "Selecione uma opção"                      
+          },
+          tipoDespesa: {
+            required: 'Campo obrigatório',
+            validSelect: "Selecione uma opção"            
+          },
+          hodometro: {
+            required: 'Insira o valor do hodometro',
+            minlength: 'Mínimo seis dígitos',
+          },
+          data: {
+            required: 'Campo obrigatório',
+            validDate: "Insira uma data válida",
+          },
+          hora: {
+
+          },
+          quantidade: {
+            required: 'Campo obrigatório',
+            minlength: 'Mínimo um dígito',
+          },
+          valor: {
+            required: 'Campo obrigatório',
+            minlength: 'Mínimo um dígito',
+          },
+        }
+      });
+    });
+    </script>
 
 
 </body>
