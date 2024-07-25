@@ -1,24 +1,23 @@
 <%- include('includes/head') %>
 <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
+  <div class="row" class="container-fluid" style="width: 100%; padding: auto; margin: auto;">
+    <div class="col-lg-12 my-3">
 
-    <div class="col-lg-8 my-3">
-      <%- include('includes/messages') %> <!--  manter esse include nesse lugar, se colocar mais acima, pode alterar o alinhamento -->
-     
-     
-      <h2 class="text-center">Seu usuário é: <%-login2.email %></h2>
-      <p class="text-center lead">seu id é: <%- login2._id %></p>
-      <p class="text-center lead">seu perfil é: <%- login2.tipoUsuario %></p>
+      <div class="text-center">
+        <img src="/img/favicon.ico" style="width:70px;height:70px;">
+        <h3>GERENCIAMENTO DE FROTA</h3>
+        <p><%- include('includes/messages') %></p>
+      </div>
 
+      <div class="text-center">
+        <h4>Seu usuário é: <b><%-login2.email %></b></h4>
+        <p>seu id é: <b><%- login2._id %></b></p>
+        <p>seu perfil é: <b><%- login2.tipoUsuario %></b></p>
 
+      </div>
     </div>
-
-    <div class="col-lg-2"></div>
   </div>
-</div>
 
 <%- include('includes/footer') %>
 

@@ -1,24 +1,24 @@
 <%- include('includes/head') %>
 <%- include('includes/nav') %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-2"></div>
+  <div class="row" class="container-fluid" style="width: 100%; padding: auto; margin: auto;">
+    <div class="col-lg-12 my-3">
 
-    <div class="col-lg-8 my-3">
-      <h3 class="text-center">CONTROLE DE FROTA DE VEÍCULOS</h3>
-      
-      <%- include('includes/messages') %>
+      <div class="text-center">
+        <img src="/img/favicon.ico" style="width:70px;height:70px;">
+        <h3>GERENCIAMENTO DE FROTA</h3>
+        <p><%- include('includes/messages') %></p>
+      </div>
 
-      <p class="text-center lead">Total de usuários cadastrados: <%-contatos.length %></p>
-      <p class="text-center lead">Total de login liberados: <%-login2.length %></p>
-      <p class="text-center lead">Total de veículos cadastrados: <%-veiculos.length %></p>
-
-
+      <div class="text-center">
+      <p>Total de usuários cadastrados: <%-contatos.length %></p>
+      <p>Total de login liberados: <%-login2.length %></p>
+      <p>Total de veículos cadastrados: <%-veiculos.length %></p>
     </div>
-    
-    <div class="col-lg-2"></div>
   </div>
 </div>
 
 <%- include('includes/footer') %>
+
+</body>
+</html>
