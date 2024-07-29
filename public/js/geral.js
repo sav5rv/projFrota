@@ -50,12 +50,6 @@ window.onload = formataMoeda(dadosBc.valor);
 //window.addEventListener("load", capturaIP2());
 
 
-
-//----------------------------------------------------------------------------------
-//formatar com formato moeda Brasil quando carregar do banco para o formulário
-
-
-
 //----------------------------------------------------------------------------------
 
 
@@ -117,26 +111,6 @@ function capturaGeo(){
         document.getElementById("geo").innerHTML = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
      }
 };
-
-
-
-//---------------------------------------------------------------------------------
-// comando do Btn Cancelar e Voltar nos formulários
-
-    // const btnCancelar = document.querySelector("#btnCancelar");
-    // const formulario = document.querySelectorAll("input");
-
-    // btnCancelar.addEventListener("click", function() { // executada qd é clicado no btnCancelar
-
-    //     for (const campo of formulario) { // percorre todos os elementos input e atribui vazio
-    //         campo.value = "";
-    //     }
-        
-    //     history.back(); //voltar para página anterior
-
-    // });  
-
-
     
 //---------------------------------------------------------------------------------
 //MASCARA DOS CAMPOS usando o CLEAVE
@@ -293,14 +267,6 @@ function formatarMoedaComVirgulaDinamica(valor) {
     // Retorna o valor formatado como moeda
     return `R$ ${parteInteiraFormatada}${parteDecimalFormatada}`;
   }
-//---------------------------------------------------------------------------------
-// FUNÇÃO TESTE CONTATO_CAD
-function myFunction() {
-    document.getElementById("demo").innerHTML = "Paragraph changed.";
-
-};
-
-
 
 //------------------------------------------------------------------------------
 // trata a QUANTIDADE DE CARACTERES que é permitido dentro do input tipo numero
@@ -568,27 +534,16 @@ function ocultar() {
   document.getElementById("ocultar").style.display = "none";
   const msgElemento = document.querySelector("h3");
 
-  msgElemento.textContent = "EMAIL já cadastrado!!!";
+  msgElemento.textContent = `EMAIL já utilizado...... Acesse o menu Usuários - Validar Login para cadastrar`;
   msgElemento.style.display = "inline-block";
   msgElemento.style.color = "red";
-  msgElemento.style.fontSize = "18px";
+  msgElemento.style.fontSize = "16px";
   msgElemento.style.fontWeight = "bold";
   msgElemento.style.padding = "10px 20px";
 
   // acrescentar botão para LIMPAR os campos e voltar como estava, sem sair da tela
 
 }
-
-//----------------------------------------------------------------------------------------------
-
-// Função confirmação de exclusão de registros
-
-function excluir_registro(x) {
-    if(x === "sim") {
-        
-    }
-}
-
 
 //-------------------------------------------------------------------------------------------------
 

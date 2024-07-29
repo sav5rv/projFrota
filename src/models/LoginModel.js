@@ -118,8 +118,8 @@ class Login {
   // o esqueci_senha está vindo do LOGINcontrolle
   async esqueci_senha( email, re, nome ) {        
     if(this.login = await LoginModel.findOne({ email: email, re: re, nome: nome }, { })) {
-      console.log('LINHA 116 LOGIN MODEL ' + this.login);
-      console.log('LINHA 117 LOGIN MODEL ' + this.login.email);
+      //console.log('LINHA 116 LOGIN MODEL ' + this.login);
+      //console.log('LINHA 117 LOGIN MODEL ' + this.login.email);
 
       return this.login;
     } else {
@@ -224,7 +224,7 @@ class Login {
   
   
   async edit(email) {    
-    console.log('LINHA 160 LOGIN MODEL ' + this.body.re);
+    //console.log('LINHA 160 LOGIN MODEL ' + this.body.re);
 
     if(typeof email !== 'string') return;
     this.cleanUp();
@@ -261,7 +261,7 @@ class Login {
   async buscaPorId(buscar_o_id) { 
     if(typeof buscar_o_id !== 'string') return;
     this.login = await LoginModel.findById(buscar_o_id);
-    console.log('LINHA 258 LOGIN MODEL ' + buscar_o_id);
+    //console.log('LINHA 258 LOGIN MODEL ' + buscar_o_id);
     
     return this.login
     

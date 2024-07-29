@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTables with Node.js</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+</head>
+<body>
+    <h1>DataTables with Node.js</h1>
+    <table id="dt-table" class="display">
+        <thead>
+            <tr>
+                <th>Renavan</th>
+                <th>Chassi</th>
+                <th>Prefixo</th>
+                <th>Hodom</th>
+                <th>Combust</th>
+                <th>Rodas</th>
+                <th>Cor</th>
+                <th>_id</th>
+                <th>Placa</th>
+                <th>criadoEm</th>
+              </tr>
+        </thead>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log($('#dt-table'));
+            console.log ( <%- str_veiculos %> );
+            new DataTable('#dt-table', {
+                data: <%- str_veiculos %>,
+                columns: [
+                { data: 'renavan' },
+                    { data: 'chassi' },
+                    { data: 'prefixo' },
+                    { data: 'hodometro' },
+                    { data: 'combustivel' },
+                    { data: 'rodas' },
+                    { data: 'cor' },
+                    { data: '_id' },
+                    { data: 'placa' },
+                    { data: 'criadoEm' },
+                    {
+                        data: null,
+                        render: function(data, type, row) {
+                            return `
+                                <button class="edit-btn" data-id="${row._id}">Editar</button>
+                                <button class="delete-btn" data-id="${row._id}">Excluir</button>
+                                <button class="validate-btn" data-id="${row._id}">Validar</button>
+                            `;
+                        }
+                    }
+                ]
+            });
+
+            $('#dt-table').on('click', '.edit-btn', function() {
+                const id = $(this).data('_id');
+                window.location.href = `/edit/${id}`;
+            });
+
+            $('#dt-table').on('click', '.delete-btn', function() {
+                const id = $(this).data('_id');
+                if (confirm('Você quer realmente excluir este item?')) {
+                    window.location.href = `/veiculo/delete/${id}`;
+                }
+            });
+
+            $('#dt-table').on('click', '.validate-btn', function() {
+                const id = $(this).data('_id');
+                window.location.href = `/validate/${id}`;
+            });
+        });
+    </script>
+</body>
+</html>

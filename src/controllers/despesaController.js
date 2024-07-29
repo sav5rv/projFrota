@@ -49,13 +49,16 @@ exports.despesa_lista = async(req, res) => {
   
   try {
     if ( tipoUsuario == 'Administrador' ) { 
-      const despesas = await Despesa.buscaDespesas();
-
+      const desp = await Despesa.buscaDespesas();
+      despesas = JSON.stringify( desp );
+      console.log(despesas);
+      
       if(!despesas) return res.render('404');
       res.render('despesa_lista', { despesas }); //como a chave chama contatos e a variavel que esta vindo é contatos tambem
                                                  //não preciso fazer { contatos:contatos }
     } else {
-      const despesas = await Despesa.buscaDespesaEmail(email);
+      const desps = await Despesa.buscaDespesaEmail(email);
+      despesas = JSON.stringify( desp );
 
       if(!despesas) return res.render('404');
       res.render('despesa_lista', { despesas });

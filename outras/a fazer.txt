@@ -12,6 +12,8 @@ campo memorando, com dificuldade de salvar no Bc Dados - usei string e a quant d
 
 todos os campos no Bc Dados são tipo string - ALTERADO - foi necessário devido a geração do grafico
 
+campo RENAVAN E REGISTRO CNH qd editar ou cadastrar novo pesquisar para verificar se já não existe
+
 tipo de usuario = Administrador / Auxiliar / Usuario
 
 categoria CNH = A / B / C / D / E

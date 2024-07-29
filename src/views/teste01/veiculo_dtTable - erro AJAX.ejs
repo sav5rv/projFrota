@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTables with AJAX</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css">
+    <style>
+        /* Adicione estilos para melhorar a visualização, se necessário */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.5em;
+            margin: 0.5em;
+        }
+    </style>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>    
+
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
+
+
+</head>
+<body>
+    <h1>DataTables with Node.js</h1>
+    <table id="dt-table" class="display">
+        <thead>
+            <tr>
+                <th>Renavan</th>
+                <th>Chassi</th>
+                <th>Prefixo</th>
+                <th>Hodômetro</th>
+                <th>Combustível</th>
+                <th>Rodas</th>
+                <th>Cor</th>
+                <th>Placa</th>
+                <th>Criado Em</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Renavan</th>
+                <th>Chassi</th>
+                <th>Prefixo</th>
+                <th>Hodômetro</th>
+                <th>Combustível</th>
+                <th>Rodas</th>
+                <th>Cor</th>
+                <th>Placa</th>
+                <th>Criado Em</th>
+                <th>Ações</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <script>
+        $(document).ready(function() {
+            new DataTable('#dt-table', {
+                ajax: '/veiculo/lista_veiculo',
+
+                columns: [
+                    { data: 'renavan' },
+                    { data: 'chassi' },
+                    { data: 'prefixo' },
+                    { data: 'hodometro' },
+                    { data: 'combustivel' },
+                    { data: 'rodas' },
+                    { data: 'cor' },
+                    { data: 'placa' },
+                    { data: 'criadoEm' },
+                    // {
+                    //     data: null,
+                    //     render: function(data, type, row) {
+                    //         return `
+                    //             <button class="edit-btn" data-id="${row._id}">Editar</button>
+                    //             <button class="delete-btn" data-id="${row._id}">Excluir</button>
+                    //             <button class="validate-btn" data-id="${row._id}">Validar</button>
+                    //         `;
+                    //     }
+                    // }
+                ]
+            });
+
+            $('#dt-table').on('click', '.edit-btn', function() {
+                const id = $(this).data('id');
+                window.location.href = `/edit/${id}`;
+            });
+
+            $('#dt-table').on('click', '.delete-btn', function() {
+                const id = $(this).data('id');
+                if (confirm('Você quer realmente excluir este item?')) {
+                    window.location.href = `/delete/${id}`;
+                }
+            });
+
+            $('#dt-table').on('click', '.validate-btn', function() {
+                const id = $(this).data('id');
+                window.location.href = `/validate/${id}`;
+            });
+        });
+    </script>
+</body>
+</html>

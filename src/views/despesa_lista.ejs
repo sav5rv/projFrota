@@ -1,6 +1,7 @@
 <%- include('includes/head') %>
-<%- include('includes/nav') %>
-
+<%- include('includes/nav-bootStrap-v4') %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css">
 <!-- <div class="container"> -->
   <div class="row" class="container-fluid" style="width: 100%; padding: auto; margin: auto;">
 
@@ -14,30 +15,175 @@
       <% if(despesas.length > 0) { %>
         <div id="tbContainer" class="table-responsive">
 
+          <table id="tbDespesa" class="display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                  <th>EMail</th>
+                  <th>Placa</th>
+                  <th>Despesa</th>
+                  <th>Hodometro</th>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Local</th>
+                  <th>Unid</th>
+                  <th>Quant</th>
+                  <th>Valor</th>
+                  <th>Obs</th>
+                  <th>Registrado Em</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                  <th>email</th>
+                  <th>placa</th>
+                  <th>tipoDespesa</th>
+                  <th>hodometro</th>
+                  <th>data</th>
+                  <th>hora</th>
+                  <th>local</th>
+                  <th>unidade</th>
+                  <th>quant</th>
+                  <th>valor</th>
+                  <th>obs</th>
+                  <th>Registrado Em</th>
+                               
+                </tr>
+            </tfoot>
+        </table>
         </div>
       <% } else { %>
         <p class="text-center lead">Não existem despesas cadastradas.</p>
       <% } %>
-
-    </div>
-    
+    </div>    
   </div>
 <!-- </div> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
-  <script>
 
-    // Passar os dados vindos do servidor para uma variável JavaScript
-    // usar - em vez de = no <%- %>, pois o - utiliza os caracteres especiais tambem
-    const dadosBc = <%- JSON.stringify(despesas) %>;
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
+    
+    <script>
+      function formataData(dt) {
+        if(dt) {
+          moment.locale('pt-BR');      
+          //console.log(dt);
+          //console.log(despesa);
+          const dataF = new Date(dt); //primeiro converter o valor padrao ISODate que está vindo do Bc em um OBJ
+          //console.log(dataF);
+          const dataM = moment(dataF); //primeiro converter o OBJ data em momentJS
+          //console.log(dataM);
+          const dataFormatada = dataM.format('DD-MM-yyyy'); //agora formatar
+          //console.log(dataFormatada);
 
-  </script>
+          return dataFormatada;
+        }
+      }
 
-  <!-- <script src="/js/geral.js"> </script> -->
+      function completarComZeroHod(hodometro) {
+        if(hodometro) {
+          const numHodometro = hodometro.toString();
+          return numHodometro.padStart(6, "0");
+        } else {
+          return 'erro';
+        }
+      };
 
-  <script type="module" src="/js/despesa_lista.js"> </script>
+      function formatarMoedaBR(x) {
+        let valor = x;
+        // Converte o valor para string
+        valor = valor.toString();
 
-<%- include('includes/footer') %>
+        // Remove caracteres indesejados
+        valor = valor.replace(/[^0-9,.-]/g, "");
+
+        // Separa a parte inteira da parte decimal
+        const partes = valor.split(".");
+
+        // Formata a parte inteira com máscara de milhar (opcional)
+        const parteInteiraFormatada = partes[0].replace(/\B(?=(\d{3})+$)/g, ".");
+
+        // Formata a parte decimal (se existir)
+        let parteDecimalFormatada = "";
+        if (partes.length > 1) {
+        parteDecimalFormatada = "," + partes[1].substring(0, 2); // Limita a parte decimal para 2 casas
+        } else {
+        // Adiciona vírgula e dois zeros se não houver parte decimal
+        parteDecimalFormatada = ",00";
+        } 
+
+        // Retorna o valor formatado como moeda
+        return `R$ ${parteInteiraFormatada}${parteDecimalFormatada}`;
+      };
+
+        //https://datatables.net/examples/ajax/objects.html site exemplo
+        var table = new DataTable('#tbDespesa', {
+            data: <%- despesas %>,
+            columns: [
+                    { data: 'email' },
+                    { data: 'placa' },
+                    { data: 'tipoDespesa' },
+                    { data: 'hodometro' },
+                    { data: 'data' },
+                    { data: 'hora' },
+                    { data: 'local' },
+                    { data: 'unidade' },
+                    { data: 'quantidade' },
+                    { data: 'valor' },
+                    { data: 'obs' },
+                    { data: 'criadoEm' },
+                {
+                    data: null,
+                    targets: -1, // Índice da coluna 'Actions'
+                    render: function(data, type, row) {
+                        return '<a href="#" class="edit-link">Edit</a> | <a href="#" class="delete-link">Delete</a>';
+                    }
+                }
+            ],
+            columnDefs: [
+                {
+                  targets: 3, // Índice da coluna 'hodometro'
+                  render: function(data, type, row) {
+                      return completarComZeroHod(data)
+                  }
+                },
+                {
+                  targets: 4, // Índice da coluna 'data'
+                  render: function(data, type, row) {
+                      return formataData(data)
+                  }
+                },
+            ],
+            // "pageLength": 3,
+            // "stateSave" : true
+            // paging: false,
+            // scrollCollapse: true,
+            // scrollY: '210px',
+            // scrollX: true,
+            //order: [[2, 'asc']],            
+        });
+
+        // Adiciona um listener para o evento de clique no link
+        $('#tbDespesa tbody').on('click', 'a.edit-link', function (e) {
+                e.preventDefault();
+                let data = table.row($(this).parents('tr')).data();
+                alert('Edit clicked for: ' + data[1]);
+            });
+
+            // Listener para o link de exclusão
+            $('#tbDespesa tbody').on('click', 'a.delete-link', function (e) {
+                e.preventDefault();
+                let data = table.row($(this).parents('tr')).data();
+                if (confirm('Do you really want to delete the record for ' + data[1] + '?')) {
+                    // Lógica para excluir o registro, por exemplo, fazer uma requisição AJAX para o servidor
+                    alert('Record deleted for: ' + data[1]);
+                }
+            });
+    </script>
+    <%- include('includes/footer') %>
 
 </body>
 </html>

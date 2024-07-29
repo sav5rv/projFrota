@@ -83,6 +83,7 @@ route.get('/veiculo/veiculo_lista',            loginRequiredADM, veiculoControll
 route.get('/veiculo/veiculo_lista/:id',        loginRequiredADM, veiculoController.editIndex); //usado no retorno do cad veiculo
 route.post('/veiculo/edit/:id',                loginRequiredADM, veiculoController.edit);
 route.get('/veiculo/lista_veiculo',            loginRequiredADM, veiculoController.lista_veiculo);
+//route.get('/veiculo/lista_veiculo',     loginRequiredADM,veiculoController.veiculo_dtTable); //rota do AJAX veiculo_dtTable.ejs
 
 
 

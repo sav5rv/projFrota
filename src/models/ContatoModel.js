@@ -39,7 +39,7 @@ Contato.prototype.register = async function() {
 
 
 Contato.prototype.loginExists = async function() {
-  console.log('linha 42 ContatoModel ' + this.body.email);
+  //console.log('linha 42 ContatoModel ' + this.body.email);
   this.contato = await ContatoModel.findOne({ email: this.body.email });
   if(this.contato) if(this.contato.email === this.body.email) this.errors.push('Usuário já cadastrado com esse email.');
 }
@@ -111,13 +111,13 @@ Contato.prototype.esqueci_senha = async function(registro) {
 // removemos o this desnecessário, pois estamos trabalhando com um método estático e não precisamos referenciar a instância do modelo
 Contato.busca_validar = async function(id2) {
   if(typeof id2 !== 'string') {
-    console.log('não é string');
+    this.errors.push('não é string linha 114 de contatoModel');
     return;
 
   } else {
     const contato = await ContatoModel.findOne({ login_id : id2 });
-    console.log('LINHA 117 CONTATO MODEL' + contato);
-    console.log('LINHA 118 CONTATO MODEL' + id2);
+    //console.log('LINHA 117 CONTATO MODEL' + contato);
+    //console.log('LINHA 118 CONTATO MODEL' + id2);
     return contato;
 
   }

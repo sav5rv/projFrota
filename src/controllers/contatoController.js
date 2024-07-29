@@ -32,12 +32,12 @@ exports.contato_abrir = async(req, res) => {
 
     const email = req.session.email;    //usando a sessão atribuída no LOGINController linha 62
                                     //  porque o método session.get() retorna um objeto 
-    console.log('LINHA 35 USO CONTROLLER ' + email);
+    //console.log('LINHA 35 USO CONTROLLER ' + email);
 
     const login       = new Login();
     const login_email = await login.buscaEmail(email);
     
-    console.log('LINHA 40 USO CONTROLLER ' + login_email);
+    //console.log('LINHA 40 USO CONTROLLER ' + login_email);
 
   res.render('uso_abrir', {
     uso : {},
@@ -59,16 +59,18 @@ exports.login_validar = async(req, res) => {
       // Em resumo, o código (async () => {})(); cria uma função assíncrona vazia e a executa imediatamente, sem realizar nenhuma ação específica
       (async () => {
         for (const log2 of login2) { //Ele itera sobre um array chamado
-          console.log(`LINHA 62 CONTATO CONTROLLER ${log2.id}`)
-          if(typeof log2.id !== 'string') console.log('NÃO É STRING');
+          
+          if(typeof log2.id !== 'string') {
+            req.flash('errors', 'NÃO É STRING linha 63 de contatoController');
+            req.session.save(() => res.redirect('back'));
+            return;
+          }
           
           //const id2 = log2._id.toString(); //tem que ser String, que é o armazenado no BD
           
-          //console.log(`LINHA 64 CONTATO CONTROLLER ${id2}`)
-
           const contato = await Contato.busca_validar(log2.id);
           if (!contato) novo_array.push(log2);
-          console.log(`qtd de registros falta cadastrar: ${novo_array.length}`);
+          //console.log(`qtd de registros falta cadastrar: ${novo_array.length}`);
         };            
         
         res.render('contato_validar', { novo_array });
@@ -172,7 +174,7 @@ exports.register = async(req, res) => {
     // }
 
     const contato = new Contato(req.body);
-    console.log('116 contato controlle '+ req.body.email);
+    //console.log('116 contato controlle '+ req.body.email);
     await contato.register();
 
     if(contato.errors.length > 0) {
@@ -183,7 +185,7 @@ exports.register = async(req, res) => {
 
     req.flash('success', 'Contato registrado com sucesso.');
     req.session.tipoUsuario = req.body.tipoUsuario;
-    console.log("LINHA 135 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
+    //console.log("LINHA 135 CONTATO-CONTROLLER * * * " + req.session.tipoUsuario);
     //req.session.save(() => res.redirect(`/contato/contato_lista/${contato.contato._id}`));
     req.session.save(() => res.redirect(`/contato/contato_lista/`));
     return;
@@ -226,7 +228,7 @@ exports.edit = async function(req, res) {
     const contato = new Contato(req.body);
     await contato.edit(req.params.id);
 
-    console.log('LINHA 178 CONTATO CONTROLLER ' + req.body.email);
+    //console.log('LINHA 178 CONTATO CONTROLLER ' + req.body.email);
 
     const login = new Login(req.body);
     await login.edit(req.body.email);
@@ -271,7 +273,7 @@ exports.login_validar_delete = async function(req, res) {
   await login.delete(req.params.id);
   if(!login) return res.render('404');
 
-  req.flash('success', 'Log do contato apagado com sucesso.');
+  req.flash('success', `Registro email: ${req.params.id} apagado da tabela de Login!`);
   req.session.save(() => res.redirect('back'));
   return;
 }

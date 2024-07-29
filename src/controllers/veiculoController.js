@@ -53,6 +53,24 @@ exports.lista_veiculo = async(req, res) => {
 };
 
 
+
+                 //solicitado via AJAX em veiculo_dtTable.ejs
+exports.veiculo_dtTable = async(req, res) => {
+  const veiculos = await Veiculo.buscaVeiculos();
+
+  try {
+    if(!veiculos) return res.render('404', { error: `erro no veiculoController linha 62` });
+    const data = veiculos;
+
+    res.json({ data: data });  //retorna um JSON
+
+  } catch(e) {
+      console.log(e);
+      return res.render('404');
+  }
+};
+
+
                   //solicitado em um AJAX ou FETCH
 exports.teste_lista_veiculo = async(req, res) => {
 
