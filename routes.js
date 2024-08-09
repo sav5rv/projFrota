@@ -94,6 +94,7 @@ route.get('/veiculo/lista_placa',                     veiculoController.lista_pl
 
 
 
+//-------------------------------------------------------------------------------------------------------------
 // Rotas de despesa
 route.get('/despesa/index',             loginRequired, despesaController.index);
 route.post('/despesa/register',         loginRequired, despesaController.register);
@@ -102,7 +103,12 @@ route.get('/despesa/despesa_lista',     loginRequired, despesaController.despesa
 route.get('/despesa/despesa_lista/:id', loginRequired, despesaController.editIndex);
 route.post('/despesa/edit/:id',         loginRequired, despesaController.edit);
 
+route.get('/despesa/despesa_grafico1',   despesaController.grafico1);
 route.get('/despesa/despesa_grafico',   despesaController.grafico);
+route.post('/despesa/dados_grafico2/:tipoDespesa',   despesaController.dados_grafico2);
+
+//Fetch usado em veiculo_cad
+route.get('/despesa/dados_grafico1', despesaController.dados_grafico1);
 
 
 

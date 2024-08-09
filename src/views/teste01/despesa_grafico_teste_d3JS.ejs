@@ -1,0 +1,102 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<style> /* set the CSS */
+
+  .bar { fill: rgb(178, 180, 70); }
+  
+</style>
+
+  <div class="row">
+
+    <div class="col-lg-12">
+      <div class="text-center">
+        <h4>Gráficos das Despesas</h4>
+        <p><%- include('includes/messages') %></p>
+      </div>
+
+      <% if(despesas1.length > 0) { %>
+
+        <% console.log(despesas5) %>
+
+      <% } else { %>
+        <p class="text-center lead">Não existem despesas cadastradas.</p>
+      <% } %>
+
+    </div>
+    
+  </div>
+
+
+<!-- carregar a biblioteca d3.js library -->    	
+<script src="https://d3js.org/d3.v6.min.js"></script>;
+
+<script>
+
+    // Função para buscar os dados do servidor
+    async function fetchData() {
+      const response = await fetch('/despesa/dados_grafico1');
+      const data = await response.json();
+      console.log(data);
+      renderChart(data);
+    }
+
+    // Função para renderizar o gráfico
+    function renderChart(data) {
+      // definir margens e dimensões
+      var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+          width = 960 - margin.left - margin.right,
+          height = 500 - margin.top - margin.bottom;
+
+      // definir intervalos dos domínios x e y
+      var x = d3.scaleBand()
+                .range([0, width])
+                .padding(0.1);
+      var y = d3.scaleLinear()
+                .range([height, 0]);
+
+      // definir elemento svg do html - O tamanho do objeto SVG é determinado por width, height, e margin          
+      var svg = d3.select("body").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // formatar dados
+      data.forEach(function(d) {
+        d.amounts = +d.amounts;
+      });
+
+      // configurar os domínios x e y
+      x.domain(data.map(function(d) { return d.name; }));
+      y.domain([0, d3.max(data, function(d) { return d.amounts; })]);
+
+      // criar as barras e associar cada uma delas a um conjunto de dados
+      svg.selectAll(".bar")
+          .data(data)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d.name); })
+          .attr("width", x.bandwidth())
+          .attr("y", function(d) { return y(d.amounts); })
+          .attr("height", function(d) { return height - y(d.amounts); });
+
+      // anexar nosso eixo X
+      svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+
+      // anexar nosso eixo Y
+      svg.append("g")
+          .call(d3.axisLeft(y));
+    }
+
+    // Carregar os dados e renderizar o gráfico
+    fetchData();
+
+  </script>
+
+<%- include('includes/footer') %>
+
+</body>
+</html>

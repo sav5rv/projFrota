@@ -21,20 +21,79 @@ exports.grafico = async(req, res) => {
     const desp2 = await Despesa.buscaGrafico2();
     const despesas2 = JSON.stringify( desp2 );
 
-    const desp3 = await Despesa.buscaGrafico3();
-    const despesas3 = JSON.stringify( desp3 );
-
     const desp5 = await Despesa.buscaGrafico5();
     const despesas5 = JSON.stringify( desp5 );
 
     res.render('despesa_grafico', { 
       despesas1,  
       despesas2, 
-      despesas3,
       despesas5
     });
   }
   catch(e) {
+    console.log(e);
+    return res.render('404');
+  }
+};
+
+
+exports.dados_grafico2 = async function(req, res) {
+  const tipoDespesa = req.params.tipoDespesa;
+  //console.log(`linha 42 Despesa Controller ${tipoDespesa}`);
+  
+  try {
+    const dados2 = await Despesa.dados_grafico2(tipoDespesa);
+    
+    const dadosTransformados = dados2.map(item => ({
+      data: item._id.data,
+      totalValor: item.totalValor,
+    }));
+
+    const dados_grafico2 = JSON.stringify( dadosTransformados );
+    //console.log(dadosTransformados);
+
+    res.render('despesa_grafico2', {
+      dados_grafico2,
+      tipoDespesa
+    });
+
+  } catch (error) {
+    console.log(error);
+    return res.render('404');
+  }
+};
+
+
+//resposta do FETCH em grafico1
+exports.dados_grafico1 = async function(req, res) {
+  try {
+    const dados = await Despesa.dados_grafico1();
+    // Os dados retornados através do Node.js de uma consulta no banco MongoDB têm a estrutura de uma lista de objetos JavaScript.
+    // Cada objeto representa um documento do MongoDB e tem a seguinte estrutura:
+    // Um campo _id que contém um objeto com a chave data (uma string representando uma data no formato "MM-YYYY").
+    // Um campo totalValor que contém um número (representando um valor total associado àquela data).
+
+    const dadosTransformados = dados.map(item => ({
+      data: item._id.data,
+      totalValor: item.totalValor
+    }));
+  
+    console.log(dadosTransformados);
+
+    res.json(dadosTransformados);
+
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+
+
+exports.grafico1 = async function(req, res) {
+  try{
+    res.render('despesa_grafico1');
+
+  } catch (e) {
     console.log(e);
     return res.render('404');
   }

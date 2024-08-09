@@ -161,6 +161,54 @@ Despesa.buscaGrafico5 = async function() {
 };
 
 
+Despesa.dados_grafico2 = async function(tipoDespesa) {
+  const Desp = tipoDespesa;
+  console.log(`linha 166 Despesa Model ${Desp}`);
+  
+  const dados2 = await DespesaModel.aggregate([
+    {
+      $match: { tipoDespesa: Desp }  // Filtro pelo produto específico
+    },
+    {
+      $group: {
+        _id: {
+          //data: { $dateToString: { format: "%Y-%m-%d", date: "$data" } }
+          data: { $dateToString: { format: "%m-%Y", date: "$data" } }
+        },
+        totalValor: { $sum: "$valor" }
+      }
+    },
+    {
+      $sort: { "_id.data": 1 }
+    }
+  ]);    
+  console.log(`linha 185 Despesa Model ${JSON.stringify(dados2, null, 2)}`);
+  return dados2;
+};
+
+
+
+Despesa.dados_grafico1 = async function() {
+  const dados1 = await DespesaModel.aggregate([
+    {
+      $match: { tipoDespesa: "Pneu" }  // Filtro pelo produto específico
+    },
+    {
+      $group: {
+        _id: {
+          //data: { $dateToString: { format: "%Y-%m-%d", date: "$data" } }
+          data: { $dateToString: { format: "%m-%Y", date: "$data" } }
+        },
+        totalValor: { $sum: "$valor" }
+      }
+    },
+    {
+      $sort: { "_id.data": 1 }
+    }
+  ]);    
+  return dados1;
+};
+
 
 Despesa.buscaDespesas = async function() {
   const despesas = await DespesaModel.find()

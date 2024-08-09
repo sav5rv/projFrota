@@ -1,7 +1,8 @@
 <%- include('includes/head') %>
 <%- include('includes/nav-bootStrap-v4') %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.css">
+
 <!-- <div class="container"> -->
   <div class="row" class="container-fluid" style="width: 100%; padding: auto; margin: auto;">
 
@@ -35,17 +36,17 @@
             </thead>
             <tfoot>
                 <tr>
-                  <th>email</th>
-                  <th>placa</th>
-                  <th>tipoDespesa</th>
-                  <th>hodometro</th>
-                  <th>data</th>
-                  <th>hora</th>
-                  <th>local</th>
-                  <th>unidade</th>
-                  <th>quant</th>
-                  <th>valor</th>
-                  <th>obs</th>
+                  <th>EMail</th>
+                  <th>Placa</th>
+                  <th>Despesa</th>
+                  <th>Hodometro</th>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Local</th>
+                  <th>Unid</th>
+                  <th>Quant</th>
+                  <th>Valor</th>
+                  <th>Obs</th>
                   <th>Registrado Em</th>
                                
                 </tr>
@@ -60,9 +61,9 @@
 <!-- </div> -->
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
     
@@ -156,32 +157,40 @@
                       return formataData(data)
                   }
                 },
+                {
+                targets: 9, // Índice da coluna 'valor'
+                  render: function(data, type, row) {
+                      return formatarMoedaBR(data)
+                  }
+                },
             ],
-            // "pageLength": 3,
-            // "stateSave" : true
-            // paging: false,
-            // scrollCollapse: true,
-            // scrollY: '210px',
-            // scrollX: true,
-            //order: [[2, 'asc']],            
+            language: {
+                info: 'Exibindo página _PAGE_ de _PAGES_',
+                infoEmpty: 'Nenhum registro localizado',
+                infoFiltered: '(filtrados do total de _MAX_ registros)',
+                lengthMenu: 'Exibindo _MENU_ registros por página',
+                search: '-----> Pesquise:',
+                zeroRecords: 'Nenhum registro localizado - sorry',
+            },         
         });
 
         // Adiciona um listener para o evento de clique no link
         $('#tbDespesa tbody').on('click', 'a.edit-link', function (e) {
-                e.preventDefault();
-                let data = table.row($(this).parents('tr')).data();
-                alert('Edit clicked for: ' + data[1]);
-            });
+            e.preventDefault();
+            let data = table.row($(this).parents('tr')).data();
+            alert('Você vai editar o registor id: ' + data._id);
+            window.location.href = `/despesa/despesa_lista/${data._id}`;
+        });
 
-            // Listener para o link de exclusão
-            $('#tbDespesa tbody').on('click', 'a.delete-link', function (e) {
-                e.preventDefault();
-                let data = table.row($(this).parents('tr')).data();
-                if (confirm('Do you really want to delete the record for ' + data[1] + '?')) {
-                    // Lógica para excluir o registro, por exemplo, fazer uma requisição AJAX para o servidor
-                    alert('Record deleted for: ' + data[1]);
-                }
-            });
+        // Listener para o link de exclusão
+        $('#tbDespesa tbody').on('click', 'a.delete-link', function (e) {
+            e.preventDefault();
+            let data = table.row($(this).parents('tr')).data();
+            if (confirm(`Você quer excluir o registro id: ${data._id}?`)) {
+              //console.log(data._id);
+              window.location.href = `/despesa/delete/${data._id}`;
+            }
+        });
     </script>
     <%- include('includes/footer') %>
 
